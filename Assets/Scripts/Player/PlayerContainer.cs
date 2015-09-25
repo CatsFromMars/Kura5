@@ -258,6 +258,5 @@ public class PlayerContainer : MonoBehaviour {
 		//ANIMATION EVENTS FOR ALL THINGS THAT NEED SOUND
 		audio.clip = clip;
 		audio.Play();
-		
 	}
 }

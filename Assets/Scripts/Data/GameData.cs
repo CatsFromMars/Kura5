@@ -61,27 +61,10 @@ public class GameData : MonoBehaviour {
 		if(annieCurrentEnergy >= annieMaxEnergy) annieCurrentEnergy = annieMaxEnergy;
 		if(emilCurrentEnergy >= emilMaxEnergy) emilCurrentEnergy = emilMaxEnergy;
 
-		if(Input.GetButtonDown("Switch")) switchPlayers();
+
 
 		//Check for Game Over
 		//if(annieCurrentLife <= 0 && emilCurrentLife <= 0)
-
-	}
-
-	void switchPlayers() {
-		Quaternion rot = thePlayer.transform.rotation; 
-		if(currentPlayer == player.Annie && emilCurrentLife > 0) {
-			Destroy(thePlayer.gameObject); //GEEZ, THAT SOUNDS OMINOUS.
-			Vector3 spawnPoint = new Vector3(playerCurrentPosition.x, emilPrefab.transform.position.y, playerCurrentPosition.z);
-			thePlayer = Instantiate(emilPrefab, spawnPoint, rot) as Transform;
-			currentPlayer = player.Emil;
-		}
-		else if(currentPlayer == player.Emil && annieCurrentLife > 0) {
-			Destroy(thePlayer.gameObject); //GEEZ, THAT SOUNDS OMINOUS.
-			Vector3 spawnPoint = new Vector3(playerCurrentPosition.x, anniePrefab.transform.position.y, playerCurrentPosition.z);
-			thePlayer = Instantiate(anniePrefab, spawnPoint, rot) as Transform;
-			currentPlayer = player.Annie;
-		}
 
 	}
 

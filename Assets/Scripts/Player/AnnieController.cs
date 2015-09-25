@@ -18,6 +18,8 @@ public class AnnieController : PlayerContainer {
 
 	//Visual
 	public ParticleSystem sunParticles;
+	public ParticleSystem dustL;
+	public ParticleSystem dustR;
 
 	// Use this for initialization
 	void Start () {
@@ -93,5 +95,15 @@ public class AnnieController : PlayerContainer {
 			makeSound(clickNoise);
 		}
 		
+	}
+
+	public void puffL() {
+		//Animation event: has dust scatter where annie walks!
+		dustL.Emit (2);
+	}
+
+	public void puffR() {
+		//Animation event: has dust scatter where annie walks!
+		dustR.Emit (2);
 	}
 }
