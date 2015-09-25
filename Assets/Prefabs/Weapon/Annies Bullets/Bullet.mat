@@ -31,27 +31,23 @@ Material:
         first:
           name: _ToonShade
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 8900000, guid: b9d25dc90392c684186d25257a7262e7, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
-          name: _Outline
-        second: .0299999993
-      data:
-        first:
           name: _InvFade
         second: 1
+      data:
+        first:
+          name: _Outline
+        second: .0299999993
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 1, g: .951724172, b: 0, a: 1}
-      data:
-        first:
-          name: _OutlineColor
-        second: {r: 1, g: .351724148, b: 0, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _TintColor
@@ -60,3 +56,7 @@ Material:
         first:
           name: _EmisColor
         second: {r: .200000003, g: .200000003, b: .200000003, a: 0}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: 1, g: .351724148, b: 0, a: 1}

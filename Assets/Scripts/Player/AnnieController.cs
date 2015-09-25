@@ -16,6 +16,9 @@ public class AnnieController : PlayerContainer {
 	public Transform earthBullet;
 	public Transform weapon;
 
+	//Visual
+	public ParticleSystem sunParticles;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -58,7 +61,10 @@ public class AnnieController : PlayerContainer {
 		chargeCounter+=lightLevels.sunlight;
 		if(chargeCounter > chargeThresh) {
 			chargeCounter = 0;
-			if(lightLevels.sunlight > 0) gameData.annieCurrentEnergy += 1;
+			if(lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy) {
+				sunParticles.Emit (1);
+				gameData.annieCurrentEnergy += 1;
+			}
 		}
 	}
 

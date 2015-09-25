@@ -154,7 +154,7 @@ public class EnemyClass : MonoBehaviour {
 			//MAKE THEM REACT TO PAAAAINNNN
 			if(isHitFromBehind()) {
 				stunned = true;
-				Debug.Log ("Woa man!");
+				animator.SetTrigger(hash.hurtTrigger);
 			}
 			else if(animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.enemyHurtState
 			        && animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.attackState) animator.SetTrigger(hash.hurtTrigger);

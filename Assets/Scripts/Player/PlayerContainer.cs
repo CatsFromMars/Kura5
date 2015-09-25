@@ -212,8 +212,9 @@ public class PlayerContainer : MonoBehaviour {
 		}
 		Vector3 targetPos = new Vector3(currentTarget.position.x, this.transform.position.y, 
 		                                currentTarget.position.z);
-		
-		if(forceLookAtTarget || !currentAnim(hash.runningState)) this.transform.LookAt(targetPos);
+
+		bool m = currentAnim(hash.runningState) || currentAnim(hash.rollState);
+		if(forceLookAtTarget || !m) this.transform.LookAt(targetPos);
 		else rotatePlayer (horizontal, vertical);
 	}
 
