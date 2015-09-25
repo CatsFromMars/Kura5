@@ -1,0 +1,328 @@
+fileFormatVersion: 2
+guid: b6024a723cef2354ca80bd61acd0aeae
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Body
+    100002: Eye
+    100004: Lantern
+    100006: PinLarge
+    100008: PinLarge_001
+    100010: //RootNode
+    100012: Body_001
+    100014: Armature
+    100016: Bone
+    100018: Bone_001
+    100020: Bone_002
+    100022: Body_0
+    100024: Bone_003
+    100026: Head
+    100028: LowerJaw
+    100030: Bone_004
+    100032: Arm1_L
+    100034: Arm1_R
+    100036: Arm2_L
+    100038: Arm2_R
+    100040: Arm3_L
+    100042: Arm3_R
+    100044: Fingers_L
+    100046: Fingers_R
+    100048: Lantern_0
+    100050: Ponytail
+    100052: Rope1
+    100054: Rope2
+    100056: Rope3
+    100058: Rope4
+    100060: Rope5
+    100062: RopeL1
+    100064: RopeL2
+    100066: RopeL3
+    100068: RopeR1
+    100070: RopeR2
+    100072: RopeR3
+    100074: Shoulder_L
+    100076: Shoulder_R
+    400000: Body
+    400002: Eye
+    400004: Lantern
+    400006: PinLarge
+    400008: PinLarge_001
+    400010: //RootNode
+    400012: Body_001
+    400014: Armature
+    400016: Bone
+    400018: Bone_001
+    400020: Bone_002
+    400022: Body_0
+    400024: Bone_003
+    400026: Head
+    400028: LowerJaw
+    400030: Bone_004
+    400032: Arm1_L
+    400034: Arm1_R
+    400036: Arm2_L
+    400038: Arm2_R
+    400040: Arm3_L
+    400042: Arm3_R
+    400044: Fingers_L
+    400046: Fingers_R
+    400048: Lantern_0
+    400050: Ponytail
+    400052: Rope1
+    400054: Rope2
+    400056: Rope3
+    400058: Rope4
+    400060: Rope5
+    400062: RopeL1
+    400064: RopeL2
+    400066: RopeL3
+    400068: RopeR1
+    400070: RopeR2
+    400072: RopeR3
+    400074: Shoulder_L
+    400076: Shoulder_R
+    2300000: Body
+    2300002: Eye
+    2300004: Lantern
+    2300006: PinLarge
+    2300008: PinLarge_001
+    2300010: Body_001
+    3300000: Body
+    3300002: Eye
+    3300004: Lantern
+    3300006: PinLarge
+    3300008: PinLarge_001
+    3300010: Body_001
+    4300000: PinLarge_001
+    4300002: PinLarge
+    4300004: Lantern
+    4300006: Body
+    4300008: Eye
+    4300010: Body_001
+    7400000: Default Take
+    7400002: Idle
+    7400004: Running
+    9500000: //RootNode
+    13700000: Body
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: ArmatureAction
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Body_0
+        weight: 1
+      - path: Armature/Body_0/Head
+        weight: 1
+      - path: Armature/Body_0/Head/Ponytail
+        weight: 1
+      - path: Armature/Body_0/LowerJaw
+        weight: 1
+      - path: Armature/Body_0/Rope1
+        weight: 1
+      - path: Armature/Body_0/Rope1/Rope2
+        weight: 1
+      - path: Armature/Body_0/Rope1/Rope2/Rope3
+        weight: 1
+      - path: Armature/Body_0/Rope1/Rope2/Rope3/Rope4
+        weight: 1
+      - path: Armature/Body_0/Rope1/Rope2/Rope3/Rope4/Rope5
+        weight: 1
+      - path: Armature/Body_0/Rope1/Rope2/Rope3/Rope4/Rope5/Lantern
+        weight: 1
+      - path: Armature/Body_0/RopeL1
+        weight: 1
+      - path: Armature/Body_0/RopeL1/RopeL2
+        weight: 1
+      - path: Armature/Body_0/RopeL1/RopeL2/RopeL3
+        weight: 1
+      - path: Armature/Body_0/RopeR1
+        weight: 1
+      - path: Armature/Body_0/RopeR1/RopeR2
+        weight: 1
+      - path: Armature/Body_0/RopeR1/RopeR2/RopeR3
+        weight: 1
+      - path: Armature/Body_0/Shoulder_L
+        weight: 1
+      - path: Armature/Body_0/Shoulder_L/Arm1_L
+        weight: 1
+      - path: Armature/Body_0/Shoulder_L/Arm1_L/Arm2_L
+        weight: 1
+      - path: Armature/Body_0/Shoulder_L/Arm1_L/Arm2_L/Arm3_L
+        weight: 1
+      - path: Armature/Body_0/Shoulder_L/Arm1_L/Arm2_L/Arm3_L/Fingers_L
+        weight: 1
+      - path: Armature/Body_0/Shoulder_R
+        weight: 1
+      - path: Armature/Body_0/Shoulder_R/Arm1_R
+        weight: 1
+      - path: Armature/Body_0/Shoulder_R/Arm1_R/Arm2_R
+        weight: 1
+      - path: Armature/Body_0/Shoulder_R/Arm1_R/Arm2_R/Arm3_R
+        weight: 1
+      - path: Armature/Body_0/Shoulder_R/Arm1_R/Arm2_R/Arm3_R/Fingers_R
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Running
+      takeName: ArmatureAction
+      firstFrame: 69
+      lastFrame: 89
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Body_0
+        weight: 1
+      - path: Armature/Body_0/Head
+        weight: 1
+      - path: Armature/Body_0/Head/Ponytail
+        weight: 1
+      - path: Armature/Body_0/LowerJaw
+        weight: 1
+      - path: Armature/Body_0/Rope1
+        weight: 1
+      - path: Armature/Body_0/Rope1/Rope2
+        weight: 1
+      - path: Armature/Body_0/Rope1/Rope2/Rope3
+        weight: 1
+      - path: Armature/Body_0/Rope1/Rope2/Rope3/Rope4
+        weight: 1
+      - path: Armature/Body_0/Rope1/Rope2/Rope3/Rope4/Rope5
+        weight: 1
+      - path: Armature/Body_0/Rope1/Rope2/Rope3/Rope4/Rope5/Lantern
+        weight: 1
+      - path: Armature/Body_0/RopeL1
+        weight: 1
+      - path: Armature/Body_0/RopeL1/RopeL2
+        weight: 1
+      - path: Armature/Body_0/RopeL1/RopeL2/RopeL3
+        weight: 1
+      - path: Armature/Body_0/RopeR1
+        weight: 1
+      - path: Armature/Body_0/RopeR1/RopeR2
+        weight: 1
+      - path: Armature/Body_0/RopeR1/RopeR2/RopeR3
+        weight: 1
+      - path: Armature/Body_0/Shoulder_L
+        weight: 1
+      - path: Armature/Body_0/Shoulder_L/Arm1_L
+        weight: 1
+      - path: Armature/Body_0/Shoulder_L/Arm1_L/Arm2_L
+        weight: 1
+      - path: Armature/Body_0/Shoulder_L/Arm1_L/Arm2_L/Arm3_L
+        weight: 1
+      - path: Armature/Body_0/Shoulder_L/Arm1_L/Arm2_L/Arm3_L/Fingers_L
+        weight: 1
+      - path: Armature/Body_0/Shoulder_R
+        weight: 1
+      - path: Armature/Body_0/Shoulder_R/Arm1_R
+        weight: 1
+      - path: Armature/Body_0/Shoulder_R/Arm1_R/Arm2_R
+        weight: 1
+      - path: Armature/Body_0/Shoulder_R/Arm1_R/Arm2_R/Arm3_R
+        weight: 1
+      - path: Armature/Body_0/Shoulder_R/Arm1_R/Arm2_R/Arm3_R/Fingers_R
+        weight: 1
+      - path: Body
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .699999988
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

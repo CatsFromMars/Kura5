@@ -1,0 +1,818 @@
+fileFormatVersion: 2
+guid: d68189018abb23a4aae73731be714508
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Chest
+    100004: Cylinder
+    100006: EyeL
+    100008: EyeR
+    100010: FootIKL
+    100012: FootIKR
+    100014: FootL
+    100016: FootR
+    100018: HandL
+    100020: HandR
+    100022: Head
+    100024: Hip
+    100026: KneeL
+    100028: KneeR
+    100030: Lower_Jaw
+    100032: LowerArmL
+    100034: LowerArmR
+    100036: LowerLegL
+    100038: LowerLegR
+    100040: NeckPuffer
+    100042: ShoulderL
+    100044: ShoulderR
+    100046: Tummy
+    100048: Upper_Jaw
+    100050: UpperArmL
+    100052: UpperArmR
+    100054: UpperLegL
+    100056: UpperLegR
+    100058: //RootNode
+    400000: Armature
+    400002: Chest
+    400004: Cylinder
+    400006: EyeL
+    400008: EyeR
+    400010: FootIKL
+    400012: FootIKR
+    400014: FootL
+    400016: FootR
+    400018: HandL
+    400020: HandR
+    400022: Head
+    400024: Hip
+    400026: KneeL
+    400028: KneeR
+    400030: Lower_Jaw
+    400032: LowerArmL
+    400034: LowerArmR
+    400036: LowerLegL
+    400038: LowerLegR
+    400040: NeckPuffer
+    400042: ShoulderL
+    400044: ShoulderR
+    400046: Tummy
+    400048: Upper_Jaw
+    400050: UpperArmL
+    400052: UpperArmR
+    400054: UpperLegL
+    400056: UpperLegR
+    400058: //RootNode
+    4300000: Cylinder
+    7400000: Attack
+    7400002: Idle
+    7400004: Walk
+    7400006: Alert
+    7400008: Hurt
+    7400010: Death
+    7400012: Shocked
+    7400014: Stunned
+    9500000: //RootNode
+    13700000: Cylinder
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: ArmatureAction
+      firstFrame: 1
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/FootIKL
+        weight: 1
+      - path: Armature/FootIKL/FootL
+        weight: 1
+      - path: Armature/FootIKR
+        weight: 1
+      - path: Armature/FootIKR/FootR
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Tummy
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Lower_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/NeckPuffer
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/UpperLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegL/LowerLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegR
+        weight: 1
+      - path: Armature/Hip/UpperLegR/LowerLegR
+        weight: 1
+      - path: Armature/KneeL
+        weight: 1
+      - path: Armature/KneeR
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walk
+      takeName: ArmatureAction
+      firstFrame: 70
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/FootIKL
+        weight: 1
+      - path: Armature/FootIKL/FootL
+        weight: 1
+      - path: Armature/FootIKR
+        weight: 1
+      - path: Armature/FootIKR/FootR
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Tummy
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Lower_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/NeckPuffer
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/UpperLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegL/LowerLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegR
+        weight: 1
+      - path: Armature/Hip/UpperLegR/LowerLegR
+        weight: 1
+      - path: Armature/KneeL
+        weight: 1
+      - path: Armature/KneeR
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Alert
+      takeName: ArmatureAction
+      firstFrame: 130
+      lastFrame: 160
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/FootIKL
+        weight: 1
+      - path: Armature/FootIKL/FootL
+        weight: 1
+      - path: Armature/FootIKR
+        weight: 1
+      - path: Armature/FootIKR/FootR
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Tummy
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Lower_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/NeckPuffer
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/UpperLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegL/LowerLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegR
+        weight: 1
+      - path: Armature/Hip/UpperLegR/LowerLegR
+        weight: 1
+      - path: Armature/KneeL
+        weight: 1
+      - path: Armature/KneeR
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Hurt
+      takeName: ArmatureAction
+      firstFrame: 220
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/FootIKL
+        weight: 1
+      - path: Armature/FootIKL/FootL
+        weight: 1
+      - path: Armature/FootIKR
+        weight: 1
+      - path: Armature/FootIKR/FootR
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Tummy
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Lower_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/NeckPuffer
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/UpperLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegL/LowerLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegR
+        weight: 1
+      - path: Armature/Hip/UpperLegR/LowerLegR
+        weight: 1
+      - path: Armature/KneeL
+        weight: 1
+      - path: Armature/KneeR
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Death
+      takeName: ArmatureAction
+      firstFrame: 240
+      lastFrame: 280
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/FootIKL
+        weight: 1
+      - path: Armature/FootIKL/FootL
+        weight: 1
+      - path: Armature/FootIKR
+        weight: 1
+      - path: Armature/FootIKR/FootR
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Tummy
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Lower_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/NeckPuffer
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/UpperLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegL/LowerLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegR
+        weight: 1
+      - path: Armature/Hip/UpperLegR/LowerLegR
+        weight: 1
+      - path: Armature/KneeL
+        weight: 1
+      - path: Armature/KneeR
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Shocked
+      takeName: ArmatureAction
+      firstFrame: 310
+      lastFrame: 349
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/FootIKL
+        weight: 1
+      - path: Armature/FootIKL/FootL
+        weight: 1
+      - path: Armature/FootIKR
+        weight: 1
+      - path: Armature/FootIKR/FootR
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Tummy
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Lower_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/NeckPuffer
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/UpperLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegL/LowerLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegR
+        weight: 1
+      - path: Armature/Hip/UpperLegR/LowerLegR
+        weight: 1
+      - path: Armature/KneeL
+        weight: 1
+      - path: Armature/KneeR
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Attack
+      takeName: ArmatureAction
+      firstFrame: 170
+      lastFrame: 205
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/FootIKL
+        weight: 1
+      - path: Armature/FootIKL/FootL
+        weight: 1
+      - path: Armature/FootIKR
+        weight: 1
+      - path: Armature/FootIKR/FootR
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Tummy
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Lower_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/NeckPuffer
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/UpperLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegL/LowerLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegR
+        weight: 1
+      - path: Armature/Hip/UpperLegR/LowerLegR
+        weight: 1
+      - path: Armature/KneeL
+        weight: 1
+      - path: Armature/KneeR
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Stunned
+      takeName: ArmatureAction
+      firstFrame: 225
+      lastFrame: 230
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/FootIKL
+        weight: 1
+      - path: Armature/FootIKL/FootL
+        weight: 1
+      - path: Armature/FootIKR
+        weight: 1
+      - path: Armature/FootIKR/FootR
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Tummy
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Lower_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/NeckPuffer
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Upper_Jaw/EyeR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/UpperLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegL/LowerLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegR
+        weight: 1
+      - path: Armature/Hip/UpperLegR/LowerLegR
+        weight: 1
+      - path: Armature/KneeL
+        weight: 1
+      - path: Armature/KneeR
+        weight: 1
+      - path: Cylinder
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .529999971
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
