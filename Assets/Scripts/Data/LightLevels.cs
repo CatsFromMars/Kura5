@@ -14,7 +14,7 @@ public class LightLevels : MonoBehaviour {
 	//private Vector3 lightVector;
 	//private Vector3 shadowVector;
 
-	private GameObject player;
+	//private GameObject player;
 	private int s1;
 	private int d1;
 
@@ -26,22 +26,22 @@ public class LightLevels : MonoBehaviour {
 	void Awake() {
 		lightSource = GameObject.FindGameObjectWithTag("Sunlight");
 		shadowSource = GameObject.FindGameObjectWithTag("Shadow");
-		player = GameObject.FindGameObjectWithTag("Player");
+		//player = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	void OnLevelWasLoaded(int level) {
 		lightSource = GameObject.FindGameObjectWithTag("Sunlight");
 		shadowSource = GameObject.FindGameObjectWithTag("Shadow");
-		player = GameObject.FindGameObjectWithTag("Player");
+		//player = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	void Update() {
-		if (player == null) {
-			player = GameObject.FindGameObjectWithTag("Player");
-		}
-		else {
-			transform.position = player.transform.position;
-		}
+		//if (player == null) {
+			//player = GameObject.FindGameObjectWithTag("Player");
+		//}
+		//else {
+			//transform.position = player.transform.position;
+		//}
 		calc();
 		updateGUI ();
 	}
