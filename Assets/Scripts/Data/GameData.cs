@@ -42,6 +42,8 @@ public class GameData : MonoBehaviour {
 
 	//MISC VARIABLES
 	public bool inCutscene = false; //TO BE MESSED WITH BY CUTSCENE SCRIPT
+	public Transform gameOverSpawner;
+	public bool isGameOver;
 
 	//ELEMENT
 	public enum elementalProperty 
@@ -51,6 +53,10 @@ public class GameData : MonoBehaviour {
 
 	void Awake() {
 		Application.targetFrameRate = 300;
+	}
+
+	void OnLevelWasLoaded(int level) {
+		isGameOver = false;
 	}
 	
 	void Update() {
@@ -64,7 +70,10 @@ public class GameData : MonoBehaviour {
 
 
 		//Check for Game Over
-		//if(annieCurrentLife <= 0 && emilCurrentLife <= 0)
+		if (annieCurrentLife <= 0 && emilCurrentLife <= 0 && !isGameOver) {
+			isGameOver = true;
+			Instantiate(Resources.Load ("Effects/GameOver"), gameOverSpawner.position, Quaternion.Euler(45,0,0));
+		}
 
 	}
 
