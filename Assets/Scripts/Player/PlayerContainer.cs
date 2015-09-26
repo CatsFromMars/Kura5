@@ -259,4 +259,8 @@ public class PlayerContainer : MonoBehaviour {
 		audio.clip = clip;
 		audio.Play();
 	}
+
+	public void attemptSwap() {
+		GameObject.FindGameObjectWithTag("PlayerSwapper").GetComponent<CharacterSwapper>().switchPlayers ();
+	}
 }

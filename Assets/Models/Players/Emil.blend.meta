@@ -127,6 +127,7 @@ ModelImporter:
     7400040: Lift
     7400042: Dragged
     7400044: DeathPose
+    7400046: Action
     9500000: //RootNode
     13700000: Cube
     13700002: Sphere
@@ -774,8 +775,8 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Rolling
-      takeName: Default Take
+      name: Action
+      takeName: Action
       firstFrame: 280
       lastFrame: 300
       wrapMode: 0
@@ -819,6 +820,20 @@ ModelImporter:
         weight: 1
       - path: Armature/Hip/Middle/Chest/Head
         weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/BangsL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/BangsR
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/EyeL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/EyeR
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/Hair1
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/Hair1/Hair2
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/Hair3
+        weight: 1
       - path: Armature/Hip/Middle/Chest/ShoulderL
         weight: 1
       - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL
@@ -838,6 +853,8 @@ ModelImporter:
       - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL/LowerArmL/PalmL/ThumbBaseL
         weight: 1
       - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL/LowerArmL/PalmL/ThumbBaseL/ThumbTipL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL/LowerArmL/PalmL/Weapon
         weight: 1
       - path: Armature/Hip/Middle/Chest/ShoulderR
         weight: 1
@@ -868,6 +885,8 @@ ModelImporter:
       - path: Armature/Hip/UpperLegR/LowerLegR
         weight: 1
       - path: Cube
+        weight: 1
+      - path: Cube_001
         weight: 1
       - path: Sphere
         weight: 1

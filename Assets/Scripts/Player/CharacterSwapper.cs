@@ -21,7 +21,7 @@ public class CharacterSwapper : MonoBehaviour {
 		else transform.position = emil.position;
 	}
 
-	void switchPlayers() {
+	public void switchPlayers() {
 		if(data.currentPlayer == GameData.player.Annie && data.emilCurrentLife > 0) {
 			Vector3 spawnPoint = annie.transform.position;
 			emil.transform.position = spawnPoint;

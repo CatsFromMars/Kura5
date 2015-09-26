@@ -7,7 +7,7 @@ public class Menu : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetKeyDown(KeyCode.Return)) {
-			Application.LoadLevel ("Intro"); 
+			Application.LoadLevel ("LoadingScene"); 
 
 		}
 	
