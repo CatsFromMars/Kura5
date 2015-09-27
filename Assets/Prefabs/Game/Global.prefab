@@ -299,6 +299,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 458448}
+  - 114: {fileID: 11408614}
   m_Layer: 0
   m_Name: Global
   m_TagString: Untagged
@@ -1291,7 +1292,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 465092}
   - 114: {fileID: 11465158}
-  - 114: {fileID: 11465160}
   m_Layer: 0
   m_Name: CameraContainer
   m_TagString: Untagged
@@ -4521,6 +4521,17 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11408614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe3d8cf46b73d94bbbdef6a62705fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11458474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4879,17 +4890,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothTime: 0
---- !u!114 &11465160
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 165072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fe3d8cf46b73d94bbbdef6a62705fba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11465162
 MonoBehaviour:
   m_ObjectHideFlags: 1

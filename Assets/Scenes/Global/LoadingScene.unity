@@ -1155,6 +1155,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 164988, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: m_TagString
+      value: Weather
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11465160, guid: e64d4956958ad664fba622298afa2794, type: 2}
     - {fileID: 11465178, guid: e64d4956958ad664fba622298afa2794, type: 2}
@@ -10079,7 +10083,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   space: 2.20000005
   corner: {fileID: 270238818}
-  inventory: {fileID: 0}
+  inventory: {fileID: 11465176, guid: e64d4956958ad664fba622298afa2794, type: 2}
   selector: {fileID: 1184528546}
   modelPoint: {fileID: 1202931612}
   descriptionText: {fileID: 1992273723}
@@ -10174,7 +10178,7 @@ GameObject:
   - 114: {fileID: 1918787346}
   m_Layer: 0
   m_Name: Weather
-  m_TagString: Untagged
+  m_TagString: Weather
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10676,8 +10680,9 @@ Transform:
 --- !u!114 &2051672760
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11408614, guid: e64d4956958ad664fba622298afa2794,
+    type: 2}
+  m_PrefabInternal: {fileID: 326531593}
   m_GameObject: {fileID: 2051672758}
   m_Enabled: 1
   m_EditorHideFlags: 0

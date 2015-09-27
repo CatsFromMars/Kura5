@@ -120,6 +120,10 @@ public class WeatherSync : MonoBehaviour {
 			conditionName = N["weather"][0]["main"].Value; //get the current condition Name
 			//conditionName = N["weather"][0]["description"].Value; //get the current condition Description
 			clouds = N["clouds"][0].Value;
+
+			//Update weather effects in a room
+			GameObject skylight = GameObject.FindGameObjectWithTag("Sunlight");
+			if(skylight != null) skylight.GetComponent<SkylightWeather>().updateWeatherEffects();
 		}
 		else
 		{
