@@ -9,6 +9,9 @@ public class WeatherSync : MonoBehaviour {
 	public string currentCountry;
 	public string currentCity;
 
+	//Light
+	public int lightMax = 0;
+
 	//Status
 	public int counter = 0;
 	private int refreshWaitTime = 1000;
@@ -26,9 +29,11 @@ public class WeatherSync : MonoBehaviour {
 	public float finalTemp;
 	public string sunriseTime;
 	public string sunsetTime;
+	private System.DateTime sunrise;
+	private System.DateTime sunset;
 
 	void Awake() {
-		//StartCoroutine(SendRequest());
+		StartCoroutine(SendRequest());
 	}
 	
 	void OnLevelWasLoaded(int level) {
@@ -37,12 +42,56 @@ public class WeatherSync : MonoBehaviour {
 		StartCoroutine(SendRequest());
 	}
 
-	public static string UnixTimeStampToDateTime(int unixTimeStamp)
+	public static System.DateTime UnixTimeStampToDateTime(int unixTimeStamp)
 	{
 		// Unix timestamp is seconds past epoch
 		System.DateTime dtDateTime = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
 		dtDateTime = dtDateTime.AddSeconds( unixTimeStamp ).ToLocalTime();
-		return dtDateTime.ToString("hh:mm tt");
+		//return dtDateTime.ToString("hh:mm tt");
+		return dtDateTime;
+	}
+
+	public int getLengthOfDay() {
+		//Returns Length of day in minutes
+		int sunSetHour = sunset.Hour;
+		int sunSetMinute = sunset.Minute;
+		int sunRiseHour = sunrise.Hour;
+		int sunRiseMinute = sunrise.Minute;
+
+		sunRiseMinute += sunRiseHour * 60;
+		sunSetMinute += sunSetHour * 60;
+		return sunSetMinute - sunRiseMinute;
+	}
+
+	public int getSunLevels() {
+		int lengthOfDay = getLengthOfDay ();
+		System.DateTime dt = DateTime.Now;
+		int currentHour = dt.Hour;
+		int currentMinute = dt.Minute;
+		int sunRiseHour = sunrise.Hour;
+		int sunRiseMinute = sunrise.Minute;
+		sunRiseMinute += sunRiseHour * 60;
+		currentMinute += currentHour * 60;
+
+		int minutesFromSunrise = currentMinute - sunRiseMinute;
+
+		int light = 0;
+		Debug.Log (minutesFromSunrise + ";" + lengthOfDay);
+		if(minutesFromSunrise > lengthOfDay) light = 0; //No sun if past sunset
+		else {
+			float percent = 100f - (minutesFromSunrise*1.0f / lengthOfDay*1.0f)*100; //Percent of the day gone
+			Debug.Log (percent);
+			if(percent <= 17) light = 2;
+			else if(percent <= 34 && percent > 17) light = 4;
+			else if(percent <= 67 && percent > 34) light = 6;
+			else if(percent <= 84 && percent > 67) light = 4;
+			else if(percent <= 100 && percent > 84) light = 2;
+		}
+
+		//Apply cloudiness
+		float c = (100 - int.Parse(clouds))/100f;
+		light = Mathf.CeilToInt (c*light);
+		return light;
 	}
 
 	IEnumerator getIP() {
@@ -108,8 +157,8 @@ public class WeatherSync : MonoBehaviour {
 
 			retrievedCountry = N["sys"]["country"].Value; //get the country
 			retrievedCity = N["name"].Value; //get the city
-			sunriseTime = (UnixTimeStampToDateTime(int.Parse(N["sys"]["sunrise"])));
-			sunsetTime = (UnixTimeStampToDateTime(int.Parse(N["sys"]["sunset"])));
+			sunrise = (UnixTimeStampToDateTime(int.Parse(N["sys"]["sunrise"])));
+			sunset = (UnixTimeStampToDateTime(int.Parse(N["sys"]["sunset"])));
 
 			string temp = N["main"]["temp"].Value; //get the temperature
 			float tempTemp; //variable to hold the parsed temperature
@@ -121,9 +170,20 @@ public class WeatherSync : MonoBehaviour {
 			//conditionName = N["weather"][0]["description"].Value; //get the current condition Description
 			clouds = N["clouds"][0].Value;
 
+			//Update Light Levels
+			lightMax = getSunLevels();
+
 			//Update weather effects in a room
+			Debug.Log (System.DateTime.Now);
 			GameObject skylight = GameObject.FindGameObjectWithTag("Sunlight");
-			if(skylight != null) skylight.GetComponent<SkylightWeather>().updateWeatherEffects();
+			if(skylight != null) {
+				SkylightWeather s = skylight.GetComponent<SkylightWeather>();
+				s.updateWeatherEffects();
+				s.updateSkylightColor();
+			}
+			//Adjust Max Sun
+			GameObject lightLevels = GameObject.FindGameObjectWithTag("LightLevels");
+			if(lightLevels != null) lightLevels.GetComponent<LightLevels>().upperBound = lightMax+2;
 		}
 		else
 		{

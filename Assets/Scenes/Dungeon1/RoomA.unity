@@ -173,6 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   w: {fileID: 1476660966}
+  day: {r: 1, g: .936409771, b: .580882311, a: 1}
+  twilight: {r: .411764681, g: .226178288, b: .105968855, a: 1}
+  night: {r: 0, g: .0788031965, b: .308823526, a: 1}
   rain: {fileID: 1735705343}
   clouds: {fileID: 505144979}
   snow: {fileID: 1058971385}
@@ -1782,7 +1785,15 @@ Prefab:
       objectReference: {fileID: 914827827}
     - target: {fileID: 158444, guid: e64d4956958ad664fba622298afa2794, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465154, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: w
+      value: 
+      objectReference: {fileID: 1476660966}
+    - target: {fileID: 164988, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: m_TagString
+      value: Weather
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e64d4956958ad664fba622298afa2794, type: 2}
@@ -20634,6 +20645,7 @@ MonoBehaviour:
   darkness: 0
   solSlider: {fileID: 858959174}
   darkSlider: {fileID: 236940137}
+  w: {fileID: 1476660966}
 --- !u!4 &931462571
 Transform:
   m_ObjectHideFlags: 0
@@ -35754,7 +35766,7 @@ GameObject:
   - 114: {fileID: 1476660966}
   m_Layer: 0
   m_Name: Weather
-  m_TagString: Weathe
+  m_TagString: Weather
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35786,6 +35798,7 @@ MonoBehaviour:
   currentIP: 
   currentCountry: 
   currentCity: 
+  lightMax: 0
   counter: 0
   weatherSyncWorking: 0
   status: 
@@ -49142,7 +49155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1921123893
 Transform:
   m_ObjectHideFlags: 0

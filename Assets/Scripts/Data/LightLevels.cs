@@ -21,15 +21,20 @@ public class LightLevels : MonoBehaviour {
 	public Slider solSlider;
 	public Slider darkSlider;
 
+	public WeatherSync w;
 	//public SpriteRenderer lightOverlay;
 
 	void Awake() {
+		//Get LightMax From WeatherSync
+		upperBound = w.lightMax;
 		lightSource = GameObject.FindGameObjectWithTag("Sunlight");
 		shadowSource = GameObject.FindGameObjectWithTag("Shadow");
 		//player = GameObject.FindGameObjectWithTag("Player");
+
 	}
 
 	void OnLevelWasLoaded(int level) {
+		upperBound = w.lightMax;
 		lightSource = GameObject.FindGameObjectWithTag("Sunlight");
 		shadowSource = GameObject.FindGameObjectWithTag("Shadow");
 		//player = GameObject.FindGameObjectWithTag("Player");

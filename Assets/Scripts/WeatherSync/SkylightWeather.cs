@@ -5,12 +5,21 @@ public class SkylightWeather : MonoBehaviour {
 
 	private int weatherID;
 	public WeatherSync w;
-	//Wheather Effects
+
+	//Skylight Colors
+	public Transform lightProjector;
+	private Material light;
+	public Color day;
+	public Color twilight;
+	public Color night;
+
+	//Weather Effects
 	private ParticleSystem currentWeatherEffect;
 	public ParticleSystem rain;
 	public ParticleSystem clouds;
 	public ParticleSystem snow;
 
+	//Weather ID Ranges
 	private int rainMin = 200;
 	private int rainMax = 531;
 	private int clearMin = 800;
@@ -23,7 +32,7 @@ public class SkylightWeather : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
 		w = GameObject.FindGameObjectWithTag ("Weather").GetComponent<WeatherSync>();
-		updateWeatherEffects();
+		light = lightProjector.GetComponent<Projector>().material;
 	}
 	
 	public void updateWeatherEffects() {
@@ -44,5 +53,11 @@ public class SkylightWeather : MonoBehaviour {
 			if(currentWeatherEffect != null) currentWeatherEffect.Stop ();
 			currentWeatherEffect = null;
 		}
+	}
+
+	public void updateSkylightColor() {
+		if(w.lightMax >= 1 && w.lightMax < 4) light.SetColor("_Color", twilight);
+		else if(w.lightMax >= 4) light.SetColor("_Color", day);
+		else light.SetColor("_Color", night);
 	}
 }
