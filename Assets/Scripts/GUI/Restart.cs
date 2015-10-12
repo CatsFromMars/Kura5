@@ -12,4 +12,10 @@ public class Restart : MonoBehaviour {
 	void resetScene() {
 		Application.LoadLevel (Application.loadedLevel);
 	}
+
+	void resetGame() {
+		GameObject global = GameObject.FindGameObjectWithTag ("Global");
+		Destroy (global.gameObject);
+		Application.LoadLevel ("MenuScene");
+	}
 }

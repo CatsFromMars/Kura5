@@ -12,6 +12,7 @@ public class Trap : MonoBehaviour {
 	private Activatable[] gateScripts;
 	private int i3 = 0;
 	private int numberAlive;
+	private bool trapActivated;
 
 	private bool trapCleared = false;
 
@@ -20,14 +21,14 @@ public class Trap : MonoBehaviour {
 		numberAlive = enemies.Length;
 		srce = Camera.main.GetComponent<AudioSource>();
 		originalMusic = srce.audio.clip;
-		gates = GameObject.FindGameObjectsWithTag ("Gate");
+		//gates = GameObject.FindGameObjectsWithTag ("Gate");
 		setUpGates();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		checkEnemyDeath();
+		if(numberAlive > 0) checkEnemyDeath();
 
 		if (numberAlive <= 0 && gateScripts[0].activated == true) {
 			deactivateGates();
@@ -38,9 +39,12 @@ public class Trap : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if(other.tag == "Player" && !trapCleared) {
-			changeMusic();
-			activateGates();
+		if(!trapActivated) {
+			if(other.tag == "Player" && !trapCleared) {
+				changeMusic();
+				activateGates();
+				trapActivated = true;
+			}
 		}
 	}
 

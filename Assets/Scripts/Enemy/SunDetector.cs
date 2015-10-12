@@ -11,11 +11,13 @@ public class SunDetector : MonoBehaviour {
 	
 	private GameObject lightSource;
 	private GameObject shadowSource;
+	private LightLevels l;
 
 	private int s1;
 	private int d1;
 	
 	void Awake() {
+		l = GameObject.FindGameObjectWithTag ("LightLevels").GetComponent<LightLevels>();
 		lightSource = GameObject.FindGameObjectWithTag("Sunlight");
 		shadowSource = GameObject.FindGameObjectWithTag("Shadow");
 	}
@@ -25,6 +27,7 @@ public class SunDetector : MonoBehaviour {
 	}
 	
 	void calc() {
+		if(l.upperBound != upperBound) upperBound = l.upperBound;
 		float distanceSun = Vector3.Distance(lightSource.transform.position, transform.position);
 		float distanceDark = Vector3.Distance(shadowSource.transform.position, transform.position);
 		s1 = Mathf.FloorToInt(upperBound - (distanceSun / upperBound));

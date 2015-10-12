@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 452736}
   - 33: {fileID: 3352736}
   - 23: {fileID: 2352736}
+  - 65: {fileID: 6510026}
   m_Layer: 9
   m_Name: Beige_Tile1
   m_TagString: Floor
@@ -56,6 +57,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 152736}
   m_Mesh: {fileID: 4300000, guid: a953a6c251044e044ae9aa1af948efde, type: 3}
+--- !u!65 &6510026
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152736}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.55999994, y: 3.56000066, z: 3.56000042}
+  m_Center: {x: 0, y: 1.78629148, z: -2.38418579e-07}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

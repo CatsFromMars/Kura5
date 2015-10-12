@@ -10,14 +10,23 @@ public class SwitchScript : Activatable {
 		Pressable,
 		NotPressable,
 	}
+	private Transform currentObject;
 
 	public kindOfSwitch kind;
+
+	void Update() {
+		if (currentObject == null && activated && kind == kindOfSwitch.NotPressable) {
+			Deactivate ();
+			if(materialChanges) currentMat.material = deactiveMat;
+		}
+	}
 
 	// Update is called once per frame
 	void OnTriggerEnter(Collider other) {
 		if(other.gameObject.tag != "Enemy"){
 			if(kind == kindOfSwitch.NotPressable) {
 				Activate ();
+				currentObject = other.transform;
 				if(materialChanges) currentMat.material = activeMat;
 			}
 		}
@@ -26,6 +35,7 @@ public class SwitchScript : Activatable {
 	void OnTriggerStay(Collider other) {
 		if (!activated && kind == kindOfSwitch.Pressable) {
 			Activate ();
+			currentObject = other.transform;
 			if(materialChanges) currentMat.material = activeMat;
 		}
 	}

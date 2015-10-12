@@ -57,6 +57,10 @@ public class GameData : MonoBehaviour {
 
 	void OnLevelWasLoaded(int level) {
 		isGameOver = false;
+		if (annieCurrentLife <= 0 || emilCurrentLife <= 0) {
+			annieCurrentLife = annieMaxLife;
+			emilCurrentLife = emilMaxLife;
+		}
 	}
 	
 	void Update() {

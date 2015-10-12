@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Menu : MonoBehaviour {
 
+	public GameObject start;
+	public GameObject copyrightText;
+
 	// Update is called once per frame
 	void Update () {
 
@@ -11,5 +14,10 @@ public class Menu : MonoBehaviour {
 
 		}
 	
+	}
+
+	void enableText() {
+		start.active = true;
+		copyrightText.active = true;
 	}
 }

@@ -15,8 +15,6 @@ public class WeatherSyncGUI : MonoBehaviour {
 		 + "\nTime: " + System.DateTime.Now.ToString("hh:mm tt")
 		 + "\nCity: " + w.retrievedCity
 		 + "\nTemp: " + w.finalTemp + " C"
-		 + "\nWeather: " + w.conditionName
-		 + "\nSunset: " + w.sunsetTime
-		 + "\nSunrise: " + w.sunriseTime);
+		 + "\nWeather: " + w.conditionName);
 	}
 }

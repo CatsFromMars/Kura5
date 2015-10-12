@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class EnemyClass : MonoBehaviour {
-
+	//LOOT VARIABLES
+	public Transform commonLoot;
+	public Transform rareLoot;
 	//STAT VARIABLES
 	public float maxLife;
 	public float currentLife;
@@ -205,11 +207,16 @@ public class EnemyClass : MonoBehaviour {
 
 	protected void Die() {
 		dying = true;
+		spawnLoot ();
 		animator.SetTrigger(hash.dyingTrigger);
 		if (!dead) {
 			dead = true;
 			animator.SetBool (hash.deadBool, true);
 		}
+	}
+
+	protected void spawnLoot() {
+		Instantiate(commonLoot, transform.position, commonLoot.transform.rotation);
 	}
 
 	protected void MarkAsDead(){

@@ -81,7 +81,7 @@ public class PatrolEnemy : EnemyClass {
 	}
 
 	void hearPlayer(Collider other) {
-		if(player == null) { //IN CASE PLAYER SWITCHES
+		if(player == null || player.active == false) { //IN CASE PLAYER SWITCHES
 			player = GameObject.FindWithTag("Player").transform;
 			playerAnimator = player.GetComponent<Animator>();
 		}
@@ -112,7 +112,7 @@ public class PatrolEnemy : EnemyClass {
 					// ... the player is in sight.
 					playerInSight = true;
 					// Set the last global sighting is the players current position.
-					if(player == null) { //IN CASE PLAYER SWITCHES
+					if(player == null || player.active == false) { //IN CASE PLAYER SWITCHES
 						player = GameObject.FindWithTag("Player").transform;
 						playerAnimator = player.GetComponent<Animator>();
 					}

@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Bottle
-  m_Shader: {fileID: 4800000, guid: d84268709d11078d11005b9844295342, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1d9b4280416c0ef49b65e5deb4c85e83, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -38,20 +38,28 @@ Material:
         first:
           name: _Ramp
         second:
-          m_Texture: {fileID: 2800000, guid: 207cd7d6bdf48884581528e5cefd1cd7, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
+          name: _Outline
+        second: .0552142896
+      data:
+        first:
           name: _Shininess
-        second: 1
+        second: .100000016
       data:
         first:
           name: _Intensity
-        second: .100000001
+        second: 1.23749995
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .816176474, g: 0, b: 0, a: 1}
+        second: {r: 0, g: .213235319, b: .20441176, a: 0}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: .457936853, g: .808823526, b: .794304132, a: .376470596}

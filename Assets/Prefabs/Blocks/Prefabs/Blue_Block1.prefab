@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 452396}
   - 33: {fileID: 3352396}
   - 23: {fileID: 2352396}
+  - 65: {fileID: 6530924}
   m_Layer: 9
   m_Name: Blue_Block1
   m_TagString: Floor
@@ -56,6 +57,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 152396}
   m_Mesh: {fileID: 4300000, guid: 132ceb68ccdff8d469c95f415b1bc48d, type: 3}
+--- !u!65 &6530924
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152396}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.55599999, y: 3.55599999, z: 3.55599976}
+  m_Center: {x: 0, y: 1.77051532, z: -5.96046448e-08}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

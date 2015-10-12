@@ -4,7 +4,7 @@ using System.Collections;
 using SimpleJSON;
 
 public class WeatherSync : MonoBehaviour {
-	
+	public string APIKEY = "b3abb856726ae64ca4273c826c2e4ba4";
 	public string currentIP;
 	public string currentCountry;
 	public string currentCity;
@@ -119,7 +119,6 @@ public class WeatherSync : MonoBehaviour {
 		{
 			var N = JSON.Parse(IPRequest.text);
 			currentIP = N["ip"].Value;
-			Debug.Log (currentIP);
 		}
 		
 		WWW cityRequest = new WWW("http://www.geoplugin.net/json.gp?ip=" + currentIP); //get our location info
@@ -131,8 +130,9 @@ public class WeatherSync : MonoBehaviour {
 			Debug.Log (N);
 			currentCountry = N["geoplugin_countryName"].Value;
 			countryCode = N["geoplugin_countryCode"].Value;
+			string regionCode = N["geoplugin_regionCode"].Value;
 			string city = (N["geoplugin_city"].Value).Replace(" ", "");
-			currentCity = city+","+countryCode;
+			currentCity = city+","+regionCode+countryCode;
 			status = "Working";
 			isRunning = true;
 		}
@@ -145,8 +145,9 @@ public class WeatherSync : MonoBehaviour {
 		}
 		
 		//get the current weather
-		WWW request = new WWW("http://api.openweathermap.org/data/2.5/weather?q=" + currentCity); //get our weather
+		WWW request = new WWW("http://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&APPID=" + APIKEY); //get our weather
 		yield return request;
+		Debug.Log (currentCity);
 		
 		if (request.error == null || request.error == "")
 		{
@@ -168,7 +169,7 @@ public class WeatherSync : MonoBehaviour {
 			int.TryParse(N["weather"][0]["id"].Value, out conditionID); //get the current condition ID
 			conditionName = N["weather"][0]["main"].Value; //get the current condition Name
 			//conditionName = N["weather"][0]["description"].Value; //get the current condition Description
-			clouds = N["clouds"][0].Value;
+			clouds = N["clouds"]["all"].Value;
 
 			//Update Light Levels
 			lightMax = getSunLevels();

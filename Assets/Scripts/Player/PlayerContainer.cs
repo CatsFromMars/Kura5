@@ -111,16 +111,17 @@ public class PlayerContainer : MonoBehaviour {
 	}
 
 	protected void updateInput() {
-		parrying = (Input.GetButtonDown("Block") && targeting);
-		charging = Input.GetButton("Charge");
-		rolling = (currentAnim(hash.rollState));
-		whistling = Input.GetButtonDown("Whistle");
-		holdingWeapon = Input.GetButton("Attack") || Input.GetButtonDown("Attack");
-		attacking = Input.GetButtonUp("Attack");
-		targeting = Input.GetButton ("Target");
-		moving = (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0);
-		performingAction = attacking || holdingWeapon || whistling || charging;
-
+		if(playerInControl) {
+			parrying = (Input.GetButtonDown("Block") && targeting);
+			charging = Input.GetButton("Charge");
+			rolling = (currentAnim(hash.rollState));
+			whistling = Input.GetButtonDown("Whistle");
+			holdingWeapon = Input.GetButton("Attack") || Input.GetButtonDown("Attack");
+			attacking = Input.GetButtonUp("Attack");
+			targeting = Input.GetButton ("Target");
+			moving = (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0);
+			performingAction = attacking || holdingWeapon || whistling || charging;
+		}
 	}
 
 	public void updateInputDirection() {

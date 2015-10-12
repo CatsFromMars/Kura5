@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Drink
-  m_Shader: {fileID: 4800000, guid: dc0442e7e64955844acfc1481cb05809, type: 3}
+  m_Shader: {fileID: 4800000, guid: d84268709d11078d11005b9844295342, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -18,6 +18,13 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ToonShade
+        second:
+          m_Texture: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -34,10 +41,18 @@ Material:
         second: 1
       data:
         first:
+          name: _Outline
+        second: .00200000009
+      data:
+        first:
           name: _Intensity
         second: 1.5875001
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .800000012, g: .212400004, b: 0, a: 1}
+        second: {r: .948529422, g: .215872213, b: 0, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: .338235319, g: .132961467, b: 0, a: 1}

@@ -15,6 +15,7 @@ public class Activatable : MonoBehaviour{
 	public void Activate() {
 		//Assumes two animator bools: "Activated" and "Deactivated"
 		animator.SetBool ("Activated", true);
+		animator.SetBool ("Deactivated", false);
 		if(col != null) col.enabled = true;
 		activated = true;
 		Debug.Log ("ACTIVATED!");
@@ -23,6 +24,7 @@ public class Activatable : MonoBehaviour{
 	public void Deactivate() {
 		//Assumes two animator bools: "Activated" and "Deactivated"
 		animator.SetBool ("Deactivated", true);
+		animator.SetBool ("Activated", false);
 		if(col != null) col.enabled = false;
 		activated = false;
 	}

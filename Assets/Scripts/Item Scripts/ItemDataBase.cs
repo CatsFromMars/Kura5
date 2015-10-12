@@ -2,34 +2,50 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ItemDataBase : MonoBehaviour {
+public class ItemDatabase : MonoBehaviour {
 
-	public List<Item> items = new List<Item>();
+	public List<Consumable> consumableItems = new List<Consumable>();
+	public List<KeyItem> keyItems = new List<KeyItem>();
+	public List<Lens> lens = new List<Lens>();
 
-	// Use this for initialization
-	void Awake () 
-	{
-		//ITEM DEFINITIONS
-		items.Add(new Item(0, "Apple", "A staple for undead slaying heroes. Restores Life. Toxic to Vampires.",Item.ItemType.Consumable,Item.ItemEffect.RestoreSomeLife,Item.element.Sol));
-		items.Add(new Item(1, "TomatoJuice", "A blood-red juice to be begrudgingly consumed by a certain Vampire. Restores Life.",Item.ItemType.Consumable,Item.ItemEffect.RestoreSomeLife,Item.element.Dark));
-		items.Add(new Item(2, "MagicDrink", "A weird drink made from unknown ingredients. Restores Energy.",Item.ItemType.Consumable,Item.ItemEffect.RestoreSomeEnergy,Item.element.None));
+	public void initItems() {
+		string n;
+		string desc;
 
-		//KEY ITEMS
-		items.Add(new Item(3, "TriangleKey", "It's a key but it's a triangle! Unlocks doors with a 'Δ' lock.",Item.ItemType.Quest,Item.ItemEffect.None,Item.element.None));
-		items.Add(new Item(12, "CircleKey", "A plainly shaped key. Unlocks doors with an 'O' lock.",Item.ItemType.Quest,Item.ItemEffect.None,Item.element.None));
-		items.Add(new Item(10, "BlueOrb", "A crystal orb colored a deep ocean blue.",Item.ItemType.Quest,Item.ItemEffect.None,Item.element.None));
-		items.Add(new Item(11, "GreenOrb", "A crystal orb colored a vibrant leafy green.",Item.ItemType.Quest,Item.ItemEffect.None,Item.element.None));
+		//Consumable Items
+		n = "Earth Fruit";
+		desc = "Sweet and sour Solar Fruit.\nRestores Some Life.";
+		Consumable apple = new Consumable (0, n, desc, "RESTORE_LIFE", "ANNIE", 30);
+		apple.model = Resources.Load ("Items/Earth Fruit") as GameObject;
+		consumableItems.Add(apple);
 
-		//ELEMENTS
-		items.Add(new Item(4, "fireElement", "Annie is affiliated with the element of roaring flame. Can be used to light torches.",Item.ItemType.Upgrade,Item.ItemEffect.None,Item.element.Fire));
-		items.Add(new Item(5, "solElement", "Annie is affiliated with the element of beaming sunlight. Effective against darkness.",Item.ItemType.Upgrade,Item.ItemEffect.None,Item.element.Sol));
-		items.Add(new Item(6, "darkElement", "Emil is affiliated with the element of creeping darkness. Paralyzes in shadow.",Item.ItemType.Upgrade,Item.ItemEffect.None,Item.element.Dark));
-		items.Add(new Item(7, "cloudElement", "Emil is affiliated with the element of billowing wind. Breaks apart stone.",Item.ItemType.Upgrade,Item.ItemEffect.None,Item.element.Cloud));
-		items.Add(new Item(8, "frostElement", "Emil is affiliated with the element of freezing ice. Freezes objects.",Item.ItemType.Upgrade,Item.ItemEffect.None,Item.element.Frost));
-		items.Add(new Item(9, "earthElement", "Annie is affiliated with the element of thundering earth. Causes roots to grow.",Item.ItemType.Upgrade,Item.ItemEffect.None,Item.element.Earth));
+		n = "Tomato Juice";
+		desc = "Bottle of blood red juice.\nRestores Some Life.";
+		Consumable juice = new Consumable (1, n, desc, "RESTORE_LIFE", "EMIL", 30);
+		juice.model = Resources.Load ("Items/Tomato Juice") as GameObject;
+		consumableItems.Add(juice);
 
+		n = "Blood Orange";
+		desc = "Strange fruit that bleeds red ooze.\nRestores Some Energy.";
+		Consumable orange = new Consumable (2, n, desc, "RESTORE_ENERGY", "EMIL", 30);
+		orange.model = Resources.Load ("Items/Blood Orange") as GameObject;
+		consumableItems.Add(orange);
 
-		items.Sort();
+		n = "Solar Fruit";
+		desc = "Fruit from a Solar Tree.\nRestores Some Energy.";
+		Consumable solarFruit = new Consumable (3, n, desc, "RESTORE_ENERGY", "ANNIE", 30);
+		solarFruit.model = Resources.Load ("Items/Solar Fruit") as GameObject;
+		consumableItems.Add (solarFruit);
+
+		n = "Tasty Meat";
+		desc = "Monster meat grilled to perfection.\nRestores a lot of Life.";
+		Consumable meat = new Consumable (4, n, desc, "RESTORE_LIFE", "NONE", 50);
+		meat.model = Resources.Load ("Items/Tasty Meat") as GameObject;
+		consumableItems.Add (meat);
+
+		//Sort database by itemID
+		//consumableItems.Sort();
+		//keyItems.Sort();
+		//lens.Sort();
 	}
-
 }

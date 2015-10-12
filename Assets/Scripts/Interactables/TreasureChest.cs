@@ -21,16 +21,17 @@ public class TreasureChest : MonoBehaviour {
 	
 	void OnTriggerStay(Collider other) {
 		if (other.tag == "Player") {
-			if(Input.GetButtonDown("Confirm")) {
+			if(Input.GetButtonDown("Charge")) {
 				animator.SetBool (hash.unlockedBool, true);
 				//audio.Play();
+				spawnLoot();
 			}
 		}
 		
 	}
 
 	void OnTriggerExit(Collider other) {
-		if (other.tag == "Player") {
+		if (other.tag == "Player" && !itemSpawned) {
 			animator.SetBool (hash.unlockedBool, false);
 			//audio.Play();
 		}
@@ -39,7 +40,7 @@ public class TreasureChest : MonoBehaviour {
 	void spawnLoot() {
 		//ANIMATION EVENT
 		if(!itemSpawned) {
-			Instantiate (loot, transform.position, Quaternion.Euler(-90,0,0));
+			Instantiate (loot, transform.position, loot.transform.rotation);
 			itemSpawned = true;
 		}
 	}

@@ -98,9 +98,9 @@ public class EmilController : PlayerContainer {
 	}
 
 	void Slash() {
-		if (gameData.emilCurrentEnergy > 10) {
-			gameData.emilCurrentEnergy -= 10;
-			element = "Dark";
+		if (gameData.emilCurrentEnergy > 5) {
+			gameData.emilCurrentEnergy -= 5;
+			element = gameData.emilCurrentElem.ToString();
 		}
 		else element = "Null";
 
@@ -156,10 +156,8 @@ public class EmilController : PlayerContainer {
 	}
 
 	void Smash(RaycastHit hit) {
-		hit.collider.gameObject.GetComponent<Breakable>().Shatter();
-		if (gameData.emilCurrentEnergy > 10) {
-			gameData.emilCurrentEnergy -= 10;
-		}
+		GameObject breakable = hit.collider.gameObject;
+		if(breakable != null) breakable.GetComponent<Breakable>().Shatter();
 	}
 	
 	void hitEnemy(RaycastHit hit) {
