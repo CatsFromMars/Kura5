@@ -11,6 +11,12 @@ public class WeatherSync : MonoBehaviour {
 
 	//Light
 	public int lightMax = 0;
+	public bool isNightTime = false;
+
+	//Data
+	public int cloudinessPercentage;
+	public int humidityPercentage;
+	public float finalTemp;
 
 	//Status
 	public int counter = 0;
@@ -26,20 +32,43 @@ public class WeatherSync : MonoBehaviour {
 	public string conditionName;
 	public string countryCode;
 	public string clouds;
-	public float finalTemp;
 	public string sunriseTime;
 	public string sunsetTime;
 	private System.DateTime sunrise;
 	private System.DateTime sunset;
 
 	void Awake() {
-		StartCoroutine(SendRequest());
+		connect ();
 	}
 	
 	void OnLevelWasLoaded(int level) {
+		connect ();
+	}
+
+	void connect() {
 		Debug.Log ("restarting...");
+		StartCoroutine (attemptConnect ());
+	}
+
+	IEnumerator attemptConnect() {
 		StopCoroutine(SendRequest());
 		StartCoroutine(SendRequest());
+		while(status == "") {
+			Debug.Log ("Connecting...");
+			yield return null;
+		}
+		if(status != "Working") getGenericWeather();
+	}
+
+	void getGenericWeather() {
+		int season = GenericPattern.getSeason ();
+		int percent = GenericPattern.getPercent();
+		if(percent >= 100 || percent <= 0) isNightTime = true;
+		else isNightTime = false;
+		finalTemp = GenericPattern.getTemp (percent);
+		humidityPercentage = GenericPattern.getHumidity();
+		cloudinessPercentage = GenericPattern.getCloudiness ();
+		lightMax = GenericPattern.getSunlight(percent, cloudinessPercentage);
 	}
 
 	public static System.DateTime UnixTimeStampToDateTime(int unixTimeStamp)
@@ -77,21 +106,26 @@ public class WeatherSync : MonoBehaviour {
 
 		int light = 0;
 		Debug.Log (minutesFromSunrise + ";" + lengthOfDay);
-		if(minutesFromSunrise > lengthOfDay) light = 0; //No sun if past sunset
-		else {
+		if(minutesFromSunrise > lengthOfDay || minutesFromSunrise<=0) { //NIGHT
+			light = 0; //No sun if past sunset
+			isNightTime = true;
+			int moonlight = MoonPhase.moonlightPercent(DateTime.Today);
+			float c = (100-cloudinessPercentage)/100f;
+			return Mathf.RoundToInt(c*moonlight);
+		}
+		else { //DAY
+			isNightTime = false;
+			//Curve sunlight based on a bell curve
 			float percent = 100f - (minutesFromSunrise*1.0f / lengthOfDay*1.0f)*100; //Percent of the day gone
-			Debug.Log (percent);
-			if(percent <= 17) light = 2;
-			else if(percent <= 34 && percent > 17) light = 4;
-			else if(percent <= 67 && percent > 34) light = 6;
-			else if(percent <= 84 && percent > 67) light = 4;
-			else if(percent <= 100 && percent > 84) light = 2;
+			float a = Mathf.Pow(percent-50, 2);
+			float power = (-1*a/600f);
+			light = Mathf.RoundToInt(10*Mathf.Exp(power));
+			float c = (100-cloudinessPercentage)/100f;
+			Debug.Log (light+", "+c);
+			return Mathf.RoundToInt(c*light);
 		}
 
-		//Apply cloudiness
-		float c = (100 - int.Parse(clouds))/100f;
-		light = Mathf.CeilToInt (c*light);
-		return light;
+		return 0; //should not reach here
 	}
 
 	IEnumerator getIP() {
@@ -164,24 +198,31 @@ public class WeatherSync : MonoBehaviour {
 			string temp = N["main"]["temp"].Value; //get the temperature
 			float tempTemp; //variable to hold the parsed temperature
 			float.TryParse(temp, out tempTemp); //parse the temperature
-			finalTemp = Mathf.Round((tempTemp - 273.0f)*10)/10; //holds the actual converted temperature
+			finalTemp = Mathf.Round(((tempTemp - 273.0f)*10)/10); //holds the actual converted temperature
 			
 			int.TryParse(N["weather"][0]["id"].Value, out conditionID); //get the current condition ID
 			conditionName = N["weather"][0]["main"].Value; //get the current condition Name
 			//conditionName = N["weather"][0]["description"].Value; //get the current condition Description
 			clouds = N["clouds"]["all"].Value;
+			float tempCloud;
+			float.TryParse(clouds, out tempCloud);
+			cloudinessPercentage = Mathf.RoundToInt(tempCloud);
+
+			string humidity = N["main"]["humidity"].Value; //get the humitity
+			float tempHumidity;
+			float.TryParse(humidity, out tempHumidity);
+			humidityPercentage = Mathf.RoundToInt(tempHumidity);
 
 			//Update Light Levels
 			lightMax = getSunLevels();
 
 			//Update weather effects in a room
-			Debug.Log (System.DateTime.Now);
-			GameObject skylight = GameObject.FindGameObjectWithTag("Sunlight");
-			if(skylight != null) {
-				SkylightWeather s = skylight.GetComponent<SkylightWeather>();
-				s.updateWeatherEffects();
-				s.updateSkylightColor();
-			}
+//			Debug.Log (System.DateTime.Now);
+//			GameObject skylight = GameObject.FindGameObjectWithTag("Sunlight");
+//			if(skylight != null) {
+//				SkylightFade s = skylight.GetComponent<SkylightFade>();
+//				if(s != null) s.updateSkylightColor();
+//		}
 			//Adjust Max Sun
 			GameObject lightLevels = GameObject.FindGameObjectWithTag("LightLevels");
 			if(lightLevels != null) lightLevels.GetComponent<LightLevels>().upperBound = lightMax+2;

@@ -8,7 +8,7 @@ public class EnemyClass : MonoBehaviour {
 	//STAT VARIABLES
 	public float maxLife;
 	public float currentLife;
-	public float strength;
+	public int strength;
 	protected bool frozen;
 	protected float freezeTimer; //THIS HANDLES EMIL'S SPELLS
 	protected float freezeWaitTime = 400f;
@@ -60,6 +60,7 @@ public class EnemyClass : MonoBehaviour {
 	protected bool okayToAttack = true;
 	protected bool isBeingTargeted;
 	protected int hitCounter = 0;
+	protected bool isInvincible = false;
 
 	//ENVIRONMENT VARIABLES
 	public SunDetector sunDetector;
@@ -74,9 +75,6 @@ public class EnemyClass : MonoBehaviour {
 	protected Material[] materials;
 	protected Color[] colors;
 
-	//LOOT VARIABLES
-	public Transform[] loot;
-
 	//VISUAL VARIABLES
 	public Transform shadowStunEffect;
 	public ParticleSystem shadowStunParticles;
@@ -90,6 +88,7 @@ public class EnemyClass : MonoBehaviour {
 
 	void Awake () {
 		blinker = transform.FindChild ("Flash");
+		if(blinker == null) Debug.LogError ("EnemyFlash Projector Not Found!");
 		rigidbody = GetComponent<Rigidbody> ();
 		globalData = GameObject.FindGameObjectWithTag("GameController");
 		damageCalculator = globalData.GetComponent<DamageCalculator>();
@@ -101,7 +100,7 @@ public class EnemyClass : MonoBehaviour {
 		lightLevels = GameObject.FindGameObjectWithTag("LightLevels").GetComponent<LightLevels>();
 
 		//GET PLAYER
-		playerObject = GameObject.FindWithTag("Player");
+		playerObject = GameObject.FindWithTag("Player"); //Get player container
 		if(playerObject != null) {
 			player = playerObject.transform;
 			playerAnimator = player.GetComponent<Animator>();
@@ -134,7 +133,10 @@ public class EnemyClass : MonoBehaviour {
 		if (collision.collider.gameObject.tag == "EnemyWeapon") {
 			WeaponData weapon = collision.collider.gameObject.GetComponent<WeaponData>();
 			int dmg = damageCalculator.getDamage(weapon.element, element, weapon.damage, 1);
-			//Debug.Log ("damage is"+dmg);
+			//Get stunned from friendly fire
+			stunned = true;
+			animator.SetTrigger(hash.hurtTrigger);
+			animator.SetBool(hash.stunnedBool, true);
 			takeDamage(dmg);
 		}
 		
@@ -157,6 +159,7 @@ public class EnemyClass : MonoBehaviour {
 			if(isHitFromBehind()) {
 				stunned = true;
 				animator.SetTrigger(hash.hurtTrigger);
+				animator.SetBool(hash.stunnedBool, true);
 			}
 			else if(animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.enemyHurtState
 			        && animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.attackState) animator.SetTrigger(hash.hurtTrigger);
@@ -176,23 +179,11 @@ public class EnemyClass : MonoBehaviour {
 	}
 
 	protected IEnumerator flashWhite () {
-		Debug.Log ("Flahing");
-//		if(body != null)
-//		{
-//			foreach(Material mat in materials) {
-//				mat.shader = blinkShader;
-//			}
-//			yield return new WaitForSeconds(0.1f);
-//
-//			for(int i = 0; i < materials.Length; i++) {
-//				materials[i].shader = regularShader;
-//			}
-//
-//			yield return null;
-//		}
 		blinker.active = true;
+		isInvincible = true;
 		yield return new WaitForSeconds(0.2f);
 		blinker.active = false;
+		isInvincible = false;
 	}
 
 	protected void takeSunDamage(int damage) {
@@ -216,19 +207,15 @@ public class EnemyClass : MonoBehaviour {
 	}
 
 	protected void spawnLoot() {
-		Instantiate(commonLoot, transform.position, commonLoot.transform.rotation);
+		int c = Random.Range (0, 10);
+		if(c < 3 && commonLoot!=null) Instantiate(commonLoot, transform.position, commonLoot.transform.rotation);
+		if(c == 10 && rareLoot!=null) Instantiate(commonLoot, transform.position, rareLoot.transform.rotation);
 	}
 
 	protected void MarkAsDead(){
 		//ANIMATION EVENT FOR START OF DEATH
 		dead = true;
 		animator.SetBool (hash.deadBool, true);
-	}
-
-	protected void DropLoot(){
-		//ANIMATION REVENT FOR DROPPING ITEMS
-		int index = (Random.Range(0, loot.Length*2));
-		if(index < loot.Length) Instantiate(loot[index], transform.position, Quaternion.identity);
 	}
 
 
@@ -270,11 +257,14 @@ public class EnemyClass : MonoBehaviour {
 		
 	}
 
+	protected void setPitch(int pitch) {
+		audio.pitch = pitch;
+	}
 
 	protected void makeSound(AudioClip clip) {
 		//ANIMATION EVENTS FOR ALL THINGS THAT NEED SOUND
 		audio.clip = clip;
-		audio.Play();
+		if(audio.enabled) audio.Play();
 		
 	}
 
@@ -285,7 +275,7 @@ public class EnemyClass : MonoBehaviour {
 	}
 
 	public void knockback(Vector3 dir) {
-		rigidbody.AddForce(dir * (rigidbody.mass*100));
+		if(rigidbody != null) rigidbody.AddForce(dir * (rigidbody.mass*100));
 	}
 
 	protected void spawnEffect(Transform effect) {
@@ -293,7 +283,7 @@ public class EnemyClass : MonoBehaviour {
 	}
 
 	public void quickLook() {
-		agent.updateRotation = false;
+		if(agent!=null) agent.updateRotation = false;
 		Vector3 targetPos = new Vector3(playerPos.x, this.transform.position.y, playerPos.z);
 		transform.rotation = Quaternion.LookRotation (targetPos - transform.position);
 	}

@@ -15,6 +15,7 @@ public class BokProjectile : MonoBehaviour {
 	public Transform hitEffect;
 	public Transform hitAirEffect;
 	public Transform goo;
+	bool gooSpawned = false;
 
 	void Awake() {
 		GameObject player = GameObject.FindGameObjectWithTag ("Player");
@@ -35,8 +36,11 @@ public class BokProjectile : MonoBehaviour {
 
 		if (other.gameObject.tag == "Floor") {
 			//WHAT HAPPENS IF A BULLET HITS A WALL/FLOOR?
-			Instantiate(hitEffect, transform.position, Quaternion.identity);
-			Instantiate(goo, transform.position, Quaternion.identity);
+			if(!gooSpawned) {
+				Instantiate(hitEffect, transform.position, Quaternion.identity);
+				Instantiate(goo, transform.position, Quaternion.identity);
+				gooSpawned = true;
+			}
 			Destroy (this.gameObject);
 
 		}
@@ -48,19 +52,28 @@ public class BokProjectile : MonoBehaviour {
 				direction *= -1;
 			}
 			else {
-				Instantiate(hitAirEffect, transform.position, Quaternion.identity);
-				Destroy (this.gameObject);
+				if(!gooSpawned) {
+					Instantiate(hitAirEffect, transform.position, Quaternion.identity);
+					Instantiate(goo, transform.position, Quaternion.identity);
+					gooSpawned = true;
+				}
 			}
 		}
 
 		else if (other.gameObject.tag == "Wall") {
-			Instantiate(hitAirEffect, transform.position, Quaternion.identity);
+			if(!gooSpawned) {
+				Instantiate(hitAirEffect, transform.position, Quaternion.identity);
+				gooSpawned = true;
+			}
 			Destroy (this.gameObject);
 		}
 
 		else if (other.gameObject.tag == "Enemy") {
 			if(direction == transform.forward*-1) {
-				Instantiate(hitAirEffect, transform.position, Quaternion.identity);
+				if(!gooSpawned) {
+					Instantiate(hitAirEffect, transform.position, Quaternion.identity);
+					gooSpawned = true;
+				}
 				Destroy (this.gameObject);
 			}
 		}

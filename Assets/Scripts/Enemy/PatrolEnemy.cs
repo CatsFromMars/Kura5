@@ -34,9 +34,12 @@ public class PatrolEnemy : EnemyClass {
 	public Transform emotion;
 	public ParticleSystem smoke;
 
+	private AudioSource playerAudio;
+
 	// Use this for initialization
 	void Start () {
 		transform.position = wayPoints[0].transform.position;
+		playerAudio = player.GetComponent<AudioSource>();
 	}
 
 	protected void updateAnimations() {
@@ -46,6 +49,7 @@ public class PatrolEnemy : EnemyClass {
 		animator.SetBool(hash.attackBool, attacking);
 		animator.SetBool(hash.chaseBool, chasing);
 		animator.SetBool(hash.stunnedBool, stunned || frozen);
+		audio.enabled = trackingPlayer;
 	}
 
 	protected void manageMovement() {
@@ -59,6 +63,7 @@ public class PatrolEnemy : EnemyClass {
 			agent.updateRotation = true;
 		}
 		else { 
+			agent.velocity = Vector3.zero;
 			agent.Stop();
 			agent.updateRotation = false;
 		}
@@ -68,28 +73,42 @@ public class PatrolEnemy : EnemyClass {
 	void OnTriggerStay (Collider other) {
 		
 		if(other.gameObject.tag == "Player") {
+			if(player == null || player.active == false) { //IN CASE PLAYER SWITCHES
+				player = GameObject.FindWithTag("Player").transform;
+				playerAnimator = player.GetComponent<Animator>();
+				playerAudio = player.GetComponent<AudioSource>();
+			}
+
 			trackingPlayer = true;
 			playerPos = other.transform.position;
 			seePlayer(other); //DETECT PLAYER THROUGH SIGHT
-			hearPlayer(other); //DETECT PLAYER THROUGH SOUND
+			//hearPlayer(other); //DETECT PLAYER THROUGH SOUND
+		}
+
+		//Handle noise
+		if (other.gameObject.tag == "Sound") {
+			if(animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.idleState ||
+			   animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.walkState) animator.SetTrigger(hash.whistleTrigger);
+			//agent.Stop();
+			playerLastSighting = other.transform.position;
 		}
 		
 	}
 
 	void OnTriggerExit(Collider other) {
-		if(other.gameObject.tag == "Player") trackingPlayer = false;
+		if(other.gameObject.tag == "Player") {
+			trackingPlayer = false;
+			attacking = false;
+		}
 	}
 
 	void hearPlayer(Collider other) {
-		if(player == null || player.active == false) { //IN CASE PLAYER SWITCHES
-			player = GameObject.FindWithTag("Player").transform;
-			playerAnimator = player.GetComponent<Animator>();
-		}
-		
-		if (playerAnimator.GetCurrentAnimatorStateInfo(0).nameHash == hash.whistleState) {
+
+		bool hitwall = playerAudio.clip.name == "SwordHitWall" && playerAudio.isPlaying;
+		if (hitwall|| playerAnimator.GetCurrentAnimatorStateInfo(0).nameHash == hash.whistleState) {
 			if(animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.idleState ||
 			   animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.walkState) animator.SetTrigger(hash.whistleTrigger);
-			agent.Stop();
+			//agent.Stop();
 			playerLastSighting = playerPos;
 		}
 		
@@ -157,13 +176,11 @@ public class PatrolEnemy : EnemyClass {
 	protected void Patrol()
 	{
 		//Debug.Log ("PATROL");
-		// Set an appropriate speed for the NavMeshAgent.
-		MoveTowardsTarget(wayPoints[currentPoint].position);
-		agent.speed = enemyWalkingSpeed;
 		// If near the next waypoint or there is no destination...
 		if(agent.remainingDistance < agent.stoppingDistance)
 		{
 			moving = false; //Tell animator that we're pausing
+			agent.Stop();
 			agent.updateRotation = false;
 			// ... increment the timer.
 			patrolTimer++;
@@ -177,7 +194,14 @@ public class PatrolEnemy : EnemyClass {
 					currentPoint++;
 				// Reset the timer.
 				patrolTimer = 0;
+				MoveTowardsTarget(wayPoints[currentPoint].position);
+				agent.speed = enemyWalkingSpeed;
 			}
+		}
+		else {
+			// Set an appropriate speed for the NavMeshAgent.
+			MoveTowardsTarget(wayPoints[currentPoint].position);
+			agent.speed = enemyWalkingSpeed;
 		}
 		// Set the destination to the patrolWayPoint.
 		//else MoveTowardsTarget(wayPoints[currentPoint].position);
@@ -243,18 +267,13 @@ public class PatrolEnemy : EnemyClass {
 	}
 
 	public void Stunned() {
-		if (hitCounter % 4 == 0) {
-			if(stunTimer >= stunWaitTime) {
-				stunned = false;
-				stunTimer = 0;
-			}
-			else {
-				stunTimer++;
-				stunned = true;
-			}
+		if(stunTimer >= stunWaitTime) {
+			stunned = false;
+			stunTimer = 0;
 		}
 		else {
-			stunned = false;
+			stunTimer++;
+			stunned = true;
 		}
 
 	}

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AnnieController : PlayerContainer {
 	private int chargeCounter = 0;
-	private int chargeThresh = 7;
+	private int chargeThresh = 20;
 
 	//AUDIO
 	public AudioClip shootNoise;
@@ -44,13 +44,15 @@ public class AnnieController : PlayerContainer {
 			//}
 			//else parryCounter = 0;
 			targetEnemy();
-			if(lockOn == null) lockOn = Instantiate (lockOnUI, currentTarget.transform.position, Quaternion.identity) as Transform;
-			else lockOn.transform.position = currentTarget.transform.position;
+			if(currentTarget != null) {
+				if(lockOn == null) lockOn = Instantiate (lockOnUI, currentTarget.transform.position, Quaternion.identity) as Transform;
+				else lockOn.transform.position = currentTarget.transform.position;
+			}
 		}
 		else {
 			//NON-Targeting Mode
 			untargetEnemy();
-			if (currentAnim(hash.hurtState)) knockBack(transform.forward*-3);
+			if (currentAnim(hash.hurtState)) knockBack(currentKnockbackDir);
 			else if(charging) Charge();
 			//parryCounter = 0;
 			if(lockOn != null) {
@@ -60,6 +62,7 @@ public class AnnieController : PlayerContainer {
 	}
 
 	public void Charge() {
+		if(lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy && !audio.isPlaying) makeSound(chargingSound);
 		chargeCounter+=lightLevels.sunlight;
 		if(chargeCounter > chargeThresh) {
 			chargeCounter = 0;

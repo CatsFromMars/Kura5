@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Brick
-  m_Shader: {fileID: 4800000, guid: 48dca5b99d113b8d11006bab44295342, type: 3}
+  m_Shader: {fileID: 4800000, guid: d84268709d11078d11005b9844295342, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,8 +17,15 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 340f01f881ad85940aedd62ee412691c, type: 3}
-          m_Scale: {x: 10, y: 2}
+          m_Texture: {fileID: 2800000, guid: ccc4bea1a75973446917ed582a1799bc, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ToonShade
+        second:
+          m_Texture: {fileID: 8900000, guid: b9d25dc90392c684186d25257a7262e7, type: 3}
+          m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -32,4 +39,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .639705896, g: .559742689, b: .559742689, a: 1}
+        second: {r: .705882311, g: .602404594, b: .576124549, a: 1}

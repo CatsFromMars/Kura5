@@ -52,17 +52,9 @@ public class GameData : MonoBehaviour {
 	}
 
 	void Awake() {
-		Application.targetFrameRate = 300;
+		Application.targetFrameRate = 60;
 	}
 
-	void OnLevelWasLoaded(int level) {
-		isGameOver = false;
-		if (annieCurrentLife <= 0 || emilCurrentLife <= 0) {
-			annieCurrentLife = annieMaxLife;
-			emilCurrentLife = emilMaxLife;
-		}
-	}
-	
 	void Update() {
 
 		//CONSTRAINTS

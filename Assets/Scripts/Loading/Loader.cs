@@ -5,6 +5,7 @@ public class Loader : MonoBehaviour {
 	public string initialLevel = "";
 	// Use this for initialization
 	void Awake () {
-		Application.LoadLevel (initialLevel);
+		SceneTransition fader = GameObject.FindGameObjectWithTag("Fader").GetComponent<SceneTransition>();
+		fader.gotoScene (initialLevel);
 	}
 }

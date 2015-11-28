@@ -1,24 +1,163 @@
 Base path: C:/Program Files (x86)/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-8-16120
+Pipe name: \\.\pipe\UnityShaderCompiler-8-10232
 Cmd: getPlatforms
 Cmd: compileSnippet
-  api=0 type=0 insize=5034 outsize=1034 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+  error: 2 plat 8 at (20): failed to open source file: 'Common.cginc'
+  api=8 type=1 insize=585 outsize=0 kw=QUALITY_STANDARD ok=0
 Cmd: compileSnippet
-  api=8 type=0 insize=5034 outsize=2665 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_ON DIRLIGHTMAP_OFF ok=1
+  error: 2 plat 1 at (38): Can't open include file "Common.cginc"
+  error: 2 plat 1 at (39): syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 1 at (39): unrecognized profile specifier "i" unrecognized profile specifier "v2f"
+  error: 2 plat 1 at (42): syntax error, unexpected ';', expecting ',' or ')' at token ";" type name expected at token ";"
+  error: 2 plat 1 at (46): to_linear: function type parameters not allowed; syntax error, unexpected '(' at token "(" type name expected at token "(" to_srgb: function type parameters not allowed; syntax error, unexpected ')' at token ")" type name expected at token ")" function type not allowed for parameter "to_srgb" function type not allowed for parameter "to_linear"
+  error: 1 plat 1 at (46): unrecognized profile specifier "apply" unrecognized profile specifier "color"
+  api=1 type=0 insize=699 outsize=0 kw=QUALITY_MOBILE ok=0
 Cmd: compileSnippet
-  api=8 type=0 insize=5034 outsize=7150 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF VERTEXLIGHT_ON ok=1
+  error: 2 plat 8 at (37): failed to open source file: 'Common.cginc'
+  api=8 type=1 insize=699 outsize=0 kw=QUALITY_STANDARD ok=0
 Cmd: compileSnippet
-  api=0 type=1 insize=5034 outsize=314 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_ON DIRLIGHTMAP_OFF ok=1
+  error: 2 plat 1 at (21): Can't open include file "Common.cginc"
+  error: 2 plat 1 at (22): syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 1 at (22): unrecognized profile specifier "i" unrecognized profile specifier "v2f"
+  error: 2 plat 1 at (24): syntax error, unexpected ';', expecting ',' or ')' at token ";" type name expected at token ";"
+  error: 2 plat 1 at (25): syntax error, unexpected ';', expecting ',' or ')' at token ";" type name expected at token ";"
+  error: 2 plat 1 at (26): lerp: function type parameters not allowed; syntax error, unexpected ',' at token "," type name expected at token "," to_linear: function type parameters not allowed; syntax error, unexpected '(' at token "(" type name expected at token "(" to_srgb: function type parameters not allowed; syntax error, unexpected ')' at token ")" type name expected at token ")" function type not allowed for parameter "to_srgb" function type not allowed for parameter "to_linear" syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 1 at (26): unrecognized profile specifier "color" unrecognized profile specifier "apply_blend" unrecognized profile specifier "color" unrecognized profile specifier "mask"
+  api=1 type=1 insize=658 outsize=0 kw=QUALITY_MOBILE ok=0
 Cmd: compileSnippet
-  api=8 type=1 insize=5034 outsize=2665 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+  error: 2 plat 4 at (38): failed to open source file: 'Common.cginc'
+  api=4 type=0 insize=772 outsize=0 kw=QUALITY_MOBILE ok=0
 Cmd: compileSnippet
-  api=4 type=0 insize=3010 outsize=2875 kw=POINT ok=1
+  error: 2 plat 4 at (38): failed to open source file: 'Common.cginc'
+  api=4 type=1 insize=772 outsize=0 kw=QUALITY_MOBILE ok=0
 Cmd: compileSnippet
-  api=8 type=0 insize=3010 outsize=4128 kw=SPOT ok=1
+  error: 2 plat 0 at (21): Can't open include file "Common.cginc"
+  error: 2 plat 0 at (22): syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 0 at (22): unrecognized profile specifier "i" unrecognized profile specifier "v2f"
+  error: 2 plat 0 at (24): apply: function type parameters not allowed; syntax error, unexpected '(' at token "(" type name expected at token "(" syntax error, unexpected '.' at token "." type name expected at token "." function type not allowed for parameter "apply"
+  error: 1 plat 0 at (24): unrecognized profile specifier "tex2D" unrecognized profile specifier "i"
+  error: 2 plat 0 at (25): syntax error, unexpected '}' at token "}" type name expected at token "}"
+  api=0 type=1 insize=543 outsize=0 kw=QUALITY_STANDARD ok=0
 Cmd: compileSnippet
-  api=8 type=1 insize=3010 outsize=2040 kw=DIRECTIONAL ok=1
+  error: 2 plat 4 at (36): failed to open source file: 'Common.cginc'
+  api=4 type=0 insize=660 outsize=0 kw=QUALITY_MOBILE ok=0
 Cmd: compileSnippet
-  api=0 type=1 insize=3010 outsize=496 kw=DIRECTIONAL_COOKIE ok=1
+  error: 2 plat 1 at (37): Can't open include file "Common.cginc"
+  error: 2 plat 1 at (38): syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 1 at (38): unrecognized profile specifier "i" unrecognized profile specifier "v2f"
+  error: 2 plat 1 at (41): apply: function type parameters not allowed; syntax error, unexpected '(' at token "(" type name expected at token "(" tex2D: function type parameters not allowed; syntax error, unexpected ',' at token "," type name expected at token "," function type not allowed for parameter "tex2D" syntax error, unexpected floating point constant at token "<undefined>" type name expected at token "<undefined>"
+  error: 1 plat 1 at (41): unrecognized profile specifier "min" unrecognized profile specifier "_MainTex"
+  api=1 type=1 insize=660 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 0 at (21): Can't open include file "Common.cginc"
+  error: 2 plat 0 at (22): syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 0 at (22): unrecognized profile specifier "i" unrecognized profile specifier "v2f"
+  error: 2 plat 0 at (24): syntax error, unexpected ';', expecting ',' or ')' at token ";" type name expected at token ";"
+  error: 2 plat 0 at (25): syntax error, unexpected ';', expecting ',' or ')' at token ";" type name expected at token ";"
+  error: 2 plat 0 at (26): lerp: function type parameters not allowed; syntax error, unexpected ',' at token "," type name expected at token "," apply_blend: function type parameters not allowed; syntax error, unexpected ')' at token ")" type name expected at token ")" function type not allowed for parameter "apply_blend"
+  error: 1 plat 0 at (26): unrecognized profile specifier "color" unrecognized profile specifier "color"
+  api=0 type=0 insize=634 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 1 at (21): Can't open include file "Common.cginc"
+  error: 2 plat 1 at (22): syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 1 at (22): unrecognized profile specifier "i" unrecognized profile specifier "v2f"
+  error: 2 plat 1 at (24): syntax error, unexpected ';', expecting ',' or ')' at token ";" type name expected at token ";"
+  error: 2 plat 1 at (25): syntax error, unexpected ';', expecting ',' or ')' at token ";" type name expected at token ";"
+  error: 2 plat 1 at (26): lerp: function type parameters not allowed; syntax error, unexpected ',' at token "," type name expected at token "," apply_blend: function type parameters not allowed; syntax error, unexpected ')' at token ")" type name expected at token ")" function type not allowed for parameter "apply_blend"
+  error: 1 plat 1 at (26): unrecognized profile specifier "color" unrecognized profile specifier "color"
+  api=1 type=1 insize=634 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 8 at (38): failed to open source file: 'Common.cginc'
+  api=8 type=0 insize=748 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 4 at (38): failed to open source file: 'Common.cginc'
+  api=4 type=1 insize=748 outsize=0 kw=QUALITY_STANDARD ok=0
+Cmd: compileSnippet
+  error: 2 plat 4 at (18): failed to open source file: 'Common.cginc'
+  api=4 type=0 insize=624 outsize=0 kw=QUALITY_STANDARD ok=0
+Cmd: compileSnippet
+  error: 2 plat 4 at (18): failed to open source file: 'Common.cginc'
+  api=4 type=1 insize=624 outsize=0 kw=QUALITY_STANDARD ok=0
+Cmd: compileSnippet
+  error: 2 plat 0 at (21): Can't open include file "Common.cginc"
+  error: 2 plat 0 at (22): syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 0 at (22): unrecognized profile specifier "i" unrecognized profile specifier "v2f"
+  error: 2 plat 0 at (24): apply_blend: function type parameters not allowed; syntax error, unexpected '(' at token "(" type name expected at token "(" syntax error, unexpected '.' at token "." type name expected at token "." function type not allowed for parameter "apply_blend"
+  error: 1 plat 0 at (24): unrecognized profile specifier "tex2D" unrecognized profile specifier "i"
+  error: 2 plat 0 at (25): syntax error, unexpected '}' at token "}" type name expected at token "}"
+  api=0 type=0 insize=536 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 8 at (20): failed to open source file: 'Common.cginc'
+  api=8 type=1 insize=536 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 0 at (37): Can't open include file "Common.cginc"
+  error: 2 plat 0 at (38): syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 0 at (38): unrecognized profile specifier "i" unrecognized profile specifier "v2f"
+  error: 2 plat 0 at (43): apply_blend: function type parameters not allowed; syntax error, unexpected '(' at token "(" type name expected at token "(" tex2D: function type parameters not allowed; syntax error, unexpected ',' at token "," type name expected at token "," function type not allowed for parameter "tex2D" function type not allowed for parameter "apply_blend"
+  error: 1 plat 0 at (43): unrecognized profile specifier "saturate" unrecognized profile specifier "_MainTex"
+  error: 2 plat 0 at (46): syntax error, unexpected '}' at token "}" type name expected at token "}"
+  api=0 type=0 insize=667 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 0 at (37): Can't open include file "Common.cginc"
+  error: 2 plat 0 at (38): syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 0 at (38): unrecognized profile specifier "i" unrecognized profile specifier "v2f"
+  error: 2 plat 0 at (43): apply_blend: function type parameters not allowed; syntax error, unexpected '(' at token "(" type name expected at token "(" tex2D: function type parameters not allowed; syntax error, unexpected ',' at token "," type name expected at token "," function type not allowed for parameter "tex2D" function type not allowed for parameter "apply_blend"
+  error: 1 plat 0 at (43): unrecognized profile specifier "saturate" unrecognized profile specifier "_MainTex"
+  error: 2 plat 0 at (46): syntax error, unexpected '}' at token "}" type name expected at token "}"
+  api=0 type=1 insize=667 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 8 at (20): failed to open source file: 'Common.cginc'
+  api=8 type=0 insize=591 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 0 at (21): Can't open include file "Common.cginc"
+  error: 2 plat 0 at (22): syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 0 at (22): unrecognized profile specifier "i" unrecognized profile specifier "v2f"
+  error: 2 plat 0 at (24): syntax error, unexpected ';', expecting ',' or ')' at token ";" type name expected at token ";"
+  error: 2 plat 0 at (25): to_linear: function type parameters not allowed; syntax error, unexpected '(' at token "(" type name expected at token "(" to_srgb: function type parameters not allowed; syntax error, unexpected ')' at token ")" type name expected at token ")" function type not allowed for parameter "to_srgb" function type not allowed for parameter "to_linear"
+  error: 1 plat 0 at (25): unrecognized profile specifier "apply_blend" unrecognized profile specifier "color"
+  api=0 type=1 insize=591 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 4 at (37): failed to open source file: 'Common.cginc'
+  api=4 type=0 insize=705 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 4 at (37): failed to open source file: 'Common.cginc'
+  api=4 type=1 insize=705 outsize=0 kw=QUALITY_STANDARD ok=0
+Cmd: compileSnippet
+  error: 2 plat 8 at (20): failed to open source file: 'Common.cginc'
+  api=8 type=0 insize=632 outsize=0 kw=QUALITY_STANDARD ok=0
+Cmd: compileSnippet
+  error: 2 plat 8 at (20): failed to open source file: 'Common.cginc'
+  api=8 type=1 insize=632 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 8 at (38): failed to open source file: 'Common.cginc'
+  api=8 type=0 insize=738 outsize=0 kw=QUALITY_STANDARD ok=0
+Cmd: compileSnippet
+  error: 2 plat 1 at (39): Can't open include file "Common.cginc"
+  error: 2 plat 1 at (40): syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 1 at (40): unrecognized profile specifier "i" unrecognized profile specifier "v2f"
+  error: 2 plat 1 at (43): syntax error, unexpected ';', expecting ',' or ')' at token ";" type name expected at token ";"
+  error: 2 plat 1 at (47): syntax error, unexpected ';', expecting ',' or ')' at token ";" type name expected at token ";"
+  error: 2 plat 1 at (48): lerp: function type parameters not allowed; syntax error, unexpected ',' at token "," type name expected at token "," apply: function type parameters not allowed; syntax error, unexpected ')' at token ")" type name expected at token ")" function type not allowed for parameter "apply"
+  error: 1 plat 1 at (48): unrecognized profile specifier "color" unrecognized profile specifier "color"
+  api=1 type=1 insize=738 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 0 at (21): Can't open include file "Common.cginc"
+  error: 2 plat 0 at (22): syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 0 at (22): unrecognized profile specifier "i" unrecognized profile specifier "v2f"
+  error: 2 plat 0 at (24): syntax error, unexpected ';', expecting ',' or ')' at token ";" type name expected at token ";"
+  error: 2 plat 0 at (25): syntax error, unexpected ';', expecting ',' or ')' at token ";" type name expected at token ";"
+  error: 2 plat 0 at (26): lerp: function type parameters not allowed; syntax error, unexpected ',' at token "," type name expected at token "," to_linear: function type parameters not allowed; syntax error, unexpected '(' at token "(" type name expected at token "(" to_srgb: function type parameters not allowed; syntax error, unexpected ')' at token ")" type name expected at token ")" function type not allowed for parameter "to_srgb" function type not allowed for parameter "to_linear" syntax error, unexpected ')' at token ")" type name expected at token ")"
+  error: 1 plat 0 at (26): unrecognized profile specifier "color" unrecognized profile specifier "apply" unrecognized profile specifier "color" unrecognized profile specifier "mask"
+  api=0 type=0 insize=653 outsize=0 kw=QUALITY_MOBILE ok=0
+Cmd: compileSnippet
+  error: 2 plat 8 at (20): failed to open source file: 'Common.cginc'
+  api=8 type=1 insize=653 outsize=0 kw=QUALITY_STANDARD ok=0
+Cmd: compileSnippet
+  error: 2 plat 4 at (38): failed to open source file: 'Common.cginc'
+  api=4 type=0 insize=767 outsize=0 kw=QUALITY_STANDARD ok=0
+Cmd: compileSnippet
+  error: 2 plat 4 at (38): failed to open source file: 'Common.cginc'
+  api=4 type=1 insize=767 outsize=0 kw=QUALITY_STANDARD ok=0
 Unhandled exception: Readfile from pipe failed. GLE=The pipe has been ended.
 
 

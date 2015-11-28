@@ -24,6 +24,7 @@ public class InventoryMenu : MonoBehaviour {
 	private AudioSource audio;
 	public AudioClip selectNoise;
 	public AudioClip confirm;
+	public AudioClip use;
 	public AudioClip deny;
 	public AudioClip open;
 
@@ -87,15 +88,25 @@ public class InventoryMenu : MonoBehaviour {
 
 	}
 
+	bool selectedPlayerNotDead() {
+		if(selectedPlayer == player.ANNIE) return (data.annieCurrentLife > 0);
+		else if(selectedPlayer == player.EMIL) return (data.emilCurrentLife > 0);
+		else return false;
+	}
+
 	void selectPlayer() {
 		//Select Player to use an item on
 		playerSelector.active = true;
 		//Confirm
 		if(Input.GetButtonDown("Charge")) { //Charge is basically the A button
-			inventory.useCurrentConsumable(index, selectedPlayer.ToString());
-			currentState = state.SELECT_ITEM;
-			redrawAll();
-			playerSelector.active = false;
+			if(selectedPlayerNotDead()) {
+				inventory.useCurrentConsumable(index, selectedPlayer.ToString());
+				currentState = state.SELECT_ITEM;
+				redrawAll();
+				playerSelector.active = false;
+				makeSound(use);
+			}
+			else makeSound(deny);
 		}
 		else if(Input.GetButtonDown("Attack")) { //Basically the "B" button
 			currentState = state.SELECT_ITEM;
@@ -110,10 +121,12 @@ public class InventoryMenu : MonoBehaviour {
 				if(selectedPlayer == player.ANNIE) {
 					selectedPlayer = player.EMIL;
 					pos.y = -121f;
+					makeSound(selectNoise);
 				}
 				else if(selectedPlayer == player.EMIL) {
 					selectedPlayer = player.ANNIE;
 					pos.y = -30f;
+					makeSound(selectNoise);
 				}
 
 				playerSelector.localPosition = pos;
@@ -126,7 +139,10 @@ public class InventoryMenu : MonoBehaviour {
 
 		//Select Item
 		if(Input.GetButtonDown("Charge")) { //Charge is basically the A button
-			if(slots[index].name != null) currentState = state.SELECT_PLAYER;
+			if(slots[index].name != null) { 
+				currentState = state.SELECT_PLAYER;
+				makeSound(confirm);
+			}
 		}
 		else if (horiz == 1) {
 			pushCounter++;

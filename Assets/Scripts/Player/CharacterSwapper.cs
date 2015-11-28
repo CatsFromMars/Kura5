@@ -16,8 +16,10 @@ public class CharacterSwapper : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetButtonDown("Switch")) {
-			bool inControl = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerContainer>().playerInControl;
-			if(inControl) switchPlayers();
+			PlayerContainer player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerContainer>();
+			bool inControl = player.playerInControl;
+			bool canSwitch = !player.targeting && !player.invincible && !player.rolling &&Time.timeScale!=0;
+			if(inControl&&canSwitch) switchPlayers();
 		}
 		if (data.currentPlayer == GameData.player.Annie)
 						transform.position = annie.position;

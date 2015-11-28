@@ -1,0 +1,223 @@
+fileFormatVersion: 2
+guid: e208d621ca2da7948bcadc6e22a12a50
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Cube
+    100002: Cube_001
+    100004: Head
+    100006: //RootNode
+    100008: Sphere_001
+    100010: Armature
+    100012: Bone
+    100014: Bone_001
+    100016: Bone_002
+    100018: Bone_003
+    100020: Bone_004
+    100022: Bone_005
+    100024: Bone_006
+    100026: Bone_007
+    100028: Bone_008
+    100030: Bone_009
+    100032: Circle
+    100034: Petals
+    400000: Cube
+    400002: Cube_001
+    400004: Head
+    400006: //RootNode
+    400008: Sphere_001
+    400010: Armature
+    400012: Bone
+    400014: Bone_001
+    400016: Bone_002
+    400018: Bone_003
+    400020: Bone_004
+    400022: Bone_005
+    400024: Bone_006
+    400026: Bone_007
+    400028: Bone_008
+    400030: Bone_009
+    400032: Circle
+    400034: Petals
+    2300000: Cube
+    2300002: Cube_001
+    2300004: Head
+    2300006: Sphere_001
+    2300008: Circle
+    3300000: Cube
+    3300002: Cube_001
+    3300004: Head
+    3300006: Sphere_001
+    3300008: Circle
+    4300000: Cube_001
+    4300002: Cube
+    4300004: Head
+    4300006: Sphere_001
+    4300008: Circle
+    7400000: Idle
+    7400002: ArmatureAction
+    9500000: //RootNode
+    13700000: Cube_001
+    13700002: Circle
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 38
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 5
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone_001
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_002
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_002/Bone_003
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_002/Bone_003/Bone_004
+        weight: 1
+      - path: Armature/Bone/Bone_001/Petals
+        weight: 1
+      - path: Armature/Bone_005
+        weight: 1
+      - path: Armature/Bone_005/Bone_006
+        weight: 1
+      - path: Armature/Bone_005/Bone_006/Bone_007
+        weight: 1
+      - path: Armature/Bone_008
+        weight: 1
+      - path: Armature/Bone_009
+        weight: 1
+      - path: Circle
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: ArmatureAction
+      takeName: ArmatureAction
+      firstFrame: 0
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone_001
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_002
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_002/Bone_003
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_002/Bone_003/Bone_004
+        weight: 1
+      - path: Armature/Bone/Bone_001/Petals
+        weight: 1
+      - path: Armature/Bone_005
+        weight: 1
+      - path: Armature/Bone_005/Bone_006
+        weight: 1
+      - path: Armature/Bone_005/Bone_006/Bone_007
+        weight: 1
+      - path: Armature/Bone_008
+        weight: 1
+      - path: Armature/Bone_009
+        weight: 1
+      - path: Circle
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

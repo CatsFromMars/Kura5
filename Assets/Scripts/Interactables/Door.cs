@@ -9,12 +9,12 @@ public class Door : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if(other.tag == "Player") 
+		if(other.tag == "Player" || other.tag == "EnemyWeapon") 
 			animator.SetBool(Animator.StringToHash("PlayerInRange"), true);
 	}
 
 	void OnTriggerExit(Collider other) {
-		if(other.tag == "Player") 
+		if(other.tag == "Player" || other.tag == "EnemyWeapon") 
 			animator.SetBool(Animator.StringToHash("PlayerInRange"), false);
 	}
 }

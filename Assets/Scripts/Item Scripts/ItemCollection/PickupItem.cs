@@ -28,10 +28,11 @@ public class PickupItem : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if(other.tag == "Player") {
 			if(!collected) {
-				spawnInnerItem ();
-				itemAnimator.SetTrigger (Animator.StringToHash("Spawn"));
-				inventory.AddConsumable(itemID);
-				collected = true;
+				if(inventory.AddConsumable(itemID) != false) {
+					spawnInnerItem ();
+					itemAnimator.SetTrigger (Animator.StringToHash("Spawn"));
+					collected = true;
+				}
 			}
 		}
 	}

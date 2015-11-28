@@ -3,11 +3,12 @@ using System.Collections;
 
 public class EmilController : PlayerContainer {
 	private int chargeCounter = 0;
-	private int chargeThresh = 7;
+	private int chargeThresh = 20;
 	private int combo = 0;
-	private float meleeRange = 7.0f;
+	private float meleeRange = 6.0f;
 	public Transform weaponHit;
 	public AudioClip hitSound;
+	public AudioClip wallHit;
 	
 	//AUDIO
 	public AudioClip shootNoise;
@@ -42,7 +43,7 @@ public class EmilController : PlayerContainer {
 	}
 
 	void handleBurning() {
-		if(lightLevels.sunlight > 0) {
+		if(lightLevels.sunlight > 0 && !lightLevels.w.isNightTime) {
 			burnCounterTime = 100 * 1/lightLevels.sunlight;
 			takeSunDamage(burnRate);
 			if(!smoke.isPlaying) smoke.Play();
@@ -68,13 +69,15 @@ public class EmilController : PlayerContainer {
 			}
 			else parryCounter = 0;
 			targetEnemy();
-			if(lockOn == null) lockOn = Instantiate (lockOnUI, currentTarget.transform.position, Quaternion.identity) as Transform;
-			else lockOn.transform.position = currentTarget.transform.position;
+			if(currentTarget != null) {
+				if(lockOn == null) lockOn = Instantiate (lockOnUI, currentTarget.transform.position, Quaternion.identity) as Transform;
+				else lockOn.transform.position = currentTarget.transform.position;
+			}
 		}
 		else {
 			//NON-Targeting Mode
 			untargetEnemy();
-			if (currentAnim(hash.hurtState)) knockBack(transform.forward*-3);
+			if (currentAnim(hash.hurtState)) knockBack(currentKnockbackDir);
 			else if(charging) Charge();
 			parryCounter = 0;
 			if(lockOn != null) {
@@ -114,24 +117,32 @@ public class EmilController : PlayerContainer {
 		if (Physics.Raycast (transform.position, transform.forward, out hitCenter, meleeRange)) {
 			if(hitCenter.collider.gameObject.tag == "Enemy") hitEnemy(hitCenter);
 			else if(hitCenter.collider.gameObject.tag == "Breakable") Smash (hitCenter);
+			else if(hitCenter.collider.gameObject.tag == "Wall") hitWall(hitCenter);
+			return;
 		}
 		//Left
 		if (Physics.Raycast (transform.position, Quaternion.AngleAxis(15, transform.up) * transform.forward, out hitRight, meleeRange)) {
 			if(hitRight.collider.gameObject.tag == "Enemy") hitEnemy(hitRight);
-			else if(hitRight.collider.gameObject.tag == "Breakable") Smash (hitCenter);
+			else if(hitRight.collider.gameObject.tag == "Breakable") Smash (hitRight);
+			else if(hitRight.collider.gameObject.tag == "Wall") hitWall(hitRight);
+			return;
 		}
 		if (Physics.Raycast (transform.position, Quaternion.AngleAxis(45, transform.up) * transform.forward, out hitRight, meleeRange)) {
 			if(hitRight.collider.gameObject.tag == "Enemy") hitEnemy(hitRight);
-			else if(hitRight.collider.gameObject.tag == "Breakable") Smash (hitCenter);
+			else if(hitRight.collider.gameObject.tag == "Breakable") Smash (hitRight);
+			return;
 		}
 		//Right
 		if (Physics.Raycast (transform.position,  Quaternion.AngleAxis(-15, transform.up) * transform.forward, out hitLeft, meleeRange)) {
 			if(hitLeft.collider.gameObject.tag == "Enemy") hitEnemy(hitLeft);
-			else if(hitLeft.collider.gameObject.tag == "Breakable") Smash (hitCenter);
+			else if(hitLeft.collider.gameObject.tag == "Breakable") Smash (hitLeft);
+			else if(hitLeft.collider.gameObject.tag == "Wall") hitWall(hitLeft);
+			return;
 		}
 		if (Physics.Raycast (transform.position,  Quaternion.AngleAxis(-45, transform.up) * transform.forward, out hitLeft, meleeRange)) {
 			if(hitLeft.collider.gameObject.tag == "Enemy") hitEnemy(hitLeft);
-			else if(hitLeft.collider.gameObject.tag == "Breakable") Smash (hitCenter);
+			else if(hitLeft.collider.gameObject.tag == "Breakable") Smash (hitLeft);
+			return;
 		}
 	}
 
@@ -159,9 +170,20 @@ public class EmilController : PlayerContainer {
 		GameObject breakable = hit.collider.gameObject;
 		if(breakable != null) breakable.GetComponent<Breakable>().Shatter();
 	}
+
+	void hitWall(RaycastHit hit) {
+		makeSound (wallHit);
+		Instantiate (soundEffect, hit.point, Quaternion.identity);
+	}
 	
 	void hitEnemy(RaycastHit hit) {
+		//Ordinary Enemies
 		EnemyClass enemy = hit.collider.GetComponent<EnemyClass>();
+
+		//Insta-kill Ivy
+		Ivy ivy = hit.collider.GetComponent<Ivy>();
+		if(ivy != null && element == "Dark") ivy.hitWithDarkAttack = true;
+
 		int dmg = damageCalculator.getDamage(element, enemy.element, strength, 1);
 		enemy.takeDamage (dmg);
 		enemy.knockback (transform.forward);
@@ -178,6 +200,7 @@ public class EmilController : PlayerContainer {
 	
 	public void Charge() {
 		chargeCounter+=lightLevels.darkness;
+		if(lightLevels.darkness > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy && !audio.isPlaying) makeSound(chargingSound);
 		if(chargeCounter > chargeThresh) {
 			chargeCounter = 0;
 			if(lightLevels.darkness > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy) {

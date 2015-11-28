@@ -5,16 +5,51 @@ public class DamageCalculator : MonoBehaviour {
 
 	GameObject globalData;
 	ElementDatabase elements;
+	WeatherSync w;
 
 	// Use this for initialization
 	void Awake() {
 		globalData = GameObject.FindGameObjectWithTag("GameController");
 		elements = globalData.GetComponent<ElementDatabase>();
+		w = GameObject.FindGameObjectWithTag("Weather").GetComponent<WeatherSync>();
+	}
+
+	float calculateMultipler(string element) {
+		if(element == "Null") {
+			return 1;
+		}
+		else if (element == "Dark") {
+			if(w.isNightTime && w.lightMax >= 3) return 1.2f;
+			else return 1;
+		}
+		else if (element == "Sol") {
+			if(w.isNightTime==false && w.lightMax >= 3) return 1.2f;
+			else return 1;
+		}
+		else if (element == "Fire") {
+			if(w.finalTemp >= 25) return 1.2f;
+			else return 1;
+		}
+		else if (element == "Frost") {
+			if(w.finalTemp <= 0) return 1.2f;
+			else return 1;
+		}
+		else if (element == "Cloud") {
+			if(w.cloudinessPercentage >= 50) return 1.2f;
+			else return 1;
+		}
+		else if (element == "Earth") {
+			if(w.humidityPercentage >= 50) return 1.2f;
+			else return 1;
+		}
+		
+		else return 1;
 	}
 	
-	public int getDamage(string elementTarget, string elementSelf, int baseDamage, int m=1) {
+	public int getDamage(string elementTarget, string elementSelf, int baseDamage, float m=1f) {
 		//target = thing that damage is being applied to
 		//Source = source of attack
+		m = calculateMultipler(elementSelf);
 		Element e1 = getElementFromString (elementTarget);
 		Element e2 = getElementFromString (elementSelf);
 		Attack atk = new Attack (baseDamage, e1, m);

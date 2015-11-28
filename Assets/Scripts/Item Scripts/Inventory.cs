@@ -39,6 +39,16 @@ public class Inventory : MonoBehaviour {
 		itemsList.Add (database.consumableItems[3]);
 		itemsList.Add (database.consumableItems[3]);
 		itemsList.Add (database.consumableItems[4]);
+		itemsList.Add (database.consumableItems[0]);
+		itemsList.Add (database.consumableItems[0]);
+		itemsList.Add (database.consumableItems[1]);
+		itemsList.Add (database.consumableItems[1]);
+		itemsList.Add (database.consumableItems[1]);
+		itemsList.Add (database.consumableItems[2]);
+		itemsList.Add (database.consumableItems[2]);
+		itemsList.Add (database.consumableItems[3]);
+		itemsList.Add (database.consumableItems[3]);
+		itemsList.Add (database.consumableItems[4]);
 
 
 
@@ -70,7 +80,7 @@ public class Inventory : MonoBehaviour {
 		//Add item to inventory via item id
 		//If returns false, that means it failed to add the item
 		Consumable item = database.consumableItems[itemID];
-		for(int i = 0; i < itemsList.Count; i++)
+		for(int i = 0; i < slotsX*slotsY; i++)
 		{
 			if(itemsList[i].name == null)
 			{
@@ -85,7 +95,7 @@ public class Inventory : MonoBehaviour {
 		//Add item to inventory via item id
 		//If returns false, that means it failed to add the item
 		KeyItem item = database.keyItems[itemID];
-		for(int i = 0; i < itemsList.Count; i++)
+		for(int i = 0; i < slotsX*slotsY; i++)
 		{
 			if(keyItemsList[i].name == null)
 			{
@@ -100,7 +110,7 @@ public class Inventory : MonoBehaviour {
 		//Add item to inventory via item id
 		//If returns false, that means it failed to add the item
 		Lens item = database.lens[itemID];
-		for(int i = 0; i < itemsList.Count; i++)
+		for(int i = 0; i < slotsX*slotsY; i++)
 		{
 			if(lensList[i].name == null)
 			{
@@ -113,7 +123,7 @@ public class Inventory : MonoBehaviour {
 
 	public int checkForKeyItem(int itemID) {
 		//RETURNS INDEX OF ITEM. RETURNS -1 IF NOT FOUND
-		for(int i = 0; i < keyItemsList.Count; i++)
+		for(int i = 0; i < slotsX*slotsY; i++)
 		{
 			if(keyItemsList[i].id == itemID)
 			{
@@ -144,8 +154,8 @@ public class Inventory : MonoBehaviour {
 			if(item.preference != player && item.preference != "NONE") {
 				healing = Mathf.FloorToInt(healing*0.2f);
 			}
-			if(player == "ANNIE") gameData.annieCurrentLife += healing;
-			else if(player == "EMIL") gameData.emilCurrentLife += healing;
+			if(player == "ANNIE" && gameData.annieCurrentLife > 0) gameData.annieCurrentLife += healing;
+			else if(player == "EMIL" && gameData.emilCurrentLife > 0) gameData.emilCurrentLife += healing;
 		}
 		//Restore Energy
 		if (item.effect == "RESTORE_ENERGY") {

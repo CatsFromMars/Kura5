@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class Dialogue : MonoBehaviour {
-	//NOT MINE
 	//TAKEN FROM http://codethegame.blogspot.com/2013/09/the-programmers-rpg.html
 	//MODIFIED
 
@@ -41,9 +40,9 @@ public class Dialogue : MonoBehaviour {
 		}
 		
 		// put the box at bottom of screen
-		float left = Screen.width/6f;
-		float top = Screen.height - (Screen.height/3.3f);
-		float width = Screen.width/1.5f;
+		float left = Screen.width/12f;
+		float top = Screen.height - (Screen.height/4.5f);
+		float width = Screen.width/1.4f;
 		mainRect = new Rect(left, top, width, height);
 
 	}
@@ -55,9 +54,10 @@ public class Dialogue : MonoBehaviour {
 		
 		int oldCounter=Mathf.FloorToInt(textCounter); // for use later in audio
 		if (Input.anyKey)   // any key makes it faster
-			textCounter += Time.deltaTime * textRate*4;
+
+			textCounter += Time.unscaledDeltaTime * textRate*4;
 		else
-			textCounter += Time.deltaTime * textRate;
+			textCounter += Time.unscaledDeltaTime * textRate;
 		// tick sound when displaying
 		if (tickSound!=null && textCounter < theText.Length)
 		{
@@ -69,8 +69,9 @@ public class Dialogue : MonoBehaviour {
 		}
 		// if finished & space bar
 		if (textCounter >= theText.Length)
-		{         
-			if (Input.GetKeyDown(KeyCode.Space))
+		{   
+			bool push = Input.GetButtonDown("Charge") || Input.GetButtonDown("Confirm");
+			if (push)
 				Hide();
 		}
 	}
@@ -83,16 +84,17 @@ public class Dialogue : MonoBehaviour {
 		GUI.skin = skin;
 		GUI.Box(mainRect, ""); // draw the box
 		// inner rect is where we must display the text
-		float left = Screen.width/4f + border;
+		float left = Screen.width/8f + border;
 		float top = (Screen.height - (Screen.height/5f));
-		float width = Screen.width/2f - border;
+		float width = Screen.width/1.6f - border;
 		Rect innerRect = new Rect(left+border, top, width-5*border, height - 2*border);
 		// draw images as needed
 		if (leftImage != null)
 		{
-			GUI.DrawTexture(new Rect(innerRect.x, innerRect.y, leftImage.width, leftImage.height), leftImage);
-			innerRect.x += leftImage.width + border;
-			innerRect.width -= leftImage.width + border;
+			GUI.DrawTexture(new Rect(innerRect.x, innerRect.y-leftImage.height-border, leftImage.width, leftImage.height), leftImage);
+
+			//innerRect.x += leftImage.width + border;
+			//innerRect.width -= leftImage.width + border;
 		}
 		if (rightImage != null)
 		{

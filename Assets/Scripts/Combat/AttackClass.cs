@@ -6,9 +6,9 @@ public class Attack {
 
 	public int baseDamage;
 	public Element element;
-	public int multiplier = 1;
+	public float multiplier = 1f;
 
-	public Attack(int attackBase, Element attackElement, int attackMultiplier){
+	public Attack(int attackBase, Element attackElement, float attackMultiplier){
 		baseDamage = attackBase;
 		element = attackElement;
 		multiplier = attackMultiplier;
@@ -17,7 +17,8 @@ public class Attack {
 	public int calculateDamage(Element self) {
 		int damage = baseDamage;
 		if (element.name == self.opposite) damage *= 2;
-		damage *= multiplier;
+		else if (element.name == self.name) damage = Mathf.CeilToInt(damage/2f);
+		damage = Mathf.FloorToInt(damage * multiplier);
 		return damage;
 	}
 

@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: WadjetBack
-  m_Shader: {fileID: 4800000, guid: cd0a6c14a189ef842b4585173f2a4dcf, type: 3}
+  m_Shader: {fileID: 4800000, guid: 9ce107479d11178d11005b9844295342, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -38,7 +38,7 @@ Material:
         first:
           name: _ToonShade
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -85,14 +85,14 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _WiggleTex
+          name: _Illum
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Illum
+          name: _WiggleTex
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -104,6 +104,10 @@ Material:
         second: .5
       data:
         first:
+          name: _Outline
+        second: .0299999993
+      data:
+        first:
           name: _Shininess
         second: .078125
       data:
@@ -112,25 +116,29 @@ Material:
         second: 3
       data:
         first:
-          name: _Outline
-        second: .00499999989
-      data:
-        first:
           name: _Parallax
         second: .0199999996
       data:
         first:
-          name: _WiggleStrength
-        second: .00999999978
-      data:
-        first:
           name: _EmissionLM
         second: 0
+      data:
+        first:
+          name: _WiggleStrength
+        second: .00999999978
     m_Colors:
       data:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: .201337069, g: .0110834697, b: .301470578, a: 1}
+      data:
+        first:
+          name: _Emission
+        second: {r: 0, g: 0, b: 0, a: 0}
       data:
         first:
           name: _SpecColor
@@ -147,11 +155,3 @@ Material:
         first:
           name: _EmisColor
         second: {r: .200000003, g: .200000003, b: .200000003, a: 0}
-      data:
-        first:
-          name: _Emission
-        second: {r: 0, g: 0, b: 0, a: 0}
-      data:
-        first:
-          name: _OutlineColor
-        second: {r: 0, g: 0, b: 0, a: 1}

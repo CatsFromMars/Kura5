@@ -17,8 +17,9 @@ public class CamFollow : MonoBehaviour {
 	void Update () {
 		currentpos = transform.position;
 		currentpos.x = follow.position.x;
+		currentpos.y = distance * -1 + follow.position.y;
 		currentpos.z = follow.position.z + distance;
-		transform.position = Vector3.SmoothDamp(transform.position, currentpos, ref velocity, smoothTime);
+		transform.position = Vector3.SmoothDamp(transform.position, currentpos, ref velocity, smoothTime, Mathf.Infinity, Time.unscaledDeltaTime);
 	
 	}
 }

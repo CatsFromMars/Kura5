@@ -292,6 +292,10 @@ Transition:
     m_ConditionEvent: Chasing
     m_EventTreshold: 0
     m_ExitTime: 0
+  - m_ConditionMode: 5
+    m_ConditionEvent: Chasing
+    m_EventTreshold: 0
+    m_ExitTime: 0
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -424,6 +428,10 @@ Transition:
     m_ConditionEvent: Chasing
     m_EventTreshold: 0
     m_ExitTime: .964816928
+  - m_ConditionMode: 2
+    m_ConditionEvent: Stunned
+    m_EventTreshold: 0
+    m_ExitTime: .964816928
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -528,6 +536,26 @@ Transition:
     m_ConditionEvent: Moving
     m_EventTreshold: 0
     m_ExitTime: .898305058
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110172502
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110255594}
+  m_DstState: {fileID: 110294066}
+  m_TransitionDuration: .0659387112
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: Moving
+    m_EventTreshold: 0
+    m_ExitTime: .879999995
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -693,10 +721,10 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Walking
-  m_Speed: 2
+  m_Speed: 4
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400004, guid: d68189018abb23a4aae73731be714508, type: 3}
+  - {fileID: 7400000, guid: 00d645abb82aeab46ba0574bf6ce3739, type: 2}
   m_ParentStateMachine: {fileID: 110770218}
   m_Position: {x: 276, y: 156, z: 0}
   m_IKOnFeet: 0
@@ -726,7 +754,7 @@ State:
   m_Speed: 2.5
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400004, guid: d68189018abb23a4aae73731be714508, type: 3}
+  - {fileID: 7400000, guid: 00d645abb82aeab46ba0574bf6ce3739, type: 2}
   m_ParentStateMachine: {fileID: 110770218}
   m_Position: {x: 576, y: 156, z: 0}
   m_IKOnFeet: 0
@@ -741,7 +769,7 @@ State:
   m_Speed: 1.5
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400004, guid: d68189018abb23a4aae73731be714508, type: 3}
+  - {fileID: 7400000, guid: 00d645abb82aeab46ba0574bf6ce3739, type: 2}
   m_ParentStateMachine: {fileID: 110770218}
   m_Position: {x: -132, y: 12, z: 0}
   m_IKOnFeet: 0
@@ -903,6 +931,7 @@ StateMachine:
       second:
       - {fileID: 110108652}
       - {fileID: 110114952}
+      - {fileID: 110172502}
     data:
       first: {fileID: 110279610}
       second:

@@ -29,16 +29,16 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _NoiseTex
+          name: _Cube
         second:
-          m_Texture: {fileID: 2800000, guid: 5e948d567fdc5ee4da3f75a5a3fc5a86, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Cube
+          name: _NoiseTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 5e948d567fdc5ee4da3f75a5a3fc5a86, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -48,12 +48,12 @@ Material:
         second: .5
       data:
         first:
-          name: _Shininess
-        second: .699999988
-      data:
-        first:
           name: _InvFade
         second: .00999999978
+      data:
+        first:
+          name: _Shininess
+        second: .699999988
       data:
         first:
           name: strength
@@ -69,21 +69,21 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _Emission
-        second: {r: 0, g: 0, b: 0, a: 0}
+          name: _TintColor
+        second: {r: 1, g: 0, b: 0, a: 1}
       data:
         first:
           name: _SpecColor
         second: {r: 1, g: 1, b: 1, a: 0}
       data:
         first:
-          name: _TintColor
-        second: {r: 1, g: 0, b: 0, a: 1}
+          name: _EmisColor
+        second: {r: 1, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _Emission
+        second: {r: 0, g: 0, b: 0, a: 0}
       data:
         first:
           name: _ReflectColor
         second: {r: 1, g: .926470578, b: .926470578, a: .501960814}
-      data:
-        first:
-          name: _EmisColor
-        second: {r: 1, g: 0, b: 0, a: 0}

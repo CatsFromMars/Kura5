@@ -2,16 +2,22 @@
 using System.Collections;
 
 public class CamLooker : MonoBehaviour {
-	GameObject player;
 
-	// Use this for initialization
-	void Start () {
-		player = GameObject.FindGameObjectWithTag ("Player");
+	public Transform lookerSelf;
+
+	void Awake() {
+
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(player == null) player = GameObject.FindGameObjectWithTag ("Player");
-		transform.position = player.transform.position;
+
+	public void zoomToTarget(Transform target) {
+		StartCoroutine (lookAtTarget(target));
+	}
+
+	public IEnumerator lookAtTarget(Transform target, float speed=8f) {
+		while(transform.position != target.position) {
+			float step = speed * Time.unscaledDeltaTime;
+			transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+			yield return null;
+		}
 	}
 }

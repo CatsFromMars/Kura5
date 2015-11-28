@@ -14,8 +14,8 @@ PlayerSettings:
   productName: Kura5
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  defaultScreenWidth: 1280
-  defaultScreenHeight: 720
+  defaultScreenWidth: 720
+  defaultScreenHeight: 480
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_RenderingPath: 1
@@ -35,8 +35,8 @@ PlayerSettings:
   useOSAutorotation: 1
   use32BitDisplayBuffer: 1
   use24BitDepthBuffer: 1
-  defaultIsFullScreen: 0
-  defaultIsNativeResolution: 0
+  defaultIsFullScreen: 1
+  defaultIsNativeResolution: 1
   runInBackground: 0
   captureSingleScreen: 0
   Override IPod Music: 0
@@ -64,7 +64,7 @@ PlayerSettings:
   m_SupportedAspectRatios:
     4:3: 0
     5:4: 0
-    16:10: 0
+    16:10: 1
     16:9: 0
     Others: 0
   iPhoneBundleIdentifier: com.Company.ProductName
@@ -109,8 +109,24 @@ PlayerSettings:
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
+    - m_Icon: {fileID: 2800000, guid: 5d22a42f5ed329d45b077e835bf7c138, type: 3}
+      m_Size: 128
+  - m_BuildTarget: Standalone
+    m_Icons:
+    - m_Icon: {fileID: 2800000, guid: 5d22a42f5ed329d45b077e835bf7c138, type: 3}
+      m_Size: 1024
+    - m_Icon: {fileID: 0}
+      m_Size: 512
+    - m_Icon: {fileID: 0}
+      m_Size: 256
     - m_Icon: {fileID: 0}
       m_Size: 128
+    - m_Icon: {fileID: 0}
+      m_Size: 48
+    - m_Icon: {fileID: 0}
+      m_Size: 32
+    - m_Icon: {fileID: 0}
+      m_Size: 16
   m_BuildTargetBatching:
   - m_BuildTarget: Standalone
     m_StaticBatching: 1

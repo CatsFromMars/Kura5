@@ -11,4 +11,8 @@ public class AnimationEventDestroy : MonoBehaviour {
 		Destroy (transform.parent.gameObject);
 		Instantiate (Resources.Load ("Effects/Pickup") as GameObject, transform.position, Quaternion.identity);
 	}
+
+	public void destroyParentNoEffect() {
+		Destroy (transform.parent.gameObject);
+	}
 }

@@ -26,6 +26,10 @@ public class Bullet : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 
+		if(collision.collider.tag == "Wall") {
+			Instantiate(Resources.Load("Effects/Sound") as GameObject, transform.position, Quaternion.identity);
+		}
+
 		Instantiate(hitEffect, transform.position, Quaternion.identity);
 		if(elec!=null)elec.parent = null;
 		Destroy (this.gameObject);

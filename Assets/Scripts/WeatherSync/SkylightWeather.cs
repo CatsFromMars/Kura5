@@ -34,6 +34,11 @@ public class SkylightWeather : MonoBehaviour {
 		w = GameObject.FindGameObjectWithTag ("Weather").GetComponent<WeatherSync>();
 		light = lightProjector.GetComponent<Projector>().material;
 	}
+
+	void Update() {
+		updateWeatherEffects();
+		updateSkylightColor();
+	}
 	
 	public void updateWeatherEffects() {
 
@@ -56,8 +61,10 @@ public class SkylightWeather : MonoBehaviour {
 	}
 
 	public void updateSkylightColor() {
-		if(w.lightMax >= 1 && w.lightMax < 4) light.SetColor("_Color", twilight);
-		else if(w.lightMax >= 4) light.SetColor("_Color", day);
+		if(w.isNightTime == false) {
+			if(w.lightMax >= 1 && w.lightMax < 4) light.SetColor("_Color", twilight);
+			else if(w.lightMax >= 4) light.SetColor("_Color", day);
+		}
 		else light.SetColor("_Color", night);
 	}
 }
