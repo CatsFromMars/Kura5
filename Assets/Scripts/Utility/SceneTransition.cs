@@ -39,7 +39,7 @@ public class SceneTransition : MonoBehaviour
 		Application.LoadLevel(scene); //Load scene
 		yield return new WaitForSeconds (0.3f);
 		// If the texture is almost clear...
-		while(ren.color.a > 0.05f) {
+		while(ren.color.a > 0.001f) {
 			FadeToClear();
 			yield return null;
 		}

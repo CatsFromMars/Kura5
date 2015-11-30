@@ -120,7 +120,7 @@ public class PlayerContainer : MonoBehaviour {
 		}
 		animator.SetBool(hash.movingBool, moving);
 		animator.SetBool(hash.taiyouBool, charging);
-		animator.SetBool(hash.whistleBool, whistling);
+		//animator.SetBool(hash.whistleBool, whistling);
 		animator.SetBool(hash.rollingBool, Input.GetButtonDown("Roll"));
 		animator.SetBool(hash.holdWeaponBool, holdingWeapon);
 		animator.SetBool(hash.attackBool, attacking);
@@ -132,7 +132,7 @@ public class PlayerContainer : MonoBehaviour {
 			parrying = (canParry && Input.GetButtonDown("Block") && targeting);
 			charging = Input.GetButton("Charge");
 			rolling = (currentAnim(hash.rollState));
-			whistling = Input.GetButtonDown("Whistle");
+			//whistling = Input.GetButtonDown("Whistle");
 			holdingWeapon = Input.GetButton("Attack") || Input.GetButtonDown("Attack");
 			attacking = Input.GetButtonUp("Attack");
 			targeting = Input.GetButton ("Target") && Time.timeScale != 0;
@@ -225,11 +225,13 @@ public class PlayerContainer : MonoBehaviour {
 	public void hitPlayer(int d, string e, Vector3 knockback) {
 		//To be called by melee enemies
 		if(!invincible) {
-			makeSound(hurt);
-			StartCoroutine(startInvinciblity());
 			int damage = damageCalculator.getDamage(e, element, d);
 			currentKnockbackDir = knockback;
-			if(!currentAnim(hash.blockState)) getHurt(damage, knockback);
+			if(!currentAnim(hash.blockState)) {
+				getHurt(damage, knockback);
+				makeSound(hurt);
+				StartCoroutine(startInvinciblity());
+			}
 			else Instantiate(Resources.Load("Effects/Parry") as GameObject, transform.position, Quaternion.identity);
 		}
 	}

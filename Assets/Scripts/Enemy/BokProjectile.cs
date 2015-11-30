@@ -54,7 +54,6 @@ public class BokProjectile : MonoBehaviour {
 			else {
 				if(!gooSpawned) {
 					Instantiate(hitAirEffect, transform.position, Quaternion.identity);
-					Instantiate(goo, transform.position, Quaternion.identity);
 					gooSpawned = true;
 				}
 			}

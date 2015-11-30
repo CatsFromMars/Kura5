@@ -199,8 +199,8 @@ public class EmilController : PlayerContainer {
 	}
 	
 	public void Charge() {
-		chargeCounter+=lightLevels.darkness;
-		if(lightLevels.darkness > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy && !audio.isPlaying) makeSound(chargingSound);
+		chargeCounter+=lightLevels.darkness*Mathf.RoundToInt(Time.timeScale);
+		if(Time.timeScale != 0 && lightLevels.darkness > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy && !audio.isPlaying) makeSound(chargingSound);
 		if(chargeCounter > chargeThresh) {
 			chargeCounter = 0;
 			if(lightLevels.darkness > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy) {

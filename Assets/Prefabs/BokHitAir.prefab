@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 401884}
   - 198: {fileID: 19801884}
   - 199: {fileID: 19901884}
-  - 114: {fileID: 11401888}
+  - 114: {fileID: 11413374}
   m_Layer: 0
   m_Name: BokHitAir
   m_TagString: Untagged
@@ -120,7 +120,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 401884}
   m_RootOrder: 2
---- !u!114 &11401888
+--- !u!114 &11413374
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -128,10 +128,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 101884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fd2e8874f60266498a388d7229a1bac, type: 3}
+  m_Script: {fileID: 11500000, guid: 1eaf84db0cecc56498d7b04bf2d64fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnlyDeactivate: 0
+  destroyTime: 30
 --- !u!198 &19801882
 ParticleSystem:
   m_ObjectHideFlags: 1

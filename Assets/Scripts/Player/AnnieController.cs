@@ -62,8 +62,8 @@ public class AnnieController : PlayerContainer {
 	}
 
 	public void Charge() {
-		if(lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy && !audio.isPlaying) makeSound(chargingSound);
-		chargeCounter+=lightLevels.sunlight;
+		if(Time.timeScale != 0 && lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy && !audio.isPlaying) makeSound(chargingSound);
+		chargeCounter+=(lightLevels.sunlight * Mathf.RoundToInt(Time.timeScale));
 		if(chargeCounter > chargeThresh) {
 			chargeCounter = 0;
 			if(lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy) {

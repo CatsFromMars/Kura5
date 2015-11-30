@@ -54,6 +54,7 @@ public class PatrolEnemy : EnemyClass {
 
 	protected void manageMovement() {
 		//Manage agent based on anim
+
 		bool canMove = (animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.runningState ||
 		                animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.seekingState ||
 		                animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.walkingState ||
@@ -82,15 +83,11 @@ public class PatrolEnemy : EnemyClass {
 			trackingPlayer = true;
 			playerPos = other.transform.position;
 			seePlayer(other); //DETECT PLAYER THROUGH SIGHT
-			//hearPlayer(other); //DETECT PLAYER THROUGH SOUND
 		}
 
 		//Handle noise
 		if (other.gameObject.tag == "Sound") {
-			if(animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.idleState ||
-			   animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.walkState) animator.SetTrigger(hash.whistleTrigger);
-			//agent.Stop();
-			playerLastSighting = other.transform.position;
+			hearPlayer(other); //DETECT PLAYER THROUGH SOUND
 		}
 		
 	}
@@ -103,15 +100,10 @@ public class PatrolEnemy : EnemyClass {
 	}
 
 	void hearPlayer(Collider other) {
-
-		bool hitwall = playerAudio.clip.name == "SwordHitWall" && playerAudio.isPlaying;
-		if (hitwall|| playerAnimator.GetCurrentAnimatorStateInfo(0).nameHash == hash.whistleState) {
-			if(animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.idleState ||
-			   animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.walkState) animator.SetTrigger(hash.whistleTrigger);
-			//agent.Stop();
-			playerLastSighting = playerPos;
-		}
-		
+		if(!chasing && (animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.idleState ||
+		   animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.walkState)) animator.SetTrigger(hash.whistleTrigger);
+		//agent.Stop();
+		playerLastSighting = other.transform.position;
 	}
 
 	void seePlayer(Collider other) {
@@ -130,6 +122,7 @@ public class PatrolEnemy : EnemyClass {
 				{
 					// ... the player is in sight.
 					playerInSight = true;
+					//Debug.Log ("I SEE YOU!");
 					// Set the last global sighting is the players current position.
 					if(player == null || player.active == false) { //IN CASE PLAYER SWITCHES
 						player = GameObject.FindWithTag("Player").transform;
@@ -150,6 +143,8 @@ public class PatrolEnemy : EnemyClass {
 		playerLastSighting = resetPlayerPosition;
 		agent.speed = enemySpeed;
 		animator.SetTrigger(hash.playerLostTrigger);
+		animator.ResetTrigger(hash.whistleTrigger);
+		pauseTimer = 199;
 		attacking = false;
 		chasing = false;
 	}
@@ -176,6 +171,9 @@ public class PatrolEnemy : EnemyClass {
 	protected void Patrol()
 	{
 		//Debug.Log ("PATROL");
+
+		agent.stoppingDistance = 1f; //Patrol points need to be exact-ish
+
 		// If near the next waypoint or there is no destination...
 		if(agent.remainingDistance < agent.stoppingDistance)
 		{
@@ -220,6 +218,7 @@ public class PatrolEnemy : EnemyClass {
 
 	public void Chase() {
 		agent.speed = enemyRunningSpeed;
+		agent.stoppingDistance = 2f; //Chasing is less precise
 		moving = true;
 		MoveTowardsTarget(playerLastSighting);
 		if(ArrivedAtPoint()) {
