@@ -144,34 +144,6 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1101 &110114798
-Transition:
-  serializedVersion: 2
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_SrcState: {fileID: 0}
-  m_DstState: {fileID: 110262808}
-  m_TransitionDuration: .0222385786
-  m_TransitionOffset: 0
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Stunned
-    m_EventTreshold: 0
-    m_ExitTime: .899999976
-  - m_ConditionMode: 2
-    m_ConditionEvent: Attacking
-    m_EventTreshold: 0
-    m_ExitTime: .899999976
-  - m_ConditionMode: 2
-    m_ConditionEvent: Dead
-    m_EventTreshold: 0
-    m_ExitTime: .899999976
-  m_Atomic: 1
-  m_Solo: 0
-  m_Mute: 0
-  m_CanTransitionToSelf: 0
 --- !u!1101 &110114952
 Transition:
   serializedVersion: 2
@@ -460,6 +432,34 @@ Transition:
     m_ConditionEvent: Stunned
     m_EventTreshold: 0
     m_ExitTime: .964816928
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110161246
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110288864}
+  m_DstState: {fileID: 110262808}
+  m_TransitionDuration: .300000101
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Stunned
+    m_EventTreshold: 0
+    m_ExitTime: .699999928
+  - m_ConditionMode: 2
+    m_ConditionEvent: Attacking
+    m_EventTreshold: 0
+    m_ExitTime: .699999928
+  - m_ConditionMode: 2
+    m_ConditionEvent: Dead
+    m_EventTreshold: 0
+    m_ExitTime: .699999928
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -921,7 +921,6 @@ StateMachine:
       second:
       - {fileID: 110145162}
       - {fileID: 110121564}
-      - {fileID: 110114798}
       - {fileID: 110188120}
     data:
       first: {fileID: 110270218}
@@ -962,6 +961,7 @@ StateMachine:
       second:
       - {fileID: 110161548}
       - {fileID: 110150534}
+      - {fileID: 110161246}
     data:
       first: {fileID: 110245924}
       second: []

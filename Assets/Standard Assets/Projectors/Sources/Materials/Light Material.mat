@@ -17,7 +17,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 103e5a2b75b3a2045a90faa091dd6e80, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -31,7 +31,7 @@ Material:
         first:
           name: _FalloffTex
         second:
-          m_Texture: {fileID: 2800000, guid: cc90a732ad112a541100162a44295342, type: 3}
+          m_Texture: {fileID: 2800000, guid: f0d023fdefbacab429165006def07ca4, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -55,16 +55,20 @@ Material:
           m_Texture: {fileID: 2800000, guid: f7a0a732ad112a541100162a44295342, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 0, g: .0788031965, b: .308823526, a: 1}
+        second: {r: 0, g: .379310369, b: 1, a: 1}
       data:
         first:
           name: _TintColor
-        second: {r: .5, g: .5, b: .5, a: .5}
+        second: {r: .529411793, g: .707910776, b: 1, a: 1}
       data:
         first:
           name: BumpMapScale
