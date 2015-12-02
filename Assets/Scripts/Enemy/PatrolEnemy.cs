@@ -144,6 +144,7 @@ public class PatrolEnemy : EnemyClass {
 		agent.speed = enemySpeed;
 		animator.SetTrigger(hash.playerLostTrigger);
 		animator.ResetTrigger(hash.whistleTrigger);
+		pausing = false;
 		pauseTimer = 199;
 		attacking = false;
 		chasing = false;
@@ -248,7 +249,7 @@ public class PatrolEnemy : EnemyClass {
 			pauseTimer = 0;
 		}
 		else {
-			pauseTimer++;
+			pauseTimer += Mathf.RoundToInt(Time.timeScale);
 			moving = false;
 			agent.Stop();
 		}
@@ -258,6 +259,7 @@ public class PatrolEnemy : EnemyClass {
 	#region Combat
 	protected void Attack() {
 		//To be overriten by Class if needed
+		Debug.Log ("I WANNA ATTACK");
 		attacking = true;
 		pausing = true;
 		agent.Stop();

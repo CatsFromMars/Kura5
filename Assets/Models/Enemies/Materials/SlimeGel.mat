@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: SlimeGel
-  m_Shader: {fileID: 31, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: dc0442e7e64955844acfc1481cb05809, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,19 +17,12 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 023597a194c90bc41aaf9bb24bb0e519, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 10, y: 10}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _ToonShade
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -43,6 +36,13 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _ToonShade
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _Ramp
         second:
           m_Texture: {fileID: 2800000, guid: 4a056241e2722dc46a7262a8e7073fd9, type: 3}
@@ -52,24 +52,24 @@ Material:
       data:
         first:
           name: _Shininess
-        second: 1
+        second: .406517625
       data:
         first:
           name: _Outline
         second: .0299999993
       data:
         first:
-          name: _RimPower
-        second: 1.39999998
+          name: _Intensity
+        second: .537500024
       data:
         first:
-          name: _Intensity
-        second: .712499976
+          name: _RimPower
+        second: 1.39999998
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .345588207, g: .345588207, b: .345588207, a: .450980395}
+        second: {r: 1, g: .931034446, b: 0, a: .450980395}
       data:
         first:
           name: _SpecColor
