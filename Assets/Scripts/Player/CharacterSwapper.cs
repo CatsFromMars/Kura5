@@ -18,7 +18,7 @@ public class CharacterSwapper : MonoBehaviour {
 		if(Input.GetButtonDown("Switch")) {
 			PlayerContainer player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerContainer>();
 			bool inControl = player.playerInControl;
-			bool canSwitch = !player.targeting && !player.invincible && !player.rolling &&Time.timeScale!=0;
+			bool canSwitch = player.currentAnim(player.hash.idleState) && Time.timeScale!=0;
 			if(inControl&&canSwitch) switchPlayers();
 		}
 		if (data.currentPlayer == GameData.player.Annie)

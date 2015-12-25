@@ -12,7 +12,7 @@ GameObject:
   - 199: {fileID: 19911096}
   - 114: {fileID: 11411096}
   - 82: {fileID: 8211100}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SolarBulletHit
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   - 198: {fileID: 19811098}
   - 199: {fileID: 19911098}
   - 114: {fileID: 11411098}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - 198: {fileID: 19811100}
   - 199: {fileID: 19911100}
   - 114: {fileID: 11411100}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Lines
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ AudioSource:
   m_GameObject: {fileID: 111096}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 746a0ef003c88f84b89cfd24d1c9a718, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9fdb7040025b99d41ada051c57cfa71e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: .300000012
   m_Pitch: 1
@@ -275,8 +275,8 @@ ParticleSystem:
         key7:
           serializedVersion: 2
           rgba: 0
-        ctime0: 3084
-        ctime1: 21395
+        ctime0: 0
+        ctime1: 4626
         ctime2: 37972
         ctime3: 37972
         ctime4: 65535
@@ -444,7 +444,7 @@ ParticleSystem:
     time1: .0299999993
     time2: .0599999987
     time3: .0900000036
-    m_BurstCount: 4
+    m_BurstCount: 1
   SizeModule:
     enabled: 1
     curve:

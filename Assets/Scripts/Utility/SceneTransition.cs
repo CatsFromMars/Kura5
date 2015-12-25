@@ -5,6 +5,9 @@ public class SceneTransition : MonoBehaviour
 {
 	public float fadeSpeed = 1.5f;          // Speed that the screen fades to and from black.
 	public SpriteRenderer ren;
+	public GameData data;
+	public Transform playerContainer; 
+
 	void Awake ()
 	{
 		ren = GetComponent<SpriteRenderer>();
@@ -27,6 +30,8 @@ public class SceneTransition : MonoBehaviour
 
 	IEnumerator EndScene (string scene)
 	{
+		markCheckpoint (scene);
+
 		// Make sure the texture is enabled.
 		ren.enabled = true;
 		
@@ -50,5 +55,11 @@ public class SceneTransition : MonoBehaviour
 	public void gotoScene(string scene) {
 		StopCoroutine (EndScene (scene));
 		StartCoroutine (EndScene (scene));
+	}
+
+	public void markCheckpoint(string sceneName) {
+		//Saves players location. To be loaded later.
+		if(data!=null) data.sceneName = sceneName;
+		if(data!=null) data.lastCheckpoint = playerContainer.position;
 	}
 }

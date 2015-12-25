@@ -20,8 +20,8 @@ public class BokProjectile : MonoBehaviour {
 	void Awake() {
 		GameObject player = GameObject.FindGameObjectWithTag ("Player");
 		if (player != null) {
-			//Vector3 pos = new Vector3(player.transform.position.x, -1f, player.transform.position.z);
-			transform.LookAt(player.transform.position);
+			Vector3 pos = new Vector3(player.transform.position.x, player.transform.position.y-1f, player.transform.position.z);
+			transform.LookAt(pos);
 		}
 		direction = transform.forward;
 	}
@@ -52,10 +52,7 @@ public class BokProjectile : MonoBehaviour {
 				direction *= -1;
 			}
 			else {
-				if(!gooSpawned) {
-					Instantiate(hitAirEffect, transform.position, Quaternion.identity);
-					gooSpawned = true;
-				}
+				Instantiate(hitAirEffect, transform.position, Quaternion.identity);
 			}
 		}
 

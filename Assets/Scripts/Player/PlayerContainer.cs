@@ -10,6 +10,7 @@ public class PlayerContainer : MonoBehaviour {
 	public float playerRollingSpeed = 18f;
 	protected float vertical;
 	protected float horizontal;
+	protected Vector3 lastNonZeroAxis;
 	public bool forceLookAtTarget = true;
 	protected Vector3 currentKnockbackDir;
 
@@ -43,7 +44,7 @@ public class PlayerContainer : MonoBehaviour {
 	private int parryWaitTime = 2;
 	protected bool canParry = true;
 	public bool invincible = false;
-	private float invincibilityFrames = 0.5f;
+	private float invincibilityFrames = 1f;
 
 	//ANIMATION AND DATA VARIABLES
 	public GameObject soundEffect;
@@ -54,16 +55,23 @@ public class PlayerContainer : MonoBehaviour {
 	protected Animator animator;
 	protected NavMeshAgent agent;
 	protected CharacterController controller;
-	protected HashIDs hash;
+	public HashIDs hash;
 	protected GameData gameData;
 	protected GameObject globalData;
 	public LightLevels lightLevels;
 	public DamageCalculator damageCalculator;
+	public GameObject body;
+	protected SkinnedMeshRenderer mesh;
+	AudioSource audio;
+	protected AudioSource voice;
 
 	//MISC VARIABLES
 	public species playerSpecies;
 	public string element = "Sol";
 	public AudioClip hurt;
+	public AudioClip[] hurtVoices;
+	public AudioClip[] dieVoices;
+	public AudioClip[] rollVoices;
 	
 	public enum species 
 	{
@@ -72,6 +80,7 @@ public class PlayerContainer : MonoBehaviour {
 
 	void Awake () {
 		//ACCESS TO HASHES, ANIMATOR AND GLOBAL DATA
+		audio = GetComponent<AudioSource> ();
 		globalData = GameObject.FindGameObjectWithTag("GameController");
 		hash = globalData.GetComponent<HashIDs>();
 		gameData = globalData.GetComponent<GameData>();
@@ -83,6 +92,12 @@ public class PlayerContainer : MonoBehaviour {
 		blinker = transform.FindChild ("Flash");
 		Vector3 startingPos = new Vector3(transform.position.x, 0, transform.position.z);
 		transform.position = startingPos;
+		voice = transform.FindChild ("Voice").GetComponent<AudioSource>();
+		if(body!=null) {
+			mesh = body.GetComponent<SkinnedMeshRenderer>();
+			toggleBlendShape(0);
+		}
+
 	}
 
 	void FixedUpdate() {
@@ -94,8 +109,8 @@ public class PlayerContainer : MonoBehaviour {
 		}
 		else if(rolling) {
 			if(vertical == 0 && horizontal == 0) {
-				vertical = transform.forward.z;
-				horizontal = transform.forward.x;
+				vertical = lastNonZeroAxis.x;
+				horizontal = lastNonZeroAxis.y;
 			}
 		}
 	}
@@ -130,20 +145,23 @@ public class PlayerContainer : MonoBehaviour {
 	protected void updateInput() {
 		if(playerInControl) {
 			parrying = (canParry && Input.GetButtonDown("Block") && targeting);
-			charging = Input.GetButton("Charge");
+			charging = Input.GetButton("Charge") && !gameData.nearInteractable;
 			rolling = (currentAnim(hash.rollState));
 			//whistling = Input.GetButtonDown("Whistle");
-			holdingWeapon = Input.GetButton("Attack") || Input.GetButtonDown("Attack");
-			attacking = Input.GetButtonUp("Attack");
+			holdingWeapon = (Input.GetButton("Attack") || Input.GetButtonDown("Attack")) && !gameData.nearInteractable;
+			attacking = Input.GetButtonUp("Attack") && !gameData.nearInteractable;
 			targeting = Input.GetButton ("Target") && Time.timeScale != 0;
-			moving = (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0);
+			moving = (horizontal != 0 || vertical != 0);
 			performingAction = attacking || holdingWeapon || whistling || charging;
 		}
 	}
 
 	public void updateInputDirection() {
-		horizontal = Input.GetAxisRaw("Horizontal");
-		vertical = Input.GetAxisRaw("Vertical");
+		horizontal = Mathf.RoundToInt(Input.GetAxis("Horizontal"));
+		vertical = Mathf.RoundToInt(Input.GetAxis("Vertical"));
+		//horizontal = (Input.GetAxis("Horizontal"));
+		//vertical = (Input.GetAxis("Vertical"));
+		if(horizontal != 0 || vertical !=0) lastNonZeroAxis = new Vector3 (horizontal, vertical, 0);
 	}
 
 	public void movePlayer(float horizontal, float vertical) {
@@ -224,7 +242,7 @@ public class PlayerContainer : MonoBehaviour {
 
 	public void hitPlayer(int d, string e, Vector3 knockback) {
 		//To be called by melee enemies
-		if(!invincible) {
+		if(!invincible && !dead) {
 			int damage = damageCalculator.getDamage(e, element, d);
 			currentKnockbackDir = knockback;
 			if(!currentAnim(hash.blockState)) {
@@ -232,8 +250,11 @@ public class PlayerContainer : MonoBehaviour {
 				makeSound(hurt);
 				StartCoroutine(startInvinciblity());
 			}
-			else Instantiate(Resources.Load("Effects/Parry") as GameObject, transform.position, Quaternion.identity);
-		}
+			else {
+					Instantiate(Resources.Load("Effects/Parry") as GameObject, transform.position, Quaternion.identity);
+					ShakeScreenAnimEvent.ShakeScreen();
+				}
+			}
 	}
 
 	public void knockBack(Vector3 kdir) {
@@ -277,6 +298,10 @@ public class PlayerContainer : MonoBehaviour {
 
 	protected void untargetEnemy() {
 		currentTarget = null;
+	}
+
+	void swapElement(string e) {
+		element = e;
 	}
 
 	GameObject FindClosestEnemy() {
@@ -324,7 +349,39 @@ public class PlayerContainer : MonoBehaviour {
 		audio.Play();
 	}
 
+	public void playVoiceClip(AudioClip clip) {
+		//ANIMATION EVENTS FOR VOICE ACTING
+		voice.volume = 0.6f;
+		voice.pitch = 1.05f;
+		voice.clip = clip;
+		voice.Play();
+	}
+
 	public void attemptSwap() {
 		GameObject.FindGameObjectWithTag("PlayerSwapper").GetComponent<CharacterSwapper>().switchPlayers ();
+	}
+
+	public void toggleBlendShape(float weight) {
+		//Animation event intended for swapping shake keys on the player
+		mesh.SetBlendShapeWeight (0, weight);
+	}
+
+	public void randomRollingSound() {
+		//For rolling animation
+		playVoiceClip(rollVoices[Random.Range(0, rollVoices.Length)]);
+	}
+
+	public IEnumerator characterWalkTo(Vector3 target) {
+		//Move player to target
+		agent.SetDestination (target);
+		agent.speed = playerRunningSpeed;
+		while (Vector3.Distance(transform.position, target) >= 1.5f) {
+			playerInControl = false;
+			animator.SetBool(hash.movingBool, true);
+			yield return null;
+		}
+		moving = false;
+		playerInControl = true;
+		agent.Stop ();
 	}
 }

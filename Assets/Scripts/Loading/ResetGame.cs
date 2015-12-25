@@ -7,9 +7,9 @@ public class ResetGame : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetKeyDown("r")) {
-			Application.LoadLevel ("TestScene"); 
-			
+			Application.LoadLevel ("MenuScene"); 
 		}
+		if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
 	
 	}
 }

@@ -19,11 +19,11 @@ public class DamageCalculator : MonoBehaviour {
 			return 1;
 		}
 		else if (element == "Dark") {
-			if(w.isNightTime && w.lightMax >= 3) return 1.2f;
+			if(w.isNightTime && w.lightMax >= 5) return 1.2f;
 			else return 1;
 		}
 		else if (element == "Sol") {
-			if(w.isNightTime==false && w.lightMax >= 3) return 1.2f;
+			if(w.isNightTime==false && w.lightMax >= 5) return 1.2f;
 			else return 1;
 		}
 		else if (element == "Fire") {
@@ -49,14 +49,15 @@ public class DamageCalculator : MonoBehaviour {
 	public int getDamage(string elementTarget, string elementSelf, int baseDamage, float m=1f) {
 		//target = thing that damage is being applied to
 		//Source = source of attack
-		m = calculateMultipler(elementSelf);
+		m = calculateMultipler(elementTarget);
 		Element e1 = getElementFromString (elementTarget);
 		Element e2 = getElementFromString (elementSelf);
 		Attack atk = new Attack (baseDamage, e1, m);
+		Debug.Log (m);
 		return atk.calculateDamage(e2);
 	}
 
-	Element getElementFromString(string e) {
+	public Element getElementFromString(string e) {
 		if(e == "Sol") return elements.Sol;
 		else if(e == "Dark") return elements.Dark;
 		else if(e == "Fire") return elements.Fire;

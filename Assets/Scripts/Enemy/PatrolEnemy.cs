@@ -49,7 +49,6 @@ public class PatrolEnemy : EnemyClass {
 		animator.SetBool(hash.attackBool, attacking);
 		animator.SetBool(hash.chaseBool, chasing);
 		animator.SetBool(hash.stunnedBool, stunned || frozen);
-		audio.enabled = trackingPlayer;
 	}
 
 	protected void manageMovement() {
@@ -83,23 +82,29 @@ public class PatrolEnemy : EnemyClass {
 			trackingPlayer = true;
 			playerPos = other.transform.position;
 			seePlayer(other); //DETECT PLAYER THROUGH SIGHT
+
+			audio.enabled = true;
 		}
 
 		//Handle noise
 		if (other.gameObject.tag == "Sound") {
 			hearPlayer(other); //DETECT PLAYER THROUGH SOUND
 		}
+
+
 		
 	}
 
 	void OnTriggerExit(Collider other) {
-		if(other.gameObject.tag == "Player") {
-			trackingPlayer = false;
-			attacking = false;
-		}
+		//if(other.gameObject.tag == "Player") {
+			//trackingPlayer = false;
+		//}
+		audio.enabled = false;
+		playerInSight = false;
 	}
 
 	void hearPlayer(Collider other) {
+
 		if(!chasing && (animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.idleState ||
 		   animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.walkState)) animator.SetTrigger(hash.whistleTrigger);
 		//agent.Stop();
@@ -110,11 +115,11 @@ public class PatrolEnemy : EnemyClass {
 		// Create a vector from the enemy to the player and store the angle between it and forward.
 		Vector3 direction = other.transform.position - transform.position;
 		float angle = Vector3.Angle(direction, transform.forward);
-		if (angle < fieldOfViewAngle * 0.5f) {
+		if (angle < fieldOfViewAngle) {
 			RaycastHit hit;
 
 			// ... and if a raycast towards the player hits something...
-			if(Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, col.radius))
+			if(Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, sightRange))
 			{
 				Debug.DrawLine(transform.position, hit.point, Color.red);
 				// ... and if the raycast hits the player...
@@ -136,6 +141,21 @@ public class PatrolEnemy : EnemyClass {
 			else playerInSight = false;
 		}
 		else playerInSight = false;
+
+		//Exception: Get in the "personal bubble"
+		float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
+		if (distanceFromPlayer <= 2f) {
+			// ... the player is in sight.
+			playerInSight = true;
+			//Debug.Log ("I SEE YOU!");
+			// Set the last global sighting is the players current position.
+			if(player == null || player.active == false) { //IN CASE PLAYER SWITCHES
+				player = GameObject.FindWithTag("Player").transform;
+				playerAnimator = player.GetComponent<Animator>();
+			}
+			playerLastSighting = player.transform.position;
+			cautionTimer = 0; //Reset caution timer since player's busted
+		}
 	}
 	
 	void LoseSuspicion() {
@@ -259,7 +279,6 @@ public class PatrolEnemy : EnemyClass {
 	#region Combat
 	protected void Attack() {
 		//To be overriten by Class if needed
-		Debug.Log ("I WANNA ATTACK");
 		attacking = true;
 		pausing = true;
 		agent.Stop();

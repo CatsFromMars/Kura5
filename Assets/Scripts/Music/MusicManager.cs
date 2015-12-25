@@ -11,6 +11,10 @@ public class MusicManager : MonoBehaviour {
 		previousMusic = src.clip;
 	}
 
+	void OnLevelWasLoaded(int level) {
+
+	}
+
 	public void stopMusic() {
 		src.Stop();
 	}

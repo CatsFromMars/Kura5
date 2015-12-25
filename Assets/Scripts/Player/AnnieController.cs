@@ -21,6 +21,8 @@ public class AnnieController : PlayerContainer {
 	public ParticleSystem dustL;
 	public ParticleSystem dustR;
 
+	private bool solarCharging = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -62,24 +64,42 @@ public class AnnieController : PlayerContainer {
 	}
 
 	public void Charge() {
-		if(Time.timeScale != 0 && lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy && !audio.isPlaying) makeSound(chargingSound);
-		chargeCounter+=(lightLevels.sunlight * Mathf.RoundToInt(Time.timeScale));
-		if(chargeCounter > chargeThresh) {
-			chargeCounter = 0;
-			if(lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy) {
-				sunParticles.Emit (1);
-				gameData.annieCurrentEnergy += 1;
+		solarCharging = Time.timeScale != 0 && lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy;
+		if(!lightLevels.w.isNightTime) {
+			if(solarCharging&&!audio.isPlaying) makeSound(chargingSound);
+			chargeCounter+=(lightLevels.sunlight * Mathf.RoundToInt(Time.timeScale));
+			if(chargeCounter > chargeThresh) {
+				chargeCounter = 0;
+				if(lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy) {
+					sunParticles.Emit (1);
+					gameData.annieCurrentEnergy += 1;
+				}
 			}
+		}
+	}
+
+	public void voiceIfCharging(AudioClip clip) {
+		//ANIMATION EVENTS FOR VOICE ACTING
+		if(solarCharging) {
+			voice.volume = 1;
+			voice.pitch = 1f;
+			voice.clip = clip;
+			voice.Play();
 		}
 	}
 
 	override protected void getHurt(int damage, Vector3 knockbackDir) {
 		gameData.annieCurrentLife -= damage;
 		
-		if(gameData.annieCurrentLife <= 0) Die();
+		if(gameData.annieCurrentLife <= 0) {
+			Die();
+			playVoiceClip(dieVoices[Random.Range(0, dieVoices.Length)]);
+		}
 		else {
 			//Play knockback anim
 			animator.SetTrigger(hash.hurtTrigger);
+			//Play hurt voice
+			playVoiceClip(hurtVoices[Random.Range(0, hurtVoices.Length)]);
 		}
 	}
 

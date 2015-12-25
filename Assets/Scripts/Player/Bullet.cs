@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour {
 	public string element = "Sol";
 	public float velocity = 100f;
 	public Transform elec;
+	private bool hit = false;
 
 	//ACTIVE BULLET TIME
 	private float elapsedTime;
@@ -26,13 +27,15 @@ public class Bullet : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 
-		if(collision.collider.tag == "Wall") {
-			Instantiate(Resources.Load("Effects/Sound") as GameObject, transform.position, Quaternion.identity);
+		if(!hit) {
+			hit = true;
+			if(collision.collider.tag == "Wall") {
+				Instantiate(Resources.Load("Effects/Sound") as GameObject, transform.position, Quaternion.identity);
+			}
+
+			Instantiate(hitEffect, transform.position, Quaternion.identity);
+			if(elec!=null)elec.parent = null;
+			Destroy (this.gameObject);
 		}
-
-		Instantiate(hitEffect, transform.position, Quaternion.identity);
-		if(elec!=null)elec.parent = null;
-		Destroy (this.gameObject);
-
 	}
 }

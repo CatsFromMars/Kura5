@@ -2,59 +2,54 @@
 using System.Collections;
 
 public class Talk : MonoBehaviour {
-	public Texture2D portrait;
-	public string[] dialogueSpeech;
-	//private int currentDialogue = 0;
-	Dialogue dialogue;
-	GameObject Controller;
-	GameData Data;
 	public bool autoSpeak = false; //Do this for intro cutscenes and stuff.
 	public bool destroyGameobject = false;
 	public bool npcObject = false; //Talk on button press, as opposed to automatically
 	bool inRange = false; //In range to talk?
-	public TextAsset text;
 	private bool isTalking = false;
+	public TextAsset text;
+	public TextAsset[] textLoops;
+	private int textindex = 0;
+	private GameData data;
 
 	void Awake() {
-		Controller = GameObject.FindGameObjectWithTag("GameController");
-		Data = Controller.GetComponent<GameData>();
-		dialogueSpeech = text.text.Split('\n');
-		if(autoSpeak) StartCoroutine(Speak());
+		if(autoSpeak) Speak();
+		data = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameData> ();
 	}
 
 	void OnTriggerEnter(Collider other) {
 		if(other.tag == "Player") {
 			inRange = true;
-			if(!autoSpeak && !npcObject) StartCoroutine(Speak());
+			data.nearInteractable = true;
+			if(!autoSpeak && !npcObject) Speak();
 		}
 
 	}
 
 	void OnTriggerExit(Collider other) {
-		if(other.tag == "Player") inRange = false;
+		if(other.tag == "Player") {
+			inRange = false;
+			data.nearInteractable = false;
+		}
 	}
 
 	void Update() {
-		bool push = Input.GetButtonDown("Charge") || Input.GetButtonDown("Confirm");
+		bool push = Time.timeScale != 0 && (Input.GetButtonDown("Charge") || Input.GetButtonDown("Confirm"));
 		if(!isTalking && npcObject && push && inRange) {
-			StartCoroutine(Speak());
+			Speak();
 		}
 	}
 
-	IEnumerator Speak() {
-		Time.timeScale = 0; //Pause
+	void Speak() {
+		text = textLoops [textindex];
+		StartCoroutine (SpeakCoroutine());
+		textindex = (textindex+1)%textLoops.Length;
+	}
+
+	IEnumerator SpeakCoroutine() {
 		isTalking = true;
-		dialogue = Controller.GetComponent<Dialogue>();
-		for(int i = 0; i < dialogueSpeech.Length; i++) {
-			string speech = dialogueSpeech[i];
-			int j = speech.IndexOf(":");
-			if(j != -1) speech = speech.Insert(j+2, "\n");
-			dialogue.Show(speech, null, null);
-			while(!dialogue.isFinished) yield return null;
-		}
+		yield return StartCoroutine(DisplayDialogue.Speak(text));
 		isTalking = false;
-		Time.timeScale = 1;
 	}
-
 	
 }

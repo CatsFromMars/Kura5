@@ -46,7 +46,7 @@ public class WeatherSync : MonoBehaviour {
 	}
 
 	void connect() {
-		Debug.Log ("restarting...");
+		//Debug.Log ("restarting...");
 		StartCoroutine (attemptConnect ());
 	}
 
@@ -54,7 +54,7 @@ public class WeatherSync : MonoBehaviour {
 		StopCoroutine(SendRequest());
 		StartCoroutine(SendRequest());
 		while(status == "") {
-			Debug.Log ("Connecting...");
+			//Debug.Log ("Connecting...");
 			yield return null;
 		}
 		if(status != "Working") getGenericWeather();
@@ -105,7 +105,7 @@ public class WeatherSync : MonoBehaviour {
 		int minutesFromSunrise = currentMinute - sunRiseMinute;
 
 		int light = 0;
-		Debug.Log (minutesFromSunrise + ";" + lengthOfDay);
+		//Debug.Log (minutesFromSunrise + ";" + lengthOfDay);
 		if(minutesFromSunrise > lengthOfDay || minutesFromSunrise<=0) { //NIGHT
 			light = 0; //No sun if past sunset
 			isNightTime = true;
@@ -121,7 +121,7 @@ public class WeatherSync : MonoBehaviour {
 			float power = (-1*a/600f);
 			light = Mathf.RoundToInt(10*Mathf.Exp(power));
 			float c = (100-cloudinessPercentage)/100f;
-			Debug.Log (light+", "+c);
+			//Debug.Log (light+", "+c);
 			return Mathf.RoundToInt(c*light);
 		}
 
@@ -136,7 +136,7 @@ public class WeatherSync : MonoBehaviour {
 		{
 			var N = JSON.Parse(IPRequest.text);
 			currentIP = N["ip"].Value;
-			Debug.Log (currentIP);
+			//Debug.Log (currentIP);
 		}
 	}
 
@@ -161,7 +161,7 @@ public class WeatherSync : MonoBehaviour {
 		if (cityRequest.error == null || cityRequest.error == "")
 		{
 			var N = JSON.Parse(cityRequest.text);
-			Debug.Log (N);
+			//Debug.Log (N);
 			currentCountry = N["geoplugin_countryName"].Value;
 			countryCode = N["geoplugin_countryCode"].Value;
 			string regionCode = N["geoplugin_regionCode"].Value;

@@ -28,29 +28,12 @@ public class Inventory : MonoBehaviour {
 
 		database.initItems (); //LOAD ITEMS
 
-		//For testing purposes. Adds two apples.
+		//For testing purposes.
 		itemsList.Add (database.consumableItems[0]);
-		itemsList.Add (database.consumableItems[0]);
-		itemsList.Add (database.consumableItems[1]);
-		itemsList.Add (database.consumableItems[1]);
 		itemsList.Add (database.consumableItems[1]);
 		itemsList.Add (database.consumableItems[2]);
-		itemsList.Add (database.consumableItems[2]);
-		itemsList.Add (database.consumableItems[3]);
 		itemsList.Add (database.consumableItems[3]);
 		itemsList.Add (database.consumableItems[4]);
-		itemsList.Add (database.consumableItems[0]);
-		itemsList.Add (database.consumableItems[0]);
-		itemsList.Add (database.consumableItems[1]);
-		itemsList.Add (database.consumableItems[1]);
-		itemsList.Add (database.consumableItems[1]);
-		itemsList.Add (database.consumableItems[2]);
-		itemsList.Add (database.consumableItems[2]);
-		itemsList.Add (database.consumableItems[3]);
-		itemsList.Add (database.consumableItems[3]);
-		itemsList.Add (database.consumableItems[4]);
-
-
 
 		//INIT SLOTS FOR ITEMS
 		for (int i = 0; i < slotsX * slotsY; i++)
@@ -72,6 +55,12 @@ public class Inventory : MonoBehaviour {
 			slots.Add(new Item());
 			lensList.Add(new Lens());
 		}
+	}
+
+	void Start() {
+		//Lens
+		AddLens (0);
+		AddLens (1);
 	}
 
 	//Functions for manipulating inventory
@@ -112,6 +101,7 @@ public class Inventory : MonoBehaviour {
 		Lens item = database.lens[itemID];
 		for(int i = 0; i < slotsX*slotsY; i++)
 		{
+			if(i >= lensList.Count) return false;
 			if(lensList[i].name == null)
 			{
 				lensList[i] = item;
@@ -119,6 +109,37 @@ public class Inventory : MonoBehaviour {
 			}
 		}
 		return false;
+	}
+
+	public bool EquipLens(int index) {
+		Lens lens = lensList [index];
+		if (lens.preference == "ANNIE") {
+			if(lens.element == "Sol") gameData.annieCurrentElem = GameData.elementalProperty.Sol;
+			else if(lens.element == "Fire") gameData.annieCurrentElem = GameData.elementalProperty.Fire;
+			else if(lens.element == "Earth") gameData.annieCurrentElem = GameData.elementalProperty.Earth;
+			else return false;
+		}
+		else if (lens.preference == "EMIL") {
+			if(lens.element == "Dark") gameData.emilCurrentElem = GameData.elementalProperty.Dark;
+			else if(lens.element == "Frost") gameData.emilCurrentElem = GameData.elementalProperty.Frost;
+			else if(lens.element == "Cloud") gameData.emilCurrentElem = GameData.elementalProperty.Cloud;
+			else return false;
+		}
+		else return false; //Trying to equip an invalid lens
+
+		return true; //Made it out alright! 
+	}
+
+	public int checkForLens(int lensID) {
+		//RETURNS INDEX OF ITEM. RETURNS -1 IF NOT FOUND
+		for(int i = 0; i < slotsX*slotsY; i++)
+		{
+			if(lensList[i].id == lensID)
+			{
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	public int checkForKeyItem(int itemID) {

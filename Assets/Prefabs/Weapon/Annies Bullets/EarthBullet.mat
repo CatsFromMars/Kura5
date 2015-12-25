@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: EarthBullet
-  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 9ce107479d11178d11005b9844295342, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -20,17 +20,32 @@ Material:
           m_Texture: {fileID: 2800000, guid: c38f27c295831df41860490f46aa9340, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ToonShade
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _InvFade
         second: 1
+      data:
+        first:
+          name: _Outline
+        second: .0399999991
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .412271887, g: 1, b: .301470578, a: 1}
       data:
         first:
           name: _TintColor
         second: {r: .0676662773, g: .215686277, b: .194658369, a: .501960814}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: 0, g: 1, b: .213793039, a: 1}

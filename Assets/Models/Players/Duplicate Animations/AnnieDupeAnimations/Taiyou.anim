@@ -22382,10 +22382,18 @@ AnimationClip:
     classID: 4
     script: {fileID: 0}
   m_Events:
-  - time: .0833333358
+  - time: .0416666679
     functionName: faceCamera
     data: 
     objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: .0833333358
+    functionName: voiceIfCharging
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 71c12c2c1fc37a54589ef83eae4612fb,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

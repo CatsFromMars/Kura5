@@ -8,6 +8,7 @@ public class Trap : MonoBehaviour {
 	public Transform[] enemies;
 	private CamLooker looker; //Camera
 
+	private Flags flags;
 	private MusicManager music;
 	private AudioClip originalMusic;
 	private Activatable[] gateScripts;
@@ -17,6 +18,7 @@ public class Trap : MonoBehaviour {
 	private bool trapCleared = false;
 	public Transform player;
 	public string trapPrompt = "GenericTrapPrompt";
+	private GameObject canvas;
 
 	// Use this for initialization
 	void Awake() {
@@ -26,6 +28,11 @@ public class Trap : MonoBehaviour {
 		//gates = GameObject.FindGameObjectsWithTag ("Gate");
 		setUpGates();
 		looker = GameObject.FindGameObjectWithTag("CamFollow").GetComponent<CamLooker>();
+		flags = GameObject.FindGameObjectWithTag("GameController").GetComponent<Flags>();
+
+		flags.AddTrapFlag();
+		trapCleared = flags.CheckTrapFlag();
+		canvas = GameObject.Find ("HUD").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -35,8 +42,11 @@ public class Trap : MonoBehaviour {
 
 		if (numberAlive <= 0 && gateScripts[0].activated == true) {
 			deactivateGates();
-			music.changeMusic(music.previousMusic);
+			music.stopMusic();
+			audio.Play();
+			music.changeMusic(music.previousMusic, 5f);
 			trapCleared = true;
+			flags.SetTrapToCleared();
 		}
 
 	}
@@ -58,13 +68,14 @@ public class Trap : MonoBehaviour {
 				Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane)); 
 				Instantiate(effect, pos, Quaternion.identity);
 				trapCleared = true;
+				flags.SetTrapToCleared();
 			}
 		}
 		else if(!trapActivated) {
 			if(other.tag == "Player" && !trapCleared) {
 				player = other.transform;
 				Time.timeScale = 0; //Pause
-				music.changeMusic(trapMusic, 10f);
+				music.stopMusic();
 				activateGates();
 				trapActivated = true;
 				GameObject effect = Resources.Load("Effects/TrapEffect") as GameObject;
@@ -111,7 +122,8 @@ public class Trap : MonoBehaviour {
 	}
 
 	IEnumerator startTrap() {
-		yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(1f));
+		canvas.SetActive (false);
+		yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.8f));
 		for (int i=0; i < gates.Length; i++) {
 			yield return StartCoroutine(looker.lookAtTarget(gates[i].transform, 25f));
 			gateScripts[i].Activate();
@@ -120,6 +132,8 @@ public class Trap : MonoBehaviour {
 		//Finish it!
 		yield return StartCoroutine(looker.lookAtTarget(player, 20f));
 		yield return StartCoroutine(DialogueDisplay.DisplaySpeech(trapPrompt));
+		music.changeMusic(trapMusic, 0.1f);
+		canvas.SetActive (true);
 		Time.timeScale = 1;
 	}
 	

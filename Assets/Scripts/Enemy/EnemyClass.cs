@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class EnemyClass : MonoBehaviour {
 	//LOOT VARIABLES
@@ -20,12 +21,14 @@ public class EnemyClass : MonoBehaviour {
 	protected Shader regularShader;
 	protected Shader blinkShader;
 	protected Transform blinker;
+	protected Slider lifeBar;
 
 	//DETECTION VARIABLES
 	protected bool trackingPlayer = false;
 	protected bool playerDetected = false;
 	protected bool caution = false;
-	protected float fieldOfViewAngle = 110f;
+	protected float fieldOfViewAngle = 40f;
+	protected float sightRange = 13.0f;
 	protected Vector3 lastSighting;
 	protected Vector3 playerPos;
 	protected SphereCollider col;
@@ -42,6 +45,7 @@ public class EnemyClass : MonoBehaviour {
 	protected NavMeshAgent agent;
 
 	//DATA VARIABLES
+	protected AudioSource audio;
 	protected Rigidbody rigidbody;
 	protected GameObject globalData;
 	protected GameData gameData;
@@ -98,6 +102,8 @@ public class EnemyClass : MonoBehaviour {
 		agent = GetComponent<NavMeshAgent>();
 		blinkShader = Shader.Find("Reflective/Bumped Diffuse");
 		lightLevels = GameObject.FindGameObjectWithTag("LightLevels").GetComponent<LightLevels>();
+		audio = GetComponent<AudioSource>();
+		lifeBar = GameObject.Find ("EnemyLife").GetComponent<Slider>();
 
 		//GET PLAYER
 		playerObject = GameObject.FindWithTag("Player"); //Get player container
@@ -128,6 +134,9 @@ public class EnemyClass : MonoBehaviour {
 			Bullet bullet = collision.collider.gameObject.GetComponent<Bullet>();
 			int dmg = damageCalculator.getDamage(bullet.element, element, bullet.damage, 1);
 			takeDamage(dmg);
+
+
+			superEffectiveSmoke(element, bullet.element);
 		}
 
 		if (collision.collider.gameObject.tag == "EnemyWeapon") {
@@ -138,9 +147,16 @@ public class EnemyClass : MonoBehaviour {
 			animator.SetTrigger(hash.hurtTrigger);
 			animator.SetBool(hash.stunnedBool, true);
 			takeDamage(dmg);
+
+			superEffectiveSmoke(element, weapon.element);
 		}
 		
-		
+	}
+
+	public void superEffectiveSmoke(string e1, string e2) {
+		if((damageCalculator.getElementFromString(e1).opposite) == (damageCalculator.getElementFromString(e2).name)) {
+			Instantiate((Resources.Load("Effects/SESmoke")), transform.position, Quaternion.Euler(-90,0,0));
+		}
 	}
 
 	bool isHitFromBehind() {
@@ -174,6 +190,10 @@ public class EnemyClass : MonoBehaviour {
 
 			//Look at player always 
 			transform.LookAt(player.transform.position);
+
+			//Update Enemy HP Bar
+			lifeBar.maxValue = maxLife;
+			lifeBar.value = currentLife;
 		}
 
 	}
@@ -198,7 +218,9 @@ public class EnemyClass : MonoBehaviour {
 
 	protected void Die() {
 		dying = true;
-		spawnLoot ();
+		spawnLoot();
+		if(agent!=null) agent.speed = 0;
+		if(rigidbody!=null) rigidbody.velocity = Vector3.zero;
 		animator.SetTrigger(hash.dyingTrigger);
 		if (!dead) {
 			dead = true;
@@ -263,9 +285,10 @@ public class EnemyClass : MonoBehaviour {
 
 	protected void makeSound(AudioClip clip) {
 		//ANIMATION EVENTS FOR ALL THINGS THAT NEED SOUND
-		audio.clip = clip;
-		if(audio.enabled) audio.Play();
-		
+		if(audio.enabled) {
+			audio.clip = clip;
+			audio.Play();
+		}
 	}
 
 	protected void sendParryMessage() {

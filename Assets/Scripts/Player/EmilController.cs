@@ -5,7 +5,7 @@ public class EmilController : PlayerContainer {
 	private int chargeCounter = 0;
 	private int chargeThresh = 20;
 	private int combo = 0;
-	private float meleeRange = 6.0f;
+	private float meleeRange = 5.5f;
 	public Transform weaponHit;
 	public AudioClip hitSound;
 	public AudioClip wallHit;
@@ -39,7 +39,14 @@ public class EmilController : PlayerContainer {
 			handleTargeting();
 			handleParticeEffects();
 			handleBurning();
+			//handleCape();
 		}
+	}
+
+	void handleCape() {
+		bool capeWings = currentAnim (hash.rollState) || currentAnim(hash.hurtState);
+		if(capeWings) toggleBlendShape(75);
+		else if(mesh.GetBlendShapeWeight(0) >= 75) toggleBlendShape(0);
 	}
 
 	void handleBurning() {
@@ -105,9 +112,9 @@ public class EmilController : PlayerContainer {
 			gameData.emilCurrentEnergy -= 5;
 			element = gameData.emilCurrentElem.ToString();
 		}
-		else element = "Null";
+		else gameData.emilCurrentElem = GameData.elementalProperty.Null;
 
-		changeWeaponColor ();
+		changeWeaponColor();
 
 		//Animation Event for swordplay
 		RaycastHit hitCenter;
@@ -153,7 +160,7 @@ public class EmilController : PlayerContainer {
 	void changeWeaponColor() {
 		//Do this on element change later on. For now, do it during slash
 		Color c;
-		if(element == "Dark") { 
+		if(gameData.emilCurrentElem == GameData.elementalProperty.Dark) { 
 			c = Color.red;
 			bladeMat.SetColor("_Color", Color.black);
 			bladeMat.SetColor("_OutlineColor", Color.red);
@@ -182,20 +189,24 @@ public class EmilController : PlayerContainer {
 
 		//Insta-kill Ivy
 		Ivy ivy = hit.collider.GetComponent<Ivy>();
-		if(ivy != null && element == "Dark") ivy.hitWithDarkAttack = true;
+		if(ivy != null && gameData.emilCurrentElem == GameData.elementalProperty.Dark) ivy.hitWithDarkAttack = true;
 
-		int dmg = damageCalculator.getDamage(element, enemy.element, strength, 1);
+		int dmg = damageCalculator.getDamage(gameData.emilCurrentElem.ToString(), enemy.element, strength, 1);
 		enemy.takeDamage (dmg);
 		enemy.knockback (transform.forward);
 
 		//Shadow Stun Code
 		if(lightLevels.darkness > 0) {
 			PatrolEnemy patrol = hit.collider.GetComponent<PatrolEnemy>();
-			if(patrol != null && element == "Dark") patrol.Freeze();
+			if(patrol != null && gameData.emilCurrentElem == GameData.elementalProperty.Dark) patrol.Freeze();
 		}
 		//Sparkly Effects and Sound
 		makeSound(hitSound);
 		Instantiate (weaponHit, hit.transform.position, Quaternion.identity);
+		enemy.superEffectiveSmoke (enemy.element, element);
+		//Blood? Blood.
+		Transform blood = hit.collider.transform.FindChild ("Blood");
+		if(blood!=null) blood.GetComponent<ParticleSystem>().Play();
 	}
 	
 	public void Charge() {

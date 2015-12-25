@@ -43,6 +43,36 @@ public class ItemDatabase : MonoBehaviour {
 		meat.model = Resources.Load ("Items/Tasty Meat") as GameObject;
 		consumableItems.Add (meat);
 
+		n = "Sol Lens";
+		desc = "A [SOLAR GUN LENS] containing the Sol Property";
+		Lens sol = new Lens (0, n, desc, "ANNIE", "Sol");
+		lens.Add(sol);
+
+		n = "Dark Lens";
+		desc = "A [DARK SWORD LENS] containing the Dark Property";
+		Lens dark = new Lens (1, n, desc, "EMIL", "Dark");
+		lens.Add(dark);
+
+		n = "Fire Lens";
+		desc = "A [SOLAR GUN LENS] containing the Fire Property";
+		Lens fire = new Lens (2, n, desc, "ANNIE", "Fire");
+		lens.Add (fire);
+
+		n = "Frost Lens";
+		desc = "A [DARK SWORD LENS] containing the Frost Property";
+		Lens frost = new Lens (3, n, desc, "EMIL", "Frost");
+		lens.Add (frost);
+
+		n = "Earth Lens";
+		desc = "A [SOLAR GUN LENS] containing the Earth Property";
+		Lens earth = new Lens (4, n, desc, "ANNIE", "Earth");
+		lens.Add (earth);
+
+		n = "Cloud Lens";
+		desc = "A [DARK SWORD LENS] containing the Cloud Property";
+		Lens cloud = new Lens (5, n, desc, "EMIL", "Cloud");
+		lens.Add (cloud);
+
 		//Sort database by itemID
 		//consumableItems.Sort();
 		//keyItems.Sort();

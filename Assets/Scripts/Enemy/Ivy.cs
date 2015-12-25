@@ -5,15 +5,29 @@ public class Ivy : EnemyClass {
 
 	private bool canRegrow = true; //Ivy can regrow if not hit by a dark attack
 	private float distanceFromPlayer = 0f;
-	private float range = 7f;
+	private float range = 8f;
 	private int attackTimer = 0;
-	private int attackWaitTime = 30;
+	private int attackWaitTime = 50;
 	private int knockback = 7;
 	public bool hitWithDarkAttack = false;
+	private Quaternion originalRot;
+	private bool inRange = false;
+
+	void Start() {
+		originalRot = transform.rotation;
+	}
 
 	void Update() {
 		if(animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.dyingState) checkForDeath();
-		quickLook ();
+
+		if(animator.GetCurrentAnimatorStateInfo(0).nameHash == hash.attackState) {
+			Vector3 target = new Vector3(player.position.x, this.transform.position.y, player.position.z);
+			transform.LookAt(target);
+		}
+		else {
+			transform.rotation = Quaternion.Slerp(transform.rotation, originalRot, Time.deltaTime * 3);
+		}
+
 		GetPlayerDistance ();
 		DecideAttack ();
 	}
@@ -27,10 +41,14 @@ public class Ivy : EnemyClass {
 			}
 			else attackTimer++;
 		}
-		else animator.SetBool(hash.attackBool, false);
+		else {
+			animator.SetBool(hash.attackBool, false);
+			attackTimer = 0;
+		}
 	}
 
 	void Attack() {
+		attackTimer = 0;
 		if(distanceFromPlayer <= range) {
 			player.GetComponent<PlayerContainer>().hitPlayer(strength, "Sol", knockback*transform.forward);
 		}

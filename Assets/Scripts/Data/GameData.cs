@@ -9,6 +9,8 @@ public class GameData : MonoBehaviour {
 
 	//NOTE: ADD SKILL POINTS AND LEVEL UPS LATER
 
+	public bool nearInteractable = false; //For treasure chests and dialogue and stuff
+
 	//PLAYER DATA: ANNIE
 	public float annieCurrentLife = 100;
 	public float annieCurrentEnergy = 100;
@@ -24,24 +26,17 @@ public class GameData : MonoBehaviour {
 	public elementalProperty emilCurrentElem = elementalProperty.Dark;
 
 	//PLAYER DATA: GLOBAL
-	public bool isTalking;
 	public enum player 
 	{
 		Annie, Emil
 	}
 	public player currentPlayer = player.Annie;
-	public Transform anniePrefab; //ANNIE'S PREFAB
-	public Transform emilPrefab; //EMIL'S PREFAB
-	Transform dungeonEnterencePoint;
-	public Transform thePlayer;
 
 	//LEVEL DATA: USEFUL FOR LOADING SAVES
-	public Vector3 playerLocation;
-	public Vector3 playerCurrentPosition;
+	public Vector3 lastCheckpoint = Vector3.zero; //To be altered by SceneTransition.cs
 	public string sceneName; //NAME OF DUNGEON. WILL BE LOADED AS "Application.LoadLevel(sceneName);"
 
 	//MISC VARIABLES
-	public bool inCutscene = false; //TO BE MESSED WITH BY CUTSCENE SCRIPT
 	public Transform gameOverSpawner;
 	public bool isGameOver;
 

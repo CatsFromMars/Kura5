@@ -46,7 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Experimental\DisplayDialogue.cs" />
+     <Compile Include="Assets\Experimental\CharacterWalkTest.cs" />
+     <Compile Include="Assets\Experimental\LensSwapTemp.cs" />
      <Compile Include="Assets\Experimental\Test.cs" />
      <Compile Include="Assets\Experimental\TextReadingTest.cs" />
      <Compile Include="Assets\External\CamShake\Scripts\Game.cs" />
@@ -80,6 +81,7 @@
      <Compile Include="Assets\External\MeleeWeaponTrail\Scripts\Interpolate.cs" />
      <Compile Include="Assets\External\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
      <Compile Include="Assets\External\WallVisionOutlineEffect\WallVisionOutlineEffect.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX\Scripts\CFX_LightFlicker.cs" />
      <Compile Include="Assets\JSON Tests\CSharp\Test_CSharp.cs" />
      <Compile Include="Assets\Scripts\Camera\AlwaysFaceCamera.cs" />
      <Compile Include="Assets\Scripts\Camera\CamFollow.cs" />
@@ -91,7 +93,7 @@
      <Compile Include="Assets\Scripts\Combat\Trap.cs" />
      <Compile Include="Assets\Scripts\Combat\WeaponClass\BaseWeapon.cs" />
      <Compile Include="Assets\Scripts\Combat\WeaponData.cs" />
-     <Compile Include="Assets\Scripts\Data\Dialogue.cs" />
+     <Compile Include="Assets\Scripts\Data\Flags.cs" />
      <Compile Include="Assets\Scripts\Data\GameData.cs" />
      <Compile Include="Assets\Scripts\Data\HashIDs.cs" />
      <Compile Include="Assets\Scripts\Data\LightLevels.cs" />
@@ -104,8 +106,12 @@
      <Compile Include="Assets\Scripts\Enemy\Ivy.cs" />
      <Compile Include="Assets\Scripts\Enemy\PatrolEnemy.cs" />
      <Compile Include="Assets\Scripts\Enemy\SunDetector.cs" />
+     <Compile Include="Assets\Scripts\GUI\Dialogue.cs" />
      <Compile Include="Assets\Scripts\GUI\DialogueDisplay.cs" />
      <Compile Include="Assets\Scripts\GUI\Disclaimer.cs" />
+     <Compile Include="Assets\Scripts\GUI\DisplayDialogue.cs" />
+     <Compile Include="Assets\Scripts\GUI\ElementSwapping.cs" />
+     <Compile Include="Assets\Scripts\GUI\EnemyLifeBar.cs" />
      <Compile Include="Assets\Scripts\GUI\GameGUI.cs" />
      <Compile Include="Assets\Scripts\GUI\Menu.cs" />
      <Compile Include="Assets\Scripts\GUI\MenuManager.cs" />
@@ -129,9 +135,11 @@
      <Compile Include="Assets\Scripts\Item Scripts\InventoryGUI\InventoryMenu.cs" />
      <Compile Include="Assets\Scripts\Item Scripts\ItemCollection\PickupItem.cs" />
      <Compile Include="Assets\Scripts\Item Scripts\ItemDatabase.cs" />
+     <Compile Include="Assets\Scripts\Item Scripts\KeyItemGet.cs" />
      <Compile Include="Assets\Scripts\Loading\EntrancePoint.cs" />
      <Compile Include="Assets\Scripts\Loading\Loader.cs" />
      <Compile Include="Assets\Scripts\Loading\ResetGame.cs" />
+     <Compile Include="Assets\Scripts\Music\MusicDictionary.cs" />
      <Compile Include="Assets\Scripts\Music\MusicManager.cs" />
      <Compile Include="Assets\Scripts\Music\TrackClass.cs" />
      <Compile Include="Assets\Scripts\NPC\Follow.cs" />
@@ -147,12 +155,17 @@
      <Compile Include="Assets\Scripts\Utility\FPSCounter.cs" />
      <Compile Include="Assets\Scripts\Utility\MakeNoiseAnimationEvent.cs" />
      <Compile Include="Assets\Scripts\Utility\SceneTransition.cs" />
+     <Compile Include="Assets\Scripts\Utility\ShakeScreenAnimEvent.cs" />
      <Compile Include="Assets\Scripts\Utility\TimedDestroy.cs" />
+     <Compile Include="Assets\Scripts\Utility\UnscaledTimeParticle.cs" />
+     <Compile Include="Assets\Scripts\Visual\DustAnimEvent.cs" />
      <Compile Include="Assets\Scripts\Visual\EmilShadow.cs" />
+     <Compile Include="Assets\Scripts\Visual\LetterSpacing.cs" />
      <Compile Include="Assets\Scripts\Visual\RoomObscure.cs" />
      <Compile Include="Assets\Scripts\Visual\ScreenFade.cs" />
      <Compile Include="Assets\Scripts\Visual\SkylightFade.cs" />
      <Compile Include="Assets\Scripts\Visual\TextBlink.cs" />
+     <Compile Include="Assets\Scripts\Visual\TimedDissapear.cs" />
      <Compile Include="Assets\Scripts\Visual\continuousRotation.cs" />
      <Compile Include="Assets\Scripts\WeatherSync\GenericPattern.cs" />
      <Compile Include="Assets\Scripts\WeatherSync\MoonPhase.cs" />
@@ -165,6 +178,8 @@
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toon Lighted Alpha.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
+     <None Include="Assets\Resources\Dialogue\WadjetDungeon\Loyalty.txt" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ShowAlphaChannel.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GlowConeTap.shader" />
@@ -182,6 +197,7 @@
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\MotionBlur.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\MobileBloom.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Resources\Dialogue\WadjetDungeon\TalkFunctionality.txt" />
      <None Include="Assets\External\WallVisionOutlineEffect\WallVisionOutlineEffectOccluder.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GlowCompose.shader" />
      <None Include="Assets\External\Toony Gooch\Shaders\Toony_Gooch_RimOutlineHard.shader" />
@@ -199,9 +215,11 @@
      <None Include="Assets\Resources\Dialogue\AnniePortraitTest.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Contrast Stretch\Apply.shader" />
      <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-SimpleWater4.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAlphaBlend_Alpha8.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\frag_ao.cginc" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\UnlitWShader.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\ProjectorColor.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX3 Invert.shader" />
      <None Include="Assets\External\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Add.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\External\Easy Save 2\readme.txt" />
@@ -210,13 +228,18 @@
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Gel.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\MobileBlur.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SSAOShader.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+AddSoft.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ConvertDepth.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrectionCurvesSimple.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderYUV.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Light.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+AddSoft VColor.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GlowEffectDownsample.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\CreaseApply.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add.shader" />
+     <None Include="Assets\JMO Assets\!JMO Assets Readme.txt" />
      <None Include="Assets\External\Toony Gooch\Shaders\Toony_Gooch_RimLight.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Hidden.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ChromaticAberrationShader.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic-Shadow.shader" />
      <None Include="Assets\Resources\Dialogue\IvyPlaceholder.txt" />
@@ -232,6 +255,7 @@
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\CameraMotionBlurDX11.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
      <None Include="Assets\External\Cartoon FX\Demo\Assets\CFX_Demo_WaterWiggle.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add VColor.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
      <None Include="Assets\External\WallVisionOutlineEffect\WallVisionOutlineEffectCombine.shader" />
      <None Include="Assets\External\CamShake\readme.txt" />
@@ -241,7 +265,6 @@
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\DLAA.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseAndGrainDX11.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
-     <None Include="Assets\link.xml" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\SeparableBlur.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\MotionBlurClear.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrectionEffect.shader" />
@@ -252,13 +275,16 @@
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Contrast Stretch\Adaptation.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseAndGrain.shader" />
      <None Include="Assets\External\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Tint.shader" />
+     <None Include="Assets\Super Important Document.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\VignettingShader.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\ToonShiny.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Tonemapper.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
      <None Include="Assets\External\Toony Gooch\Shaders\Toony_Gooch_RimAlpha.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\FXAA2.shader" />
+     <None Include="Assets\JMO Assets\Cartoon FX\CartoonFX4 Readme.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrection3DLut.shader" />
+     <None Include="Assets\Resources\Dialogue\FireLens.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
      <None Include="Assets\External\Toony Gooch\Shaders\Toony_Gooch_RimOutline.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\EdgeDetectNormals.shader" />
