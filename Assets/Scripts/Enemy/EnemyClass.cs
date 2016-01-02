@@ -65,6 +65,7 @@ public class EnemyClass : MonoBehaviour {
 	protected bool isBeingTargeted;
 	protected int hitCounter = 0;
 	protected bool isInvincible = false;
+	protected string mostRecentAttackElem = "Null";
 
 	//ENVIRONMENT VARIABLES
 	public SunDetector sunDetector;
@@ -133,9 +134,7 @@ public class EnemyClass : MonoBehaviour {
 		if (collision.collider.gameObject.tag == "Bullet") {
 			Bullet bullet = collision.collider.gameObject.GetComponent<Bullet>();
 			int dmg = damageCalculator.getDamage(bullet.element, element, bullet.damage, 1);
-			takeDamage(dmg);
-
-
+			takeDamage(dmg, bullet.element);
 			superEffectiveSmoke(element, bullet.element);
 		}
 
@@ -146,7 +145,7 @@ public class EnemyClass : MonoBehaviour {
 			stunned = true;
 			animator.SetTrigger(hash.hurtTrigger);
 			animator.SetBool(hash.stunnedBool, true);
-			takeDamage(dmg);
+			takeDamage(dmg, weapon.element);
 
 			superEffectiveSmoke(element, weapon.element);
 		}
@@ -166,9 +165,10 @@ public class EnemyClass : MonoBehaviour {
 	}
 
 	//COMBAT: TAKE DAMAGE
-	public void takeDamage(int damage) {
+	public void takeDamage(int damage, string element="Null") {
 		hitCounter++;
 		StartCoroutine(flashWhite());
+		mostRecentAttackElem = element;
 		if(!dead || !dying)
 		{
 			//MAKE THEM REACT TO PAAAAINNNN
@@ -189,7 +189,9 @@ public class EnemyClass : MonoBehaviour {
 			}
 
 			//Look at player always 
-			transform.LookAt(player.transform.position);
+			Vector3 p = player.transform.position;
+			Vector3 pos = new Vector3(p.x, this.transform.position.y, p.z);
+			transform.LookAt(pos);
 
 			//Update Enemy HP Bar
 			lifeBar.maxValue = maxLife;
@@ -229,9 +231,9 @@ public class EnemyClass : MonoBehaviour {
 	}
 
 	protected void spawnLoot() {
-		int c = Random.Range (0, 10);
+		int c = Random.Range (0, 11);
 		if(c < 3 && commonLoot!=null) Instantiate(commonLoot, transform.position, commonLoot.transform.rotation);
-		if(c == 10 && rareLoot!=null) Instantiate(commonLoot, transform.position, rareLoot.transform.rotation);
+		else if(c == 10 && rareLoot!=null) Instantiate(commonLoot, transform.position, rareLoot.transform.rotation);
 	}
 
 	protected void MarkAsDead(){

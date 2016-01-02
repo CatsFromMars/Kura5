@@ -192,7 +192,7 @@ public class EmilController : PlayerContainer {
 		if(ivy != null && gameData.emilCurrentElem == GameData.elementalProperty.Dark) ivy.hitWithDarkAttack = true;
 
 		int dmg = damageCalculator.getDamage(gameData.emilCurrentElem.ToString(), enemy.element, strength, 1);
-		enemy.takeDamage (dmg);
+		enemy.takeDamage (dmg, gameData.emilCurrentElem.ToString());
 		enemy.knockback (transform.forward);
 
 		//Shadow Stun Code

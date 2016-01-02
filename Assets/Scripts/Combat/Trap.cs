@@ -17,8 +17,9 @@ public class Trap : MonoBehaviour {
 	private bool trapActivated;
 	private bool trapCleared = false;
 	public Transform player;
-	public string trapPrompt = "GenericTrapPrompt";
+	public TextAsset trapPrompt;
 	private GameObject canvas;
+	GameData data;
 
 	// Use this for initialization
 	void Awake() {
@@ -28,7 +29,9 @@ public class Trap : MonoBehaviour {
 		//gates = GameObject.FindGameObjectsWithTag ("Gate");
 		setUpGates();
 		looker = GameObject.FindGameObjectWithTag("CamFollow").GetComponent<CamLooker>();
-		flags = GameObject.FindGameObjectWithTag("GameController").GetComponent<Flags>();
+		GameObject c = GameObject.FindGameObjectWithTag ("GameController");
+		data = c.GetComponent<GameData>();
+		flags = c.GetComponent<Flags>();
 
 		flags.AddTrapFlag();
 		trapCleared = flags.CheckTrapFlag();
@@ -123,17 +126,19 @@ public class Trap : MonoBehaviour {
 
 	IEnumerator startTrap() {
 		canvas.SetActive (false);
+		data.nearInteractable = true;
 		yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.8f));
 		for (int i=0; i < gates.Length; i++) {
-			yield return StartCoroutine(looker.lookAtTarget(gates[i].transform, 25f));
+			yield return StartCoroutine(looker.lookAtTarget(gates[i].transform, 35f));
 			gateScripts[i].Activate();
 			yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.5f));
 		}
 		//Finish it!
 		yield return StartCoroutine(looker.lookAtTarget(player, 20f));
-		yield return StartCoroutine(DialogueDisplay.DisplaySpeech(trapPrompt));
+		yield return StartCoroutine(DisplayDialogue.Speak(trapPrompt));
 		music.changeMusic(trapMusic, 0.1f);
 		canvas.SetActive (true);
+		data.nearInteractable = false;
 		Time.timeScale = 1;
 	}
 	

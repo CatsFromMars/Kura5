@@ -3773,7 +3773,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_Radius: .699999988
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 1000
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -8667,7 +8667,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .507352948, g: .314935833, b: .2984429, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 90a76deda4f07b7428ba86fec32f8bec, type: 3}
+    m_Font: {fileID: 12800000, guid: 2366acf87b624ec4ea85ab1c530d548a, type: 3}
     m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
@@ -9207,7 +9207,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_Radius: .699999988
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 1000
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -11787,7 +11787,7 @@ AudioSource:
   m_GameObject: {fileID: 1163552006}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 89580b745663cf6448491bb7144d5a02, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 89745d04c5c4d1246a934df61147d7aa, type: 3}
   m_PlayOnAwake: 1
   m_Volume: .899999976
   m_Pitch: 1
@@ -12993,7 +12993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 5
-  radiusShadow: 15
+  radiusShadow: 20
   distanceSun: 0
   distanceDark: 0
   upperBound: 6
@@ -13377,6 +13377,47 @@ Prefab:
       propertyPath: rampTexture
       value: 
       objectReference: {fileID: 792973338}
+    - target: {fileID: 19565200, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: m_Acceleration
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 19563284, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: m_Acceleration
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465174, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: tickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 201238ad76873b4449c3934e84253de6, type: 3}
+    - target: {fileID: 11465174, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: finishSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3166f3c2b7433284591941d755ed7c63, type: 3}
+    - target: {fileID: 8265200, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 201238ad76873b4449c3934e84253de6, type: 3}
+    - target: {fileID: 9565196, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9563282, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465154, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: radiusShadow
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263284, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 89745d04c5c4d1246a934df61147d7aa, type: 3}
+    - target: {fileID: 11452866, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2366acf87b624ec4ea85ab1c530d548a,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e64d4956958ad664fba622298afa2794, type: 2}
   m_RootGameObject: {fileID: 881421840}
@@ -14395,6 +14436,7 @@ GameObject:
   - 114: {fileID: 1768064752}
   - 114: {fileID: 1768064751}
   - 114: {fileID: 1768064759}
+  - 82: {fileID: 1768064762}
   m_Layer: 0
   m_Name: GlobalData
   m_TagString: GameController
@@ -14510,7 +14552,7 @@ AudioSource:
   m_GameObject: {fileID: 1768064749}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: a492616d1325db144bd4a4ef0c14dcc0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 201238ad76873b4449c3934e84253de6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: .800000012
   m_Pitch: 1
@@ -14583,8 +14625,11 @@ MonoBehaviour:
   skin: {fileID: 11400000, guid: 63d4fb13d8ae64942865d3701f72e676, type: 2}
   textRate: 15
   tickSound: {fileID: 8300000, guid: 201238ad76873b4449c3934e84253de6, type: 3}
+  finishSound: {fileID: 8300000, guid: 3166f3c2b7433284591941d755ed7c63, type: 3}
   border: 0
   height: 280
+  tickAudio: {fileID: 0}
+  finishAudio: {fileID: 0}
 --- !u!114 &1768064759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14663,6 +14708,7 @@ MonoBehaviour:
   talkingBool: 1444242966
   speedFloat: -823668238
   movingBool: 949806512
+  chargingTrigger: 0
   taiyouBool: 1569434674
   ankouBool: -20918066
   limpingBool: 1410322428
@@ -14728,6 +14774,64 @@ MonoBehaviour:
   biteTrigger: 567580192
   circleBool: 0
   slitherState: 0
+--- !u!82 &1768064762
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1768064749}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 201238ad76873b4449c3934e84253de6, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: .800000012
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1771272854
 GameObject:
   m_ObjectHideFlags: 0

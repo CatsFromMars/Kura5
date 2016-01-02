@@ -31,6 +31,7 @@ public class HashIDs : MonoBehaviour {
 	public int talkingBool;
 	public int speedFloat;
 	public int movingBool;
+	public int chargingTrigger;
 	public int taiyouBool;
 	public int ankouBool;
 	public int limpingBool;
@@ -137,6 +138,7 @@ public class HashIDs : MonoBehaviour {
 		//VARIABLES FOR PLAYER
 		speedFloat = Animator.StringToHash("Speed");
 		movingBool = Animator.StringToHash("Moving");
+		chargingTrigger = Animator.StringToHash("ChargeTrigger");
 		taiyouBool = Animator.StringToHash("Taiyou");
 		ankouBool = Animator.StringToHash("Ankou");
 		limpingBool = Animator.StringToHash("Limping");

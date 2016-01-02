@@ -110,6 +110,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: ChargeTrigger
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -420,6 +426,10 @@ Transition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Taiyou
+    m_EventTreshold: 0
+    m_ExitTime: .842105269
+  - m_ConditionMode: 1
+    m_ConditionEvent: ChargeTrigger
     m_EventTreshold: 0
     m_ExitTime: .842105269
   m_Atomic: 1

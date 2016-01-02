@@ -134,6 +134,7 @@ public class PlayerContainer : MonoBehaviour {
 			StartCoroutine(parryCooldown());
 		}
 		animator.SetBool(hash.movingBool, moving);
+		animator.SetBool(hash.chargingTrigger,Input.GetButtonDown("Charge")); //Trigger Charging
 		animator.SetBool(hash.taiyouBool, charging);
 		//animator.SetBool(hash.whistleBool, whistling);
 		animator.SetBool(hash.rollingBool, Input.GetButtonDown("Roll"));
@@ -148,7 +149,7 @@ public class PlayerContainer : MonoBehaviour {
 			charging = Input.GetButton("Charge") && !gameData.nearInteractable;
 			rolling = (currentAnim(hash.rollState));
 			//whistling = Input.GetButtonDown("Whistle");
-			holdingWeapon = (Input.GetButton("Attack") || Input.GetButtonDown("Attack")) && !gameData.nearInteractable;
+			holdingWeapon = ((Input.GetButton("Attack") || Input.GetButtonDown("Attack"))) && !gameData.nearInteractable;
 			attacking = Input.GetButtonUp("Attack") && !gameData.nearInteractable;
 			targeting = Input.GetButton ("Target") && Time.timeScale != 0;
 			moving = (horizontal != 0 || vertical != 0);
@@ -212,6 +213,7 @@ public class PlayerContainer : MonoBehaviour {
 			int d = weapon.damage;
 			string e = weapon.element;
 			Vector3 k = weapon.knockBack * other.transform.forward;
+			if(weapon.knockBack == 0) k = transform.forward*-3;
 			hitPlayer(d, e, k);
 			
 		}
@@ -371,17 +373,25 @@ public class PlayerContainer : MonoBehaviour {
 		playVoiceClip(rollVoices[Random.Range(0, rollVoices.Length)]);
 	}
 
-	public IEnumerator characterWalkTo(Vector3 target) {
+	public IEnumerator characterWalkTo(Vector3 target, Transform lookAt=null) {
 		//Move player to target
 		agent.SetDestination (target);
+		transform.LookAt(target);
 		agent.speed = playerRunningSpeed;
-		while (Vector3.Distance(transform.position, target) >= 1.5f) {
+		while (Vector3.Distance(transform.position, target) >= 0.8f) {
 			playerInControl = false;
+			animator.SetBool(hash.holdWeaponBool, false);
+			animator.SetBool(hash.ankouBool, false);
+			animator.SetBool(hash.taiyouBool, false);
 			animator.SetBool(hash.movingBool, true);
 			yield return null;
 		}
-		moving = false;
+		agent.velocity = Vector3.zero;
+		agent.Stop();
+		animator.SetBool(hash.movingBool, false);
+		Vector3 pos = new Vector3 (lookAt.position.x, transform.position.y, lookAt.position.z);
+		transform.LookAt(pos);
+		yield return new WaitForSeconds(0.3f);
 		playerInControl = true;
-		agent.Stop ();
 	}
 }

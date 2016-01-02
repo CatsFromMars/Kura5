@@ -19,16 +19,24 @@ public class Dialogue : MonoBehaviour {
 	public GUISkin skin;
 	public float textRate = 10; // how fast the text appears
 	public AudioClip tickSound; // audio
+	public AudioClip finishSound;
 	public int border=5, height=300; // size of dialog 
 	
 	float textCounter = 0;
 	Texture2D leftImage, rightImage; // images
 	string theText = null; // the text (null means hidden)
 	Rect mainRect; // rectangle for box
+
+	//audiosources
+	public AudioSource tickAudio;
+	public AudioSource finishAudio;
 	
 	public bool isFinished { get { return theText==null; } }
 
 	void Awake() {
+		AudioSource[] sources = GetComponents<AudioSource> ();
+		tickAudio = sources [0];
+		finishAudio = sources [1];
 		leftSprite = leftPortrait.GetComponent<SpriteRenderer>();
 		leftAnimator = leftPortrait.GetComponent<Animator>();
 		rightSprite = rightPortrait.GetComponent<SpriteRenderer>();
@@ -48,11 +56,11 @@ public class Dialogue : MonoBehaviour {
 		theText = txt;
 		if(left != null) {
 			leftSprite.sprite = left;
-			leftAnimator.SetTrigger(Animator.StringToHash("Transition"));
+			if(!leftAnimator.IsInTransition(0))leftAnimator.SetTrigger(Animator.StringToHash("Transition"));
 		}
 		if(right != null) {
 			rightSprite.sprite = right;
-			rightAnimator.SetTrigger(Animator.StringToHash("Transition"));
+			if(!rightAnimator.IsInTransition(0))rightAnimator.SetTrigger(Animator.StringToHash("Transition"));
 		}
 		textCounter = 0;
 	}
@@ -85,10 +93,8 @@ public class Dialogue : MonoBehaviour {
 		{
 			if (oldCounter!=Mathf.FloorToInt(textCounter)) // if new text
 			{
-				audio.clip=tickSound; // make sure it stays as a tick
 				if(!audio.isPlaying) {
-					audio.pitch = Random.Range(0.90f,1.1f);
-					audio.Play();
+					makeSound(tickAudio, tickSound);
 				}
 			}
 		}
@@ -97,8 +103,10 @@ public class Dialogue : MonoBehaviour {
 		{   
 			arrow.SetActive(true);
 			bool push = Input.GetButtonDown("Charge") || Input.GetButtonDown("Confirm") || Input.GetButton("Attack");
-			if (push)
+			if (push) {
 				Hide();
+				makeSound(finishAudio, finishSound);
+			}
 		}
 
 		//Write out the text
@@ -116,20 +124,24 @@ public class Dialogue : MonoBehaviour {
 	string getDisplayText(string txt) {
 		bool red = false;
 		string s = "";
+		bool stopNext = false;
 		foreach (char letter in txt.ToCharArray()) {
+			if(stopNext) {
+				red=false;
+				stopNext=false;
+			}
 			if(letter.ToString().Equals("[")) {
 				red = true;
 				//make the bracket itself red
 			}
 			if(letter.ToString().Equals("]")) {
-				red = false;
+				stopNext = true;
 			}
 
 			string section = "";
 
 			if(red) {
 				section = "<color=\"red\">"+letter+"</color>";
-				Debug.Log("RED");
 			}
 			else section = letter.ToString();
 
@@ -137,5 +149,12 @@ public class Dialogue : MonoBehaviour {
 		}
 
 		return s;
+	}
+
+	public void makeSound(AudioSource s, AudioClip clip) {
+		if(!audio.isPlaying) {
+			s.clip = clip;
+			s.Play ();
+		}
 	}
 }

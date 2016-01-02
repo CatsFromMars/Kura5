@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Text;
 using System.IO;
+using System.Text.RegularExpressions;
 
 public class DisplayDialogue : MonoBehaviour {
 	private static GameObject Controller;
@@ -11,13 +12,25 @@ public class DisplayDialogue : MonoBehaviour {
 	private static Sprite leftSprite;
 	private static Sprite rightSprite;
 
+	public static AudioClip getSound(string txt) {
+		string name = getSoundName(txt);
+		string filepath = "Voice/"+name;
+		AudioClip clip = Resources.Load<AudioClip>(filepath);
+		return clip;
+	}
+
+	public static string getSoundName(string txt) {
+		string s = txt.Replace("S=","");
+		Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+		s = rgx.Replace(s, ""); //filter out alphanumeric characters
+		return s;
+	}
+
 	public static Sprite getPortrait(string txt) {
 		string name = getName(txt);
 		string number = getNumber(txt);
 		string filepath = "Portraits/"+name+"/"+number;
-		Debug.Log (filepath);
 		Sprite portrait = Resources.Load<Sprite>(filepath);
-		Debug.Log (portrait.name);
 		return portrait;
 	}
 
@@ -44,7 +57,6 @@ public class DisplayDialogue : MonoBehaviour {
 			else length++;
 		}
 		string name = txt.Substring(1, length-5);
-		Debug.Log (name);
 		return name;
 	}
 	
@@ -76,6 +88,11 @@ public class DisplayDialogue : MonoBehaviour {
 				index++;
 			}
 			else rightSprite = null;
+
+			if(dialogueSpeech[index].Contains("S=")) {
+				dialogue.makeSound(dialogue.tickAudio, getSound(dialogueSpeech[index]));
+				index++;
+			}
 
 			speech = dialogueSpeech[index];
 			speech = speech.Replace("<n>", "\n");

@@ -29,6 +29,7 @@ public class PatrolEnemy : EnemyClass {
 	public bool attacking = false;
 	protected bool chasing = false;
 	protected bool canMakeDecision = true;
+	protected bool canSee = true;
 
 	//VISUAL VARIABLES
 	public Transform emotion;
@@ -96,9 +97,9 @@ public class PatrolEnemy : EnemyClass {
 	}
 
 	void OnTriggerExit(Collider other) {
-		//if(other.gameObject.tag == "Player") {
-			//trackingPlayer = false;
-		//}
+		if(other.gameObject.tag == "Player") {
+			trackingPlayer = false;
+		}
 		audio.enabled = false;
 		playerInSight = false;
 	}
@@ -126,7 +127,7 @@ public class PatrolEnemy : EnemyClass {
 				if (hit.collider.gameObject.tag == "Player")
 				{
 					// ... the player is in sight.
-					playerInSight = true;
+					if(canSee) playerInSight = true;
 					//Debug.Log ("I SEE YOU!");
 					// Set the last global sighting is the players current position.
 					if(player == null || player.active == false) { //IN CASE PLAYER SWITCHES
@@ -144,7 +145,7 @@ public class PatrolEnemy : EnemyClass {
 
 		//Exception: Get in the "personal bubble"
 		float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
-		if (distanceFromPlayer <= 2f) {
+		if (distanceFromPlayer <= 3f) {
 			// ... the player is in sight.
 			playerInSight = true;
 			//Debug.Log ("I SEE YOU!");
@@ -227,7 +228,7 @@ public class PatrolEnemy : EnemyClass {
 		
 	}
 	
-	public void Seek() {
+	public virtual void Seek() {
 		//decide: attack or chase?
 		//attack is followed by a pause
 		//Chase goes on until player is spotted or player is lost
