@@ -26,6 +26,8 @@ public class EmilController : PlayerContainer {
 	//"Sparkle" variables
 	public Material bladeMat;
 	public ParticleSystem darkMatter;
+
+	private bool darkCharging = false;
 	
 	void Start() {
 		changeWeaponColor ();
@@ -210,6 +212,7 @@ public class EmilController : PlayerContainer {
 	}
 	
 	public void Charge() {
+		darkCharging = Time.timeScale != 0 && lightLevels.darkness > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy;
 		chargeCounter+=lightLevels.darkness*Mathf.RoundToInt(Time.timeScale);
 		if(Time.timeScale != 0 && lightLevels.darkness > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy && !audio.isPlaying) makeSound(chargingSound);
 		if(chargeCounter > chargeThresh) {
@@ -221,13 +224,28 @@ public class EmilController : PlayerContainer {
 		}
 	}
 
+	public void voiceIfCharging(AudioClip clip) {
+		//ANIMATION EVENTS FOR VOICE ACTING
+		if(darkCharging) {
+			voice.volume = 0.9f;
+			voice.pitch = 1f;
+			voice.clip = clip;
+			voice.Play();
+		}
+	}
+
 	override protected void getHurt(int damage, Vector3 knockbackDir) {
 		gameData.emilCurrentLife -= damage;
 		
-		if(gameData.emilCurrentLife <= 0) Die();
+		if(gameData.emilCurrentLife <= 0) {
+			Die();
+			playVoiceClip(dieVoices[Random.Range(0, dieVoices.Length)]);
+		}
 		else {
 			//Play knockback anim
 			animator.SetTrigger(hash.hurtTrigger);
+			//Play hurt voice
+			playVoiceClip(hurtVoices[Random.Range(0, hurtVoices.Length)]);
 		}
 	}
 }

@@ -64,6 +64,8 @@ public class PlayerContainer : MonoBehaviour {
 	protected SkinnedMeshRenderer mesh;
 	AudioSource audio;
 	protected AudioSource voice;
+	protected float originalVolume;
+	protected float originalPitch;
 
 	//MISC VARIABLES
 	public species playerSpecies;
@@ -72,6 +74,7 @@ public class PlayerContainer : MonoBehaviour {
 	public AudioClip[] hurtVoices;
 	public AudioClip[] dieVoices;
 	public AudioClip[] rollVoices;
+	public AudioClip[] switchVoices;
 	
 	public enum species 
 	{
@@ -93,6 +96,8 @@ public class PlayerContainer : MonoBehaviour {
 		Vector3 startingPos = new Vector3(transform.position.x, 0, transform.position.z);
 		transform.position = startingPos;
 		voice = transform.FindChild ("Voice").GetComponent<AudioSource>();
+		originalVolume = voice.volume;
+		originalPitch = voice.pitch;
 		if(body!=null) {
 			mesh = body.GetComponent<SkinnedMeshRenderer>();
 			toggleBlendShape(0);
@@ -100,17 +105,24 @@ public class PlayerContainer : MonoBehaviour {
 
 	}
 
+	void OnEnable() {
+		//When made active
+		if(switchVoices.Length>0) playVoiceClip(switchVoices[Random.Range(0, switchVoices.Length)]);
+	}
+
 	void FixedUpdate() {
 		//updateInput();
 		//updateAnimations();
-		if(moving || currentAnim(hash.rollState)) manageMovement();
-		if(!rolling) {
-			updateInputDirection();
-		}
-		else if(rolling) {
-			if(vertical == 0 && horizontal == 0) {
-				vertical = lastNonZeroAxis.x;
-				horizontal = lastNonZeroAxis.y;
+		if(playerInControl) {
+			if(moving || currentAnim(hash.rollState)) manageMovement();
+			if(!rolling) {
+				updateInputDirection();
+			}
+			else if(rolling) {
+				if(vertical == 0 && horizontal == 0) {
+					vertical = lastNonZeroAxis.x;
+					horizontal = lastNonZeroAxis.y;
+				}
 			}
 		}
 	}
@@ -129,18 +141,23 @@ public class PlayerContainer : MonoBehaviour {
 	}
 
 	protected void updateAnimations() {
-		if(parrying) {
-			animator.SetTrigger (hash.blockTrigger);
-			StartCoroutine(parryCooldown());
+		if(Time.timeScale != 0) {
+			if(parrying) {
+				animator.SetTrigger (hash.blockTrigger);
+				StartCoroutine(parryCooldown());
+			}
+			animator.SetBool(hash.movingBool, moving);
+			animator.SetBool(hash.chargingTrigger,Input.GetButtonDown("Charge")); //Trigger Charging
+			animator.SetBool(hash.taiyouBool, charging);
+			//animator.SetBool(hash.whistleBool, whistling);
+			animator.SetBool(hash.rollingBool, Input.GetButtonDown("Roll"));
+			animator.SetBool(hash.holdWeaponBool, holdingWeapon);
+			animator.SetBool(hash.attackBool, attacking);
+			animator.SetBool(hash.targetingBool, targeting);
 		}
-		animator.SetBool(hash.movingBool, moving);
-		animator.SetBool(hash.chargingTrigger,Input.GetButtonDown("Charge")); //Trigger Charging
-		animator.SetBool(hash.taiyouBool, charging);
-		//animator.SetBool(hash.whistleBool, whistling);
-		animator.SetBool(hash.rollingBool, Input.GetButtonDown("Roll"));
-		animator.SetBool(hash.holdWeaponBool, holdingWeapon);
-		animator.SetBool(hash.attackBool, attacking);
-		animator.SetBool(hash.targetingBool, targeting);
+		else {
+			animator.SetBool(hash.movingBool, false);
+		}
 	}
 
 	protected void updateInput() {
@@ -353,8 +370,8 @@ public class PlayerContainer : MonoBehaviour {
 
 	public void playVoiceClip(AudioClip clip) {
 		//ANIMATION EVENTS FOR VOICE ACTING
-		voice.volume = 0.6f;
-		voice.pitch = 1.05f;
+		voice.volume = originalVolume;
+		voice.pitch = originalPitch;
 		voice.clip = clip;
 		voice.Play();
 	}

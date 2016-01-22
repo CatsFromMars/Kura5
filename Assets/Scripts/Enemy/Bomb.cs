@@ -30,12 +30,12 @@ public class Bomb : MonoBehaviour {
 	
 	// Update is called once per frame
 	IEnumerator goOff() {
-		yield return new WaitForSeconds(3f);
+		yield return new WaitForSeconds(1f);
 		StartCoroutine(flash(0.3f));
-		yield return new WaitForSeconds(3f);
+		yield return new WaitForSeconds(1f);
 		StopCoroutine(flash (0.3f));
 		StartCoroutine(flash(0.1f));
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(1f);
 		Instantiate(explosion, transform.position, Quaternion.identity);
 		Destroy (transform.gameObject);
 	}
@@ -52,6 +52,7 @@ public class Bomb : MonoBehaviour {
 	void OnCollisionEnter(Collision other) {
 		if (other.gameObject.tag == "Floor") {
 			onGround = true;
+			audio.Play();
 		}
 	}
 }

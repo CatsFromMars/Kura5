@@ -7,7 +7,10 @@ public class TreasureChest : MonoBehaviour {
 	GameObject gameData;
 	GameData data;
 	HashIDs hash;
+	private MusicManager music;
 	Inventory inventory;
+	public AudioSource jingle;
+	public bool playsJingle;
 
 	//Key Item stuff
 	public enum itemKind {CONSUMABLE, KEY, LENS, WEAPON};
@@ -26,7 +29,8 @@ public class TreasureChest : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		data = gameData.GetComponent<GameData>();
 		hash = gameData.GetComponent<HashIDs>();
-		inventory = gameData.GetComponent<Inventory> ();
+		inventory = gameData.GetComponent<Inventory>();
+		music = GameObject.FindGameObjectWithTag("Music").GetComponent<MusicManager>();
 	}
 	
 	void OnTriggerStay(Collider other) {
@@ -53,6 +57,13 @@ public class TreasureChest : MonoBehaviour {
 
 	void displayPrompt() {
 		if(!itemSpawned) {
+			//Play Jingle
+			if(playsJingle) {
+				//stops music for 4 seconds, long enough for jingle to play
+				music.stopMusic();
+				jingle.Play();
+				music.changeMusic(music.previousMusic, 4f);
+			}
 			//Display text
 			if(Time.timeScale != 0) StartCoroutine (SpeakCoroutine());
 			//Get Loot

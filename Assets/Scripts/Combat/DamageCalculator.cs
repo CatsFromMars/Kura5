@@ -42,6 +42,9 @@ public class DamageCalculator : MonoBehaviour {
 			if(w.humidityPercentage >= 50) return 1.2f;
 			else return 1;
 		}
+		else if (element == "Luna") {
+			return 0;
+		}
 		
 		else return 1;
 	}
@@ -53,7 +56,6 @@ public class DamageCalculator : MonoBehaviour {
 		Element e1 = getElementFromString (elementTarget);
 		Element e2 = getElementFromString (elementSelf);
 		Attack atk = new Attack (baseDamage, e1, m);
-		Debug.Log (m);
 		return atk.calculateDamage(e2);
 	}
 

@@ -11,6 +11,7 @@ public class ElementDatabase : MonoBehaviour {
 	public Element Earth;
 	public Element Frost;
 	public Element Fire;
+	public Element Luna;
 
 	// Use this for initialization
 	void Awake() {
@@ -21,5 +22,6 @@ public class ElementDatabase : MonoBehaviour {
 		Earth= (new Element(4, "Earth", "Poison", "Cloud"));
 		Fire = (new Element(5, "Fire", "Burn", "Frost"));
 		Frost = (new Element(6, "Frost", "Freeze", "Fire"));
+		Luna = (new Element(6, "Luna", "NA", "Null"));
 	}
 }

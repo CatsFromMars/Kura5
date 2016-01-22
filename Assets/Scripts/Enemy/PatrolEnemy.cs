@@ -29,7 +29,6 @@ public class PatrolEnemy : EnemyClass {
 	public bool attacking = false;
 	protected bool chasing = false;
 	protected bool canMakeDecision = true;
-	protected bool canSee = true;
 
 	//VISUAL VARIABLES
 	public Transform emotion;
@@ -41,6 +40,7 @@ public class PatrolEnemy : EnemyClass {
 	void Start () {
 		transform.position = wayPoints[0].transform.position;
 		playerAudio = player.GetComponent<AudioSource>();
+		sightRange = col.radius / 2f;
 	}
 
 	protected void updateAnimations() {
@@ -91,17 +91,15 @@ public class PatrolEnemy : EnemyClass {
 		if (other.gameObject.tag == "Sound") {
 			hearPlayer(other); //DETECT PLAYER THROUGH SOUND
 		}
-
-
-		
 	}
 
 	void OnTriggerExit(Collider other) {
 		if(other.gameObject.tag == "Player") {
 			trackingPlayer = false;
+			playerInSight = false;
 		}
+
 		audio.enabled = false;
-		playerInSight = false;
 	}
 
 	void hearPlayer(Collider other) {
@@ -134,8 +132,10 @@ public class PatrolEnemy : EnemyClass {
 						player = GameObject.FindWithTag("Player").transform;
 						playerAnimator = player.GetComponent<Animator>();
 					}
-					playerLastSighting = player.transform.position;
-					cautionTimer = 0; //Reset caution timer since player's busted
+					if(canSee) {
+						playerLastSighting = player.transform.position;
+						cautionTimer = 0; //Reset caution timer since player's busted
+					}
 				}
 				else playerInSight = false;
 			}
@@ -145,7 +145,7 @@ public class PatrolEnemy : EnemyClass {
 
 		//Exception: Get in the "personal bubble"
 		float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
-		if (distanceFromPlayer <= 3f) {
+		if (distanceFromPlayer <= 2.5f) {
 			// ... the player is in sight.
 			playerInSight = true;
 			//Debug.Log ("I SEE YOU!");
@@ -301,9 +301,10 @@ public class PatrolEnemy : EnemyClass {
 
 	public void Freeze() {
 		//Handles Emil's shadow stunning;
+		stunned = false; //A hack to make sure stuntime and shadowsealing time isn't stacked.
 		if(!attacking && animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.attackState) {
 			if(frozen == false) { 
-				freezeWaitTime = lightLevels.darkness*15;
+				freezeWaitTime = lightLevels.darkness;
 				shadowStunParticles.Play();
 			}
 			if(freezeTimer >= freezeWaitTime) {
@@ -314,12 +315,12 @@ public class PatrolEnemy : EnemyClass {
 			}
 			else {
 				shadowStunEffect.active = true;
-				freezeTimer++;
+				freezeTimer += Time.deltaTime;
 				frozen = true;
 			}
 		}
 	}
-	
+
 	#endregion
 	
 	//void DisplayEmoticon() {

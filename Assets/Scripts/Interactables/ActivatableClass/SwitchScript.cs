@@ -34,7 +34,7 @@ public class SwitchScript : Activatable {
 
 	void OnTriggerStay(Collider other) {
 		if (!activated && kind == kindOfSwitch.Pressable) {
-			Activate ();
+			Activate();
 			currentObject = other.transform;
 			if(materialChanges) currentMat.material = activeMat;
 		}

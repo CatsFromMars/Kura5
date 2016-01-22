@@ -220,7 +220,6 @@ public class EnemyClass : MonoBehaviour {
 
 	protected void Die() {
 		dying = true;
-		spawnLoot();
 		if(agent!=null) agent.speed = 0;
 		if(rigidbody!=null) rigidbody.velocity = Vector3.zero;
 		animator.SetTrigger(hash.dyingTrigger);
@@ -231,9 +230,16 @@ public class EnemyClass : MonoBehaviour {
 	}
 
 	protected void spawnLoot() {
+		bool playSound = true;
 		int c = Random.Range (0, 11);
-		if(c < 3 && commonLoot!=null) Instantiate(commonLoot, transform.position, commonLoot.transform.rotation);
-		else if(c == 10 && rareLoot!=null) Instantiate(commonLoot, transform.position, rareLoot.transform.rotation);
+		if(c < 4 && commonLoot!=null) Instantiate(commonLoot, transform.position, commonLoot.transform.rotation);
+		else if(c < 2 && rareLoot!=null) Instantiate(commonLoot, transform.position, rareLoot.transform.rotation);
+		else playSound = false;
+		if(playSound) {
+			AudioClip sound = Resources.Load<AudioClip>("Sound Effects/Misc/Drop");
+			Debug.Log(sound);
+			makeSound(sound);
+		}
 	}
 
 	protected void MarkAsDead(){

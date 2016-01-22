@@ -126,7 +126,6 @@ public class Trap : MonoBehaviour {
 
 	IEnumerator startTrap() {
 		canvas.SetActive (false);
-		data.nearInteractable = true;
 		yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.8f));
 		for (int i=0; i < gates.Length; i++) {
 			yield return StartCoroutine(looker.lookAtTarget(gates[i].transform, 35f));
@@ -138,7 +137,6 @@ public class Trap : MonoBehaviour {
 		yield return StartCoroutine(DisplayDialogue.Speak(trapPrompt));
 		music.changeMusic(trapMusic, 0.1f);
 		canvas.SetActive (true);
-		data.nearInteractable = false;
 		Time.timeScale = 1;
 	}
 	

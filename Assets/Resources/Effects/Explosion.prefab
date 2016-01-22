@@ -12,6 +12,8 @@ GameObject:
   - 135: {fileID: 13540922}
   - 114: {fileID: 11440922}
   - 82: {fileID: 8215468}
+  - 54: {fileID: 5470834}
+  - 135: {fileID: 13525942}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: EnemyWeapon
@@ -962,6 +964,21 @@ Transform:
   - {fileID: 448040}
   m_Father: {fileID: 448026}
   m_RootOrder: 0
+--- !u!54 &5470834
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148026}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 122
+  m_CollisionDetection: 0
 --- !u!82 &8215468
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1082,7 +1099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 11
   element: Fire
-  knockBack: 0
+  knockBack: 10
   multiplier: 1
 --- !u!114 &11448026
 MonoBehaviour:
@@ -1111,7 +1128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
---- !u!135 &13540922
+--- !u!135 &13525942
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1122,6 +1139,18 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13540922
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148026}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.9000001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &19848026
 ParticleSystem:

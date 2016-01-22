@@ -72,19 +72,17 @@ public class DisplayDialogue : MonoBehaviour {
 		if(dialogue.canvas != null) dialogue.canvas.SetActive(false);
 		int index = 0;
 		while(index < dialogueSpeech.Length) {
-			string speech = dialogueSpeech[index];
-
 			//Get Portraits
-			if(speech.Contains("<L=")) {
+			if(dialogueSpeech[index].Contains("<L=")) {
 				nullSpeech = false;
-				leftSprite = getPortrait(speech);
+				leftSprite = getPortrait(dialogueSpeech[index]);
 				index++;
 			}
 			else leftSprite = null;
 
-			if(speech.Contains("<R=")) {
+			if(dialogueSpeech[index].Contains("<R=")) {
 				nullSpeech = false;
-				rightSprite = getPortrait(speech);
+				rightSprite = getPortrait(dialogueSpeech[index]);
 				index++;
 			}
 			else rightSprite = null;
@@ -94,7 +92,7 @@ public class DisplayDialogue : MonoBehaviour {
 				index++;
 			}
 
-			speech = dialogueSpeech[index];
+			string speech = dialogueSpeech[index];
 			speech = speech.Replace("<n>", "\n");
 			dialogue.Show(speech, leftSprite, rightSprite);
 			bool push = Input.GetButtonDown("Charge") || Input.GetButtonDown("Confirm");
