@@ -615,6 +615,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 22453184}
   - 114: {fileID: 11453184}
+  - 65: {fileID: 6546312}
   m_Layer: 12
   m_Name: SunDetector
   m_TagString: Untagged
@@ -1402,6 +1403,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!65 &6546312
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153164}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &8253184
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1520,6 +1533,9 @@ MonoBehaviour:
   strength: 7
   type: 0
   element: Dark
+  changesElementWithWeather: 0
+  originalElement: 
+  selfWeaponData: {fileID: 11453176}
   lightLevels: {fileID: 0}
   damageCalculator: {fileID: 0}
   stunned: 0
@@ -1527,6 +1543,7 @@ MonoBehaviour:
   body: {fileID: 453114}
   shadowStunEffect: {fileID: 445566}
   shadowStunParticles: {fileID: 19853176}
+  smoke: {fileID: 19853178}
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -1548,7 +1565,6 @@ MonoBehaviour:
   patrolWaitTime: 100
   attacking: 0
   emotion: {fileID: 22453182}
-  smoke: {fileID: 19853178}
   burnedSpeed: 10
   projectileSpawner: {fileID: 453146}
   projectile: {fileID: 447370, guid: 5cead0e7453430a449402c0ffd5a398e, type: 2}
@@ -1590,6 +1606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sunlight: 0
+  darkness: 0
 --- !u!119 &11945558
 Projector:
   m_ObjectHideFlags: 1

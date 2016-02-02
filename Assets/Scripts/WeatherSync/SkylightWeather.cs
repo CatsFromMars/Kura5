@@ -44,14 +44,14 @@ public class SkylightWeather : MonoBehaviour {
 
 		//Rain
 		if (w.conditionID >= rainMin && w.conditionID <= rainMax) {
-			if(currentWeatherEffect != null) currentWeatherEffect.Stop();
-			rain.Play();
+			if(currentWeatherEffect != null && currentWeatherEffect != rain) currentWeatherEffect.Stop();
+			if(!rain.isPlaying)rain.Play();
 			currentWeatherEffect = rain;
 		}
 		//Clouds
 		else if(w.conditionID >= cloudMin && w.conditionID <= cloudMax) {
-			if(currentWeatherEffect != null) currentWeatherEffect.Stop();
-			clouds.Play();
+			if(currentWeatherEffect != null && currentWeatherEffect != clouds) currentWeatherEffect.Stop();
+			if(!clouds.isPlaying)clouds.Play();
 			currentWeatherEffect = clouds;
 		}
 		else {

@@ -4,6 +4,12 @@ using System.Collections;
 using SimpleJSON;
 
 public class WeatherSync : MonoBehaviour {
+	//Debug vars REMOVE UPON RELEASE
+	public bool spoofMode = false;
+	public string spoofCity = "";
+	public string spoofCountry = "";
+	//End debug
+
 	public string APIKEY = "b3abb856726ae64ca4273c826c2e4ba4";
 	public string currentIP;
 	public string currentCountry;
@@ -37,12 +43,19 @@ public class WeatherSync : MonoBehaviour {
 	private System.DateTime sunrise;
 	private System.DateTime sunset;
 
+	//Extremes
+	public int hotTemp = 28;
+	public int coldTemp = 0;
+	public int humid = 80;
+	public int cloudy = 60;
+
 	void Awake() {
-		connect ();
+		InvokeRepeating("connect",0,60*60*60); //update by the hour
+		//connect ();
 	}
 	
 	void OnLevelWasLoaded(int level) {
-		connect ();
+		//connect();
 	}
 
 	void connect() {
@@ -177,7 +190,13 @@ public class WeatherSync : MonoBehaviour {
 			status = "Internet problem";
 			isRunning = false;
 		}
-		
+
+		//Spoofing
+		if(spoofMode) {
+			currentCity = spoofCity;
+			currentCountry = spoofCountry;
+		}
+
 		//get the current weather
 		WWW request = new WWW("http://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&APPID=" + APIKEY); //get our weather
 		yield return request;

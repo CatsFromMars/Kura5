@@ -39,6 +39,14 @@ public class AnnieController : PlayerContainer {
 	}
 
 	void handleTargeting() {
+
+		if (currentAnim(hash.hurtState)) {
+			targeting = false;
+			knockBack(currentKnockbackDir);
+		}
+		else if(charging&&!targeting) Charge();
+
+
 		if(targeting) {
 			//Targeting Mode
 			//if(parrying) {
@@ -49,22 +57,27 @@ public class AnnieController : PlayerContainer {
 			if(currentTarget != null) {
 				if(lockOn == null) lockOn = Instantiate (lockOnUI, currentTarget.transform.position, Quaternion.identity) as Transform;
 				else lockOn.transform.position = currentTarget.transform.position;
+				zoomToEnemy();
+			}
+			else { 
+				untargetEnemy();
+				if(lockOn != null) Destroy(lockOn.gameObject);
+				zoomToPlayer();
 			}
 		}
 		else {
 			//NON-Targeting Mode
 			untargetEnemy();
-			if (currentAnim(hash.hurtState)) knockBack(currentKnockbackDir);
-			else if(charging) Charge();
 			//parryCounter = 0;
 			if(lockOn != null) {
 				Destroy(lockOn.gameObject);
+				zoomToPlayer();
 			}
 		}
 	}
 
 	public void Charge() {
-		solarCharging = Time.timeScale != 0 && lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy;
+		solarCharging = Time.timeScale != 0 && !lightLevels.w.isNightTime && lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy && currentAnim(hash.chargeState);
 		if(!lightLevels.w.isNightTime) {
 			if(solarCharging&&!audio.isPlaying) makeSound(chargingSound);
 			chargeCounter+=(lightLevels.sunlight * Mathf.RoundToInt(Time.timeScale));
@@ -80,7 +93,7 @@ public class AnnieController : PlayerContainer {
 
 	public void voiceIfCharging(AudioClip clip) {
 		//ANIMATION EVENTS FOR VOICE ACTING
-		if(solarCharging) {
+		if(Time.timeScale != 0 && !lightLevels.w.isNightTime && lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy) {
 			voice.volume = 1;
 			voice.pitch = 1f;
 			voice.clip = clip;

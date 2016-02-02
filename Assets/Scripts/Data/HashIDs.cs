@@ -4,6 +4,7 @@ using System.Collections;
 public class HashIDs : MonoBehaviour {
 	public int runningState;
 	public int shootingState;
+	public int chargeState;
 	public int taiyouState;
 	public int hurtState;
 	public int dyingState;
@@ -126,6 +127,7 @@ public class HashIDs : MonoBehaviour {
 		comboState3 = Animator.StringToHash("Sword.Slash3");
 		blockState = Animator.StringToHash("Targeting.Block");
 		targetState = Animator.StringToHash("Targeting.Targeting");
+		chargeState = Animator.StringToHash ("Charging.Charging");
 
 		pauseState = Animator.StringToHash("Base Layer.Pause");
 		stepState = Animator.StringToHash("Base Layer.Step");

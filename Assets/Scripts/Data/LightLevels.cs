@@ -44,7 +44,30 @@ public class LightLevels : MonoBehaviour {
 	}
 
 	void Update() {
-		if(lightSource!=null && shadowSource!=null) calc();
+		//if(lightSource!=null && shadowSource!=null) calc();
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.tag == "Sunlight") {
+			darkness = 0;
+			//if(w.isNightTime == false) sunlight = w.lightMax;
+			sunlight = w.lightMax;
+		}
+
+		else if (other.tag == "Shadow") {
+			sunlight = 0;
+			darkness = w.lightMax;
+		}
+	}
+
+	void OnTriggerExit(Collider other) {
+		if (other.tag == "Sunlight") {
+			sunlight = 0;
+		}
+		
+		else if (other.tag == "Shadow") {
+			darkness = 0;
+		}
 	}
 
 	public int calcSunForTarget(Transform target) {

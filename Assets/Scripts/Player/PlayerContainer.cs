@@ -52,13 +52,16 @@ public class PlayerContainer : MonoBehaviour {
 	private Transform blinker;
 	public ParticleSystem smoke;
 	public AudioClip parryAlertNoise;
-	protected Animator animator;
+	private Transform follow;
+	public Animator animator;
 	protected NavMeshAgent agent;
 	protected CharacterController controller;
+	protected Transform swapper;
 	public HashIDs hash;
 	protected GameData gameData;
 	protected GameObject globalData;
 	public LightLevels lightLevels;
+	protected CamLooker looker; //Camera
 	public DamageCalculator damageCalculator;
 	public GameObject body;
 	protected SkinnedMeshRenderer mesh;
@@ -85,6 +88,8 @@ public class PlayerContainer : MonoBehaviour {
 		//ACCESS TO HASHES, ANIMATOR AND GLOBAL DATA
 		audio = GetComponent<AudioSource> ();
 		globalData = GameObject.FindGameObjectWithTag("GameController");
+		looker = GameObject.FindGameObjectWithTag("CamFollow").GetComponent<CamLooker>();
+		follow = GameObject.FindWithTag("CamFollow").transform;
 		hash = globalData.GetComponent<HashIDs>();
 		gameData = globalData.GetComponent<GameData>();
 		controller = GetComponent<CharacterController>();
@@ -93,6 +98,7 @@ public class PlayerContainer : MonoBehaviour {
 		damageCalculator = globalData.GetComponent<DamageCalculator>();
 		agent = GetComponent<NavMeshAgent> ();
 		blinker = transform.FindChild ("Flash");
+		swapper = GameObject.FindWithTag("PlayerSwapper").transform;
 		Vector3 startingPos = new Vector3(transform.position.x, 0, transform.position.z);
 		transform.position = startingPos;
 		voice = transform.FindChild ("Voice").GetComponent<AudioSource>();
@@ -168,7 +174,9 @@ public class PlayerContainer : MonoBehaviour {
 			//whistling = Input.GetButtonDown("Whistle");
 			holdingWeapon = ((Input.GetButton("Attack") || Input.GetButtonDown("Attack"))) && !gameData.nearInteractable;
 			attacking = Input.GetButtonUp("Attack") && !gameData.nearInteractable;
+
 			targeting = Input.GetButton ("Target") && Time.timeScale != 0;
+			//if((Input.GetButtonDown("Target") || Input.GetButtonUp("Target")) && Time.timeScale != 0) handleTargetZoom();
 			moving = (horizontal != 0 || vertical != 0);
 			performingAction = attacking || holdingWeapon || whistling || charging;
 		}
@@ -294,6 +302,21 @@ public class PlayerContainer : MonoBehaviour {
 		//AudioSource audio = Camera.main.GetComponent<AudioSource>();
 		//audio.clip = Resources.Load ("Sound Effects/Death") as AudioClip;
 		//audio.Play();
+	}
+
+	protected void handleTargetZoom() {
+		if(currentTarget != null) looker.zoomToTarget(currentTarget, 50);
+		else if(looker.currentLook != this.transform && Time.timeScale != 0) looker.zoomToTarget(this.transform, 50);
+	}
+
+	protected void zoomToEnemy() {
+		follow.parent = null;
+		looker.zoomToTarget(currentTarget, 25);
+	}
+
+	protected void zoomToPlayer() {
+		follow.parent = swapper;
+		looker.zoomToTarget(this.transform, 50);
 	}
 
 	protected void targetEnemy() {

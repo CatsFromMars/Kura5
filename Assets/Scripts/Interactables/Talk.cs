@@ -13,6 +13,7 @@ public class Talk : MonoBehaviour {
 	private int textindex = 0;
 	private GameData data;
 	public bool otenkoAppear = false; //For hint pannels
+	private PlayerContainer p;
 
 	void Awake() {
 		if(autoSpeak) Speak();
@@ -24,6 +25,9 @@ public class Talk : MonoBehaviour {
 			inRange = true;
 			data.nearInteractable = true;
 			if(!autoSpeak && !npcObject) Speak();
+			p = other.GetComponent<PlayerContainer>();
+
+			p.animator.SetLookAtPosition(this.transform.position);
 		}
 
 	}
@@ -37,7 +41,9 @@ public class Talk : MonoBehaviour {
 
 	void Update() {
 		bool push = Time.timeScale != 0 && (Input.GetButtonDown("Charge") || Input.GetButtonDown("Confirm"));
-		if(!isTalking && npcObject && push && inRange) {
+		bool b = false;
+		if(p != null && inRange) b = p.currentAnim (p.hash.idleState) || p.currentAnim (p.hash.runningState);
+		if(!isTalking && npcObject && push && inRange && b) {
 			Speak();
 		}
 	}

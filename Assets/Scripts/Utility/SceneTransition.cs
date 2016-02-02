@@ -6,7 +6,8 @@ public class SceneTransition : MonoBehaviour
 	public float fadeSpeed = 1.5f;          // Speed that the screen fades to and from black.
 	public SpriteRenderer ren;
 	public GameData data;
-	public Transform playerContainer; 
+	public Transform playerContainer;
+	private IEnumerator coroutine;
 
 	void Awake ()
 	{
@@ -53,8 +54,9 @@ public class SceneTransition : MonoBehaviour
 	}
 
 	public void gotoScene(string scene) {
-		StopCoroutine (EndScene (scene));
-		StartCoroutine (EndScene (scene));
+		if(coroutine != null) StopCoroutine (coroutine);
+		coroutine = EndScene (scene);
+		StartCoroutine (coroutine);
 	}
 
 	public void markCheckpoint(string sceneName) {

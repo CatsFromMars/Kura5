@@ -27,19 +27,19 @@ public class DamageCalculator : MonoBehaviour {
 			else return 1;
 		}
 		else if (element == "Fire") {
-			if(w.finalTemp >= 25) return 1.2f;
+			if(w.finalTemp >= w.hotTemp) return 1.2f;
 			else return 1;
 		}
 		else if (element == "Frost") {
-			if(w.finalTemp <= 0) return 1.2f;
+			if(w.finalTemp <= w.coldTemp) return 1.2f;
 			else return 1;
 		}
 		else if (element == "Cloud") {
-			if(w.cloudinessPercentage >= 50) return 1.2f;
+			if(w.cloudinessPercentage >= w.cloudy) return 1.2f;
 			else return 1;
 		}
 		else if (element == "Earth") {
-			if(w.humidityPercentage >= 50) return 1.2f;
+			if(w.humidityPercentage >= w.humid) return 1.2f;
 			else return 1;
 		}
 		else if (element == "Luna") {

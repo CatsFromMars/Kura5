@@ -25,6 +25,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 22413584}
   - 114: {fileID: 11413584}
+  - 65: {fileID: 6542050}
   m_Layer: 12
   m_Name: SunDetector
   m_TagString: Untagged
@@ -1338,6 +1339,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!65 &6542050
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113586}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &8251622
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1423,6 +1436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sunlight: 0
+  darkness: 0
 --- !u!114 &11426796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1453,6 +1467,9 @@ MonoBehaviour:
   strength: 5
   type: 0
   element: Dark
+  changesElementWithWeather: 1
+  originalElement: 
+  selfWeaponData: {fileID: 11497968}
   lightLevels: {fileID: 0}
   damageCalculator: {fileID: 0}
   stunned: 0
@@ -1460,6 +1477,7 @@ MonoBehaviour:
   body: {fileID: 451678}
   shadowStunEffect: {fileID: 451642}
   shadowStunParticles: {fileID: 19851622}
+  smoke: {fileID: 19813584}
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -1481,9 +1499,24 @@ MonoBehaviour:
   patrolWaitTime: 100
   attacking: 0
   emotion: {fileID: 22451622}
-  smoke: {fileID: 19813584}
   projectileSpawner: {fileID: 451690}
   projectile: {fileID: 400000, guid: 928cc7a88115b3d498aa4191b2f52b4c, type: 2}
+  r: {fileID: 0}
+  Frost:
+  - {fileID: 2100000, guid: 8c462f594372019489b6c583f0b19fc1, type: 2}
+  - {fileID: 2100000, guid: 8d52e55f8e69a844ebdea0127a0ac8e7, type: 2}
+  Fire:
+  - {fileID: 2100000, guid: 8bd157e2657ec704887db8f9f79ff93b, type: 2}
+  - {fileID: 2100000, guid: 25e052ba955b6694b9b28d590a181f40, type: 2}
+  Cloud:
+  - {fileID: 2100000, guid: 99760429634cf774b8c02a5bdc6a2692, type: 2}
+  - {fileID: 2100000, guid: 90fedf9d7e88ef04b8e6e6f1cef3a26a, type: 2}
+  Earth:
+  - {fileID: 2100000, guid: 5de26ab223b6d3a4ea215fd6a89204a2, type: 2}
+  - {fileID: 2100000, guid: 4195082080af54b499cb9bd3224fa239, type: 2}
+  Dark:
+  - {fileID: 2100000, guid: e2363ccef62d4094abc1062de5e3c090, type: 2}
+  - {fileID: 2100000, guid: eaac6432796aada46b3ba1fe642d93d9, type: 2}
 --- !u!114 &11497968
 MonoBehaviour:
   m_ObjectHideFlags: 1

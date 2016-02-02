@@ -18,6 +18,7 @@ public class Trap : MonoBehaviour {
 	private bool trapCleared = false;
 	public Transform player;
 	public TextAsset trapPrompt;
+	public TextAsset disarmPrompt;
 	private GameObject canvas;
 	GameData data;
 
@@ -65,7 +66,8 @@ public class Trap : MonoBehaviour {
 		if (trapPreDisarmed ()) {
 			if(other.tag == "Player" && !trapCleared) {
 				Time.timeScale = 0; //Pause
-				music.changeMusic(music.previousMusic, 0.1f);
+				music.stopMusic();
+
 				StartCoroutine(disarmTrap());
 				GameObject effect = Resources.Load("Effects/DisarmEffect") as GameObject;
 				Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane)); 
@@ -120,7 +122,8 @@ public class Trap : MonoBehaviour {
 
 	IEnumerator disarmTrap() {
 		yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(4f));
-		yield return StartCoroutine(DialogueDisplay.DisplaySpeech("DisarmTrap"));
+		yield return StartCoroutine(DisplayDialogue.Speak(disarmPrompt));
+		music.changeMusic(music.previousMusic, 0.1f);
 		Time.timeScale = 1;
 	}
 

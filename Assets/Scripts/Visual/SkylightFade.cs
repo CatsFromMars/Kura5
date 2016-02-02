@@ -19,7 +19,7 @@ public class SkylightFade : MonoBehaviour {
 	}
 
 	void Update() {
-		if(lightLevels.distanceSun < lightLevels.radius*2) fadeIn();
+		if(lightLevels.sunlight>0) fadeIn();
 		else fadeOut();
 		updateSkylightColor();
 	}

@@ -32,7 +32,6 @@ public class PatrolEnemy : EnemyClass {
 
 	//VISUAL VARIABLES
 	public Transform emotion;
-	public ParticleSystem smoke;
 
 	private AudioSource playerAudio;
 
@@ -327,30 +326,6 @@ public class PatrolEnemy : EnemyClass {
 		//For Alert and Notice (?)
 	//}
 
-	public void handleBurning() {
-		if(sunDetector.sunlight > 0) {
-			burnCounterTime = 5 * 1/sunDetector.sunlight;
-			takeSunDamage(burnRate);
-			if(!smoke.isPlaying) smoke.Play();
-			stunned = true;
-		}
-		else {
-			if (smoke.isPlaying) {
-				smoke.Stop();
-				//stunned = false;
-			}
-		}
-	}
-	
-	void takeSunDamage(float rate) {
-		burnCounter++;
-		if(burnCounter >= burnCounterTime) {
-			currentLife -= rate;
-			burnCounter = 0f;
-		}
-		
-		if(currentLife <= 0) Die(); //KILL PLAYER IF GAME OVER.	
-	}
 
 	void DisplayEmoticon(GameObject emoticon) {
 		emoticon = Instantiate(emoticon, emotion.transform.position, Quaternion.identity) as GameObject;

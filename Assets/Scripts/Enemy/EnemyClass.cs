@@ -22,6 +22,9 @@ public class EnemyClass : MonoBehaviour {
 	protected Shader blinkShader;
 	protected Transform blinker;
 	protected Slider lifeBar;
+	public bool changesElementWithWeather;
+	public string originalElement;
+	public WeaponData selfWeaponData;
 
 	//DETECTION VARIABLES
 	protected bool trackingPlayer = false;
@@ -83,6 +86,7 @@ public class EnemyClass : MonoBehaviour {
 	//VISUAL VARIABLES
 	public Transform shadowStunEffect;
 	public ParticleSystem shadowStunParticles;
+	public ParticleSystem smoke;
 
 	public enum EnemyType {
 		Undead,
@@ -120,6 +124,10 @@ public class EnemyClass : MonoBehaviour {
 			storeColors();
 			regularShader = materials[0].shader;
 		}
+
+		if(selfWeaponData == null && changesElementWithWeather) Debug.LogError("WeaponData on enemy body not referenced!");
+		originalElement = element;
+
 	}
 
 	protected void storeColors() {
@@ -232,8 +240,8 @@ public class EnemyClass : MonoBehaviour {
 	protected void spawnLoot() {
 		bool playSound = true;
 		int c = Random.Range (0, 11);
-		if(c < 4 && commonLoot!=null) Instantiate(commonLoot, transform.position, commonLoot.transform.rotation);
-		else if(c < 2 && rareLoot!=null) Instantiate(commonLoot, transform.position, rareLoot.transform.rotation);
+		if(c > 6 && commonLoot!=null) Instantiate(commonLoot, transform.position, commonLoot.transform.rotation);
+		else if(c < 2 && rareLoot!=null) Instantiate(rareLoot, transform.position, rareLoot.transform.rotation);
 		else playSound = false;
 		if(playSound) {
 			AudioClip sound = Resources.Load<AudioClip>("Sound Effects/Misc/Drop");
@@ -278,13 +286,29 @@ public class EnemyClass : MonoBehaviour {
 		
 	}
 	
-	protected void takeSunDamage(float rate) {
+	public void handleBurning() {
+		if(sunDetector.sunlight > 0) {
+			burnCounterTime = 5 * 1/sunDetector.sunlight;
+			takeSunDamage(burnRate);
+			if(!smoke.isPlaying) smoke.Play();
+			stunned = true;
+		}
+		else {
+			if (smoke.isPlaying) {
+				smoke.Stop();
+				//stunned = false;
+			}
+		}
+	}
+	
+	void takeSunDamage(float rate) {
 		burnCounter++;
 		if(burnCounter >= burnCounterTime) {
 			currentLife -= rate;
 			burnCounter = 0f;
 		}
 		
+		if(currentLife <= 0) Die(); //KILL PLAYER IF GAME OVER.	
 	}
 
 	protected void setPitch(int pitch) {
@@ -318,5 +342,51 @@ public class EnemyClass : MonoBehaviour {
 		Vector3 targetPos = new Vector3(playerPos.x, this.transform.position.y, playerPos.z);
 		transform.rotation = Quaternion.LookRotation (targetPos - transform.position);
 	}
-	
+
+	protected void swapElement() {
+		//If off screen and not already the appropriate element, swap to element
+		//If no weather extremes, swap back to default
+		bool changed = false;
+
+		if (lightLevels.w.finalTemp >= lightLevels.w.hotTemp) {
+			element = "Fire";
+			selfWeaponData.element = "Fire";
+			changed = true;
+		}
+		else if (!changed && lightLevels.w.finalTemp <= lightLevels.w.coldTemp) {
+			element = "Frost";
+			selfWeaponData.element = "Frost";
+			changed = true;
+		}
+		else if (!changed && lightLevels.w.humidityPercentage >= lightLevels.w.humid && 
+		         lightLevels.w.humidityPercentage >= lightLevels.w.cloudinessPercentage) {
+			element = "Earth";
+			selfWeaponData.element = "Earth";
+			changed = true;
+		}
+		else if (!changed && lightLevels.w.cloudinessPercentage >= lightLevels.w.cloudy&& 
+		         lightLevels.w.humidityPercentage < lightLevels.w.cloudinessPercentage) {
+			element = "Cloud";
+			selfWeaponData.element = "Cloud";
+			changed = true;
+		}
+		else if (!changed){
+			element = originalElement;
+			selfWeaponData.element = originalElement;
+		}
+
+		changeColor();
+	}
+
+	public virtual void changeColor() {
+		//To be overwritten by child class
+		//Change color according to element
+	}
+
+	protected bool selfOnScreen() {
+		Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
+		if (viewPos.x >= 0 && viewPos.x <= 5 && viewPos.y >= 0 && viewPos.y <= 5 && viewPos.z >= 0)
+			return true;
+		else return false;
+	}
 }

@@ -26,7 +26,7 @@ public class MusicManager : MonoBehaviour {
 	public void changeMusic(AudioClip music, float delay=0) {
 		//Wrapper
 		stopMusic();
-		previousMusic = src.clip;
+		//previousMusic = src.clip;
 		src.clip = music;
 		if(!src.isPlaying) src.PlayDelayed(delay);
 	}

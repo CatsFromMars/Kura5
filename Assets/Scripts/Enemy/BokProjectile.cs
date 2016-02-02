@@ -49,6 +49,7 @@ public class BokProjectile : MonoBehaviour {
 			//Parry reflect!
 			PlayerContainer player = other.GetComponent<PlayerContainer>();
 			if(player.currentAnim(Animator.StringToHash("Targeting.Block"))) {
+				direction = transform.forward;
 				direction *= -1;
 			}
 			else {
@@ -73,5 +74,6 @@ public class BokProjectile : MonoBehaviour {
 				Destroy (this.gameObject);
 			}
 		}
+
 	}
 }

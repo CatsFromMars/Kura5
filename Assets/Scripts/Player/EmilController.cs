@@ -22,15 +22,23 @@ public class EmilController : PlayerContainer {
 	private float burnCounter = 0f;
 	private float burnCounterTime = 20f;
 
+	private float originalAgentSpeed;
+	private float originalStoppingDistance;
+	private float dashSpeed = 20f;
+	private float dashStop = 6f;
 
 	//"Sparkle" variables
 	public Material bladeMat;
 	public ParticleSystem darkMatter;
-
+	public Animator smile;
+	private int slashCounter = 0;
+	private int smileThreshold = 15;
 	private bool darkCharging = false;
 	
 	void Start() {
 		changeWeaponColor ();
+		originalAgentSpeed = agent.speed;
+		originalStoppingDistance = agent.stoppingDistance;
 	}
 	// Update is called once per frame
 	void Update () {
@@ -42,6 +50,11 @@ public class EmilController : PlayerContainer {
 			handleParticeEffects();
 			handleBurning();
 			//handleCape();
+
+			if(slashCounter >= smileThreshold) {
+				smile.SetTrigger(Animator.StringToHash("Smile"));
+				slashCounter = 0;
+			}
 		}
 	}
 
@@ -67,10 +80,19 @@ public class EmilController : PlayerContainer {
 			burnCounter = 0f;
 		}
 		
-		if(gameData.emilCurrentLife <= 0) Die(); //KILL PLAYER IF GAME OVER.	
+		if(gameData.emilCurrentLife <= 0) {
+			playVoiceClip(dieVoices[Random.Range(0, dieVoices.Length)]);
+			Die(); //KILL PLAYER IF GAME OVER.	
+		}
 	}
 
 	void handleTargeting() {
+		if (currentAnim(hash.hurtState)) {
+			targeting = false;
+			knockBack(currentKnockbackDir);
+		}
+		else if(charging&&!targeting) Charge();
+
 		if(targeting) {
 			//Targeting Mode
 			if(parrying) {
@@ -81,17 +103,37 @@ public class EmilController : PlayerContainer {
 			if(currentTarget != null) {
 				if(lockOn == null) lockOn = Instantiate (lockOnUI, currentTarget.transform.position, Quaternion.identity) as Transform;
 				else lockOn.transform.position = currentTarget.transform.position;
+				zoomToEnemy();
+
+				//Have Emil dash slash some baddies
+				if(currentAnim(hash.comboState1)||currentAnim(hash.comboState2)||currentAnim(hash.comboState3)) {
+					agent.speed = dashSpeed;
+					agent.stoppingDistance = dashStop;
+					agent.SetDestination(currentTarget.transform.position);
+				}
+				else {
+					agent.ResetPath();
+					agent.speed = originalAgentSpeed;
+					agent.stoppingDistance = originalStoppingDistance;
+				}
+			}
+			else { 
+				untargetEnemy();
+				if(lockOn != null) Destroy(lockOn.gameObject);
+				zoomToPlayer();
 			}
 		}
 		else {
 			//NON-Targeting Mode
 			untargetEnemy();
-			if (currentAnim(hash.hurtState)) knockBack(currentKnockbackDir);
-			else if(charging) Charge();
 			parryCounter = 0;
 			if(lockOn != null) {
 				Destroy(lockOn.gameObject);
+				zoomToPlayer();
 			}
+			agent.ResetPath();
+			agent.speed = originalAgentSpeed;
+			agent.stoppingDistance = originalStoppingDistance;
 		}
 	}
 
@@ -110,12 +152,14 @@ public class EmilController : PlayerContainer {
 	}
 
 	void Slash() {
-		if (gameData.emilCurrentEnergy > 5) {
-			gameData.emilCurrentEnergy -= 5;
-			element = gameData.emilCurrentElem.ToString();
-		}
-		else gameData.emilCurrentElem = GameData.elementalProperty.Null;
 
+		if(currentAnim(hash.comboState1)) {
+			if (gameData.emilCurrentEnergy > 5) {
+				gameData.emilCurrentEnergy -= 5;
+				gameData.emilCurrentElem = GameData.elementalProperty.Dark;
+			}
+			else gameData.emilCurrentElem = GameData.elementalProperty.Null;
+		}
 		changeWeaponColor();
 
 		//Animation Event for swordplay
@@ -209,10 +253,13 @@ public class EmilController : PlayerContainer {
 		//Blood? Blood.
 		Transform blood = hit.collider.transform.FindChild ("Blood");
 		if(blood!=null) blood.GetComponent<ParticleSystem>().Play();
+
+		//finally, boost the smile counter
+		slashCounter++;
 	}
 	
 	public void Charge() {
-		darkCharging = Time.timeScale != 0 && lightLevels.darkness > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy;
+		darkCharging = Time.timeScale != 0 && lightLevels.darkness > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy && currentAnim(hash.chargeState);
 		chargeCounter+=lightLevels.darkness*Mathf.RoundToInt(Time.timeScale);
 		if(Time.timeScale != 0 && lightLevels.darkness > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy && !audio.isPlaying) makeSound(chargingSound);
 		if(chargeCounter > chargeThresh) {
@@ -226,7 +273,7 @@ public class EmilController : PlayerContainer {
 
 	public void voiceIfCharging(AudioClip clip) {
 		//ANIMATION EVENTS FOR VOICE ACTING
-		if(darkCharging) {
+		if(Time.timeScale != 0 && lightLevels.darkness > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy) {
 			voice.volume = 0.9f;
 			voice.pitch = 1f;
 			voice.clip = clip;
