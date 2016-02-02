@@ -5,6 +5,9 @@ public class SkylightWeather : MonoBehaviour {
 
 	private int weatherID;
 	public WeatherSync w;
+	private bool lightOn = true;
+	GameObject[] shadows;
+	GameObject[] skylights;
 
 	//Skylight Colors
 	public Transform lightProjector;
@@ -33,11 +36,32 @@ public class SkylightWeather : MonoBehaviour {
 	void Start() {
 		w = GameObject.FindGameObjectWithTag ("Weather").GetComponent<WeatherSync>();
 		light = lightProjector.GetComponent<Projector>().material;
+		shadows = GameObject.FindGameObjectsWithTag("Shadow");
+		skylights = GameObject.FindGameObjectsWithTag("Sunlight");
 	}
 
 	void Update() {
 		updateWeatherEffects();
 		updateSkylightColor();
+	}
+
+	public void updateLightVisibility() {
+		if(lightOn&&w.lightMax < 1) { 
+			foreach(GameObject skylight in skylights) {
+				if(skylight.name == "Skylight") skylight.SetActive(false);
+			}
+			foreach(GameObject shadow in shadows) {
+				shadow.SetActive(false);
+			}
+		}
+		else if (!lightOn && w.lightMax > 0) {
+			foreach(GameObject skylight in skylights) {
+				if(skylight.name == "Skylight") skylight.SetActive(true);
+			}
+			foreach(GameObject shadow in shadows) {
+				shadow.SetActive(true);
+			}
+		}
 	}
 	
 	public void updateWeatherEffects() {

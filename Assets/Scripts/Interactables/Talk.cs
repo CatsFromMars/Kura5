@@ -26,8 +26,6 @@ public class Talk : MonoBehaviour {
 			data.nearInteractable = true;
 			if(!autoSpeak && !npcObject) Speak();
 			p = other.GetComponent<PlayerContainer>();
-
-			p.animator.SetLookAtPosition(this.transform.position);
 		}
 
 	}

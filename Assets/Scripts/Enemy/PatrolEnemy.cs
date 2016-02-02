@@ -39,7 +39,11 @@ public class PatrolEnemy : EnemyClass {
 	void Start () {
 		transform.position = wayPoints[0].transform.position;
 		playerAudio = player.GetComponent<AudioSource>();
-		sightRange = col.radius / 2f;
+		if(inSunlight && (lightLevels.w.conditionName=="fog" ||
+		                lightLevels.w.conditionName=="mist")) {
+			sightRange = col.radius / 3f;
+		}
+		else sightRange = col.radius / 2f;
 	}
 
 	protected void updateAnimations() {

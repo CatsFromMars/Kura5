@@ -53,7 +53,7 @@ public class PlayerContainer : MonoBehaviour {
 	public ParticleSystem smoke;
 	public AudioClip parryAlertNoise;
 	private Transform follow;
-	public Animator animator;
+	protected Animator animator;
 	protected NavMeshAgent agent;
 	protected CharacterController controller;
 	protected Transform swapper;

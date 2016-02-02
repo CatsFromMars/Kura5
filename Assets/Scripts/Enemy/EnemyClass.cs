@@ -240,8 +240,14 @@ public class EnemyClass : MonoBehaviour {
 	protected void spawnLoot() {
 		bool playSound = true;
 		int c = Random.Range (0, 11);
-		if(c > 6 && commonLoot!=null) Instantiate(commonLoot, transform.position, commonLoot.transform.rotation);
-		else if(c < 2 && rareLoot!=null) Instantiate(rareLoot, transform.position, rareLoot.transform.rotation);
+		int rare = 2;
+		int common = 4;
+		if(lightLevels.w.conditionName == "snow") {
+			rare = 3;
+			common = 6;
+		}
+		if(c > common && commonLoot!=null) Instantiate(commonLoot, transform.position, commonLoot.transform.rotation);
+		else if(c < rare && rareLoot!=null) Instantiate(rareLoot, transform.position, rareLoot.transform.rotation);
 		else playSound = false;
 		if(playSound) {
 			AudioClip sound = Resources.Load<AudioClip>("Sound Effects/Misc/Drop");
@@ -264,7 +270,7 @@ public class EnemyClass : MonoBehaviour {
 			
 		}
 		
-		else if (other.gameObject.tag == "Skylight") {
+		else if (other.gameObject.tag == "Sunlight") {
 			inSunlight = true;
 			
 		}
@@ -273,7 +279,7 @@ public class EnemyClass : MonoBehaviour {
 	
 	void OnTriggerExit(Collider other) {
 		
-		if (other.gameObject.tag == "Skylight") {
+		if (other.gameObject.tag == "Sunlight") {
 			inSunlight = false;
 			
 		}
@@ -385,7 +391,7 @@ public class EnemyClass : MonoBehaviour {
 
 	protected bool selfOnScreen() {
 		Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
-		if (viewPos.x >= 0 && viewPos.x <= 5 && viewPos.y >= 0 && viewPos.y <= 5 && viewPos.z >= 0)
+		if (viewPos.x >= 0 && viewPos.x <= 3 && viewPos.y >= 0 && viewPos.y <= 3 && viewPos.z >= 0)
 			return true;
 		else return false;
 	}

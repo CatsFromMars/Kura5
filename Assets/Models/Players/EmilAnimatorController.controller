@@ -125,7 +125,7 @@ AnimatorController:
     m_SyncedLayerIndex: -1
     m_StateMachineMotionSetIndex: 0
     m_DefaultWeight: 0
-    m_IKPass: 0
+    m_IKPass: 1
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
 --- !u!1101 &110105548
@@ -2174,10 +2174,6 @@ StateMachine:
   - {x: 84, y: -288, z: 0}
   m_OrderedTransitions:
     data:
-      first: {fileID: 110213288}
-      second:
-      - {fileID: 110150358}
-    data:
       first: {fileID: 0}
       second:
       - {fileID: 110164476}
@@ -2190,6 +2186,10 @@ StateMachine:
       - {fileID: 110162708}
       - {fileID: 110183230}
       - {fileID: 110182406}
+    data:
+      first: {fileID: 110213288}
+      second:
+      - {fileID: 110150358}
     data:
       first: {fileID: 110261078}
       second:
