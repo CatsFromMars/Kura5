@@ -8,6 +8,8 @@ public class AnnieController : PlayerContainer {
 	//AUDIO
 	public AudioClip shootNoise;
 	public AudioClip clickNoise;
+	public AudioClip regularStep;
+	public AudioClip snowStep;
 
 	//VARIABLES REGARDING SHOOTING/COMBAT
 	private Vector3 bulletSpawnPoint;
@@ -15,11 +17,18 @@ public class AnnieController : PlayerContainer {
 	public Transform fireBullet;
 	public Transform earthBullet;
 	public Transform weapon;
+	protected int energyCost = 2;
+	private float absorbRate = 1f;
+	private float absorbCounter = 0f;
+	private float absorbCounterTime = 150f;
 
 	//Visual
 	public ParticleSystem sunParticles;
 	public ParticleSystem dustL;
 	public ParticleSystem dustR;
+	public Transform footPrintL;
+	public Transform footPrintR;
+	public Transform footPrintPrefab;
 
 	private bool solarCharging = false;
 
@@ -35,6 +44,17 @@ public class AnnieController : PlayerContainer {
 			updateAnimations();
 			//handleCombos();
 			handleTargeting();
+
+			absorb(1);
+		}
+	}
+
+	void absorb(int rate) {
+
+		if(lightLevels.sunlight > 0 && !lightLevels.w.isNightTime) absorbCounter+=lightLevels.sunlight;
+		if(absorbCounter>absorbCounterTime) {
+			gameData.annieCurrentEnergy += rate;
+			absorbCounter = 0;
 		}
 	}
 
@@ -117,14 +137,14 @@ public class AnnieController : PlayerContainer {
 	}
 
 	void Shoot() {
-		if(gameData.annieCurrentEnergy >= 5) {
+		if(gameData.annieCurrentEnergy >= energyCost) {
 			bulletSpawnPoint = weapon.transform.position;
 			//WHICH BULLET TO SPAWN
 			if(gameData.annieCurrentElem == GameData.elementalProperty.Sol) Instantiate(bullet, bulletSpawnPoint, transform.rotation);
 			else if(gameData.annieCurrentElem == GameData.elementalProperty.Fire) Instantiate(fireBullet, bulletSpawnPoint, transform.rotation);
 			else if(gameData.annieCurrentElem == GameData.elementalProperty.Earth) Instantiate(earthBullet, bulletSpawnPoint, transform.rotation);
 			else makeSound(clickNoise);
-			gameData.annieCurrentEnergy -= 5; //REMEMBER TO CHANGE THIS! FOR TESTING PURPOSES ONLY!
+			gameData.annieCurrentEnergy -= energyCost; //REMEMBER TO CHANGE THIS! FOR TESTING PURPOSES ONLY!
 			makeSound(shootNoise);
 		}
 		else {
@@ -133,13 +153,20 @@ public class AnnieController : PlayerContainer {
 		
 	}
 
+	public void makeStepNoise() {
+		if(lightLevels.w.conditionName.Contains("Snow") && !isIndoors && inSnow) makeSound(snowStep);
+		else makeSound(regularStep);
+	}
+
 	public void puffL() {
-		//Animation event: has dust scatter where annie walks!
-		dustL.Emit (2);
+		//Animation event: has annie's feet emit particle effects depending on weather
+		if(lightLevels.w.conditionName.Contains("Snow") && !isIndoors && inSnow) Instantiate (footPrintPrefab, footPrintR.position, transform.rotation);
+		else dustL.Emit (2);
 	}
 
 	public void puffR() {
-		//Animation event: has dust scatter where annie walks!
-		dustR.Emit (2);
+		//Animation event: has annie's feet emit particle effects depending on weather
+		if(lightLevels.w.conditionName.Contains("Snow") && !isIndoors && inSnow) Instantiate (footPrintPrefab, footPrintL.position, transform.rotation);
+		else dustL.Emit (2);
 	}
 }

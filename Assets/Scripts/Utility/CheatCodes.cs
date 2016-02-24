@@ -19,5 +19,11 @@ public class CheatCodes : MonoBehaviour {
 			w.finalTemp = -1f;
 			w.cloudinessPercentage = 0;
 		}
+		if(Input.GetKeyDown(KeyCode.Alpha3)) {
+			w.finalTemp = -2f;
+			w.cloudinessPercentage = 60;
+			w.conditionID = 610;
+			w.conditionName = "Snow";
+		}
 	}
 }

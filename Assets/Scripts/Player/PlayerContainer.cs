@@ -7,6 +7,7 @@ public class PlayerContainer : MonoBehaviour {
 	public float playerSpeed = 8;
 	public float playerTargetingSpeed = 4f;
 	public float playerRunningSpeed = 8f;
+	public float playerPullSpeed = 4f;
 	public float playerRollingSpeed = 18f;
 	protected float vertical;
 	protected float horizontal;
@@ -21,6 +22,8 @@ public class PlayerContainer : MonoBehaviour {
 	protected Animator currentTargetAnimator;
 
 	//ACTION VARIABLES
+	public bool nearCoffin = false;
+	protected bool pullingCoffin = false;
 	protected bool dead = false;
 	public bool targeting = false;
 	protected bool moving = false;
@@ -29,8 +32,10 @@ public class PlayerContainer : MonoBehaviour {
 	protected bool attacking = false;
 	protected bool whistling = false;
 	protected bool holdingWeapon = false;
-	protected bool performingAction = false;
+	public bool performingAction = false;
 	public bool parrying = false;
+	public bool isIndoors = false;
+	protected bool inSnow = false;
 
 	//VARIABLES REGARDING WHETHER AN ACTION SHOULD BE PERFORMED
 	protected bool ableToPush = false;
@@ -114,7 +119,26 @@ public class PlayerContainer : MonoBehaviour {
 	void OnEnable() {
 		//When made active
 		if(switchVoices.Length>0) playVoiceClip(switchVoices[Random.Range(0, switchVoices.Length)]);
+		invincible = false;
+		blinker.active = false;
 	}
+
+	void OnLevelWasLoaded(int level) {
+		invincible = false;
+		blinker.active = false;
+		StopAllCoroutines();
+		Vector3 pos = transform.position + this.transform.forward * 3f;
+		inSunlight = false;
+		inShadow = false;
+		untargetEnemy();
+		zoomToPlayer();
+		if(lockOn != null) {
+			Destroy(lockOn.gameObject);
+		}
+
+	}
+
+
 
 	void FixedUpdate() {
 		//updateInput();
@@ -138,15 +162,18 @@ public class PlayerContainer : MonoBehaviour {
 		                                                                    currentAnim(hash.shootingState));
 		//Speed
 		if(rolling) playerSpeed = playerRollingSpeed;
+		else if(pullingCoffin) playerSpeed = playerPullSpeed;
 		else if(targeting) playerSpeed = playerTargetingSpeed;
 		else playerSpeed = playerRunningSpeed;
 
 		//Actually move and rotate player
-		if(currentAnim(hash.runningState) || currentAnim(hash.rollState) || (currentAnim(hash.targetState))) movePlayer (horizontal, vertical);
+		if(currentAnim(hash.runningState) || currentAnim(hash.pullingState) || currentAnim(hash.rollState) || (currentAnim(hash.targetState))) movePlayer (horizontal, vertical);
 		if(ableToRotate) rotatePlayer (horizontal, vertical);
 	}
 
 	protected void updateAnimations() {
+		animator.SetBool(hash.pullingBool, pullingCoffin);
+
 		if(Time.timeScale != 0) {
 			if(parrying) {
 				animator.SetTrigger (hash.blockTrigger);
@@ -163,6 +190,9 @@ public class PlayerContainer : MonoBehaviour {
 		}
 		else {
 			animator.SetBool(hash.movingBool, false);
+			animator.SetBool(hash.rollingBool, false);
+			animator.SetBool(hash.taiyouBool, false);
+			animator.SetBool(hash.holdWeaponBool, false);
 		}
 	}
 
@@ -174,11 +204,11 @@ public class PlayerContainer : MonoBehaviour {
 			//whistling = Input.GetButtonDown("Whistle");
 			holdingWeapon = ((Input.GetButton("Attack") || Input.GetButtonDown("Attack"))) && !gameData.nearInteractable;
 			attacking = Input.GetButtonUp("Attack") && !gameData.nearInteractable;
-
-			targeting = Input.GetButton ("Target") && Time.timeScale != 0;
+			pullingCoffin = Input.GetButton("Charge") && nearCoffin;
+			targeting = Input.GetButton ("Target") && Time.timeScale != 0 && !rolling;
 			//if((Input.GetButtonDown("Target") || Input.GetButtonUp("Target")) && Time.timeScale != 0) handleTargetZoom();
 			moving = (horizontal != 0 || vertical != 0);
-			performingAction = attacking || holdingWeapon || whistling || charging;
+			performingAction = attacking || holdingWeapon || whistling || charging || rolling;
 		}
 	}
 
@@ -206,16 +236,21 @@ public class PlayerContainer : MonoBehaviour {
 	
 
 	public void OnTriggerStay(Collider other) {
-		
-		if (other.gameObject.tag == "Shadow") { //SHADOW OVERRIDES SUNLIGHT TRIGGER
-			inShadow = true;
-			inSunlight = false;
+
+		if (other.name == "Weatherbox") {
+			isIndoors = other.GetComponent<SkylightWeather>().isIndoors;
+			inSnow = other.GetComponent<SkylightWeather>().snowActive;
 		}
-		
-		else if (other.gameObject.tag == "Skylight") {
-			inSunlight = true;
-			
+
+		if (other.gameObject.tag == "EnemyWeapon") {
+			WeaponData weapon = other.collider.GetComponent<WeaponData>();
+			int d = weapon.damage;
+			string e = weapon.element;
+			Vector3 k = weapon.knockBack * other.transform.forward;
+			if(weapon.knockBack == 0) k = transform.forward*-3;
+			hitPlayer(d, e, k);
 		}
+
 	}
 	
 	public void OnTriggerExit(Collider other) {
@@ -275,6 +310,7 @@ public class PlayerContainer : MonoBehaviour {
 			if(!currentAnim(hash.blockState)) {
 				getHurt(damage, knockback);
 				makeSound(hurt);
+				ShakeScreenAnimEvent.LittleShake();
 				StartCoroutine(startInvinciblity());
 			}
 			else {
@@ -332,7 +368,7 @@ public class PlayerContainer : MonoBehaviour {
 			Vector3 targetPos = new Vector3(currentTarget.position.x, this.transform.position.y, 
 			                                currentTarget.position.z);
 
-			bool m = currentAnim(hash.runningState) || currentAnim(hash.rollState);
+			bool m = currentAnim(hash.runningState) || currentAnim(hash.rollState) || currentAnim(hash.pullingState);
 			if(forceLookAtTarget || !m) this.transform.LookAt(targetPos);
 			else rotatePlayer (horizontal, vertical);
 		}
@@ -415,6 +451,7 @@ public class PlayerContainer : MonoBehaviour {
 
 	public IEnumerator characterWalkTo(Vector3 target, Transform lookAt=null) {
 		//Move player to target
+		playerInControl = false;
 		agent.SetDestination (target);
 		transform.LookAt(target);
 		agent.speed = playerRunningSpeed;
@@ -429,8 +466,10 @@ public class PlayerContainer : MonoBehaviour {
 		agent.velocity = Vector3.zero;
 		agent.Stop();
 		animator.SetBool(hash.movingBool, false);
-		Vector3 pos = new Vector3 (lookAt.position.x, transform.position.y, lookAt.position.z);
-		transform.LookAt(pos);
+		if(lookAt!=null) {
+			Vector3 pos = new Vector3 (lookAt.position.x, transform.position.y, lookAt.position.z);
+			transform.LookAt(pos);
+		}
 		yield return new WaitForSeconds(0.3f);
 		playerInControl = true;
 	}

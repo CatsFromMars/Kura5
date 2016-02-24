@@ -10,7 +10,7 @@ public class WeatherSync : MonoBehaviour {
 	public string spoofCountry = "";
 	//End debug
 
-	public string APIKEY = "b3abb856726ae64ca4273c826c2e4ba4";
+	private string APIKEY = "dc9a8ccf17ac92f754c1755832360a71";
 	public string currentIP;
 	public string currentCountry;
 	public string currentCity;
@@ -144,12 +144,12 @@ public class WeatherSync : MonoBehaviour {
 	IEnumerator getIP() {
 		WWW IPRequest = new WWW("api.ipify.org/?format=json");
 		yield return IPRequest;
-		
+		Debug.Log (IPRequest.url);
 		if (IPRequest.error == null || IPRequest.error == "")
 		{
 			var N = JSON.Parse(IPRequest.text);
 			currentIP = N["ip"].Value;
-			//Debug.Log (currentIP);
+
 		}
 	}
 
@@ -161,7 +161,7 @@ public class WeatherSync : MonoBehaviour {
 
 		WWW IPRequest = new WWW("api.ipify.org/?format=json");
 		yield return IPRequest;
-		
+		Debug.Log (IPRequest.url);
 		if (IPRequest.error == null || IPRequest.error == "")
 		{
 			var N = JSON.Parse(IPRequest.text);
@@ -170,7 +170,7 @@ public class WeatherSync : MonoBehaviour {
 		
 		WWW cityRequest = new WWW("http://www.geoplugin.net/json.gp?ip=" + currentIP); //get our location info
 		yield return cityRequest;
-		
+		Debug.Log (cityRequest.url);
 		if (cityRequest.error == null || cityRequest.error == "")
 		{
 			var N = JSON.Parse(cityRequest.text);
@@ -179,7 +179,7 @@ public class WeatherSync : MonoBehaviour {
 			countryCode = N["geoplugin_countryCode"].Value;
 			string regionCode = N["geoplugin_regionCode"].Value;
 			string city = (N["geoplugin_city"].Value).Replace(" ", "");
-			currentCity = city+","+regionCode+countryCode;
+			currentCity = city+","+regionCode+","+countryCode;
 			status = "Working";
 			isRunning = true;
 		}
@@ -200,7 +200,7 @@ public class WeatherSync : MonoBehaviour {
 		//get the current weather
 		WWW request = new WWW("http://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&APPID=" + APIKEY); //get our weather
 		yield return request;
-		Debug.Log (currentCity);
+		Debug.Log (request.url);
 		
 		if (request.error == null || request.error == "")
 		{
@@ -235,13 +235,7 @@ public class WeatherSync : MonoBehaviour {
 			//Update Light Levels
 			lightMax = getSunLevels();
 
-			//Update weather effects in a room
-//			Debug.Log (System.DateTime.Now);
-//			GameObject skylight = GameObject.FindGameObjectWithTag("Sunlight");
-//			if(skylight != null) {
-//				SkylightFade s = skylight.GetComponent<SkylightFade>();
-//				if(s != null) s.updateSkylightColor();
-//		}
+			Debug.Log(finalTemp);
 			//Adjust Max Sun
 			GameObject lightLevels = GameObject.FindGameObjectWithTag("LightLevels");
 			if(lightLevels != null) lightLevels.GetComponent<LightLevels>().upperBound = lightMax+2;

@@ -35,7 +35,7 @@ public class TreasureChest : MonoBehaviour {
 	
 	void OnTriggerStay(Collider other) {
 		if (other.tag == "Player") {
-			if(Input.GetButtonDown("Charge")) {
+			if(Input.GetButtonDown("Charge") && !other.gameObject.GetComponent<PlayerContainer>().performingAction) {
 				animator.SetBool (hash.unlockedBool, true);
 				if(!itemSpawned) data.nearInteractable = true;
 				//audio.Play();

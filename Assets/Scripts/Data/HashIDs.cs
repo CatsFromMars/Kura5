@@ -19,6 +19,8 @@ public class HashIDs : MonoBehaviour {
 	public int comboState3;
 	public int blockState;
 	public int targetState;
+	public int pullIdleState;
+	public int pullingState;
 
 	public int stepState;
 	public int leapState;
@@ -53,6 +55,7 @@ public class HashIDs : MonoBehaviour {
 	public int slashTrigger2;
 	public int slashTrigger3;
 	public int magicBool;
+	public int pullingBool;
 
 	public int walkingState;
 	public int walkState;
@@ -128,6 +131,8 @@ public class HashIDs : MonoBehaviour {
 		blockState = Animator.StringToHash("Targeting.Block");
 		targetState = Animator.StringToHash("Targeting.Targeting");
 		chargeState = Animator.StringToHash ("Charging.Charging");
+		pullIdleState = Animator.StringToHash("Base Layer.PullIdle");
+		pullingState = Animator.StringToHash("Base Layer.Pull");
 
 		pauseState = Animator.StringToHash("Base Layer.Pause");
 		stepState = Animator.StringToHash("Base Layer.Step");
@@ -163,6 +168,7 @@ public class HashIDs : MonoBehaviour {
 		slashTrigger3 = Animator.StringToHash("ComboTrigger3");
 		magicBool = Animator.StringToHash("Magic");
 		blockTrigger = Animator.StringToHash("Block");
+		pullingBool = Animator.StringToHash("Pulling");
 
 		//STATES FOR ENEMIES
 		walkState = Animator.StringToHash("Base Layer.Walk");

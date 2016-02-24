@@ -7,6 +7,7 @@ public class EmilShadow : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		this.transform.position = bone.transform.position;
+		Vector3 pos = new Vector3 (bone.transform.position.x, this.transform.position.y, bone.transform.position.z);
+		this.transform.position = pos;
 	}
 }

@@ -14,8 +14,10 @@ public class Menu : MonoBehaviour {
 	public Color nightColor;
 	public SceneTransition fader;
 	private bool isNightTime = false;
+	private bool changingScene = false;
 
 	void Awake() {
+		Time.timeScale = 1;
 		int percent = GenericPattern.getPercent();
 		if(percent >= 100 || percent <= 0) isNightTime = true;
 		else isNightTime = false;
@@ -40,11 +42,20 @@ public class Menu : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetButtonDown("Inventory")) {
+		if (Input.GetButtonDown("Inventory") && Time.timeScale!=0 && !changingScene) {
+			changingScene = true;
 			fader.gotoScene("LoadingScene");
 
 		}
+		if(!audio.isPlaying && !changingScene) {
+			changingScene = true;
+			fader.gotoScene("MenuTutorial1");
+		}
 	
+	}
+
+	void playMusic() {
+		audio.Play ();
 	}
 
 	void enableText() {

@@ -26,11 +26,11 @@ public class BokNew : PatrolEnemy {
 			manageMovement();
 
 			//Swap element according to weather
-			if(!alreadyChangedElement && changesElementWithWeather && !selfOnScreen()) {
-				swapElement ();
-				alreadyChangedElement = true;
-			}
-			else if (selfOnScreen()) alreadyChangedElement = false;
+//			if(!alreadyChangedElement && changesElementWithWeather && !selfOnScreen()) {
+//				swapElement();
+//				alreadyChangedElement = true;
+//			}
+//			else if (selfOnScreen()) alreadyChangedElement = false;
 		}
 	}
 

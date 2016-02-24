@@ -19,9 +19,9 @@ public class Attack {
 		int damage = baseDamage;
 		if (element.name == self.opposite) {
 			superEffective = true;
-			damage = Mathf.RoundToInt(damage*1.5f);
+			damage = Mathf.RoundToInt(damage*1.2f);
 		}
-		else if (element.name == self.name) damage = Mathf.RoundToInt(damage/1.5f);
+		else if (element.name == self.name) damage = Mathf.RoundToInt(damage/2f);
 		damage = Mathf.RoundToInt(damage * multiplier);
 		return damage;
 	}

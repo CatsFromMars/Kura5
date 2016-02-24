@@ -32,22 +32,20 @@ public class LightLevels : MonoBehaviour {
 	void Awake() {
 		//Get LightMax From WeatherSync
 		upperBound = w.lightMax;
-		lightSource = GameObject.FindGameObjectWithTag("Sunlight");
-		shadowSource = GameObject.FindGameObjectWithTag("Shadow");
 
 	}
 
 	void OnLevelWasLoaded(int level) {
 		upperBound = w.lightMax;
-		lightSource = GameObject.FindGameObjectWithTag("Sunlight");
-		shadowSource = GameObject.FindGameObjectWithTag("Shadow");
+		sunlight = 0;
+		darkness = 0;
 	}
 
 	void Update() {
 		//if(lightSource!=null && shadowSource!=null) calc();
 	}
 
-	void OnTriggerEnter(Collider other) {
+	void OnTriggerStay(Collider other) {
 		if (other.tag == "Sunlight") {
 			darkness = 0;
 			//if(w.isNightTime == false) sunlight = w.lightMax;
@@ -77,24 +75,5 @@ public class LightLevels : MonoBehaviour {
 			return w.lightMax;
 		}
 		else return 0;
-	}
-
-	void calc() {
-
-		distanceSun = Vector3.Distance(lightSource.transform.position, transform.position);
-		distanceDark = Vector3.Distance(shadowSource.transform.position, transform.position);
-		if(distanceDark <= radiusShadow) {
-			sunlight = 0;
-			darkness = w.lightMax;
-		}
-		else if (distanceSun <= radius) {
-			darkness = 0;
-			//if(w.isNightTime == false) sunlight = w.lightMax;
-			sunlight = w.lightMax;
-		}
-		else {
-			sunlight = 0;
-			darkness = 0;
-		}
 	}
 }

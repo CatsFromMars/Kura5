@@ -61,8 +61,8 @@ GameObject:
   - 4: {fileID: 400006}
   - 198: {fileID: 19800006}
   - 199: {fileID: 19900006}
-  - 114: {fileID: 11400000}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11407314}
   m_Layer: 5
   m_Name: Pickup
   m_TagString: Untagged
@@ -219,7 +219,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &11400000
+--- !u!114 &11407314
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -227,10 +227,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fd2e8874f60266498a388d7229a1bac, type: 3}
+  m_Script: {fileID: 11500000, guid: 1eaf84db0cecc56498d7b04bf2d64fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnlyDeactivate: 0
+  destroyTime: 50
+  effect: {fileID: 0}
+  effectDelta: 5
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

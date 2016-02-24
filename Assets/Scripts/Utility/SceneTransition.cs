@@ -8,6 +8,10 @@ public class SceneTransition : MonoBehaviour
 	public GameData data;
 	public Transform playerContainer;
 	private IEnumerator coroutine;
+	public GameObject loadingIcon;
+	private PlayerContainer player;
+	private GameObject playerGO;
+
 
 	void Awake ()
 	{
@@ -19,31 +23,38 @@ public class SceneTransition : MonoBehaviour
 	void FadeToClear ()
 	{
 		// Lerp the colour of the texture between itself and transparent.
-		ren.color = Color.Lerp(ren.color, Color.clear, fadeSpeed * Time.deltaTime);
+		ren.color = Color.Lerp(ren.color, Color.clear, fadeSpeed * Time.unscaledDeltaTime);
 	}
 	
 	
 	void FadeToBlack ()
 	{
 		// Lerp the colour of the texture between itself and black.
-		ren.color = Color.Lerp(ren.color, Color.black, fadeSpeed * Time.deltaTime);
+		ren.color = Color.Lerp(ren.color, Color.black, fadeSpeed * Time.unscaledDeltaTime);
 	}
 
-	IEnumerator EndScene (string scene)
+	public IEnumerator EndScene (string scene, bool stopTime=true)
 	{
+		if(stopTime) Time.timeScale = 0;
+		playerGO = GameObject.FindWithTag ("Player");
+		if(playerGO!=null){
+			player = playerGO.GetComponent<PlayerContainer> ();
+			player.playerInControl = false;
+		}
 		markCheckpoint (scene);
 
 		// Make sure the texture is enabled.
 		ren.enabled = true;
-		
+		if(loadingIcon!=null) loadingIcon.SetActive (true);
 		// Start fading towards black.
 		while(ren.color.a < 0.95f) { 
 			yield return null;
 			FadeToBlack();
 		}
 
-		Application.LoadLevel(scene); //Load scene
-		yield return new WaitForSeconds (0.3f);
+		AsyncOperation async = Application.LoadLevelAsync(scene); //Load scene
+		yield return async;
+		if(loadingIcon!=null) loadingIcon.SetActive (false);
 		// If the texture is almost clear...
 		while(ren.color.a > 0.001f) {
 			FadeToClear();
@@ -51,11 +62,13 @@ public class SceneTransition : MonoBehaviour
 		}
 		ren.color = Color.clear;
 		ren.enabled = false;
+		if(playerGO!=null) player.playerInControl = true;
+		Time.timeScale = 1;
 	}
 
-	public void gotoScene(string scene) {
+	public void gotoScene(string scene, bool stopTime=true) {
 		if(coroutine != null) StopCoroutine (coroutine);
-		coroutine = EndScene (scene);
+		coroutine = EndScene (scene, stopTime);
 		StartCoroutine (coroutine);
 	}
 

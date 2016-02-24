@@ -11,7 +11,7 @@ AnimatorController:
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
-    m_StateMachine: {fileID: 110792220}
+    m_StateMachine: {fileID: 110761356}
     m_Mask: {fileID: 0}
     m_BlendingMode: 0
     m_SyncedLayerIndex: -1
@@ -20,79 +20,31 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &110215704
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Talking
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Motions:
-  - {fileID: 7400000, guid: 7446c8aea9a32d243a119846100090d2, type: 3}
-  m_ParentStateMachine: {fileID: 110792220}
-  m_Position: {x: 276, y: 120, z: 0}
-  m_IKOnFeet: 0
-  m_Mirror: 0
-  m_Tag: 
---- !u!1102 &110279490
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Appear
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Motions:
-  - {fileID: 7400010, guid: 7446c8aea9a32d243a119846100090d2, type: 3}
-  m_ParentStateMachine: {fileID: 110792220}
-  m_Position: {x: 60, y: 132, z: 0}
-  m_IKOnFeet: 0
-  m_Mirror: 0
-  m_Tag: 
---- !u!1102 &110282700
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Laugh
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Motions:
-  - {fileID: 7400008, guid: 7446c8aea9a32d243a119846100090d2, type: 3}
-  m_ParentStateMachine: {fileID: 110792220}
-  m_Position: {x: 324, y: 204, z: 0}
-  m_IKOnFeet: 0
-  m_Mirror: 0
-  m_Tag: 
---- !u!1102 &110292220
+--- !u!1102 &110261356
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: TiltIdle
-  m_Speed: 1
+  m_Speed: .699999988
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400002, guid: 7446c8aea9a32d243a119846100090d2, type: 3}
-  m_ParentStateMachine: {fileID: 110792220}
+  - {fileID: 7400000, guid: e37a5ea7054a5a6429f6032067b1ea3a, type: 2}
+  m_ParentStateMachine: {fileID: 110761356}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1107 &110792220
+--- !u!1107 &110761356
 StateMachine:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
-  m_DefaultState: {fileID: 110282700}
+  m_DefaultState: {fileID: 110261356}
   m_States:
-  - {fileID: 110292220}
-  - {fileID: 110279490}
-  - {fileID: 110215704}
-  - {fileID: 110282700}
+  - {fileID: 110261356}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions: {}

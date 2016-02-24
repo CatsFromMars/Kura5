@@ -38,15 +38,16 @@ public class Talk : MonoBehaviour {
 	}
 
 	void Update() {
-		bool push = Time.timeScale != 0 && (Input.GetButtonDown("Charge") || Input.GetButtonDown("Confirm"));
+		bool push = (Input.GetButtonDown("Charge") || Input.GetButtonDown("Confirm"));
 		bool b = false;
-		if(p != null && inRange) b = p.currentAnim (p.hash.idleState) || p.currentAnim (p.hash.runningState);
-		if(!isTalking && npcObject && push && inRange && b) {
+		if(p != null && inRange) b = !p.performingAction;
+		if(Time.timeScale != 0 && !isTalking && npcObject && push && inRange && b) {
 			Speak();
 		}
 	}
 
 	void Speak() {
+		isTalking = true;
 		otenkoAppear = true;
 		text = textLoops [textindex];
 		StartCoroutine (SpeakCoroutine());
@@ -60,7 +61,6 @@ public class Talk : MonoBehaviour {
 			Vector3 pos = transform.position + this.transform.forward*4f;
 			yield return StartCoroutine(player.characterWalkTo(pos, this.transform));
 		}
-		isTalking = true;
 		yield return StartCoroutine(DisplayDialogue.Speak(text));
 		isTalking = false;
 		otenkoAppear = false;

@@ -16,30 +16,36 @@ public class DamageCalculator : MonoBehaviour {
 
 	float calculateMultipler(string element) {
 		if(element == "Null") {
-			return 1;
+			return 0.8f;
 		}
 		else if (element == "Dark") {
 			if(w.isNightTime && w.lightMax >= 5) return 1.2f;
+			else if(w.isNightTime==false && w.lightMax >= 5) return 0.8f;
 			else return 1;
 		}
 		else if (element == "Sol") {
 			if(w.isNightTime==false && w.lightMax >= 5) return 1.2f;
+			else if(w.isNightTime && w.lightMax >= 5) return 0.8f;
 			else return 1;
 		}
 		else if (element == "Fire") {
 			if(w.finalTemp >= w.hotTemp) return 1.2f;
+			else if(w.finalTemp <= w.coldTemp) return 0.8f;
 			else return 1;
 		}
 		else if (element == "Frost") {
 			if(w.finalTemp <= w.coldTemp) return 1.2f;
+			else if(w.finalTemp >= w.hotTemp) return 0.8f;
 			else return 1;
 		}
 		else if (element == "Cloud") {
 			if(w.cloudinessPercentage >= w.cloudy) return 1.2f;
+			else if(w.humidityPercentage >= w.humid) return 0.8f;
 			else return 1;
 		}
 		else if (element == "Earth") {
 			if(w.humidityPercentage >= w.humid) return 1.2f;
+			else if(w.cloudinessPercentage >= w.cloudy) return 0.8f;
 			else return 1;
 		}
 		else if (element == "Luna") {

@@ -1,0 +1,351 @@
+fileFormatVersion: 2
+guid: a051ed0d48802c94285421d94426a7e4
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Armature
+    100002: BFlankL
+    100004: BFlankR
+    100006: BFootL
+    100008: BFootR
+    100010: BShinL
+    100012: BShinR
+    100014: Chest
+    100016: Cube
+    100018: EarL
+    100020: EarR
+    100022: FlankL
+    100024: FlankR
+    100026: FootL
+    100028: FootR
+    100030: Head
+    100032: Hip
+    100034: LowerJaw
+    100036: ShinL
+    100038: ShinR
+    100040: Spine
+    100042: Tail1
+    100044: Tail2
+    100046: Tail3
+    100048: UpperJaw
+    100050: //RootNode
+    400000: Armature
+    400002: BFlankL
+    400004: BFlankR
+    400006: BFootL
+    400008: BFootR
+    400010: BShinL
+    400012: BShinR
+    400014: Chest
+    400016: Cube
+    400018: EarL
+    400020: EarR
+    400022: FlankL
+    400024: FlankR
+    400026: FootL
+    400028: FootR
+    400030: Head
+    400032: Hip
+    400034: LowerJaw
+    400036: ShinL
+    400038: ShinR
+    400040: Spine
+    400042: Tail1
+    400044: Tail2
+    400046: Tail3
+    400048: UpperJaw
+    400050: //RootNode
+    4300000: Cube
+    7400000: Default Take
+    7400002: ArmatureAction
+    7400004: Default Take0
+    9500000: //RootNode
+    13700000: Cube
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 174
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/BFlankL
+        weight: 1
+      - path: Armature/Hip/BFlankL/BShinL
+        weight: 1
+      - path: Armature/Hip/BFlankL/BShinL/BFootL
+        weight: 1
+      - path: Armature/Hip/BFlankR
+        weight: 1
+      - path: Armature/Hip/BFlankR/BShinR
+        weight: 1
+      - path: Armature/Hip/BFlankR/BShinR/BFootR
+        weight: 1
+      - path: Armature/Hip/Spine
+        weight: 1
+      - path: Armature/Hip/Spine/Chest
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankL/ShinL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankL/ShinL/FootL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankR/ShinR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankR/ShinR/FootR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/EarL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/EarR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/LowerJaw
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/UpperJaw
+        weight: 1
+      - path: Armature/Tail1
+        weight: 1
+      - path: Armature/Tail1/Tail2
+        weight: 1
+      - path: Armature/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: ArmatureAction
+      takeName: ArmatureAction
+      firstFrame: 0
+      lastFrame: 174
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/BFlankL
+        weight: 1
+      - path: Armature/Hip/BFlankL/BShinL
+        weight: 1
+      - path: Armature/Hip/BFlankL/BShinL/BFootL
+        weight: 1
+      - path: Armature/Hip/BFlankR
+        weight: 1
+      - path: Armature/Hip/BFlankR/BShinR
+        weight: 1
+      - path: Armature/Hip/BFlankR/BShinR/BFootR
+        weight: 1
+      - path: Armature/Hip/Spine
+        weight: 1
+      - path: Armature/Hip/Spine/Chest
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankL/ShinL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankL/ShinL/FootL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankR/ShinR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankR/ShinR/FootR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/EarL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/EarR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/LowerJaw
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/UpperJaw
+        weight: 1
+      - path: Armature/Tail1
+        weight: 1
+      - path: Armature/Tail1/Tail2
+        weight: 1
+      - path: Armature/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Default Take0
+      takeName: Default Take
+      firstFrame: 173.800003
+      lastFrame: 174
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/BFlankL
+        weight: 1
+      - path: Armature/Hip/BFlankL/BShinL
+        weight: 1
+      - path: Armature/Hip/BFlankL/BShinL/BFootL
+        weight: 1
+      - path: Armature/Hip/BFlankR
+        weight: 1
+      - path: Armature/Hip/BFlankR/BShinR
+        weight: 1
+      - path: Armature/Hip/BFlankR/BShinR/BFootR
+        weight: 1
+      - path: Armature/Hip/Spine
+        weight: 1
+      - path: Armature/Hip/Spine/Chest
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankL/ShinL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankL/ShinL/FootL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankR/ShinR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankR/ShinR/FootR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/EarL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/EarR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/LowerJaw
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/UpperJaw
+        weight: 1
+      - path: Armature/Tail1
+        weight: 1
+      - path: Armature/Tail1/Tail2
+        weight: 1
+      - path: Armature/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .699999988
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

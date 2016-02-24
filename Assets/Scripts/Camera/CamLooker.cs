@@ -11,6 +11,9 @@ public class CamLooker : MonoBehaviour {
 
 	}
 
+	void OnLevelWasLoaded(int level) {
+	}
+
 	public void zoomToTarget(Transform target, float speed=8f) {
 		if(coroutine != null) StopCoroutine (coroutine);
 		coroutine = lookAtTarget (target, speed);

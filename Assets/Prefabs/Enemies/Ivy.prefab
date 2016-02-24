@@ -528,7 +528,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 5, z: 1}
+  m_Size: {x: 6, y: 5, z: 1}
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!82 &8214554
 AudioSource:
@@ -740,11 +740,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonLoot: {fileID: 0}
   rareLoot: {fileID: 0}
-  maxLife: 20
-  currentLife: 20
+  maxLife: 10
+  currentLife: 10
   strength: 5
   type: 3
   element: Sol
+  changesElementWithWeather: 0
+  originalElement: 
+  selfWeaponData: {fileID: 0}
   lightLevels: {fileID: 0}
   damageCalculator: {fileID: 0}
   stunned: 0
@@ -752,6 +755,7 @@ MonoBehaviour:
   body: {fileID: 0}
   shadowStunEffect: {fileID: 0}
   shadowStunParticles: {fileID: 0}
+  smoke: {fileID: 0}
   hitWithDarkAttack: 0
 --- !u!119 &11973592
 Projector:

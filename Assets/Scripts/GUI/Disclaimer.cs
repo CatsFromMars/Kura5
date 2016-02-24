@@ -10,6 +10,6 @@ public class Disclaimer : MonoBehaviour {
 
 	IEnumerator scene() {
 		yield return new WaitForSeconds (2);
-		fader.gotoScene("MenuScene");
+		fader.gotoScene("MenuScene", false);
 	}
 }

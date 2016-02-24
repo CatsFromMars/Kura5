@@ -30,6 +30,7 @@ public class Ivy : EnemyClass {
 
 		GetPlayerDistance ();
 		DecideAttack ();
+		if(hitWithDarkAttack) currentLife=0;
 	}
 
 	void DecideAttack() {
@@ -60,7 +61,9 @@ public class Ivy : EnemyClass {
 	}
 
 	void checkForDeath() {
-		if(hitWithDarkAttack) killSelf();
+		if(hitWithDarkAttack) {
+			killSelf();
+		}
 		else Regenerate();
 	}
 

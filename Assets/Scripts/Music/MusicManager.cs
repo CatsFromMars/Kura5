@@ -5,9 +5,21 @@ public class MusicManager : MonoBehaviour {
 
 	public AudioSource src;
 	public AudioClip previousMusic;
+	public AudioClip dayMusic;
+	public AudioClip nightMusic;
+	public WeatherSync w;
 
 	void Awake() {
 		src = GetComponent<AudioSource>();
+		StartCoroutine(load());
+	}
+
+	IEnumerator load() {
+		yield return w.conditionName != "" && w.status != "";
+		yield return new WaitForSeconds(0.5f);
+		if(w.isNightTime) src.clip = nightMusic;
+		else src.clip = dayMusic;
+		src.Play ();
 		previousMusic = src.clip;
 	}
 

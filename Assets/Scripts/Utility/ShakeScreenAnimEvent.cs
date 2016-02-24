@@ -12,4 +12,8 @@ public class ShakeScreenAnimEvent : MonoBehaviour {
 		//non static version
 		Camera.main.GetComponent<Animator>().SetTrigger (Animator.StringToHash("Shake"));
 	}
+
+	public static void LittleShake() {
+		Camera.main.GetComponent<Animator>().SetTrigger (Animator.StringToHash("LittleShake"));
+	}
 }

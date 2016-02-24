@@ -21,10 +21,13 @@ public class EmilController : PlayerContainer {
 	private float burnRate = 1f;
 	private float burnCounter = 0f;
 	private float burnCounterTime = 20f;
+	private float absorbRate = 1f;
+	private float absorbCounter = 0f;
+	private float absorbCounterTime = 150f;
 
 	private float originalAgentSpeed;
 	private float originalStoppingDistance;
-	private float dashSpeed = 20f;
+	private float dashSpeed = 5f;
 	private float dashStop = 6f;
 
 	//"Sparkle" variables
@@ -32,8 +35,10 @@ public class EmilController : PlayerContainer {
 	public ParticleSystem darkMatter;
 	public Animator smile;
 	private int slashCounter = 0;
-	private int smileThreshold = 15;
+	private int smileThreshold = 21;
 	private bool darkCharging = false;
+	public ParticleSystem darkParticles;
+	public GameObject darkenedFace;
 	
 	void Start() {
 		changeWeaponColor ();
@@ -50,19 +55,26 @@ public class EmilController : PlayerContainer {
 			handleParticeEffects();
 			handleBurning();
 			//handleCape();
+			absorb(1);
 
 			if(slashCounter >= smileThreshold) {
 				smile.SetTrigger(Animator.StringToHash("Smile"));
+			}
+			if(slashCounter >= smileThreshold+3) {
+				if(smile.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base Layer.Smile")) {
+					darkenedFace.SetActive(true);
+				}
 				slashCounter = 0;
+				smile.ResetTrigger(Animator.StringToHash("Smile"));
 			}
 		}
 	}
 
-	void handleCape() {
-		bool capeWings = currentAnim (hash.rollState) || currentAnim(hash.hurtState);
-		if(capeWings) toggleBlendShape(75);
-		else if(mesh.GetBlendShapeWeight(0) >= 75) toggleBlendShape(0);
-	}
+//	void handleCape() {
+//		bool capeWings = currentAnim (hash.rollState) || currentAnim(hash.hurtState);
+//		if(capeWings) toggleBlendShape(75);
+//		else if(mesh.GetBlendShapeWeight(0) >= 75) toggleBlendShape(0);
+//	}
 
 	void handleBurning() {
 		if(lightLevels.sunlight > 0 && !lightLevels.w.isNightTime) {
@@ -80,9 +92,18 @@ public class EmilController : PlayerContainer {
 			burnCounter = 0f;
 		}
 		
-		if(gameData.emilCurrentLife <= 0) {
+		if(gameData.emilCurrentLife <= 0 && !dead) {
 			playVoiceClip(dieVoices[Random.Range(0, dieVoices.Length)]);
 			Die(); //KILL PLAYER IF GAME OVER.	
+		}
+	}
+
+	void absorb(float rate) {
+		if(lightLevels.darkness > 0) absorbCounter+=lightLevels.darkness;
+		else absorbCounter = 0;
+		if(absorbCounter>absorbCounterTime) {
+			gameData.emilCurrentEnergy += rate;
+			absorbCounter = 0;
 		}
 	}
 
@@ -110,11 +131,13 @@ public class EmilController : PlayerContainer {
 					agent.speed = dashSpeed;
 					agent.stoppingDistance = dashStop;
 					agent.SetDestination(currentTarget.transform.position);
+					//toggleBlendShape(100);
 				}
 				else {
 					agent.ResetPath();
 					agent.speed = originalAgentSpeed;
 					agent.stoppingDistance = originalStoppingDistance;
+					//toggleBlendShape(0);
 				}
 			}
 			else { 

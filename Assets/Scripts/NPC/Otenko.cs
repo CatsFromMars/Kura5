@@ -14,11 +14,11 @@ public class Otenko : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		a.SetBool (Animator.StringToHash ("Appeared"), talk.otenkoAppear);
+		if(talk!=null) a.SetBool (Animator.StringToHash ("Appeared"), talk.otenkoAppear);
 	}
 
 	public void playParticles() {
-		p.Play();
+		if(p!=null)p.Play();
 	}
 
 	public void randomOtenko() {

@@ -128,6 +128,7 @@ public class EnemyClass : MonoBehaviour {
 		if(selfWeaponData == null && changesElementWithWeather) Debug.LogError("WeaponData on enemy body not referenced!");
 		originalElement = element;
 
+		if(changesElementWithWeather) swapElement();
 	}
 
 	protected void storeColors() {
@@ -146,7 +147,7 @@ public class EnemyClass : MonoBehaviour {
 			superEffectiveSmoke(element, bullet.element);
 		}
 
-		if (collision.collider.gameObject.tag == "EnemyWeapon") {
+		if (collision.collider.gameObject.tag == "EnemyWeapon" && collision.collider.gameObject.name!="HitBox") {
 			WeaponData weapon = collision.collider.gameObject.GetComponent<WeaponData>();
 			int dmg = damageCalculator.getDamage(weapon.element, element, weapon.damage, 1);
 			//Get stunned from friendly fire
@@ -321,7 +322,7 @@ public class EnemyClass : MonoBehaviour {
 		audio.pitch = pitch;
 	}
 
-	protected void makeSound(AudioClip clip) {
+	public void makeSound(AudioClip clip) {
 		//ANIMATION EVENTS FOR ALL THINGS THAT NEED SOUND
 		if(audio.enabled) {
 			audio.clip = clip;
@@ -354,7 +355,12 @@ public class EnemyClass : MonoBehaviour {
 		//If no weather extremes, swap back to default
 		bool changed = false;
 
-		if (lightLevels.w.finalTemp >= lightLevels.w.hotTemp) {
+		if(lightLevels.w.isNightTime && lightLevels.w.lightMax > 5) {
+			element = "Dark";
+			selfWeaponData.element = "Dark";
+			changed = true;
+		}
+		else if (lightLevels.w.finalTemp >= lightLevels.w.hotTemp) {
 			element = "Fire";
 			selfWeaponData.element = "Fire";
 			changed = true;
@@ -391,7 +397,7 @@ public class EnemyClass : MonoBehaviour {
 
 	protected bool selfOnScreen() {
 		Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position);
-		if (viewPos.x >= 0 && viewPos.x <= 3 && viewPos.y >= 0 && viewPos.y <= 3 && viewPos.z >= 0)
+		if (viewPos.x >= 0 && viewPos.x <= 4 && viewPos.y >= 0 && viewPos.y <= 4 && viewPos.z >= 0)
 			return true;
 		else return false;
 	}
