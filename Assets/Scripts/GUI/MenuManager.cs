@@ -2,43 +2,71 @@
 using System.Collections;
 
 public class MenuManager : MonoBehaviour {
-	public Transform inventoryMenu;
-	public Animator menuFade;
-	private bool timeFrozen = false;
-	private PlayerContainer player;
-	public AudioClip chirp;
-	
+	public Transform mainMenu;
+	public Transform[] menus;
+	private int currentIndex = 0;
+	private bool menuOpen = false;
+	public bool performingAction = false; //can't swap menus in the middle of an action
+	//Sounds
+	public Transform HUD;
+	public AudioClip open;
+	public AudioClip close;
+	public AudioClip swap;
+
+
 	// Update is called once per frame
 	void Update () {
-		bool canOpenMenu = Time.timeScale != 0 && inventoryMenu.active == false;
-		bool canCloseMenu = Time.timeScale == 0 && inventoryMenu.active == true;
-		if((canOpenMenu||canCloseMenu) && Input.GetButtonDown("Inventory")) {
-			getPlayer();
-			//menuFade.SetTrigger(Animator.StringToHash("FadeOut"));
-			//menuFade.SetTrigger(Animator.StringToHash("FadeIn"));
-			inventoryMenu.active = !inventoryMenu.active;
-			timeFrozen = !timeFrozen;
-			player.playerInControl = !inventoryMenu.active;
-			if(inventoryMenu.active) makeSound();
-
-			if(timeFrozen) Time.timeScale = 0f;
-			else Time.timeScale = 1f;
+		if(Input.GetButtonDown("Inventory") && Time.timeScale != 0) {
+			if(!menuOpen) openMenu();
 		}
-		//else if(Input.GetButtonDown("Attack")) { //Basically the B Button
-		//	inventoryMenu.active = false;
-		//	timeFrozen = false;
-		//	player.playerInControl = true;
-		//}
+		if (Input.GetButtonDown ("Target") && !performingAction) {
+			if(menuOpen) {
+				currentIndex = (currentIndex+1)%menus.Length;
+				swapToMenu(currentIndex);
+			}
+		}
+		else if (Input.GetButtonDown ("Swap") && !performingAction) {
+			if(menuOpen) {
+				currentIndex = (currentIndex-1)%menus.Length;
+				if(currentIndex == -1) currentIndex = menus.Length-1;
+				swapToMenu(currentIndex);
+			}
+		}
 	}
 
-	void getPlayer() {
-		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerContainer>();
+	void openMenu() {
+		HUD.gameObject.SetActive (false);
+		Time.timeScale = 0;
+		closeAll();
+		makeSound (open);
+		menus [0].gameObject.SetActive (true);
+		menuOpen = true;
 	}
 
-	public void makeSound() {
+	void swapToMenu(int index) {
+		closeAll();
+		makeSound (swap);
+		menus [index].gameObject.SetActive (true);
+	}
+
+	void closeAll() {
+		foreach (Transform menu in menus) {
+			menu.gameObject.SetActive(false);
+		}
+	}
+
+	public void closeMenu() {
+		//make noise
+		HUD.gameObject.SetActive (true);
+		Time.timeScale = 1;
+		makeSound(close);
+		closeAll();
+		menuOpen = false;
+	}
+
+	public void makeSound(AudioClip clip) {
 		//ANIMATION EVENTS FOR ALL THINGS THAT NEED SOUND
-		AudioSource a = inventoryMenu.GetComponent<AudioSource>();
-		a.clip = chirp;
-		a.Play();
+		audio.clip = clip;
+		audio.Play();
 	}
 }

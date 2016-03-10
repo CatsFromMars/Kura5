@@ -13,7 +13,7 @@ public class Loader : MonoBehaviour {
 
 	IEnumerator load() {
 		Time.timeScale = 0;
-		yield return w.conditionName != "" && w.status != "";
+		yield return w.conditionName != "";
 		yield return CoroutineUtil.WaitForRealSeconds (2);
 		fader.gotoScene (initialLevel);
 	}

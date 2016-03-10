@@ -10,6 +10,8 @@ public class PickupItem : MonoBehaviour {
 	public Transform container;
 	public Animator itemAnimator;
 	private bool collected = false;
+	public enum itemKind {CONSUMABLE, KEY, LENS, WEAPON};
+	public itemKind type = itemKind.CONSUMABLE;
 
 	void Awake() {
 		global = GameObject.FindGameObjectWithTag("GameController");
@@ -28,7 +30,10 @@ public class PickupItem : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if(other.tag == "Player") {
 			if(!collected) {
-				if(inventory.AddConsumable(itemID) != false) {
+				bool itemAdded = false;
+				if(type == itemKind.CONSUMABLE) itemAdded = inventory.AddConsumable(itemID);
+				else if(type == itemKind.KEY)  itemAdded = inventory.AddKeyItem(itemID);
+				if(itemAdded != false) {
 					spawnInnerItem ();
 					itemAnimator.SetTrigger (Animator.StringToHash("Spawn"));
 					collected = true;

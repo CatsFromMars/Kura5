@@ -67,6 +67,8 @@ public class EmilController : PlayerContainer {
 				slashCounter = 0;
 				smile.ResetTrigger(Animator.StringToHash("Smile"));
 			}
+
+			changeWeaponColor();
 		}
 	}
 
@@ -77,7 +79,7 @@ public class EmilController : PlayerContainer {
 //	}
 
 	void handleBurning() {
-		if(lightLevels.sunlight > 0 && !lightLevels.w.isNightTime) {
+		if(lightLevels.sunlight > 0 && !lightLevels.w.isNightTime && !inCoffin) {
 			burnCounterTime = 100 * 1/lightLevels.sunlight;
 			takeSunDamage(burnRate);
 			if(!smoke.isPlaying) smoke.Play();
@@ -86,7 +88,7 @@ public class EmilController : PlayerContainer {
 	}
 
 	void takeSunDamage(float rate) {
-		burnCounter++;
+		burnCounter += Time.timeScale;
 		if(burnCounter >= burnCounterTime) {
 			gameData.emilCurrentLife -= rate;
 			burnCounter = 0f;
@@ -176,10 +178,9 @@ public class EmilController : PlayerContainer {
 
 	void Slash() {
 
-		if(currentAnim(hash.comboState1)) {
+		if(currentAnim(hash.comboState1) && gameData.emilCurrentElem != GameData.elementalProperty.Null) {
 			if (gameData.emilCurrentEnergy > 5) {
 				gameData.emilCurrentEnergy -= 5;
-				gameData.emilCurrentElem = GameData.elementalProperty.Dark;
 			}
 			else gameData.emilCurrentElem = GameData.elementalProperty.Null;
 		}

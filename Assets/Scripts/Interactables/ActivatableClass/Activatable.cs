@@ -7,6 +7,7 @@ public class Activatable : MonoBehaviour{
 	public bool activated = false;
 	private Animator animator;
 	private BoxCollider col;
+	public bool disableCollider = true;
 	void Awake() {
 		col = GetComponent<BoxCollider>();
 		animator = GetComponent<Animator>();
@@ -18,9 +19,9 @@ public class Activatable : MonoBehaviour{
 			animator.SetBool ("Activated", true);
 			animator.SetBool ("Deactivated", false);
 		}
-		if(col != null) col.enabled = true;
+		if(col != null && disableCollider) col.enabled = true;
+		if(!activated && audio != null) audio.Play();
 		activated = true;
-		Debug.Log ("ACTIVATED!");
 	}
 
 	public void Deactivate() {
@@ -29,7 +30,7 @@ public class Activatable : MonoBehaviour{
 			animator.SetBool ("Deactivated", true);
 			animator.SetBool ("Activated", false);
 		}
-		if(col != null) col.enabled = false;
+		if(col != null && disableCollider) col.enabled = false;
 		activated = false;
 	}
 }

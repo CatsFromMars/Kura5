@@ -22,6 +22,14 @@ public class Trap : MonoBehaviour {
 	private GameObject canvas;
 	GameData data;
 
+	//Stealth variables
+	private PatrolEnemy[] ais;
+	public enum trapType {COMBAT, STEALTH}
+	public trapType type = trapType.COMBAT;
+	public enum stealthType {TREASURE, SWITCH}
+	public stealthType stealthMethod = stealthType.TREASURE;
+	private TreasureChest[] chests;
+
 	// Use this for initialization
 	void Awake() {
 		//player = GameObject.FindGameObjectWithTag("PlayerSwapper").transform;
@@ -37,10 +45,28 @@ public class Trap : MonoBehaviour {
 		flags.AddTrapFlag();
 		trapCleared = flags.CheckTrapFlag();
 		canvas = GameObject.Find ("HUD").gameObject;
+
+		if(type == trapType.STEALTH) stealthPrep();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if(type == trapType.STEALTH) {
+			if(checkForStealthGameOver()) {
+				//Do coroutine
+				//Access data, call game over from here.
+				Debug.Log("DEAD");
+			}
+			if(checkForStealthVictory()) {
+				deactivateGates();
+				music.stopMusic();
+				audio.Play();
+				music.changeMusic(music.previousMusic, 5f);
+				trapCleared = true;
+				flags.SetTrapToCleared();
+			}
+		}
 
 		if(numberAlive > 0) checkEnemyDeath();
 
@@ -53,6 +79,48 @@ public class Trap : MonoBehaviour {
 			flags.SetTrapToCleared();
 		}
 
+	}
+
+	void stealthPrep() {
+		//Get treasure chests if applicable
+		if (stealthMethod == stealthType.TREASURE) {
+			GameObject[] chestObjects = GameObject.FindGameObjectsWithTag("Treasure");
+			chests = new TreasureChest[chestObjects.Length];
+			int j = 0;
+			foreach(GameObject c in chestObjects) {
+				chests[j] = c.GetComponent<TreasureChest>();
+				j++;
+			}
+		}
+
+		//Get AIs from each enemy
+		ais = new PatrolEnemy[enemies.Length];
+		int i = 0;
+		foreach (Transform e in enemies) {
+			PatrolEnemy p = null;
+			if(e!=null) p = e.GetComponent<PatrolEnemy>();
+			if(p!=null) ais[i] = p;
+			i++;
+		}
+	}
+
+	bool checkForStealthGameOver() {
+		foreach (PatrolEnemy ai in ais) {
+			if(ai!=null) {
+				if(ai.hasPlayerBeenSpotted()) return true;
+			}
+		}
+		return false;
+	}
+
+	bool checkForStealthVictory() {
+		if (stealthMethod == stealthType.TREASURE) {
+			foreach(TreasureChest c in chests) {
+				if(c.chestOpened() == false) return false;
+			}
+			return true;
+		}
+		return false;
 	}
 
 	bool trapPreDisarmed() {

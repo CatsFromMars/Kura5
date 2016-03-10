@@ -36,6 +36,7 @@ public class PlayerContainer : MonoBehaviour {
 	public bool parrying = false;
 	public bool isIndoors = false;
 	protected bool inSnow = false;
+	public bool inCoffin = false;
 
 	//VARIABLES REGARDING WHETHER AN ACTION SHOULD BE PERFORMED
 	protected bool ableToPush = false;
@@ -69,6 +70,7 @@ public class PlayerContainer : MonoBehaviour {
 	protected CamLooker looker; //Camera
 	public DamageCalculator damageCalculator;
 	public GameObject body;
+	public GameObject meshObjects;
 	protected SkinnedMeshRenderer mesh;
 	AudioSource audio;
 	protected AudioSource voice;
@@ -113,6 +115,7 @@ public class PlayerContainer : MonoBehaviour {
 			mesh = body.GetComponent<SkinnedMeshRenderer>();
 			toggleBlendShape(0);
 		}
+		meshObjects = transform.FindChild ("Body").gameObject;
 
 	}
 
@@ -162,7 +165,7 @@ public class PlayerContainer : MonoBehaviour {
 		                                                                    currentAnim(hash.shootingState));
 		//Speed
 		if(rolling) playerSpeed = playerRollingSpeed;
-		else if(pullingCoffin) playerSpeed = playerPullSpeed;
+		else if(pullingCoffin || inCoffin) playerSpeed = playerPullSpeed;
 		else if(targeting) playerSpeed = playerTargetingSpeed;
 		else playerSpeed = playerRunningSpeed;
 
@@ -194,6 +197,10 @@ public class PlayerContainer : MonoBehaviour {
 			animator.SetBool(hash.taiyouBool, false);
 			animator.SetBool(hash.holdWeaponBool, false);
 		}
+
+		if(meshObjects!=null) meshObjects.SetActive(!inCoffin);
+		if(performingAction) inCoffin = false;
+		
 	}
 
 	protected void updateInput() {
@@ -472,5 +479,13 @@ public class PlayerContainer : MonoBehaviour {
 		}
 		yield return new WaitForSeconds(0.3f);
 		playerInControl = true;
+	}
+
+	public bool isPlayerMoving() {
+		return moving;
+	}
+
+	public bool playerHiddenInCoffin() {
+		return inCoffin && !moving;
 	}
 }

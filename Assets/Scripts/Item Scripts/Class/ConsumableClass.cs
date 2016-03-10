@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Consumable : Item {
 
@@ -18,6 +19,17 @@ public class Consumable : Item {
 
 	public Consumable() {
 		model = null;
+	}
+
+	public int CompareTo(Consumable other)
+	{
+		if(other == null)
+		{
+			return 1;
+		}
+		
+		//SORTS BY ID NUMBER
+		return id - other.id;
 	}
 
 }

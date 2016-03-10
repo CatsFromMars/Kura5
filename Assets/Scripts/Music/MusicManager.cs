@@ -15,7 +15,7 @@ public class MusicManager : MonoBehaviour {
 	}
 
 	IEnumerator load() {
-		yield return w.conditionName != "" && w.status != "";
+		yield return w.conditionName != "";
 		yield return new WaitForSeconds(0.5f);
 		if(w.isNightTime) src.clip = nightMusic;
 		else src.clip = dayMusic;

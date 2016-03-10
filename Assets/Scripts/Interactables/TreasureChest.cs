@@ -90,4 +90,8 @@ public class TreasureChest : MonoBehaviour {
 		Destroy (this.gameObject);
 	}
 
+	public bool chestOpened() {
+		return itemSpawned;
+	}
+
 }

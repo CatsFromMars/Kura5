@@ -59,6 +59,8 @@ ModelImporter:
     7400000: Default Take
     7400002: ArmatureAction
     7400004: Default Take0
+    7400006: Run
+    7400008: Run
     9500000: //RootNode
     13700000: Cube
   materials:
@@ -238,6 +240,84 @@ ModelImporter:
       takeName: Default Take
       firstFrame: 173.800003
       lastFrame: 174
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/BFlankL
+        weight: 1
+      - path: Armature/Hip/BFlankL/BShinL
+        weight: 1
+      - path: Armature/Hip/BFlankL/BShinL/BFootL
+        weight: 1
+      - path: Armature/Hip/BFlankR
+        weight: 1
+      - path: Armature/Hip/BFlankR/BShinR
+        weight: 1
+      - path: Armature/Hip/BFlankR/BShinR/BFootR
+        weight: 1
+      - path: Armature/Hip/Spine
+        weight: 1
+      - path: Armature/Hip/Spine/Chest
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankL/ShinL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankL/ShinL/FootL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankR/ShinR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/FlankR/ShinR/FootR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/EarL
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/EarR
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/LowerJaw
+        weight: 1
+      - path: Armature/Hip/Spine/Chest/Head/UpperJaw
+        weight: 1
+      - path: Armature/Tail1
+        weight: 1
+      - path: Armature/Tail1/Tail2
+        weight: 1
+      - path: Armature/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Run
+      takeName: ArmatureAction
+      firstFrame: 100
+      lastFrame: 133
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

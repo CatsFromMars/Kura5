@@ -17,10 +17,12 @@ public class Saving : MonoBehaviour {
 		//Save Emil's current LIFE
 		//Save Annie's current ENERGY
 		//Save Emil's curent ENERGY
+		//Save current elements
 	}
 
 	public void saveInventory() {
-
+		//save current equips
+		//save inventory
 	}
 
 	public void saveStoryFlags() {

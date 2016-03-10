@@ -43,6 +43,14 @@ public class ItemDatabase : MonoBehaviour {
 		meat.model = Resources.Load ("Items/Tasty Meat") as GameObject;
 		consumableItems.Add (meat);
 
+		//Key Items
+		n = "Key";
+		desc = "A key held together by the\ndark magic of an Immortal.";
+		KeyItem key = new KeyItem (0, n, desc, false, "UNLOCKS_DOORS");
+		key.model = Resources.Load ("Items/Key") as GameObject;
+		keyItems.Add(key);
+
+		//Lens
 		n = "Sol Lens";
 		desc = "A [SOLAR GUN LENS] containing the Sol Property";
 		Lens sol = new Lens (0, n, desc, "ANNIE", "Sol");
@@ -72,6 +80,22 @@ public class ItemDatabase : MonoBehaviour {
 		desc = "A [DARK SWORD LENS] containing the Cloud Property";
 		Lens cloud = new Lens (5, n, desc, "EMIL", "Cloud");
 		lens.Add (cloud);
+
+		n = "Luna Lens";
+		desc = "AN [ALL PURPOSE LENS] containing the Luna Property. Uses no energy, but...";
+		Lens luna = new Lens (6, n, desc, "ANNIE", "Luna");
+		lens.Add (cloud);
+
+		n = "Astro Lens";
+		desc = "A [ALL PURPOSELENS] containing the Cloud Property";
+		Lens astro = new Lens (7, n, desc, "EMIL", "Astro");
+		lens.Add (astro);
+
+		n = "Empty Lens";
+		desc = "A [DARK SWORD LENS] that contains no Property. Uses no energy.";
+		Lens empty = new Lens (8, n, desc, "EMIL", "Null");
+		lens.Add (empty);
+
 
 		//Sort database by itemID
 		//consumableItems.Sort();

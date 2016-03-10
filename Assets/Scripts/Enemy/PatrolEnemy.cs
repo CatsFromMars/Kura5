@@ -32,7 +32,7 @@ public class PatrolEnemy : EnemyClass {
 
 	//VISUAL VARIABLES
 	public Transform emotion;
-
+	private PlayerContainer pc;
 	private AudioSource playerAudio;
 
 	// Use this for initialization
@@ -114,6 +114,7 @@ public class PatrolEnemy : EnemyClass {
 	}
 
 	void seePlayer(Collider other) {
+		if(player!=null) pc = player.GetComponent<PlayerContainer>();
 		// Create a vector from the enemy to the player and store the angle between it and forward.
 		Vector3 direction = other.transform.position - transform.position;
 		float angle = Vector3.Angle(direction, transform.forward);
@@ -125,7 +126,7 @@ public class PatrolEnemy : EnemyClass {
 			{
 				Debug.DrawLine(transform.position, hit.point, Color.red);
 				// ... and if the raycast hits the player...
-				if (hit.collider.gameObject.tag == "Player")
+				if (hit.collider.gameObject.tag == "Player" && !pc.playerHiddenInCoffin())
 				{
 					// ... the player is in sight.
 					if(canSee) playerInSight = true;
@@ -148,7 +149,7 @@ public class PatrolEnemy : EnemyClass {
 
 		//Exception: Get in the "personal bubble"
 		float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
-		if (distanceFromPlayer <= 2.5f) {
+		if (distanceFromPlayer <= 2.5f && !pc.playerHiddenInCoffin()) {
 			// ... the player is in sight.
 			playerInSight = true;
 			//Debug.Log ("I SEE YOU!");
@@ -315,6 +316,8 @@ public class PatrolEnemy : EnemyClass {
 				freezeTimer = 0;
 				shadowStunEffect.active = false;
 				shadowStunParticles.Stop ();
+				attacking = false;
+				animator.SetTrigger(Animator.StringToHash("Thawed"));
 			}
 			else {
 				shadowStunEffect.active = true;
@@ -333,6 +336,10 @@ public class PatrolEnemy : EnemyClass {
 
 	void DisplayEmoticon(GameObject emoticon) {
 		emoticon = Instantiate(emoticon, emotion.transform.position, Quaternion.identity) as GameObject;
+	}
+
+	public bool hasPlayerBeenSpotted() {
+		return playerInSight;
 	}
 
 }

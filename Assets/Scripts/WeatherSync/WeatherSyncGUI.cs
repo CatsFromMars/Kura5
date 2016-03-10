@@ -23,6 +23,7 @@ public class WeatherSyncGUI : MonoBehaviour {
 	public Text temp;
 	public Text humidity;
 	public Text cloud;
+	public Text status;
 	public Text clock;
 
 	public SpriteRenderer emblem;
@@ -43,12 +44,6 @@ public class WeatherSyncGUI : MonoBehaviour {
 	}
 
 	void Update() {
-		text.text = ("Status: " + w.status
-		 + "\nTime: " + System.DateTime.Now.ToString("hh:mm tt")
-		 + "\nCity: " + w.retrievedCity
-		 + "\nTemp: " + w.finalTemp + " C"
-		 + "\nWeather: " + w.conditionName);
-
 		updateUI ();
 	}
 
@@ -60,6 +55,7 @@ public class WeatherSyncGUI : MonoBehaviour {
 		string h = w.humidityPercentage.ToString ();
 		humidity.text = h + "%";
 		clock.text = System.DateTime.Now.ToString ("hh:mm tt");
+		status.text = w.status;
 
 		//Update Slider
 		if(lightLevels.darkness > 0) {

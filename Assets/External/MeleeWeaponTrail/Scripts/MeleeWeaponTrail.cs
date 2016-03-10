@@ -157,7 +157,7 @@ public class MeleeWeaponTrail : MonoBehaviour
 					Point p = new Point();
 					p.basePosition = _base.position;
 					p.tipPosition = _tip.position;
-					p.timeCreated = Time.time;
+					p.timeCreated = Time.unscaledTime;
 					_points.Add(p);
 					_lastPosition = transform.position;
 
@@ -289,7 +289,7 @@ public class MeleeWeaponTrail : MonoBehaviour
 			for (int n = 0; n < pointsToUse.Count; ++n)
 			{
 				Point p = pointsToUse[n];
-				float time = (Time.time - p.timeCreated) / _lifeTime;
+				float time = (Time.unscaledTime - p.timeCreated) / _lifeTime;
 
 				Color color = Color.Lerp(Color.white, Color.clear, time);
 				if (_colors != null && _colors.Length > 0)
@@ -352,7 +352,7 @@ public class MeleeWeaponTrail : MonoBehaviour
 		foreach (Point p in pointList)
 		{
 			// cull old points first
-			if (Time.time - p.timeCreated > _lifeTime)
+			if (Time.unscaledTime - p.timeCreated > _lifeTime)
 			{
 				remove.Add(p);
 			}

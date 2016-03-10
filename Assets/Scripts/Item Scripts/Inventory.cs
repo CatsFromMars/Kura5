@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -34,6 +35,7 @@ public class Inventory : MonoBehaviour {
 		itemsList.Add (database.consumableItems[2]);
 		itemsList.Add (database.consumableItems[3]);
 		itemsList.Add (database.consumableItems[4]);
+		keyItemsList.Add (database.keyItems[0]);
 
 		//INIT SLOTS FOR ITEMS
 		for (int i = 0; i < slotsX * slotsY; i++)
@@ -59,8 +61,10 @@ public class Inventory : MonoBehaviour {
 
 	void Start() {
 		//Lens
-		AddLens (0);
-		AddLens (1);
+		AddLens (0); //Sol
+		AddLens (2); //Fire
+		AddLens (1); //Dark
+		AddLens (8); //Empty
 	}
 
 	//Functions for manipulating inventory
@@ -123,6 +127,7 @@ public class Inventory : MonoBehaviour {
 			if(lens.element == "Dark") gameData.emilCurrentElem = GameData.elementalProperty.Dark;
 			else if(lens.element == "Frost") gameData.emilCurrentElem = GameData.elementalProperty.Frost;
 			else if(lens.element == "Cloud") gameData.emilCurrentElem = GameData.elementalProperty.Cloud;
+			else if(lens.element == "Null") gameData.emilCurrentElem = GameData.elementalProperty.Null;
 			else return false;
 		}
 		else return false; //Trying to equip an invalid lens
@@ -166,17 +171,24 @@ public class Inventory : MonoBehaviour {
 		slots [index] = empty;
 	}
 
-	public void useCurrentConsumable(int index, string player) { //player = ANNIE or EMIL
+	public bool useCurrentConsumable(int index, string player) { //player = ANNIE or EMIL
 		//TO BE EDITED LATER
 		Consumable item = itemsList[index];
+		bool itemUsed = false;
 		//Restore Life
 		if (item.effect == "RESTORE_LIFE") {
 			int healing = item.strength;
 			if(item.preference != player && item.preference != "NONE") {
 				healing = Mathf.FloorToInt(healing*0.2f);
 			}
-			if(player == "ANNIE" && gameData.annieCurrentLife > 0) gameData.annieCurrentLife += healing;
-			else if(player == "EMIL" && gameData.emilCurrentLife > 0) gameData.emilCurrentLife += healing;
+			if(player == "ANNIE" && gameData.annieCurrentLife > 0 && gameData.annieCurrentLife < gameData.annieMaxLife) {
+				gameData.annieCurrentLife += healing;
+				itemUsed = true;
+			}
+			else if(player == "EMIL" && gameData.emilCurrentLife > 0 && gameData.emilCurrentLife < gameData.emilMaxLife) {
+				gameData.emilCurrentLife += healing;
+				itemUsed = true;
+			}
 		}
 		//Restore Energy
 		if (item.effect == "RESTORE_ENERGY") {
@@ -184,12 +196,22 @@ public class Inventory : MonoBehaviour {
 			if(item.preference != player && item.preference != "NONE") {
 				healing = Mathf.FloorToInt(healing*0.2f);
 			}
-			if(player == "ANNIE") gameData.annieCurrentEnergy += healing;
-			else if(player == "EMIL") gameData.emilCurrentEnergy += healing;
+			if(player == "ANNIE" && gameData.annieCurrentEnergy > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy) {
+				gameData.annieCurrentEnergy += healing;
+				itemUsed = true;
+			}
+			else if(player == "EMIL" && gameData.emilCurrentEnergy > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy) {
+				gameData.emilCurrentEnergy += healing;
+				itemUsed = true;
+			}
 		}
 
 		//Remove item
-		removeConsumableItem(index);
+		if(itemUsed) {
+			removeConsumableItem(index);
+			return true;
+		}
+		else return false;
 	}
 
 }

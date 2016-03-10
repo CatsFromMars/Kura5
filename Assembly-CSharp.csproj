@@ -49,6 +49,7 @@
      <Compile Include="Assets\Experimental\CharacterWalkTest.cs" />
      <Compile Include="Assets\Experimental\Coffin\CoffinFollow.cs" />
      <Compile Include="Assets\Experimental\Coffin\RopeScript.cs" />
+     <Compile Include="Assets\Experimental\Coffin\StealthCoffin.cs" />
      <Compile Include="Assets\Experimental\LensSwapTemp.cs" />
      <Compile Include="Assets\Experimental\Test.cs" />
      <Compile Include="Assets\Experimental\TextReadingTest.cs" />
@@ -85,6 +86,7 @@
      <Compile Include="Assets\External\MeleeWeaponTrail\Scripts\MeleeWeaponTrail.cs" />
      <Compile Include="Assets\External\WallVisionOutlineEffect\WallVisionOutlineEffect.cs" />
      <Compile Include="Assets\JSON Tests\CSharp\Test_CSharp.cs" />
+     <Compile Include="Assets\Scripts\Animation Events\DialogueAnimationEvent.cs" />
      <Compile Include="Assets\Scripts\Camera\AlwaysFaceCamera.cs" />
      <Compile Include="Assets\Scripts\Camera\CamFollow.cs" />
      <Compile Include="Assets\Scripts\Camera\CamLooker.cs" />
@@ -95,6 +97,7 @@
      <Compile Include="Assets\Scripts\Combat\Trap.cs" />
      <Compile Include="Assets\Scripts\Combat\WeaponClass\BaseWeapon.cs" />
      <Compile Include="Assets\Scripts\Combat\WeaponData.cs" />
+     <Compile Include="Assets\Scripts\Cutscene\InBetween.cs" />
      <Compile Include="Assets\Scripts\Data\Flags.cs" />
      <Compile Include="Assets\Scripts\Data\GameData.cs" />
      <Compile Include="Assets\Scripts\Data\HashIDs.cs" />
@@ -118,6 +121,7 @@
      <Compile Include="Assets\Scripts\GUI\ElementSwapping.cs" />
      <Compile Include="Assets\Scripts\GUI\EnemyLifeBar.cs" />
      <Compile Include="Assets\Scripts\GUI\GameGUI.cs" />
+     <Compile Include="Assets\Scripts\GUI\LensGUI.cs" />
      <Compile Include="Assets\Scripts\GUI\Menu.cs" />
      <Compile Include="Assets\Scripts\GUI\MenuManager.cs" />
      <Compile Include="Assets\Scripts\GUI\MenuTutorial.cs" />
@@ -130,6 +134,7 @@
      <Compile Include="Assets\Scripts\Interactables\Candles.cs" />
      <Compile Include="Assets\Scripts\Interactables\Door.cs" />
      <Compile Include="Assets\Scripts\Interactables\Entrance.cs" />
+     <Compile Include="Assets\Scripts\Interactables\FlameThrower.cs" />
      <Compile Include="Assets\Scripts\Interactables\InteractablesClass\InteractablesClass.cs" />
      <Compile Include="Assets\Scripts\Interactables\InteractablesClass\SolarStation.cs" />
      <Compile Include="Assets\Scripts\Interactables\Talk.cs" />
@@ -159,11 +164,15 @@
      <Compile Include="Assets\Scripts\Player\PlayerContainer.cs" />
      <Compile Include="Assets\Scripts\Puzzles\UnburdenPuzzle.cs" />
      <Compile Include="Assets\Scripts\Utility\AnimationEventDestroy.cs" />
+     <Compile Include="Assets\Scripts\Utility\Broadcaster.cs" />
      <Compile Include="Assets\Scripts\Utility\CheatCodes.cs" />
      <Compile Include="Assets\Scripts\Utility\CoroutineUtil.cs" />
      <Compile Include="Assets\Scripts\Utility\DontDestroyOnLoad.cs" />
      <Compile Include="Assets\Scripts\Utility\FPSCounter.cs" />
+     <Compile Include="Assets\Scripts\Utility\GetActivePlayer.cs" />
+     <Compile Include="Assets\Scripts\Utility\ListUtil.cs" />
      <Compile Include="Assets\Scripts\Utility\MakeNoiseAnimationEvent.cs" />
+     <Compile Include="Assets\Scripts\Utility\ParseUtil.cs" />
      <Compile Include="Assets\Scripts\Utility\SceneTransition.cs" />
      <Compile Include="Assets\Scripts\Utility\ShakeScreenAnimEvent.cs" />
      <Compile Include="Assets\Scripts\Utility\TimedDestroy.cs" />
@@ -176,6 +185,7 @@
      <Compile Include="Assets\Scripts\Visual\HintPanelGlow.cs" />
      <Compile Include="Assets\Scripts\Visual\LetterSpacing.cs" />
      <Compile Include="Assets\Scripts\Visual\ObjectBlinker.cs" />
+     <Compile Include="Assets\Scripts\Visual\OnDialogueEnd.cs" />
      <Compile Include="Assets\Scripts\Visual\RoomObscure.cs" />
      <Compile Include="Assets\Scripts\Visual\ScreenFade.cs" />
      <Compile Include="Assets\Scripts\Visual\SkylightFade.cs" />
@@ -184,6 +194,7 @@
      <Compile Include="Assets\Scripts\Visual\Trail.cs" />
      <Compile Include="Assets\Scripts\Visual\continuousRotation.cs" />
      <Compile Include="Assets\Scripts\WeatherSync\GenericPattern.cs" />
+     <Compile Include="Assets\Scripts\WeatherSync\LiveWeather.cs" />
      <Compile Include="Assets\Scripts\WeatherSync\MoonPhase.cs" />
      <Compile Include="Assets\Scripts\WeatherSync\SkylightWeather.cs" />
      <Compile Include="Assets\Scripts\WeatherSync\WeatherSync.cs" />
@@ -203,6 +214,7 @@
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SunShaftsComposite.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrectionCurves.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ScreenSpaceAmbientObscurance.shader" />
+     <None Include="Assets\Resources\Dialogue\Traps\KeyStealthTrap.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\NFAA.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Additive.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
@@ -277,6 +289,7 @@
      <None Include="Assets\External\Cartoon FX\Demo\Assets\CFX_Demo_WaterWiggle.shader" />
      <None Include="Assets\External\JMO Assets2\Cartoon FX\Shaders\CFX4 Particle AlphaBlend+Add VColor.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
+     <None Include="Assets\Resources\Dialogue\Chess1.txt" />
      <None Include="Assets\External\WallVisionOutlineEffect\WallVisionOutlineEffectCombine.shader" />
      <None Include="Assets\External\CamShake\readme.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlurEffectConeTaps.shader" />
@@ -325,6 +338,7 @@
      <None Include="Assets\Resources\Dialogue\WadjetDungeon\OtenkoFireLens.txt" />
      <None Include="Assets\Resources\Dialogue\WadjetDungeon\virtuousgunslinger.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SimpleClear.shader" />
+     <None Include="Assets\Resources\Dialogue\Cheat.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\FXAA3Console.shader" />
      <None Include="Assets\Resources\Dialogue\Traps\DisarmTrap.txt" />
      <None Include="Assets\API\Key.txt" />

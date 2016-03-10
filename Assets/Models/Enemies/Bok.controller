@@ -68,6 +68,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: Thawed
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -456,6 +462,30 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
+--- !u!1101 &110152094
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 0}
+  m_DstState: {fileID: 110278402}
+  m_TransitionDuration: .0918841287
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Thawed
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  - m_ConditionMode: 2
+    m_ConditionEvent: Dead
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1101 &110161246
 Transition:
   serializedVersion: 2
@@ -588,6 +618,26 @@ Transition:
     m_ConditionEvent: Chasing
     m_EventTreshold: 0
     m_ExitTime: .898305058
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110169282
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110278402}
+  m_DstState: {fileID: 110250288}
+  m_TransitionDuration: .15384616
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Attacking
+    m_EventTreshold: 0
+    m_ExitTime: .846153855
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -758,7 +808,7 @@ State:
   m_Motions:
   - {fileID: 7400000, guid: 00d645abb82aeab46ba0574bf6ce3739, type: 2}
   m_ParentStateMachine: {fileID: 110770218}
-  m_Position: {x: 276, y: 156, z: 0}
+  m_Position: {x: 288, y: 168, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -848,7 +898,7 @@ State:
   m_Motions:
   - {fileID: 7400000, guid: f415fdea5e6724d45bca5c416fc4276a, type: 2}
   m_ParentStateMachine: {fileID: 110770218}
-  m_Position: {x: 24, y: 156, z: 0}
+  m_Position: {x: 24, y: 168, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -942,6 +992,7 @@ StateMachine:
       - {fileID: 110145162}
       - {fileID: 110121564}
       - {fileID: 110188120}
+      - {fileID: 110152094}
     data:
       first: {fileID: 110270218}
       second:
@@ -989,6 +1040,7 @@ StateMachine:
       first: {fileID: 110278402}
       second:
       - {fileID: 110183262}
+      - {fileID: 110169282}
     data:
       first: {fileID: 110247140}
       second:
