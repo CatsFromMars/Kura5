@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class CharacterSwapper : MonoBehaviour {
+	public ElementSwapping ele;
 	GameObject globalData;
 	GameData data;
 	public Transform annie;
@@ -18,7 +19,7 @@ public class CharacterSwapper : MonoBehaviour {
 		if(Input.GetButtonDown("Switch")) {
 			PlayerContainer player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerContainer>();
 			bool inControl = player.playerInControl;
-			bool canSwitch = player.currentAnim(player.hash.idleState) && Time.timeScale!=0;
+			bool canSwitch = player.currentAnim(player.hash.idleState) && !player.inCoffin && Time.timeScale!=0;
 			if(inControl&&canSwitch) switchPlayers();
 		}
 		if (data.currentPlayer == GameData.player.Annie)
@@ -43,6 +44,8 @@ public class CharacterSwapper : MonoBehaviour {
 
 			data.currentPlayer = GameData.player.Annie;
 		}
+
+		if(ele!=null) ele.updateList();
 		
 	}
 }

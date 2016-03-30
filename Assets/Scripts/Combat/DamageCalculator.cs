@@ -19,13 +19,13 @@ public class DamageCalculator : MonoBehaviour {
 			return 0.8f;
 		}
 		else if (element == "Dark") {
-			if(w.isNightTime && w.lightMax >= 5) return 1.2f;
-			else if(w.isNightTime==false && w.lightMax >= 5) return 0.8f;
+			if(w.isNightTime && w.lightMax.GetValue() >= 5) return 1.2f;
+			else if(w.isNightTime==false && w.lightMax.GetValue() >= 5) return 0.8f;
 			else return 1;
 		}
 		else if (element == "Sol") {
-			if(w.isNightTime==false && w.lightMax >= 5) return 1.2f;
-			else if(w.isNightTime && w.lightMax >= 5) return 0.8f;
+			if(w.isNightTime==false && w.lightMax.GetValue() >= 5) return 1.2f;
+			else if(w.isNightTime && w.lightMax.GetValue() >= 5) return 0.8f;
 			else return 1;
 		}
 		else if (element == "Fire") {

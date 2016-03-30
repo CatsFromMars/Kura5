@@ -10,6 +10,7 @@ public class GameData : MonoBehaviour {
 	//NOTE: ADD SKILL POINTS AND LEVEL UPS LATER
 
 	public bool nearInteractable = false; //For treasure chests and dialogue and stuff
+	private Transform globalObject;
 
 	//PLAYER DATA: ANNIE
 	public float annieCurrentLife = 100;
@@ -48,6 +49,7 @@ public class GameData : MonoBehaviour {
 
 	void Awake() {
 		Application.targetFrameRate = 60;
+		globalObject = GameObject.FindGameObjectWithTag ("Global").transform;
 	}
 
 	void Update() {
@@ -58,15 +60,8 @@ public class GameData : MonoBehaviour {
 		if(annieCurrentEnergy >= annieMaxEnergy) annieCurrentEnergy = annieMaxEnergy;
 		if(emilCurrentEnergy >= emilMaxEnergy) emilCurrentEnergy = emilMaxEnergy;
 
-
-
-		//Check for Game Over
-		if (annieCurrentLife <= 0 && emilCurrentLife <= 0 && !isGameOver) {
-			isGameOver = true;
-			Instantiate(Resources.Load ("Effects/GameOver"), gameOverSpawner.position, Quaternion.Euler(45,0,0));
-		}
-
 	}
+
 
 
 }

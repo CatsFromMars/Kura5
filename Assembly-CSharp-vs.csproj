@@ -149,7 +149,9 @@
      <Compile Include="Assets\Scripts\Item Scripts\ItemCollection\PickupItem.cs" />
      <Compile Include="Assets\Scripts\Item Scripts\ItemDatabase.cs" />
      <Compile Include="Assets\Scripts\Item Scripts\KeyItemGet.cs" />
+     <Compile Include="Assets\Scripts\Loading\CharacterWalkToOnAwake.cs" />
      <Compile Include="Assets\Scripts\Loading\EntrancePoint.cs" />
+     <Compile Include="Assets\Scripts\Loading\GameOverHandler.cs" />
      <Compile Include="Assets\Scripts\Loading\Loader.cs" />
      <Compile Include="Assets\Scripts\Loading\ResetGame.cs" />
      <Compile Include="Assets\Scripts\Music\MusicDictionary.cs" />
@@ -168,11 +170,13 @@
      <Compile Include="Assets\Scripts\Utility\CheatCodes.cs" />
      <Compile Include="Assets\Scripts\Utility\CoroutineUtil.cs" />
      <Compile Include="Assets\Scripts\Utility\DontDestroyOnLoad.cs" />
+     <Compile Include="Assets\Scripts\Utility\EncryptorDecryptor.cs" />
      <Compile Include="Assets\Scripts\Utility\FPSCounter.cs" />
      <Compile Include="Assets\Scripts\Utility\GetActivePlayer.cs" />
      <Compile Include="Assets\Scripts\Utility\ListUtil.cs" />
      <Compile Include="Assets\Scripts\Utility\MakeNoiseAnimationEvent.cs" />
      <Compile Include="Assets\Scripts\Utility\ParseUtil.cs" />
+     <Compile Include="Assets\Scripts\Utility\SafeInt.cs" />
      <Compile Include="Assets\Scripts\Utility\SceneTransition.cs" />
      <Compile Include="Assets\Scripts\Utility\ShakeScreenAnimEvent.cs" />
      <Compile Include="Assets\Scripts\Utility\TimedDestroy.cs" />
@@ -184,8 +188,10 @@
      <Compile Include="Assets\Scripts\Visual\EmilShadow.cs" />
      <Compile Include="Assets\Scripts\Visual\HintPanelGlow.cs" />
      <Compile Include="Assets\Scripts\Visual\LetterSpacing.cs" />
+     <Compile Include="Assets\Scripts\Visual\MeshCombine.cs" />
      <Compile Include="Assets\Scripts\Visual\ObjectBlinker.cs" />
      <Compile Include="Assets\Scripts\Visual\OnDialogueEnd.cs" />
+     <Compile Include="Assets\Scripts\Visual\ParticlesUnscaledTime.cs" />
      <Compile Include="Assets\Scripts\Visual\RoomObscure.cs" />
      <Compile Include="Assets\Scripts\Visual\ScreenFade.cs" />
      <Compile Include="Assets\Scripts\Visual\SkylightFade.cs" />

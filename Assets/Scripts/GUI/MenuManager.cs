@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class MenuManager : MonoBehaviour {
+
 	public Transform mainMenu;
 	public Transform[] menus;
 	private int currentIndex = 0;
@@ -39,7 +40,7 @@ public class MenuManager : MonoBehaviour {
 		Time.timeScale = 0;
 		closeAll();
 		makeSound (open);
-		menus [0].gameObject.SetActive (true);
+		menus [currentIndex].gameObject.SetActive (true);
 		menuOpen = true;
 	}
 

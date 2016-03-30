@@ -18,6 +18,7 @@ public class Flags : MonoBehaviour {
 		//Add trap flag on awake from trap script IF trap not added yet
 		//Trap NOT cleared by default
 		if(!traps.ContainsKey(Application.loadedLevelName)) traps.Add(Application.loadedLevelName, false);
+		Debug.Log (traps [Application.loadedLevelName]);
 	}
 
 	public void SetTrapToCleared() {

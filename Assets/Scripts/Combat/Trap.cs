@@ -21,6 +21,9 @@ public class Trap : MonoBehaviour {
 	public TextAsset disarmPrompt;
 	private GameObject canvas;
 	GameData data;
+	GameOverHandler gameOverHandler;
+	private bool trapLost = false;
+	private SceneTransition transition;
 
 	//Stealth variables
 	private PatrolEnemy[] ais;
@@ -40,25 +43,41 @@ public class Trap : MonoBehaviour {
 		looker = GameObject.FindGameObjectWithTag("CamFollow").GetComponent<CamLooker>();
 		GameObject c = GameObject.FindGameObjectWithTag ("GameController");
 		data = c.GetComponent<GameData>();
+		gameOverHandler = c.GetComponent<GameOverHandler>();
 		flags = c.GetComponent<Flags>();
-
+		transition = GameObject.FindGameObjectWithTag("Fader").GetComponent<SceneTransition>();
 		flags.AddTrapFlag();
 		trapCleared = flags.CheckTrapFlag();
 		canvas = GameObject.Find ("HUD").gameObject;
-
 		if(type == trapType.STEALTH) stealthPrep();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if(type == trapType.STEALTH) {
-			if(checkForStealthGameOver()) {
-				//Do coroutine
-				//Access data, call game over from here.
-				Debug.Log("DEAD");
+		if(!trapCleared) {
+			if(type == trapType.STEALTH) {
+				if(checkForStealthGameOver() && !trapLost) {
+					//Do coroutine
+					//Access data, call game over from here.
+					Debug.Log("DEAD");
+					trapLost = true;
+					if(stealthMethod == stealthType.TREASURE) StartCoroutine(blowUpTreasureChests());
+				}
+				if(checkForStealthVictory()) {
+					BlowUpEnemies();
+					deactivateGates();
+					music.stopMusic();
+					audio.Play();
+					music.changeMusic(music.previousMusic, 5f);
+					trapCleared = true;
+					flags.SetTrapToCleared();
+				}
 			}
-			if(checkForStealthVictory()) {
+
+			if(numberAlive > 0) checkEnemyDeath();
+
+			if (numberAlive <= 0 && gateScripts[0].activated == true) {
 				deactivateGates();
 				music.stopMusic();
 				audio.Play();
@@ -67,18 +86,6 @@ public class Trap : MonoBehaviour {
 				flags.SetTrapToCleared();
 			}
 		}
-
-		if(numberAlive > 0) checkEnemyDeath();
-
-		if (numberAlive <= 0 && gateScripts[0].activated == true) {
-			deactivateGates();
-			music.stopMusic();
-			audio.Play();
-			music.changeMusic(music.previousMusic, 5f);
-			trapCleared = true;
-			flags.SetTrapToCleared();
-		}
-
 	}
 
 	void stealthPrep() {
@@ -123,6 +130,40 @@ public class Trap : MonoBehaviour {
 		return false;
 	}
 
+	IEnumerator blowUpTreasureChests() {
+		yield return new WaitForSeconds (1f);
+		PauseEnemies ();
+		PausePlayer ();
+		foreach(TreasureChest c in chests) {
+			yield return StartCoroutine(looker.lookAtTarget(c.transform, 35f));
+			Instantiate((Resources.Load("Effects/ExplosionEffect")), c.transform.position, Quaternion.Euler(90,0,0));
+			c.gameObject.SetActive(false);
+		}
+		yield return new WaitForSeconds (1f);
+		gameOverHandler.setGameOver();
+
+	}
+
+	void BlowUpEnemies() {
+		foreach (PatrolEnemy ai in ais) {
+			if(ai!=null) {
+				ai.Kill();
+			}
+		}
+	}
+
+	void PauseEnemies() {
+		foreach (PatrolEnemy ai in ais) {
+			if(ai!=null) {
+				ai.getAnimator().speed = 0;
+			}
+		}
+	}
+
+	void PausePlayer() {
+		player.GetComponent<PlayerContainer> ().playerInControl = false;
+	}
+
 	bool trapPreDisarmed() {
 		foreach (Transform e in enemies) {
 			if(e!=null) return false;
@@ -138,7 +179,7 @@ public class Trap : MonoBehaviour {
 
 				StartCoroutine(disarmTrap());
 				GameObject effect = Resources.Load("Effects/DisarmEffect") as GameObject;
-				Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane)); 
+				Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane+1)); 
 				Instantiate(effect, pos, Quaternion.identity);
 				trapCleared = true;
 				flags.SetTrapToCleared();
@@ -151,9 +192,9 @@ public class Trap : MonoBehaviour {
 				music.stopMusic();
 				activateGates();
 				trapActivated = true;
-				GameObject effect = Resources.Load("Effects/TrapEffect") as GameObject;
-				Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane)); 
-				Instantiate(effect, pos, Quaternion.identity);
+				//GameObject effect = Resources.Load("Effects/TrapEffect") as GameObject;
+				//Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane+1)); 
+				//Instantiate(effect, pos, Quaternion.identity);
 			}
 		}
 
@@ -196,6 +237,10 @@ public class Trap : MonoBehaviour {
 	}
 
 	IEnumerator startTrap() {
+		yield return transition.loadingScene = false;
+		GameObject effect = Resources.Load("Effects/TrapEffect") as GameObject;
+		Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane+1)); 
+		Instantiate(effect, pos, Quaternion.identity);
 		canvas.SetActive (false);
 		yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.8f));
 		for (int i=0; i < gates.Length; i++) {

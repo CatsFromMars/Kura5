@@ -11,6 +11,7 @@ public class SceneTransition : MonoBehaviour
 	public GameObject loadingIcon;
 	private PlayerContainer player;
 	private GameObject playerGO;
+	public bool loadingScene = false;
 
 
 	void Awake ()
@@ -33,15 +34,24 @@ public class SceneTransition : MonoBehaviour
 		ren.color = Color.Lerp(ren.color, Color.black, fadeSpeed * Time.unscaledDeltaTime);
 	}
 
-	public IEnumerator EndScene (string scene, bool stopTime=true)
+	public IEnumerator fadeOut() {
+		ren.enabled = true;
+		while(ren.color.a < 0.95f) { 
+			yield return null;
+			FadeToBlack();
+		}
+	}
+
+	public IEnumerator EndScene (string scene, bool stopTime=true, bool setCheckpoint = true)
 	{
+		loadingScene = true;
 		if(stopTime) Time.timeScale = 0;
 		playerGO = GameObject.FindWithTag ("Player");
 		if(playerGO!=null){
 			player = playerGO.GetComponent<PlayerContainer> ();
 			player.playerInControl = false;
 		}
-		markCheckpoint (scene);
+		if(setCheckpoint) markCheckpoint (scene);
 
 		// Make sure the texture is enabled.
 		ren.enabled = true;
@@ -64,11 +74,12 @@ public class SceneTransition : MonoBehaviour
 		ren.enabled = false;
 		if(playerGO!=null) player.playerInControl = true;
 		Time.timeScale = 1;
+		loadingScene = false;
 	}
 
-	public void gotoScene(string scene, bool stopTime=true) {
+	public void gotoScene(string scene, bool stopTime=true, bool markCheckpoint=true) {
 		if(coroutine != null) StopCoroutine (coroutine);
-		coroutine = EndScene (scene, stopTime);
+		coroutine = EndScene (scene, stopTime, markCheckpoint);
 		StartCoroutine (coroutine);
 	}
 

@@ -49,10 +49,10 @@ public class WeatherSyncGUI : MonoBehaviour {
 
 	void updateUI() {
 		//Update Values
-		string c = (w.cloudinessPercentage).ToString();
+		string c = (w.cloudinessPercentage.GetValue()).ToString();
 		cloud.text = c+"%";
-		temp.text = w.finalTemp + " C";
-		string h = w.humidityPercentage.ToString ();
+		temp.text = w.finalTemp.GetValue() + " C";
+		string h = w.humidityPercentage.GetValue().ToString ();
 		humidity.text = h + "%";
 		clock.text = System.DateTime.Now.ToString ("hh:mm tt");
 		status.text = w.status;
@@ -61,15 +61,15 @@ public class WeatherSyncGUI : MonoBehaviour {
 		if(lightLevels.darkness > 0) {
 			fill.color = darkColor;
 			emblem.sprite = darkEmblem;
-			slider.value = lightLevels.darkness;
+			slider.value = lightLevels.darkness.GetValue();
 			if(canUseOverlay.gameObject.activeSelf) makeSound(dark);
 			canUseOverlay.SetActive(false);
 		}
 		else if (w.isNightTime) {
 			fill.color = lunaColor;
 			emblem.sprite = lunaEmblem;
-			slider.value = w.lightMax;
-			if(lightLevels.sunlight > 0) {
+			slider.value = w.lightMax.GetValue();
+			if(lightLevels.sunlight.GetValue() > 0) {
 				if(canUseOverlay.gameObject.activeSelf) makeSound(light);
 				canUseOverlay.SetActive(false);
 			}
@@ -78,7 +78,7 @@ public class WeatherSyncGUI : MonoBehaviour {
 		else if (w.isNightTime == false) { //Daytime
 			fill.color = solColor;
 			emblem.sprite = solEmblem;
-			slider.value = w.lightMax;
+			slider.value = w.lightMax.GetValue();
 			if(lightLevels.sunlight > 0) {
 				if(canUseOverlay.gameObject.activeSelf) makeSound(light);
 				canUseOverlay.SetActive(false);

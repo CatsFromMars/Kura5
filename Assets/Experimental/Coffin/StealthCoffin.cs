@@ -19,7 +19,7 @@ public class StealthCoffin : MonoBehaviour {
 			if(!initiated) {
 				animator.SetBool (Animator.StringToHash ("Appear"), true);
 				model.gameObject.SetActive(true);
-				transform.parent = null;
+				//transform.parent = null;
 				initiated = true;
 			}
 			transform.position = player.transform.position;
@@ -28,7 +28,7 @@ public class StealthCoffin : MonoBehaviour {
 		}
 		else {
 			initiated = false;
-			animator.SetBool (Animator.StringToHash ("Appear"), false);
+			if(model.gameObject.activeSelf) animator.SetBool (Animator.StringToHash ("Appear"), false);
 		}
 	}
 

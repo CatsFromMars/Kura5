@@ -53,6 +53,8 @@ public class PlayerContainer : MonoBehaviour {
 	private float invincibilityFrames = 1f;
 
 	//ANIMATION AND DATA VARIABLES
+	public GameObject weaponObject;
+	private MeshRenderer weaponMeshRenderer;
 	public GameObject soundEffect;
 	public AudioClip chargingSound;
 	private Transform blinker;
@@ -78,6 +80,7 @@ public class PlayerContainer : MonoBehaviour {
 	protected float originalPitch;
 
 	//MISC VARIABLES
+	protected bool alreadySpawnedParryEffect = false;
 	public species playerSpecies;
 	public string element = "Sol";
 	public AudioClip hurt;
@@ -116,7 +119,7 @@ public class PlayerContainer : MonoBehaviour {
 			toggleBlendShape(0);
 		}
 		meshObjects = transform.FindChild ("Body").gameObject;
-
+		if(weaponObject!=null) weaponMeshRenderer = weaponObject.GetComponent<MeshRenderer>();
 	}
 
 	void OnEnable() {
@@ -198,6 +201,7 @@ public class PlayerContainer : MonoBehaviour {
 			animator.SetBool(hash.holdWeaponBool, false);
 		}
 
+		weaponMeshRenderer.enabled = !inCoffin;
 		if(meshObjects!=null) meshObjects.SetActive(!inCoffin);
 		if(performingAction) inCoffin = false;
 		
@@ -206,7 +210,7 @@ public class PlayerContainer : MonoBehaviour {
 	protected void updateInput() {
 		if(playerInControl) {
 			parrying = (canParry && Input.GetButtonDown("Block") && targeting);
-			charging = Input.GetButton("Charge") && !gameData.nearInteractable;
+			charging = Input.GetButton("Charge") && !inCoffin && !gameData.nearInteractable;
 			rolling = (currentAnim(hash.rollState));
 			//whistling = Input.GetButtonDown("Whistle");
 			holdingWeapon = ((Input.GetButton("Attack") || Input.GetButtonDown("Attack"))) && !gameData.nearInteractable;
@@ -215,7 +219,7 @@ public class PlayerContainer : MonoBehaviour {
 			targeting = Input.GetButton ("Target") && Time.timeScale != 0 && !rolling;
 			//if((Input.GetButtonDown("Target") || Input.GetButtonUp("Target")) && Time.timeScale != 0) handleTargetZoom();
 			moving = (horizontal != 0 || vertical != 0);
-			performingAction = attacking || holdingWeapon || whistling || charging || rolling;
+			performingAction = (attacking || holdingWeapon || whistling || charging || rolling || currentAnim(hash.hurtState)) && Time.timeScale != 0;
 		}
 	}
 
@@ -298,6 +302,7 @@ public class PlayerContainer : MonoBehaviour {
 		canParry = false;
 		yield return new WaitForSeconds (parryWaitTime);
 		canParry = true;
+		alreadySpawnedParryEffect = false;
 	}
 
 	IEnumerator blink() {
@@ -320,9 +325,10 @@ public class PlayerContainer : MonoBehaviour {
 				ShakeScreenAnimEvent.LittleShake();
 				StartCoroutine(startInvinciblity());
 			}
-			else {
+			else if(!alreadySpawnedParryEffect) {
 					Instantiate(Resources.Load("Effects/Parry") as GameObject, transform.position, Quaternion.identity);
 					ShakeScreenAnimEvent.ShakeScreen();
+					alreadySpawnedParryEffect = true;
 				}
 			}
 	}
@@ -487,5 +493,10 @@ public class PlayerContainer : MonoBehaviour {
 
 	public bool playerHiddenInCoffin() {
 		return inCoffin && !moving;
+	}
+
+	public void revive() {
+		dead = false;
+		animator.Rebind();
 	}
 }

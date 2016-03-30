@@ -33,7 +33,7 @@ public class ElementSwapping : MonoBehaviour {
 		//To be filled in later
 	}
 
-	void updateList() {
+	public void updateList() {
 		sol = inventory.checkForLens(0);
 		dark = inventory.checkForLens(1);
 		fire = inventory.checkForLens(2);
@@ -57,13 +57,27 @@ public class ElementSwapping : MonoBehaviour {
 		emilLens[4] = astro; //Astro
 		emilLens[5] = empty; //Empty
 
-		gui.fireLens.gameObject.SetActive(fire!=-1);
-		gui.frostLens.gameObject.SetActive(frost!=-1);
-		gui.earthLens.gameObject.SetActive(earth!=-1);
-		gui.cloudLens.gameObject.SetActive(cloud!=-1);
-		gui.lunaLens.gameObject.SetActive(luna!=-1);
-		gui.astroLens.gameObject.SetActive(astro!=-1);
-		gui.astroLens.gameObject.SetActive(empty!=-1);
+
+		if (data.currentPlayer == GameData.player.Annie) {
+			gui.darkLens.gameObject.SetActive(false);
+			gui.fireLens.gameObject.SetActive(fire!=-1);
+			gui.frostLens.gameObject.SetActive(false);
+			gui.earthLens.gameObject.SetActive(earth!=-1);
+			gui.cloudLens.gameObject.SetActive(false);
+			gui.lunaLens.gameObject.SetActive(luna!=-1);
+			gui.astroLens.gameObject.SetActive(astro!=-1);
+			gui.astroLens.gameObject.SetActive(empty!=-1);
+		}
+		else if (data.currentPlayer == GameData.player.Emil) {
+			gui.darkLens.gameObject.SetActive(true);
+			gui.fireLens.gameObject.SetActive(fire!=-1);
+			gui.frostLens.gameObject.SetActive(frost!=-1);
+			gui.earthLens.gameObject.SetActive(earth!=-1);
+			gui.cloudLens.gameObject.SetActive(cloud!=-1);
+			gui.lunaLens.gameObject.SetActive(luna!=-1);
+			gui.astroLens.gameObject.SetActive(astro!=-1);
+			gui.astroLens.gameObject.SetActive(empty!=-1);
+		}
 	}
 
 	// Update is called once per frame
@@ -104,7 +118,7 @@ public class ElementSwapping : MonoBehaviour {
 	}
 
 	void toggleLens() {
-		updateList ();
+		updateList();
 		makeSound(swapSound);
 		if (data.currentPlayer == GameData.player.Annie) {
 			//Is probably dangerous in the event there are no lenses...

@@ -13,7 +13,7 @@ public class AnnieEffects : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(w.finalTemp <= 0) breath.SetActive(true);
+		if(w.finalTemp.GetValue() <= 0) breath.SetActive(true);
 		else breath.SetActive(false);
 	}
 }

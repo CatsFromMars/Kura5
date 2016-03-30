@@ -51,7 +51,7 @@ public class AnnieController : PlayerContainer {
 
 	void absorb(int rate) {
 
-		if(lightLevels.sunlight > 0 && !lightLevels.w.isNightTime) absorbCounter+=lightLevels.sunlight;
+		if(lightLevels.sunlight > 0 && !lightLevels.w.isNightTime) absorbCounter+=lightLevels.sunlight.GetValue();
 		if(absorbCounter>absorbCounterTime) {
 			gameData.annieCurrentEnergy += rate;
 			absorbCounter = 0;
@@ -100,7 +100,7 @@ public class AnnieController : PlayerContainer {
 		solarCharging = Time.timeScale != 0 && !lightLevels.w.isNightTime && lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy && currentAnim(hash.chargeState);
 		if(!lightLevels.w.isNightTime) {
 			if(solarCharging&&!audio.isPlaying) makeSound(chargingSound);
-			chargeCounter+=(lightLevels.sunlight * Mathf.RoundToInt(Time.timeScale));
+			chargeCounter+=(lightLevels.sunlight.GetValue() * Mathf.RoundToInt(Time.timeScale));
 			if(chargeCounter > chargeThresh) {
 				chargeCounter = 0;
 				if(lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy) {

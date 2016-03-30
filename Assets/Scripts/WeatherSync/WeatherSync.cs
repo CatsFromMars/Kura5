@@ -16,21 +16,21 @@ public class WeatherSync : MonoBehaviour {
 	public string status = "OFFLINE";
 
 	//Light
-	public int lightMax = 0;
+	public SafeInt lightMax = new SafeInt(0);
 	public bool isNightTime = false;
 
 	//Data
 	public string conditionName = "";
-	public int conditionID = 0;
-	public int cloudinessPercentage = 0;
-	public int humidityPercentage = 0;
-	public float finalTemp = 0;
+	public SafeInt conditionID = new SafeInt(-1000);
+	public SafeInt cloudinessPercentage = new SafeInt(-1000);
+	public SafeInt humidityPercentage = new SafeInt(-1000);
+	public SafeInt finalTemp = new SafeInt(-1000);
 
 	//Extremes
-	public int hotTemp = 28;
-	public int coldTemp = 0;
-	public int humid = 80;
-	public int cloudy = 60;
+	public SafeInt hotTemp = new SafeInt(28);
+	public SafeInt coldTemp = new SafeInt(0);
+	public SafeInt humid = new SafeInt(80);
+	public SafeInt cloudy = new SafeInt(60);
 
 	void Awake() {
 		InvokeRepeating("connect",0,60*60*60); //update by the hour
@@ -50,16 +50,16 @@ public class WeatherSync : MonoBehaviour {
 		conditionName = ""; //Add in later
 		int season = GenericPattern.getSeason();
 		int percent = GenericPattern.getPercent();
-		finalTemp = GenericPattern.getTemp (percent);
-		humidityPercentage = GenericPattern.getHumidity();
-		cloudinessPercentage = GenericPattern.getCloudiness();
+		finalTemp = new SafeInt(GenericPattern.getTemp (percent));
+		humidityPercentage = new SafeInt(GenericPattern.getHumidity());
+		cloudinessPercentage = new SafeInt(GenericPattern.getCloudiness());
 		if(percent >= 100 || percent <= 0) {
 			isNightTime = true;
-			lightMax = GenericPattern.getMoonlight(cloudinessPercentage);
+			lightMax = new SafeInt(GenericPattern.getMoonlight(cloudinessPercentage.GetValue()));
 		}
 		else {
 			isNightTime = false;
-			lightMax = GenericPattern.getSunlight(percent, cloudinessPercentage);
+			lightMax = new SafeInt(GenericPattern.getSunlight(percent, cloudinessPercentage.GetValue()));
 		}
 	}
 
@@ -69,15 +69,15 @@ public class WeatherSync : MonoBehaviour {
 
 		if (live.currentError == "") {
 			status = "ONLINE";
-			int percent = live.getPercent();
+			SafeInt percent = live.getPercent();
 			//Get values
 			conditionName = live.getCondition();
-			//conditionID = live.getID();
+			conditionID = live.getID();
 			finalTemp = live.getTemperature();
 			humidityPercentage = live.getHumidity();
 			cloudinessPercentage = live.getCloudiness();
 			//calculate it it's night or day
-			if(percent >= 100 || percent <= 0) {
+			if(percent.GetValue() >= 100 || percent.GetValue() <= 0) {
 				isNightTime = true;
 				lightMax = live.getMoonlight();
 			}

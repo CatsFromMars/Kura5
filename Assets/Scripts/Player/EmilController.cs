@@ -101,7 +101,7 @@ public class EmilController : PlayerContainer {
 	}
 
 	void absorb(float rate) {
-		if(lightLevels.darkness > 0) absorbCounter+=lightLevels.darkness;
+		if(lightLevels.darkness > 0) absorbCounter+=lightLevels.darkness.GetValue();
 		else absorbCounter = 0;
 		if(absorbCounter>absorbCounterTime) {
 			gameData.emilCurrentEnergy += rate;
@@ -156,9 +156,11 @@ public class EmilController : PlayerContainer {
 				Destroy(lockOn.gameObject);
 				zoomToPlayer();
 			}
-			agent.ResetPath();
-			agent.speed = originalAgentSpeed;
-			agent.stoppingDistance = originalStoppingDistance;
+			if(!dead) {
+				agent.ResetPath();
+				agent.speed = originalAgentSpeed;
+				agent.stoppingDistance = originalStoppingDistance;
+			}
 		}
 	}
 
@@ -233,7 +235,17 @@ public class EmilController : PlayerContainer {
 		if(gameData.emilCurrentElem == GameData.elementalProperty.Dark) { 
 			c = Color.red;
 			bladeMat.SetColor("_Color", Color.black);
-			bladeMat.SetColor("_OutlineColor", Color.red);
+			bladeMat.SetColor("_OutlineColor", c);
+		}
+		else if(gameData.emilCurrentElem == GameData.elementalProperty.Frost) { 
+			c = Color.cyan;
+			bladeMat.SetColor("_Color", Color.black);
+			bladeMat.SetColor("_OutlineColor", c);
+		}
+		else if(gameData.emilCurrentElem == GameData.elementalProperty.Cloud) { 
+			c = Color.magenta;
+			bladeMat.SetColor("_Color", Color.black);
+			bladeMat.SetColor("_OutlineColor", c);
 		}
 		else {
 			c = Color.white;
@@ -284,7 +296,7 @@ public class EmilController : PlayerContainer {
 	
 	public void Charge() {
 		darkCharging = Time.timeScale != 0 && lightLevels.darkness > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy && currentAnim(hash.chargeState);
-		chargeCounter+=lightLevels.darkness*Mathf.RoundToInt(Time.timeScale);
+		chargeCounter+=(lightLevels.darkness.GetValue()*Mathf.RoundToInt(Time.timeScale));
 		if(Time.timeScale != 0 && lightLevels.darkness > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy && !audio.isPlaying) makeSound(chargingSound);
 		if(chargeCounter > chargeThresh) {
 			chargeCounter = 0;

@@ -322,7 +322,15 @@ public class InventoryMenu : MonoBehaviour {
 		//Select Item
 		if(Input.GetButtonDown("Charge")) { //Charge is basically the A button
 			if(itemNotNull()) {
-				if(currentFunction == function.USE) currentState = state.SELECT_PLAYER;
+				if(currentFunction == function.USE) {
+					if(itemDisplayType == listKind.CONSUMABLES) currentState = state.SELECT_PLAYER;
+					else if(itemDisplayType == listKind.VALUABLES) {
+						//use key item
+						inventory.useCurrentKeyItem(index);
+						//exit menu
+						manager.closeMenu();
+					}
+				}
 				else if(currentFunction == function.SWAP) {
 					moveSelector();
 					moveSwapSelector();

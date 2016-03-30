@@ -21,7 +21,7 @@ public class LensGUI : MonoBehaviour {
 		else if (lens == "Fire") angle = 45;
 		else if (lens == "Frost") angle = 90;
 		else if (lens == "Earth") angle = 135;
-		else if (lens == "Cloud") angle = 190;
+		else if (lens == "Cloud") angle = 180;
 		else if (lens == "Luna") angle = 225;
 		else if (lens == "Astro") angle = 270;
 		else if (lens == "Sol" || lens == "Null") angle = 315;

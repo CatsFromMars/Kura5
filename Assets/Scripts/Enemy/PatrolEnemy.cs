@@ -29,6 +29,7 @@ public class PatrolEnemy : EnemyClass {
 	public bool attacking = false;
 	protected bool chasing = false;
 	protected bool canMakeDecision = true;
+	protected bool checkedCoffin = false;
 
 	//VISUAL VARIABLES
 	public Transform emotion;
@@ -126,17 +127,28 @@ public class PatrolEnemy : EnemyClass {
 			{
 				Debug.DrawLine(transform.position, hit.point, Color.red);
 				// ... and if the raycast hits the player...
-				if (hit.collider.gameObject.tag == "Player" && !pc.playerHiddenInCoffin())
+				if (hit.collider.gameObject.tag == "Player")
 				{
+
 					// ... the player is in sight.
-					if(canSee) playerInSight = true;
+					if(pc.playerHiddenInCoffin() && !playerInSight) {
+						if(!checkedCoffin) {
+							Vector3 midPoint = Vector3.Lerp(player.transform.position, transform.position,0.5f);
+							playerLastSighting = midPoint;
+							checkedCoffin = true;
+						}
+					}
+					else if(canSee) {
+						playerInSight = true;
+						checkedCoffin = false;
+					}
 					//Debug.Log ("I SEE YOU!");
 					// Set the last global sighting is the players current position.
 					if(player == null || player.active == false) { //IN CASE PLAYER SWITCHES
 						player = GameObject.FindWithTag("Player").transform;
 						playerAnimator = player.GetComponent<Animator>();
 					}
-					if(canSee) {
+					if(canSee && !pc.playerHiddenInCoffin()) {
 						playerLastSighting = player.transform.position;
 						cautionTimer = 0; //Reset caution timer since player's busted
 					}
@@ -149,7 +161,7 @@ public class PatrolEnemy : EnemyClass {
 
 		//Exception: Get in the "personal bubble"
 		float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
-		if (distanceFromPlayer <= 2.5f && !pc.playerHiddenInCoffin()) {
+		if (distanceFromPlayer <= 2.5f) {
 			// ... the player is in sight.
 			playerInSight = true;
 			//Debug.Log ("I SEE YOU!");
@@ -308,7 +320,7 @@ public class PatrolEnemy : EnemyClass {
 		stunned = false; //A hack to make sure stuntime and shadowsealing time isn't stacked.
 		if(!attacking && animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.attackState) {
 			if(frozen == false) { 
-				freezeWaitTime = lightLevels.darkness;
+				freezeWaitTime = lightLevels.darkness.GetValue();
 				shadowStunParticles.Play();
 			}
 			if(freezeTimer >= freezeWaitTime) {
@@ -339,7 +351,11 @@ public class PatrolEnemy : EnemyClass {
 	}
 
 	public bool hasPlayerBeenSpotted() {
-		return playerInSight;
+		//For trap
+		return animator.GetCurrentAnimatorStateInfo (0).nameHash == hash.attackState;
 	}
 
+	public Animator getAnimator() {
+		return animator;
+	}
 }

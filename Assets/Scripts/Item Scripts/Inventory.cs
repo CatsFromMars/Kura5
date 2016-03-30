@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviour {
 		itemsList.Add (database.consumableItems[2]);
 		itemsList.Add (database.consumableItems[3]);
 		itemsList.Add (database.consumableItems[4]);
-		keyItemsList.Add (database.keyItems[0]);
+		keyItemsList.Add (database.keyItems[2]);
 
 		//INIT SLOTS FOR ITEMS
 		for (int i = 0; i < slotsX * slotsY; i++)
@@ -61,10 +61,16 @@ public class Inventory : MonoBehaviour {
 
 	void Start() {
 		//Lens
+		AddLens (3);
+		AddLens (4);
+		AddLens (5);
+
 		AddLens (0); //Sol
 		AddLens (2); //Fire
 		AddLens (1); //Dark
 		AddLens (8); //Empty
+
+
 	}
 
 	//Functions for manipulating inventory
@@ -87,6 +93,7 @@ public class Inventory : MonoBehaviour {
 	public bool AddKeyItem(int itemID) {
 		//Add item to inventory via item id
 		//If returns false, that means it failed to add the item
+		Debug.Log (itemID);
 		KeyItem item = database.keyItems[itemID];
 		for(int i = 0; i < slotsX*slotsY; i++)
 		{
@@ -169,6 +176,22 @@ public class Inventory : MonoBehaviour {
 		Consumable empty = new Consumable();
 		itemsList [index] = empty;
 		slots [index] = empty;
+	}
+
+	public bool useCurrentKeyItem(int index) {
+		KeyItem item = keyItemsList[index];
+		if (item.effect == "COFFIN") {
+			//Use Coffin: UNSAFE! FIX LATER!
+			StealthCoffin c = GameObject.Find ("StealthCoffin").GetComponent<StealthCoffin>();
+			c.player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerContainer>();
+			c.player.inCoffin = !c.player.inCoffin;
+
+			return true;
+		}
+
+
+
+		return false;
 	}
 
 	public bool useCurrentConsumable(int index, string player) { //player = ANNIE or EMIL

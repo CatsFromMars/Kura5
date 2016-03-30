@@ -46,7 +46,7 @@ public class SkylightWeather : MonoBehaviour {
 		light = lightProjector.GetComponent<Projector>().material;
 		shadows = GameObject.FindGameObjectsWithTag("Shadow");
 		skylights = GameObject.FindGameObjectsWithTag("Sunlight");
-
+		Debug.Log (w.conditionID);
 		if(!isIndoors) {
 			updateWeatherEffects();
 			if(snowProjector != null) {
@@ -72,7 +72,7 @@ public class SkylightWeather : MonoBehaviour {
 	}
 
 	public void updateLightVisibility() {
-		if(lightOn&&w.lightMax < 1) { 
+		if(lightOn&&w.lightMax.GetValue() < 1) { 
 			foreach(GameObject skylight in skylights) {
 				if(skylight.name == "Skylight") skylight.SetActive(false);
 			}
@@ -81,7 +81,7 @@ public class SkylightWeather : MonoBehaviour {
 			}
 			lightOn = false;
 		}
-		else if (!lightOn && w.lightMax > 0) {
+		else if (!lightOn && w.lightMax.GetValue() > 0) {
 			foreach(GameObject skylight in skylights) {
 				if(skylight.name == "Skylight") skylight.SetActive(true);
 			}
@@ -95,8 +95,8 @@ public class SkylightWeather : MonoBehaviour {
 	public void updateWeatherEffects() {
 
 		//Rain
-		bool isRaining = w.conditionID >= rainMin && w.conditionID <= rainMax;
-		bool isDrizzling = w.conditionID >= drizzleMin && w.conditionID <= drizzleMax;
+		bool isRaining = w.conditionID.GetValue() >= rainMin && w.conditionID.GetValue() <= rainMax;
+		bool isDrizzling = w.conditionID.GetValue() >= drizzleMin && w.conditionID.GetValue() <= drizzleMax;
 		if (isRaining||isDrizzling) {
 			adjustEmission(50, rain);
 			swapWeather(rain, "Rain");
@@ -107,7 +107,7 @@ public class SkylightWeather : MonoBehaviour {
 //			if(!clouds.isPlaying)clouds.Play();
 //			currentWeatherEffect = clouds;
 //		}
-		else if(w.conditionID >= snowMin && w.conditionID <= snowMax) {
+		else if(w.conditionID.GetValue() >= snowMin && w.conditionID.GetValue() <= snowMax) {
 			adjustEmission(200, snow);
 			swapWeather(snow, "Snow");
 		}
@@ -120,7 +120,7 @@ public class SkylightWeather : MonoBehaviour {
 
 	void adjustEmission(int mildE, ParticleSystem p) {
 		float multiplier;
-		if(w.conditionID%10 == 1 || w.conditionID%10 == 0) multiplier = mildE;
+		if(w.conditionID.GetValue()%10 == 1 || w.conditionID.GetValue()%10 == 0) multiplier = mildE;
 		else multiplier = mildE*10f;
 		p.emissionRate = multiplier*transform.localScale.x;
 	}
@@ -134,9 +134,9 @@ public class SkylightWeather : MonoBehaviour {
 
 	public void updateSkylightColor() {
 		if(w.isNightTime == false) {
-			if(w.cloudinessPercentage >= 50) light.SetColor("_Color", cloudyDay);
-			else if(w.lightMax >= 1 && w.lightMax < 4) light.SetColor("_Color", twilight);
-			else if(w.lightMax >= 4) light.SetColor("_Color", day);
+			if(w.cloudinessPercentage.GetValue() >= 50) light.SetColor("_Color", cloudyDay);
+			else if(w.lightMax.GetValue() >= 1 && w.lightMax.GetValue() < 4) light.SetColor("_Color", twilight);
+			else if(w.lightMax.GetValue() >= 4) light.SetColor("_Color", day);
 		}
 		else light.SetColor("_Color", night);
 	}

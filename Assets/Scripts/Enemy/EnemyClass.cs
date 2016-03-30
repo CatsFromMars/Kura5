@@ -238,6 +238,11 @@ public class EnemyClass : MonoBehaviour {
 		}
 	}
 
+	public void Kill() {
+		currentLife = 0;
+		Die ();
+	}
+
 	protected void spawnLoot() {
 		bool playSound = true;
 		int c = Random.Range (0, 11);

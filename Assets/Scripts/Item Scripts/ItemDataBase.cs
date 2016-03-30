@@ -14,7 +14,7 @@ public class ItemDatabase : MonoBehaviour {
 
 		//Consumable Items
 		n = "Earth Fruit";
-		desc = "Sweet and sour Solar Fruit.\nRestores Some Life.";
+		desc = "Fruit blessed by the Earth.\nRestores Some Life.";
 		Consumable apple = new Consumable (0, n, desc, "RESTORE_LIFE", "ANNIE", 30);
 		apple.model = Resources.Load ("Items/Earth Fruit") as GameObject;
 		consumableItems.Add(apple);
@@ -32,7 +32,7 @@ public class ItemDatabase : MonoBehaviour {
 		consumableItems.Add(orange);
 
 		n = "Solar Fruit";
-		desc = "Fruit from a Solar Tree.\nRestores Some Energy.";
+		desc = "Fruit blessed by the Sun.\nRestores Some Energy.";
 		Consumable solarFruit = new Consumable (3, n, desc, "RESTORE_ENERGY", "ANNIE", 30);
 		solarFruit.model = Resources.Load ("Items/Solar Fruit") as GameObject;
 		consumableItems.Add (solarFruit);
@@ -44,11 +44,23 @@ public class ItemDatabase : MonoBehaviour {
 		consumableItems.Add (meat);
 
 		//Key Items
-		n = "Key";
+		n = "Blue Key";
 		desc = "A key held together by the\ndark magic of an Immortal.";
 		KeyItem key = new KeyItem (0, n, desc, false, "UNLOCKS_DOORS");
 		key.model = Resources.Load ("Items/Key") as GameObject;
 		keyItems.Add(key);
+
+		n = "Dark Loans Card";
+		desc = "A credit card from Dark Loans.\nSummons a shady loan shark.";
+		KeyItem card = new KeyItem (1, n, desc, false, "SUMMONS_DOOMY");
+		card.model = Resources.Load ("Items/Card") as GameObject;
+		keyItems.Add(card);
+
+		n = "Coffin";
+		desc = "An old family coffin once belonging\nto a Vampire Lord. Hides bodies.";
+		KeyItem coffin = new KeyItem (2, n, desc, false, "COFFIN");
+		coffin.model = Resources.Load ("Items/Coffin") as GameObject;
+		keyItems.Add(coffin);
 
 		//Lens
 		n = "Sol Lens";

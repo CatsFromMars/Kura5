@@ -9,22 +9,15 @@ public class LightLevels : MonoBehaviour {
 	public float distanceSun;
 	public float distanceDark;
 	//Controller, data storeage, and GUI of the LD Meter
-	public int upperBound = 6;
-	public int lowerBound = 0;
-	public int sunlight = 0;
-	public int darkness = 0;
+	public SafeInt upperBound = new SafeInt(6);
+	public SafeInt lowerBound = new SafeInt(0);
+	public SafeInt sunlight = new SafeInt(0);
+	public SafeInt darkness = new SafeInt(0);
 
 	private GameObject lightSource;
 	private GameObject shadowSource;
 	//private Vector3 lightVector;
 	//private Vector3 shadowVector;
-
-	//private GameObject player;
-	private int s1;
-	private int d1;
-
-	public Slider solSlider;
-	public Slider darkSlider;
 
 	public WeatherSync w;
 	//public SpriteRenderer lightOverlay;
@@ -37,8 +30,8 @@ public class LightLevels : MonoBehaviour {
 
 	void OnLevelWasLoaded(int level) {
 		upperBound = w.lightMax;
-		sunlight = 0;
-		darkness = 0;
+		sunlight = new SafeInt(0);
+		darkness = new SafeInt(0);
 	}
 
 	void Update() {
@@ -47,33 +40,24 @@ public class LightLevels : MonoBehaviour {
 
 	void OnTriggerStay(Collider other) {
 		if (other.tag == "Sunlight") {
-			darkness = 0;
+			darkness = new SafeInt(0);
 			//if(w.isNightTime == false) sunlight = w.lightMax;
 			sunlight = w.lightMax;
 		}
 
 		else if (other.tag == "Shadow") {
-			sunlight = 0;
+			sunlight = new SafeInt(0);
 			darkness = w.lightMax;
 		}
 	}
 
 	void OnTriggerExit(Collider other) {
 		if (other.tag == "Sunlight") {
-			sunlight = 0;
+			sunlight = new SafeInt(0);
 		}
 		
 		else if (other.tag == "Shadow") {
-			darkness = 0;
+			darkness = new SafeInt(0);
 		}
-	}
-
-	public int calcSunForTarget(Transform target) {
-		//utility function for enemies
-		float distanceSun = Vector3.Distance(lightSource.transform.position, target.position);
-		if (distanceSun <= radius && w.isNightTime == false) {
-			return w.lightMax;
-		}
-		else return 0;
 	}
 }

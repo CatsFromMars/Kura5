@@ -34,8 +34,8 @@ public class SkylightFade : MonoBehaviour {
 
 	public void updateSkylightColor() {
 		if(w.isNightTime == false) {
-			if(w.lightMax >= 1 && w.lightMax < 4) currentColor = twilight;
-			else if(w.lightMax >= 4) currentColor = day;
+			if(w.lightMax.GetValue() >= 1 && w.lightMax.GetValue() < 4) currentColor = twilight;
+			else if(w.lightMax.GetValue() >= 4) currentColor = day;
 		}
 		else currentColor = night;
 		currentColor.a = currentAlpha;
