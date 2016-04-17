@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Trap : MonoBehaviour {
 
+	bool initialized = false;
 	public GameObject[] gates;
 	public AudioClip trapMusic;
 	public Transform[] enemies;
@@ -35,6 +36,11 @@ public class Trap : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake() {
+		Time.timeScale = 0;
+		if(!initialized) initialize();
+	}
+
+	void initialize() {
 		//player = GameObject.FindGameObjectWithTag("PlayerSwapper").transform;
 		numberAlive = enemies.Length;
 		music = GameObject.FindGameObjectWithTag("Music").GetComponent<MusicManager>();
@@ -50,6 +56,7 @@ public class Trap : MonoBehaviour {
 		trapCleared = flags.CheckTrapFlag();
 		canvas = GameObject.Find ("HUD").gameObject;
 		if(type == trapType.STEALTH) stealthPrep();
+		initialized = true;
 	}
 	
 	// Update is called once per frame
@@ -172,11 +179,12 @@ public class Trap : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
+		if(!initialized) initialize();
+
 		if (trapPreDisarmed ()) {
 			if(other.tag == "Player" && !trapCleared) {
 				Time.timeScale = 0; //Pause
 				music.stopMusic();
-
 				StartCoroutine(disarmTrap());
 				GameObject effect = Resources.Load("Effects/DisarmEffect") as GameObject;
 				Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane+1)); 
@@ -188,9 +196,7 @@ public class Trap : MonoBehaviour {
 		else if(!trapActivated) {
 			if(other.tag == "Player" && !trapCleared) {
 				player = other.transform;
-				Time.timeScale = 0; //Pause
-				music.stopMusic();
-				activateGates();
+				StartCoroutine(startTrap());
 				trapActivated = true;
 				//GameObject effect = Resources.Load("Effects/TrapEffect") as GameObject;
 				//Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane+1)); 
@@ -215,14 +221,6 @@ public class Trap : MonoBehaviour {
 
 	}
 
-	void activateGates() {
-		//foreach (Activatable gate in gateScripts) {
-		//	gate.Activate();
-		//}
-		//Time.timeScale = 1;
-		StartCoroutine(startTrap());
-	}
-
 	void deactivateGates() {
 		foreach (Activatable gate in gateScripts) {
 			gate.Deactivate();
@@ -230,6 +228,8 @@ public class Trap : MonoBehaviour {
 	}
 
 	IEnumerator disarmTrap() {
+		yield return initialized == true;
+		yield return transition.loadingScene == false;
 		yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(4f));
 		yield return StartCoroutine(DisplayDialogue.Speak(disarmPrompt));
 		music.changeMusic(music.previousMusic, 0.1f);
@@ -237,7 +237,12 @@ public class Trap : MonoBehaviour {
 	}
 
 	IEnumerator startTrap() {
-		yield return transition.loadingScene = false;
+
+		music.stopMusic();
+		yield return initialized == true;
+		yield return transition.loadingScene == false;
+		yield return new WaitForSeconds (0.1f);
+		Time.timeScale = 0; //Pause
 		GameObject effect = Resources.Load("Effects/TrapEffect") as GameObject;
 		Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane+1)); 
 		Instantiate(effect, pos, Quaternion.identity);

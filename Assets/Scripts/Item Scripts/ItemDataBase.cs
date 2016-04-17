@@ -62,6 +62,18 @@ public class ItemDatabase : MonoBehaviour {
 		coffin.model = Resources.Load ("Items/Coffin") as GameObject;
 		keyItems.Add(coffin);
 
+		n = "Red Key";
+		desc = "A key held together by the\ndark magic of an Immortal.";
+		KeyItem key2 = new KeyItem (3, n, desc, false, "UNLOCKS_DOORS");
+		key2.model = Resources.Load ("Items/RedKey") as GameObject;
+		keyItems.Add(key2);
+
+		n = "Yellow Key";
+		desc = "A key held together by the\ndark magic of an Immortal.";
+		KeyItem key3 = new KeyItem (4, n, desc, false, "UNLOCKS_DOORS");
+		key3.model = Resources.Load ("Items/YellowKey") as GameObject;
+		keyItems.Add(key3);
+
 		//Lens
 		n = "Sol Lens";
 		desc = "A [SOLAR GUN LENS] containing the Sol Property";

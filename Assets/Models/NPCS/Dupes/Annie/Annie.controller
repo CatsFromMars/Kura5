@@ -76,26 +76,6 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1101 &110130323
-Transition:
-  serializedVersion: 2
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_SrcState: {fileID: 110219594}
-  m_DstState: {fileID: 110215204}
-  m_TransitionDuration: .0937891901
-  m_TransitionOffset: 0
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: ThinkingBool
-    m_EventTreshold: 0
-    m_ExitTime: .846153855
-  m_Atomic: 1
-  m_Solo: 0
-  m_Mute: 0
-  m_CanTransitionToSelf: 0
 --- !u!1101 &110135439
 Transition:
   serializedVersion: 2
@@ -212,26 +192,6 @@ Transition:
     m_ConditionEvent: RaiseBool
     m_EventTreshold: 0
     m_ExitTime: .846153855
-  m_Atomic: 1
-  m_Solo: 0
-  m_Mute: 0
-  m_CanTransitionToSelf: 0
---- !u!1101 &110163236
-Transition:
-  serializedVersion: 2
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_SrcState: {fileID: 110215204}
-  m_DstState: {fileID: 110219594}
-  m_TransitionDuration: .228055492
-  m_TransitionOffset: 0
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: ThinkingBool
-    m_EventTreshold: 0
-    m_ExitTime: .75
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -388,7 +348,7 @@ StateMachine:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
-  m_DefaultState: {fileID: 110219594}
+  m_DefaultState: {fileID: 110200000}
   m_States:
   - {fileID: 110200000}
   - {fileID: 110291807}
@@ -407,7 +367,6 @@ StateMachine:
       - {fileID: 110165648}
       - {fileID: 110156990}
       - {fileID: 110135439}
-      - {fileID: 110130323}
     data:
       first: {fileID: 110200000}
       second:
@@ -430,8 +389,7 @@ StateMachine:
       - {fileID: 110194186}
     data:
       first: {fileID: 110215204}
-      second:
-      - {fileID: 110163236}
+      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 0, y: -12, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
