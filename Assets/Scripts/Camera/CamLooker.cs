@@ -14,14 +14,14 @@ public class CamLooker : MonoBehaviour {
 	void OnLevelWasLoaded(int level) {
 	}
 
-	public void zoomToTarget(Transform target, float speed=8f) {
+	public void zoomToTarget(Transform target, float speed=21f) {
 		if(coroutine != null) StopCoroutine (coroutine);
 		coroutine = lookAtTarget (target, speed);
 		StartCoroutine (coroutine);
 		currentLook = target;
 	}
 
-	public IEnumerator lookAtTarget(Transform target, float speed=8f) {
+	public IEnumerator lookAtTarget(Transform target, float speed=21f) {
 		while(transform.position != target.position) {
 			float step = speed * Time.unscaledDeltaTime;
 			transform.position = Vector3.MoveTowards(transform.position, target.position, step);

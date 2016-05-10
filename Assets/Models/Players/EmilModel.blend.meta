@@ -121,6 +121,7 @@ ModelImporter:
     7400022: PullIdle
     7400024: Pull
     7400026: Sit
+    7400028: Pose
     9500000: //RootNode
     13700000: Cube
     13700002: Cube_001
@@ -1613,6 +1614,128 @@ ModelImporter:
       takeName: Actions2
       firstFrame: 35
       lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Middle
+        weight: 1
+      - path: Armature/Hip/Middle/Chest
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Cape1
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Cape1/Cape2
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Cape1/Cape2/Cape3
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Cape1/Cape2/Cape3/Cape4
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Cape1/Cape2/Cape3/Cape4/Cape5
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/BangsL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/BangsR
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/EyeL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/EyeR
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/Hair1
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/Hair1/Hair2
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/Head/Hair3
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL/LowerArmL/PalmL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL/LowerArmL/PalmL/FingerBaseL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL/LowerArmL/PalmL/FingerBaseL/FingerTipL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL/LowerArmL/PalmL/IndexBaseL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL/LowerArmL/PalmL/IndexBaseL/IndexTipL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL/LowerArmL/PalmL/ThumbBaseL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL/LowerArmL/PalmL/ThumbBaseL/ThumbTipL
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderL/UpperArmL/LowerArmL/PalmL/Weapon
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderR/UpperArmR/LowerArmR/PalmR
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderR/UpperArmR/LowerArmR/PalmR/FingerBaseR
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderR/UpperArmR/LowerArmR/PalmR/FingerBaseR/FingerTipR
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderR/UpperArmR/LowerArmR/PalmR/IndexBaseR
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderR/UpperArmR/LowerArmR/PalmR/IndexBaseR/IndexTipR
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderR/UpperArmR/LowerArmR/PalmR/ThumbBaseR
+        weight: 1
+      - path: Armature/Hip/Middle/Chest/ShoulderR/UpperArmR/LowerArmR/PalmR/ThumbBaseR/ThumbTipR
+        weight: 1
+      - path: Armature/Hip/UpperLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegL/LowerLegL
+        weight: 1
+      - path: Armature/Hip/UpperLegR
+        weight: 1
+      - path: Armature/Hip/UpperLegR/LowerLegR
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Cube_001
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: Sphere_004
+        weight: 1
+      - path: Sphere_005
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Pose
+      takeName: Actions2
+      firstFrame: 89.9000015
+      lastFrame: 90
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

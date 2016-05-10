@@ -11,6 +11,7 @@ public class TreasureChest : MonoBehaviour {
 	Inventory inventory;
 	public AudioSource jingle;
 	public bool playsJingle;
+	public bool stopsMusic = true;
 
 	//Key Item stuff
 	public enum itemKind {CONSUMABLE, KEY, LENS, WEAPON};
@@ -60,15 +61,19 @@ public class TreasureChest : MonoBehaviour {
 			//Play Jingle
 			if(playsJingle) {
 				//stops music for 4 seconds, long enough for jingle to play
-				music.stopMusic();
+				if(stopsMusic) music.stopMusic();
 				jingle.Play();
-				music.changeMusic(music.previousMusic, 4f);
+				if(stopsMusic) music.changeMusic(music.previousMusic, 4f);
 			}
 			//Display text
 			if(Time.timeScale != 0) StartCoroutine (SpeakCoroutine());
 			//Get Loot
 			if (type == itemKind.LENS) {
 				inventory.AddLens (itemID);
+				itemSpawned = true;
+			}
+			else if (type == itemKind.KEY) {
+				inventory.AddKeyItem (itemID);
 				itemSpawned = true;
 			}
 		}

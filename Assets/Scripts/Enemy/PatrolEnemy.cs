@@ -318,23 +318,27 @@ public class PatrolEnemy : EnemyClass {
 	public void Freeze() {
 		//Handles Emil's shadow stunning;
 		stunned = false; //A hack to make sure stuntime and shadowsealing time isn't stacked.
-		if(!attacking && animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.attackState) {
+		if(!attacking && animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.attackState && currentLife > 0) {
 			if(frozen == false) { 
 				freezeWaitTime = lightLevels.darkness.GetValue();
-				shadowStunParticles.Play();
+				//shadowStunParticles.Play();
 			}
 			if(freezeTimer >= freezeWaitTime) {
 				frozen = false;
 				freezeTimer = 0;
 				shadowStunEffect.active = false;
-				shadowStunParticles.Stop ();
+				//shadowStunParticles.Stop ();
 				attacking = false;
 				animator.SetTrigger(Animator.StringToHash("Thawed"));
+				animator.enabled = true;
+				shadowStunBreakEffect.active = true;
 			}
 			else {
 				shadowStunEffect.active = true;
+				shadowStunBreakEffect.active = false;
 				freezeTimer += Time.deltaTime;
 				frozen = true;
+				animator.enabled=false;
 			}
 		}
 	}

@@ -56,6 +56,7 @@ public class Door : MonoBehaviour {
 	void Update() {
 		if (doorLocked && inRange && Input.GetButtonDown("Charge")) {
 			int hasKey = inventory.checkForKeyItem(keyItemID);
+			Debug.Log(hasKey);
 			if(hasKey != -1) {
 				doorLocked = false;
 				inventory.removeKeyItem(hasKey);
@@ -63,6 +64,7 @@ public class Door : MonoBehaviour {
 				col.radius = triggerRadius;
 				doorCollider.enabled = false;
 				StartCoroutine(DisplayDialogue.Speak(openedDoorPrompt));
+				data.nearInteractable = false;
 			}
 			else {
 				StartCoroutine(DisplayDialogue.Speak(lockedDoorPrompt));
@@ -80,7 +82,7 @@ public class Door : MonoBehaviour {
 		}
 		else inRange = true;
 
-		data.nearInteractable = true;
+		if(doorLocked) data.nearInteractable = true;
 	}
 
 	void OnTriggerExit(Collider other) {
@@ -90,6 +92,6 @@ public class Door : MonoBehaviour {
 		}
 		else inRange = false;
 
-		data.nearInteractable = false;
+		if(doorLocked) data.nearInteractable = false;
 	}
 }

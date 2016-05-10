@@ -244,7 +244,17 @@ public class PlayerContainer : MonoBehaviour {
 		
 		transform.rotation = newRotation;
 	}
-	
+
+	public void OnCollisionEnter(Collision other) {
+		if (other.gameObject.tag == "EnemyWeapon") {
+			WeaponData weapon = other.collider.GetComponent<WeaponData>();
+			int d = weapon.damage;
+			string e = weapon.element;
+			Vector3 k = weapon.knockBack * other.transform.forward;
+			if(weapon.knockBack == 0) k = transform.forward*-3;
+			hitPlayer(d, e, k);
+		}
+	}
 
 	public void OnTriggerStay(Collider other) {
 

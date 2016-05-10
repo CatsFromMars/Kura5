@@ -28,6 +28,15 @@ public class LiveWeather : MonoBehaviour {
 		APIKEY = SimpleXOREncryption.EncryptorDecryptor.EncryptDecrypt(APIKEY);
 	}
 
+	public static int adjustCurve() {
+		int season = GenericPattern.getSeason();
+		//Adjust how much light is recieved depending on the season
+		if(season == 0) return 800;
+		else if(season == 1) return 900;
+		else if(season == 2) return 700;
+		else return 600;
+	}
+
 	public static System.DateTime UnixTimeStampToDateTime(int unixTimeStamp)
 	{
 		// Unix timestamp is seconds past epoch
@@ -71,14 +80,14 @@ public class LiveWeather : MonoBehaviour {
 
 	IEnumerator getLiveWeather() {
 		WWW weatherRequest = new WWW("http://api.openweathermap.org/data/2.5/weather?q=" + currentLocation + "&units=metric" + "&APPID=" + APIKEY); //get our weather
-		Debug.Log (weatherRequest.url);
+		//Debug.Log (weatherRequest.url);
 		yield return weatherRequest;
 		if (weatherRequest.error == null || weatherRequest.error == "")
 		{
 			var N = JSON.Parse(weatherRequest.text);
 			conditionName = N["weather"][0]["main"].Value;
 			conditionID = new SafeInt(ParseUtil.numberParse(N["weather"][0]["id"].Value));
-			Debug.Log(Mathf.RoundToInt(ParseUtil.numberParse(N["main"]["temp"].Value)));
+			//Debug.Log(Mathf.RoundToInt(ParseUtil.numberParse(N["main"]["temp"].Value)));
 			temperature = new SafeInt(Mathf.RoundToInt(ParseUtil.numberParse(N["main"]["temp"].Value)));
 			cloudiness = new SafeInt(ParseUtil.numberParse(N["clouds"]["all"].Value));
 			humidity = new SafeInt(ParseUtil.numberParse(N["main"]["humidity"].Value));
@@ -137,8 +146,9 @@ public class LiveWeather : MonoBehaviour {
 
 	public static int normalize(int percentage) {
 		//Returns a number between 1 and 10
+		int curveWidth = adjustCurve();
 		float a = Mathf.Pow(percentage-50, 2);
-		float power = (-1*a/600f);
+		float power = (-1*a/curveWidth);
 		return Mathf.RoundToInt(10*Mathf.Exp(power));
 	}
 

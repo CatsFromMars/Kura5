@@ -268,6 +268,8 @@ public class EmilController : PlayerContainer {
 	void hitEnemy(RaycastHit hit) {
 		//Ordinary Enemies
 		EnemyClass enemy = hit.collider.GetComponent<EnemyClass>();
+		//if it's a boss segment...
+		if(enemy == null) enemy = hit.collider.transform.root.GetComponent<EnemyClass>();
 
 		//Insta-kill Ivy
 		Ivy ivy = hit.collider.GetComponent<Ivy>();
@@ -281,6 +283,10 @@ public class EmilController : PlayerContainer {
 		if(lightLevels.darkness > 0) {
 			PatrolEnemy patrol = hit.collider.GetComponent<PatrolEnemy>();
 			if(patrol != null && gameData.emilCurrentElem == GameData.elementalProperty.Dark) patrol.Freeze();
+			else {
+				BossSegment boss = hit.collider.GetComponent<BossSegment>();
+				if(boss != null && gameData.emilCurrentElem == GameData.elementalProperty.Dark) boss.bossParent.ShadowSeal();
+			}
 		}
 		//Sparkly Effects and Sound
 		makeSound(hitSound);

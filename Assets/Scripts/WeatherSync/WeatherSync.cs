@@ -16,6 +16,7 @@ public class WeatherSync : MonoBehaviour {
 	public string status = "OFFLINE";
 
 	//Light
+	public SafeInt sunlight = new SafeInt(0);
 	public SafeInt lightMax = new SafeInt(0);
 	public bool isNightTime = false;
 
@@ -34,6 +35,7 @@ public class WeatherSync : MonoBehaviour {
 
 	void Awake() {
 		InvokeRepeating("connect",0,60*60*60); //update by the hour
+		//InvokeRepeating("adjustLight",0,30);
 		//connect ();
 	}
 	
@@ -61,6 +63,24 @@ public class WeatherSync : MonoBehaviour {
 			isNightTime = false;
 			lightMax = new SafeInt(GenericPattern.getSunlight(percent, cloudinessPercentage.GetValue()));
 		}
+		sunlight = lightMax;
+	}
+
+	void adjustLight() {
+		//Adjusts light at random according to cloudiness
+		if(conditionName != "") {
+			int r = UnityEngine.Random.Range(0, 100);
+			int cloud = 100-cloudinessPercentage.GetValue()/2;
+			if(r <= (cloud)) {
+				lightMax = new SafeInt(sunlight.GetValue()+UnityEngine.Random.Range(0,3));
+			}
+			else if(r >= cloud) {
+				lightMax = new SafeInt(sunlight.GetValue()-UnityEngine.Random.Range(0,1));
+			}
+			if(lightMax > 10) lightMax = new SafeInt(10);
+			if(lightMax < 0) lightMax = new SafeInt(0);
+			//Debug.Log("LightMax went from "+sunlight+" to "+lightMax);
+		}
 	}
 
 	IEnumerator getLiveWeather() {
@@ -85,6 +105,8 @@ public class WeatherSync : MonoBehaviour {
 				isNightTime = false;
 				lightMax = live.getSunlight();
 			}
+
+			sunlight = lightMax;
 		}
 		else {
 			getGenericWeather();

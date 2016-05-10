@@ -38,6 +38,7 @@ public class GameData : MonoBehaviour {
 	public string sceneName; //NAME OF DUNGEON. WILL BE LOADED AS "Application.LoadLevel(sceneName);"
 
 	//MISC VARIABLES
+	public Transform emilRaven;
 	public Transform gameOverSpawner;
 	public bool isGameOver;
 
@@ -49,7 +50,8 @@ public class GameData : MonoBehaviour {
 
 	void Awake() {
 		Application.targetFrameRate = 60;
-		globalObject = GameObject.FindGameObjectWithTag ("Global").transform;
+		GameObject GO = GameObject.FindGameObjectWithTag ("Global");
+		if(GO!=null) globalObject = GO.transform;
 	}
 
 	void Update() {

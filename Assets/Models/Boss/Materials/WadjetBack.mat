@@ -36,6 +36,13 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _Cube
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _ToonShade
         second:
           m_Texture: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
@@ -78,13 +85,6 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Cube
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _Illum
         second:
           m_Texture: {fileID: 0}
@@ -104,20 +104,20 @@ Material:
         second: .5
       data:
         first:
-          name: _Outline
-        second: .0299999993
-      data:
-        first:
-          name: _Parallax
-        second: .0199999996
-      data:
-        first:
           name: _Shininess
         second: .078125
       data:
         first:
           name: _InvFade
         second: 3
+      data:
+        first:
+          name: _Outline
+        second: .0299999993
+      data:
+        first:
+          name: _Parallax
+        second: .0199999996
       data:
         first:
           name: _EmissionLM
@@ -131,10 +131,6 @@ Material:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _OutlineColor
-        second: {r: .407843143, g: .458823532, b: .600000024, a: 1}
       data:
         first:
           name: _SpecColor
@@ -155,3 +151,7 @@ Material:
         first:
           name: _ReflectColor
         second: {r: 1, g: 1, b: 1, a: .5}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: .407843143, g: .458823532, b: .600000024, a: 1}

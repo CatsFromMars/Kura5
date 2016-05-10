@@ -64,6 +64,7 @@ public class Talk : MonoBehaviour {
 		yield return StartCoroutine(DisplayDialogue.Speak(text));
 		isTalking = false;
 		otenkoAppear = false;
+		if(destroyGameobject) Destroy(this.gameObject);
 	}
 	
 }

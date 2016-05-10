@@ -68,9 +68,8 @@ public class Inventory : MonoBehaviour {
 		AddLens (0); //Sol
 		AddLens (2); //Fire
 		AddLens (1); //Dark
+
 		AddLens (8); //Empty
-
-
 	}
 
 	//Functions for manipulating inventory
@@ -93,7 +92,6 @@ public class Inventory : MonoBehaviour {
 	public bool AddKeyItem(int itemID) {
 		//Add item to inventory via item id
 		//If returns false, that means it failed to add the item
-		Debug.Log (itemID);
 		KeyItem item = database.keyItems[itemID];
 		for(int i = 0; i < slotsX*slotsY; i++)
 		{
@@ -158,7 +156,7 @@ public class Inventory : MonoBehaviour {
 		//RETURNS INDEX OF ITEM. RETURNS -1 IF NOT FOUND
 		for(int i = 0; i < slotsX*slotsY; i++)
 		{
-			if(keyItemsList[i].id == itemID)
+			if(keyItemsList[i].id==itemID && keyItemsList[i].name!=null)
 			{
 				return i;
 			}

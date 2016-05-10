@@ -59,6 +59,29 @@ public class DisplayDialogue : MonoBehaviour {
 		string name = txt.Substring(1, length-5);
 		return name;
 	}
+
+	public static GameObject getLookTarget(string txt) {
+		int length = 0;
+		txt = txt.Substring(15);
+		Debug.Log (txt);
+		char[] text = txt.ToCharArray ();
+		foreach (char c in text) {
+			if(c.Equals(">")) break;
+			else length++;
+		}
+		string name = txt.Substring(1, length-3);
+		Debug.Log (name);
+		return GameObject.Find(name);
+	}
+
+	public static void toggleRaven() {
+		//Intended to spawn and despawn Emil as a raven from Annie's presence
+		GameData data = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameData>();
+		if (data.currentPlayer == GameData.player.Annie) {
+			if(!data.emilRaven.gameObject.activeSelf) data.emilRaven.gameObject.SetActive(true);
+			else data.emilRaven.gameObject.GetComponent<Animator>().SetTrigger(Animator.StringToHash("Exit"));
+		}
+	}
 	
 	public static IEnumerator Speak(TextAsset text) {
 		bool nullSpeech = true; //Is this a segment that involves NO portraits?
@@ -87,17 +110,32 @@ public class DisplayDialogue : MonoBehaviour {
 			}
 			else rightSprite = null;
 
+			//Get Sounds
 			if(dialogueSpeech[index].Contains("S=")) {
 				dialogue.makeSound(dialogue.tickAudio, getSound(dialogueSpeech[index]));
 				index++;
 			}
+			//Camera Look At
+			if(dialogueSpeech[index].Contains("CAM_GOTO_POINT=")) {
+				GameObject s = getLookTarget(dialogueSpeech[index]);
+				GameObject.FindGameObjectWithTag("CamFollow").GetComponent<CamLooker>().zoomToTarget(s.transform);
+				index++;
+			}
 
-			string speech = dialogueSpeech[index];
-			speech = speech.Replace("<n>", "\n");
-			dialogue.Show(speech, leftSprite, rightSprite);
-			bool push = Input.GetButtonDown("Charge") || Input.GetButtonDown("Confirm");
-			while(!dialogue.isFinished) yield return null;
-			index++;
+			//Little Bird Buddy Spawning
+			if(dialogueSpeech[index].Contains("<TOGGLE_RAVEN>")) {
+				toggleRaven();
+				index++;
+			}
+
+			if(index < dialogueSpeech.Length) {
+				string speech = dialogueSpeech[index];
+				speech = speech.Replace("<n>", "\n");
+				dialogue.Show(speech, leftSprite, rightSprite);
+				bool push = Input.GetButtonDown("Charge") || Input.GetButtonDown("Confirm");
+				while(!dialogue.isFinished) yield return null;
+				index++;
+			}
 		}
 		//if(!nullSpeech) dialogue.leftAnimator.SetTrigger(Animator.StringToHash("Leave"));
 		//if(!nullSpeech) dialogue.rightAnimator.SetTrigger(Animator.StringToHash("Leave"));

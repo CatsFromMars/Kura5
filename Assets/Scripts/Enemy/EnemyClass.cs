@@ -85,6 +85,7 @@ public class EnemyClass : MonoBehaviour {
 
 	//VISUAL VARIABLES
 	public Transform shadowStunEffect;
+	public Transform shadowStunBreakEffect;
 	public ParticleSystem shadowStunParticles;
 	public ParticleSystem smoke;
 
@@ -92,7 +93,8 @@ public class EnemyClass : MonoBehaviour {
 		Undead,
 		Phantom,
 		Beast,
-		Robot
+		Robot,
+		Immortal
 	}
 
 	void Awake () {
@@ -200,7 +202,7 @@ public class EnemyClass : MonoBehaviour {
 			//Look at player always 
 			Vector3 p = player.transform.position;
 			Vector3 pos = new Vector3(p.x, this.transform.position.y, p.z);
-			transform.LookAt(pos);
+			if(type!=EnemyType.Immortal) transform.LookAt(pos);
 
 			//Update Enemy HP Bar
 			lifeBar.maxValue = maxLife;
@@ -405,5 +407,9 @@ public class EnemyClass : MonoBehaviour {
 		if (viewPos.x >= 0 && viewPos.x <= 4 && viewPos.y >= 0 && viewPos.y <= 4 && viewPos.z >= 0)
 			return true;
 		else return false;
+	}
+
+	protected bool currentAnim(int hash) {
+		return animator.GetCurrentAnimatorStateInfo(0).nameHash == hash;
 	}
 }

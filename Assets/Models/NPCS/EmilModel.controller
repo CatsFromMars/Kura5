@@ -20,18 +20,33 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &110261356
+--- !u!1102 &110218886
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: TiltIdle
-  m_Speed: .699999988
+  m_Name: Sit
+  m_Speed: .5
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: e37a5ea7054a5a6429f6032067b1ea3a, type: 2}
+  - {fileID: 7400028, guid: aff60439fcc786248b5740313c666246, type: 3}
   m_ParentStateMachine: {fileID: 110761356}
-  m_Position: {x: 50, y: 50, z: 0}
+  m_Position: {x: 204, y: 24, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110260378
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sit
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: d4e7c698cf5fdbc4d9e6540ce858f7f5, type: 2}
+  m_ParentStateMachine: {fileID: 110761356}
+  m_Position: {x: 336, y: 312, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -42,12 +57,15 @@ StateMachine:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
-  m_DefaultState: {fileID: 110261356}
+  m_DefaultState: {fileID: 110218886}
   m_States:
-  - {fileID: 110261356}
+  - {fileID: 110218886}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
-  m_OrderedTransitions: {}
+  m_OrderedTransitions:
+    data:
+      first: {fileID: 110218886}
+      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
