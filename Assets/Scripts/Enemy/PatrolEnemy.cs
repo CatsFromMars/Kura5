@@ -330,7 +330,7 @@ public class PatrolEnemy : EnemyClass {
 				//shadowStunParticles.Stop ();
 				attacking = false;
 				animator.SetTrigger(Animator.StringToHash("Thawed"));
-				animator.enabled = true;
+				//animator.enabled = true;
 				shadowStunBreakEffect.active = true;
 			}
 			else {
@@ -338,7 +338,7 @@ public class PatrolEnemy : EnemyClass {
 				shadowStunBreakEffect.active = false;
 				freezeTimer += Time.deltaTime;
 				frozen = true;
-				animator.enabled=false;
+				//animator.enabled=false;
 			}
 		}
 	}

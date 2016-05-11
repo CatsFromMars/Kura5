@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class BossEnemy : EnemyClass {
+	public float speed = 30;
+	private bool sealCooldown = false;
+	private int sealWaitTime = 10;
 	protected float distanceFromPlayer;
 	protected bool canBeSealed = false;
 	//Initial = Opening attack pattern
@@ -50,21 +53,26 @@ public class BossEnemy : EnemyClass {
 	}
 
 	public void ShadowSeal() {
-		if(!frozen) StartCoroutine(startShadowSeal());
+		if(!frozen && !sealCooldown) StartCoroutine(startShadowSeal());
 	}
 
 	IEnumerator startShadowSeal() {
-		if(canBeSealed) {
+		if(canBeSealed && !sealCooldown) {
 			Debug.Log ("SHADOW SEAL GOOOOO");
+			sealCooldown = true;
 			animator.SetTrigger(Animator.StringToHash("ShadowSeal"));
-			yield return new WaitForSeconds(0.3f);
+			animator.SetBool(Animator.StringToHash("Frozen"), true);
 			shadowStunEffect.gameObject.SetActive(true);
 			frozen = true;
-			animator.enabled = false;
+			//animator.enabled = false;
 			yield return new WaitForSeconds(lightLevels.darkness.GetValue());
-			animator.enabled = true;
+			//animator.enabled = true;
 			frozen = false;
+			animator.SetBool(Animator.StringToHash("Frozen"), false);
 			shadowStunEffect.gameObject.SetActive(false);
+			shadowStunBreakEffect.GetComponent<ParticleSystem>().Play();
+			yield return new WaitForSeconds (sealWaitTime);
+			sealCooldown = false;
 		}
 	}
 }

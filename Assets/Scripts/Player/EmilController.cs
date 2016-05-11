@@ -5,7 +5,6 @@ public class EmilController : PlayerContainer {
 	private int chargeCounter = 0;
 	private int chargeThresh = 20;
 	private int combo = 0;
-	private float meleeRange = 5.5f;
 	public Transform weaponHit;
 	public AudioClip hitSound;
 	public AudioClip wallHit;
@@ -14,9 +13,13 @@ public class EmilController : PlayerContainer {
 	public AudioClip shootNoise;
 	public AudioClip clickNoise;
 	
-	//VARIABLES REGARDING SHOOTING/COMBAT
+	//VARIABLES REGARDING COMBAT
+	public int strength = 10; //Base damage a weapon does
+	public float meleeRange = 5.5f; //range of current weapon
+	public float meleeAngle = 160f;
+	public int meleeCost = 5;
+	
 	public Transform weapon;
-	public int strength = 10;
 	public MeleeWeaponTrail trail;
 	private float burnRate = 1f;
 	private float burnCounter = 0f;
@@ -181,48 +184,31 @@ public class EmilController : PlayerContainer {
 	void Slash() {
 
 		if(currentAnim(hash.comboState1) && gameData.emilCurrentElem != GameData.elementalProperty.Null) {
-			if (gameData.emilCurrentEnergy > 5) {
-				gameData.emilCurrentEnergy -= 5;
+			if (gameData.emilCurrentEnergy > meleeCost) {
+				gameData.emilCurrentEnergy -= meleeCost;
 			}
 			else gameData.emilCurrentElem = GameData.elementalProperty.Null;
 		}
 		changeWeaponColor();
 
-		//Animation Event for swordplay
-		RaycastHit hitCenter;
-		RaycastHit hitRight;
-		RaycastHit hitLeft;
-		//Forward
-		if (Physics.Raycast (transform.position, transform.forward, out hitCenter, meleeRange)) {
-			if(hitCenter.collider.gameObject.tag == "Enemy") hitEnemy(hitCenter);
-			else if(hitCenter.collider.gameObject.tag == "Breakable") Smash (hitCenter);
-			else if(hitCenter.collider.gameObject.tag == "Wall") hitWall(hitCenter);
-			return;
+		//Raycast
+		Collider[] hitColliders = Physics.OverlapSphere(transform.position, meleeRange);
+
+		for(int i=0; i<hitColliders.Length; i++) {
+			Transform target = hitColliders[i].transform;
+			Vector3 targetDir = (target.position - transform.position).normalized;
+			if(!hitColliders[i].isTrigger && Vector3.Angle(transform.forward, targetDir) < meleeAngle/2) {
+				float dist = Vector3.Distance(transform.position, target.position);
+				RaycastHit hit;
+				if(Physics.Raycast (transform.position, targetDir, out hit, dist)) {
+					if(hit.collider.gameObject.tag == "Enemy") hitEnemy(hit);
+					else if(hit.collider.gameObject.tag == "Breakable") Smash(hit);
+					else if(hit.collider.gameObject.tag == "Wall") hitWall(hit);
+			
+				}
+			}
 		}
-		//Left
-		if (Physics.Raycast (transform.position, Quaternion.AngleAxis(15, transform.up) * transform.forward, out hitRight, meleeRange)) {
-			if(hitRight.collider.gameObject.tag == "Enemy") hitEnemy(hitRight);
-			else if(hitRight.collider.gameObject.tag == "Breakable") Smash (hitRight);
-			else if(hitRight.collider.gameObject.tag == "Wall") hitWall(hitRight);
-			return;
-		}
-		if (Physics.Raycast (transform.position, Quaternion.AngleAxis(45, transform.up) * transform.forward, out hitRight, meleeRange)) {
-			if(hitRight.collider.gameObject.tag == "Enemy") hitEnemy(hitRight);
-			else if(hitRight.collider.gameObject.tag == "Breakable") Smash (hitRight);
-			return;
-		}
-		//Right
-		if (Physics.Raycast (transform.position,  Quaternion.AngleAxis(-15, transform.up) * transform.forward, out hitLeft, meleeRange)) {
-			if(hitLeft.collider.gameObject.tag == "Enemy") hitEnemy(hitLeft);
-			else if(hitLeft.collider.gameObject.tag == "Breakable") Smash (hitLeft);
-			else if(hitLeft.collider.gameObject.tag == "Wall") hitWall(hitLeft);
-			return;
-		}
-		if (Physics.Raycast (transform.position,  Quaternion.AngleAxis(-45, transform.up) * transform.forward, out hitLeft, meleeRange)) {
-			if(hitLeft.collider.gameObject.tag == "Enemy") hitEnemy(hitLeft);
-			else if(hitLeft.collider.gameObject.tag == "Breakable") Smash (hitLeft);
-			return;
-		}
+
 	}
 
 	void CircleSlash() {

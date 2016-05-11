@@ -177,36 +177,39 @@ public class EnemyClass : MonoBehaviour {
 
 	//COMBAT: TAKE DAMAGE
 	public void takeDamage(int damage, string element="Null") {
-		hitCounter++;
-		StartCoroutine(flashWhite());
-		mostRecentAttackElem = element;
-		if(!dead || !dying)
-		{
-			//MAKE THEM REACT TO PAAAAINNNN
-			if(isHitFromBehind()) {
-				stunned = true;
-				animator.SetTrigger(hash.hurtTrigger);
-				animator.SetBool(hash.stunnedBool, true);
+
+		if(!isInvincible) {
+			hitCounter++;
+			StartCoroutine(flashWhite());
+			mostRecentAttackElem = element;
+			if(!dead || !dying)
+			{
+				//MAKE THEM REACT TO PAAAAINNNN
+				if(isHitFromBehind()) {
+					stunned = true;
+					animator.SetTrigger(hash.hurtTrigger);
+					animator.SetBool(hash.stunnedBool, true);
+				}
+				else if(animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.enemyHurtState
+				        && animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.attackState) animator.SetTrigger(hash.hurtTrigger);
+				currentLife -= damage; //DEDUCT DAMAGE RATE FROM CURRENT LIFE
+
+
+				if(currentLife <= 0) Die();
+				else {
+					hurtCaution = true; //LOOK FOR THE THING THAT HIT THEM!
+					//animator.SetBool(hash.turningBool, true);
+				}
+
+				//Look at player always 
+				Vector3 p = player.transform.position;
+				Vector3 pos = new Vector3(p.x, this.transform.position.y, p.z);
+				if(type!=EnemyType.Immortal) transform.LookAt(pos);
+
+				//Update Enemy HP Bar
+				lifeBar.maxValue = maxLife;
+				lifeBar.value = currentLife;
 			}
-			else if(animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.enemyHurtState
-			        && animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.attackState) animator.SetTrigger(hash.hurtTrigger);
-			currentLife -= damage; //DEDUCT DAMAGE RATE FROM CURRENT LIFE
-
-
-			if(currentLife <= 0) Die();
-			else {
-				hurtCaution = true; //LOOK FOR THE THING THAT HIT THEM!
-				//animator.SetBool(hash.turningBool, true);
-			}
-
-			//Look at player always 
-			Vector3 p = player.transform.position;
-			Vector3 pos = new Vector3(p.x, this.transform.position.y, p.z);
-			if(type!=EnemyType.Immortal) transform.LookAt(pos);
-
-			//Update Enemy HP Bar
-			lifeBar.maxValue = maxLife;
-			lifeBar.value = currentLife;
 		}
 
 	}

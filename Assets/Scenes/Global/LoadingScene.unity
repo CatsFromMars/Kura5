@@ -5561,8 +5561,11 @@ MonoBehaviour:
   wallHit: {fileID: 8300000, guid: e53788d7d5b56ac4fbde7e4a59ae4b8a, type: 3}
   shootNoise: {fileID: 0}
   clickNoise: {fileID: 0}
-  weapon: {fileID: 0}
   strength: 10
+  meleeRange: 5.5
+  meleeAngle: 160
+  meleeCost: 5
+  weapon: {fileID: 0}
   trail: {fileID: 1711890015}
   bladeMat: {fileID: 2100000, guid: 1c1758e0747ef9a468e1e2700a496322, type: 2}
   darkMatter: {fileID: 325764563}
@@ -22749,7 +22752,7 @@ GameObject:
   - 23: {fileID: 1409508139}
   - 95: {fileID: 1409508141}
   - 114: {fileID: 1409508142}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Smile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

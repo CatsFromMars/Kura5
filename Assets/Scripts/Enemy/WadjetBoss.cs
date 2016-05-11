@@ -21,11 +21,25 @@ public class WadjetBoss : BossEnemy {
 		if (!frozen) {
 			manageAttackStates();
 		}
-		else wasFrozen = true;
+		else {
+			wasFrozen = true;
+		}
+		manageSpeed();
 	}
 
 	void Start() {
 		originalPosition = transform.position;
+	}
+
+	void manageSpeed() {
+		if(currentAnim(Animator.StringToHash("Base Layer.Slither"))) {
+			agent.updateRotation = true;
+			agent.speed = speed;
+		}
+		else {
+			agent.updateRotation = false;
+			agent.speed = 0;
+		}
 	}
 	
 	public override void InitialPattern() {
@@ -56,7 +70,7 @@ public class WadjetBoss : BossEnemy {
 	public override void DesparatePattern() {
 		hitCounter = 0;
 		animator.ResetTrigger(Animator.StringToHash ("Recoil"));
-		if(currentAnim(Animator.StringToHash("Base Layer.Idle"))) currentAttackPattern = attackPattern.INITIAL;
+		if(currentAnim(Animator.StringToHash("Base Layer.Scream"))) currentAttackPattern = attackPattern.INITIAL;
 		else if(currentAttackPattern != attackPattern.DESPARATE) {
 			currentAttackPattern = attackPattern.DESPARATE;
 			StartCoroutine(LoopAround());
