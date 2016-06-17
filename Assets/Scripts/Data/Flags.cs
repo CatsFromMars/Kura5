@@ -8,9 +8,24 @@ public class Flags : MonoBehaviour {
 	//Assumes ONE trap per scene
 
 	public Dictionary<string, bool> traps;
+	public Dictionary<string, bool> cutscenes;
 
 	void Awake() {
-		traps = new Dictionary<string, bool> ();
+		traps = new Dictionary<string, bool>();
+		cutscenes = new Dictionary<string, bool>();
+	}
+	//Cutscenes
+	public void AddCutsceneFlag(string d) {
+		if(!cutscenes.ContainsKey(d)) cutscenes.Add(d, false);
+	}
+
+	public void SetCutscene(string d) {
+		//Works because only one trap allowed per scene
+		cutscenes[d] = true;
+	}
+
+	public bool CheckCutsceneFlag(string d) {
+		return cutscenes[d];
 	}
 
 	//Traps

@@ -12,6 +12,7 @@ public class SceneTransition : MonoBehaviour
 	private PlayerContainer player;
 	private GameObject playerGO;
 	public bool loadingScene = false;
+	public CharacterSwapper swapper;
 
 
 	void Awake ()
@@ -42,7 +43,7 @@ public class SceneTransition : MonoBehaviour
 		}
 	}
 
-	public IEnumerator EndScene (string scene, bool stopTime=true, bool setCheckpoint = true)
+	public IEnumerator EndScene (string scene, bool stopTime=true, bool setCheckpoint = true, bool stopTimeOnLoad=false)
 	{
 		loadingScene = true;
 		if(stopTime) Time.timeScale = 0;
@@ -73,14 +74,55 @@ public class SceneTransition : MonoBehaviour
 		ren.color = Color.clear;
 		ren.enabled = false;
 		if(playerGO!=null) player.playerInControl = true;
-		Time.timeScale = 1;
+		if(!stopTimeOnLoad)Time.timeScale = 1;
 		loadingScene = false;
 	}
 
-	public void gotoScene(string scene, bool stopTime=true, bool markCheckpoint=true) {
+	public void gotoScene(string scene, bool stopTime=true, bool markCheckpoint=true, bool stopTimeOnLoad=false) {
 		if(coroutine != null) StopCoroutine (coroutine);
-		coroutine = EndScene (scene, stopTime, markCheckpoint);
+		coroutine = EndScene (scene, stopTime, markCheckpoint, stopTimeOnLoad);
 		StartCoroutine (coroutine);
+	}
+
+
+	public IEnumerator cutsceneArrange(bool displayBothPlayers=false) {
+		// Make sure the texture is enabled.
+		ren.enabled = true;
+		// Start fading towards black.
+		while(ren.color.a < 0.95f) { 
+			yield return null;
+			FadeToBlack();
+		}
+		yield return CoroutineUtil.WaitForRealSeconds (2f);
+		//make players appear next to each other
+		if(displayBothPlayers) swapper.displayBoth();
+
+		while(ren.color.a > 0.001f) {
+			FadeToClear();
+			yield return null;
+		}
+		ren.color = Color.clear;
+		ren.enabled = false;
+	}
+
+	public IEnumerator deArrange() {
+		
+		ren.enabled = true;
+		// Start fading towards black.
+		while(ren.color.a < 0.95f) { 
+			yield return null;
+			FadeToBlack();
+		}
+		yield return CoroutineUtil.WaitForRealSeconds (2f);
+		//make players appear next to each other
+		swapper.hideInactivePlayer();
+		
+		while(ren.color.a > 0.001f) {
+			FadeToClear();
+			yield return null;
+		}
+		ren.color = Color.clear;
+		ren.enabled = false;
 	}
 
 	public void markCheckpoint(string sceneName) {

@@ -67,11 +67,12 @@ ModelImporter:
     4300002: Cube
     4300004: Cube_001
     7400000: Fly
-    7400002: ArmatureAction
+    7400002: Caw
     7400004: Pose
     7400006: Pose2
     7400008: Enter
     7400010: Exit
+    7400012: Idle
     9500000: //RootNode
     13700000: Cube
     13700002: Cube_001
@@ -158,294 +159,6 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: ArmatureAction
-      takeName: ArmatureAction
-      firstFrame: 0
-      lastFrame: 19
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/Hip
-        weight: 1
-      - path: Armature/Hip/Bottom
-        weight: 1
-      - path: Armature/Hip/Bottom/Tail
-        weight: 1
-      - path: Armature/Hip/Chest
-        weight: 1
-      - path: Armature/Hip/Chest/Head
-        weight: 1
-      - path: Armature/Hip/Chest/Head/Lower
-        weight: 1
-      - path: Armature/Hip/Chest/Head/Upper
-        weight: 1
-      - path: Armature/Hip/LegL
-        weight: 1
-      - path: Armature/Hip/LegL/FootL
-        weight: 1
-      - path: Armature/Hip/LegR
-        weight: 1
-      - path: Armature/Hip/LegR/FootR
-        weight: 1
-      - path: Armature/Hip/ShoulderL
-        weight: 1
-      - path: Armature/Hip/ShoulderL/Wing1L
-        weight: 1
-      - path: Armature/Hip/ShoulderL/Wing1L/Wing2L
-        weight: 1
-      - path: Armature/Hip/ShoulderR
-        weight: 1
-      - path: Armature/Hip/ShoulderR/Wing1R
-        weight: 1
-      - path: Armature/Hip/ShoulderR/Wing1R/Wing2R
-        weight: 1
-      - path: Cube_001
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: Pose
-      takeName: ArmatureAction
-      firstFrame: -1
-      lastFrame: 2
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/Hip
-        weight: 1
-      - path: Armature/Hip/Bottom
-        weight: 1
-      - path: Armature/Hip/Bottom/Tail
-        weight: 1
-      - path: Armature/Hip/Chest
-        weight: 1
-      - path: Armature/Hip/Chest/Head
-        weight: 1
-      - path: Armature/Hip/Chest/Head/EyeL
-        weight: 1
-      - path: Armature/Hip/Chest/Head/EyeR
-        weight: 1
-      - path: Armature/Hip/Chest/Head/Lower
-        weight: 1
-      - path: Armature/Hip/Chest/Head/Upper
-        weight: 1
-      - path: Armature/Hip/LegL
-        weight: 1
-      - path: Armature/Hip/LegL/FootL
-        weight: 1
-      - path: Armature/Hip/LegR
-        weight: 1
-      - path: Armature/Hip/LegR/FootR
-        weight: 1
-      - path: Armature/Hip/ShoulderL
-        weight: 1
-      - path: Armature/Hip/ShoulderL/Wing1L
-        weight: 1
-      - path: Armature/Hip/ShoulderL/Wing1L/Wing2L
-        weight: 1
-      - path: Armature/Hip/ShoulderL/Wing1L/Wing2L/Wing2L_001
-        weight: 1
-      - path: Armature/Hip/ShoulderR
-        weight: 1
-      - path: Armature/Hip/ShoulderR/Wing1R
-        weight: 1
-      - path: Armature/Hip/ShoulderR/Wing1R/Wing2R
-        weight: 1
-      - path: Armature/Hip/ShoulderR/Wing1R/Wing2R/Wing2R_001
-        weight: 1
-      - path: Cube_001
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: Pose2
-      takeName: ArmatureAction
-      firstFrame: 38
-      lastFrame: 38.0999985
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/Hip
-        weight: 1
-      - path: Armature/Hip/Bottom
-        weight: 1
-      - path: Armature/Hip/Bottom/Tail
-        weight: 1
-      - path: Armature/Hip/Chest
-        weight: 1
-      - path: Armature/Hip/Chest/Head
-        weight: 1
-      - path: Armature/Hip/Chest/Head/Lower
-        weight: 1
-      - path: Armature/Hip/Chest/Head/Upper
-        weight: 1
-      - path: Armature/Hip/Chest/Head/Upper/EyeL
-        weight: 1
-      - path: Armature/Hip/Chest/Head/Upper/EyeR
-        weight: 1
-      - path: Armature/Hip/LegL
-        weight: 1
-      - path: Armature/Hip/LegL/FootL
-        weight: 1
-      - path: Armature/Hip/LegR
-        weight: 1
-      - path: Armature/Hip/LegR/FootR
-        weight: 1
-      - path: Armature/Hip/ShoulderL
-        weight: 1
-      - path: Armature/Hip/ShoulderL/Wing1L
-        weight: 1
-      - path: Armature/Hip/ShoulderL/Wing1L/Wing2L
-        weight: 1
-      - path: Armature/Hip/ShoulderL/Wing1L/Wing2L/Wing2L_001
-        weight: 1
-      - path: Armature/Hip/ShoulderR
-        weight: 1
-      - path: Armature/Hip/ShoulderR/Wing1R
-        weight: 1
-      - path: Armature/Hip/ShoulderR/Wing1R/Wing2R
-        weight: 1
-      - path: Armature/Hip/ShoulderR/Wing1R/Wing2R/Wing2R_001
-        weight: 1
-      - path: Cube_001
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: Enter
-      takeName: Default Take
-      firstFrame: 39
-      lastFrame: 69
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Armature
-        weight: 1
-      - path: Armature/Hip
-        weight: 1
-      - path: Armature/Hip/Bottom
-        weight: 1
-      - path: Armature/Hip/Bottom/Tail
-        weight: 1
-      - path: Armature/Hip/Chest
-        weight: 1
-      - path: Armature/Hip/Chest/Head
-        weight: 1
-      - path: Armature/Hip/Chest/Head/Lower
-        weight: 1
-      - path: Armature/Hip/Chest/Head/Upper
-        weight: 1
-      - path: Armature/Hip/Chest/Head/Upper/EyeL
-        weight: 1
-      - path: Armature/Hip/Chest/Head/Upper/EyeR
-        weight: 1
-      - path: Armature/Hip/LegL
-        weight: 1
-      - path: Armature/Hip/LegL/FootL
-        weight: 1
-      - path: Armature/Hip/LegR
-        weight: 1
-      - path: Armature/Hip/LegR/FootR
-        weight: 1
-      - path: Armature/Hip/ShoulderL
-        weight: 1
-      - path: Armature/Hip/ShoulderL/Wing1L
-        weight: 1
-      - path: Armature/Hip/ShoulderL/Wing1L/Wing2L
-        weight: 1
-      - path: Armature/Hip/ShoulderL/Wing1L/Wing2L/Wing2L_001
-        weight: 1
-      - path: Armature/Hip/ShoulderR
-        weight: 1
-      - path: Armature/Hip/ShoulderR/Wing1R
-        weight: 1
-      - path: Armature/Hip/ShoulderR/Wing1R/Wing2R
-        weight: 1
-      - path: Armature/Hip/ShoulderR/Wing1R/Wing2R/Wing2R_001
-        weight: 1
-      - path: Cube_001
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
       name: Exit
       takeName: ArmatureAction
       firstFrame: 85
@@ -456,6 +169,154 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Bottom
+        weight: 1
+      - path: Armature/Hip/Bottom/Tail
+        weight: 1
+      - path: Armature/Hip/Chest
+        weight: 1
+      - path: Armature/Hip/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Chest/Head/Lower
+        weight: 1
+      - path: Armature/Hip/Chest/Head/Upper
+        weight: 1
+      - path: Armature/Hip/Chest/Head/Upper/EyeL
+        weight: 1
+      - path: Armature/Hip/Chest/Head/Upper/EyeR
+        weight: 1
+      - path: Armature/Hip/LegL
+        weight: 1
+      - path: Armature/Hip/LegL/FootL
+        weight: 1
+      - path: Armature/Hip/LegR
+        weight: 1
+      - path: Armature/Hip/LegR/FootR
+        weight: 1
+      - path: Armature/Hip/ShoulderL
+        weight: 1
+      - path: Armature/Hip/ShoulderL/Wing1L
+        weight: 1
+      - path: Armature/Hip/ShoulderL/Wing1L/Wing2L
+        weight: 1
+      - path: Armature/Hip/ShoulderL/Wing1L/Wing2L/Wing2L_001
+        weight: 1
+      - path: Armature/Hip/ShoulderR
+        weight: 1
+      - path: Armature/Hip/ShoulderR/Wing1R
+        weight: 1
+      - path: Armature/Hip/ShoulderR/Wing1R/Wing2R
+        weight: 1
+      - path: Armature/Hip/ShoulderR/Wing1R/Wing2R/Wing2R_001
+        weight: 1
+      - path: Cube_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Caw
+      takeName: ArmatureAction
+      firstFrame: 109
+      lastFrame: 129
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Bottom
+        weight: 1
+      - path: Armature/Hip/Bottom/Tail
+        weight: 1
+      - path: Armature/Hip/Chest
+        weight: 1
+      - path: Armature/Hip/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Chest/Head/Lower
+        weight: 1
+      - path: Armature/Hip/Chest/Head/Upper
+        weight: 1
+      - path: Armature/Hip/Chest/Head/Upper/EyeL
+        weight: 1
+      - path: Armature/Hip/Chest/Head/Upper/EyeR
+        weight: 1
+      - path: Armature/Hip/LegL
+        weight: 1
+      - path: Armature/Hip/LegL/FootL
+        weight: 1
+      - path: Armature/Hip/LegR
+        weight: 1
+      - path: Armature/Hip/LegR/FootR
+        weight: 1
+      - path: Armature/Hip/ShoulderL
+        weight: 1
+      - path: Armature/Hip/ShoulderL/Wing1L
+        weight: 1
+      - path: Armature/Hip/ShoulderL/Wing1L/Wing2L
+        weight: 1
+      - path: Armature/Hip/ShoulderL/Wing1L/Wing2L/Wing2L_001
+        weight: 1
+      - path: Armature/Hip/ShoulderR
+        weight: 1
+      - path: Armature/Hip/ShoulderR/Wing1R
+        weight: 1
+      - path: Armature/Hip/ShoulderR/Wing1R/Wing2R
+        weight: 1
+      - path: Armature/Hip/ShoulderR/Wing1R/Wing2R/Wing2R_001
+        weight: 1
+      - path: Cube_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: ArmatureAction
+      firstFrame: 134
+      lastFrame: 199
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

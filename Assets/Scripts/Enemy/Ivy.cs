@@ -7,11 +7,13 @@ public class Ivy : EnemyClass {
 	private float distanceFromPlayer = 0f;
 	private float range = 8f;
 	private int attackTimer = 0;
-	private int attackWaitTime = 50;
+	private int attackWaitTime = 30;
 	private int knockback = 7;
 	public bool hitWithDarkAttack = false;
 	private Quaternion originalRot;
 	private bool inRange = false;
+	public BoxCollider blockerCol;
+	public CapsuleCollider selfCol;
 
 	void Start() {
 		originalRot = transform.rotation;
@@ -68,6 +70,8 @@ public class Ivy : EnemyClass {
 	}
 
 	void Regenerate() {
+		blockerCol.enabled = true;
+		selfCol.enabled = true;
 		//Set death bools to false
 		animator.SetBool (hash.deadBool, false);
 		//Regenerate HP
@@ -81,6 +85,8 @@ public class Ivy : EnemyClass {
 		//Set HP to zero 
 		//Death
 		DestroySelf ();
+		blockerCol.enabled = false; //disable collider upon death
+		selfCol.enabled = false;
 	}
 
 	void GetPlayerDistance () {

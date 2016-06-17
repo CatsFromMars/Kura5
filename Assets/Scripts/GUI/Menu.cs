@@ -44,7 +44,7 @@ public class Menu : MonoBehaviour {
 
 		if (Input.GetButtonDown("Inventory") && Time.timeScale!=0 && !changingScene) {
 			changingScene = true;
-			fader.gotoScene("LoadingScene");
+			fader.gotoScene("Intro");
 
 		}
 		if(!audio.isPlaying && !changingScene) {

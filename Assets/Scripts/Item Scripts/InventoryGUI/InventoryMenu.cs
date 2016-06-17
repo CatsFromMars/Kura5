@@ -139,7 +139,7 @@ public class InventoryMenu : MonoBehaviour {
 		playerSelector.active = false;
 		selector.active = false;
 
-		if (Input.GetButtonDown ("Charge")) { //Charge is basically the A button
+		if (Input.GetButtonDown ("Confirm")) { //Charge is basically the A button
 			if(currentFunction == function.USE || currentFunction == function.DELETE) {
 				currentState = state.SELECT_ITEM;
 				makeSound(confirm);
@@ -149,7 +149,7 @@ public class InventoryMenu : MonoBehaviour {
 				makeSound(confirm);
 			}
 		}
-		else if(Input.GetButtonDown("Roll")) { //Basically the "B" button
+		else if(Input.GetButtonDown("Deny")) { //Basically the "B" button
 			manager.closeMenu();
 		}
 		else if (vert == -1) {
@@ -217,7 +217,7 @@ public class InventoryMenu : MonoBehaviour {
 		description.text = trashPrompt;
 		name.text = "TRASH THIS?";
 		//Confirm
-		if(Input.GetButtonDown("Charge")) { //Charge is basically the A button
+		if(Input.GetButtonDown("Confirm")) { //Charge is basically the A button
 			Vector3 pos = deleteSelector.localPosition;
 
 			if(deletePrompt == prompt.YES) {
@@ -235,7 +235,7 @@ public class InventoryMenu : MonoBehaviour {
 			currentState = state.SELECT_ITEM;
 			deleteSelector.active = false;
 		}
-		else if(Input.GetButtonDown("Roll")) { //Basically the "B" button
+		else if(Input.GetButtonDown("Deny")) { //Basically the "B" button
 			Vector3 pos = deleteSelector.localPosition;
 			pos.y = -7.88f;
 			deletePrompt = prompt.YES;
@@ -272,7 +272,7 @@ public class InventoryMenu : MonoBehaviour {
 		//Select Player to use an item on
 		playerSelector.active = true;
 		//Confirm
-		if(Input.GetButtonDown("Charge")) { //Charge is basically the A button
+		if(Input.GetButtonDown("Confirm")) { //Charge is basically the A button
 			if(inventory.useCurrentConsumable(index, selectedPlayer.ToString())) {
 				//inventory.useCurrentConsumable(index, selectedPlayer.ToString());
 				currentState = state.SELECT_ITEM;
@@ -282,7 +282,7 @@ public class InventoryMenu : MonoBehaviour {
 			}
 			else makeSound(deny);
 		}
-		else if(Input.GetButtonDown("Roll")) { //Basically the "B" button
+		else if(Input.GetButtonDown("Deny")) { //Basically the "B" button
 			currentState = state.SELECT_ITEM;
 			playerSelector.active = false;
 			makeSound(deny);
@@ -320,7 +320,7 @@ public class InventoryMenu : MonoBehaviour {
 		selector.active = true;
 		swapSelector.active = false;
 		//Select Item
-		if(Input.GetButtonDown("Charge")) { //Charge is basically the A button
+		if(Input.GetButtonDown("Confirm")) { //Charge is basically the A button
 			if(itemNotNull()) {
 				if(currentFunction == function.USE) {
 					if(itemDisplayType == listKind.CONSUMABLES) currentState = state.SELECT_PLAYER;
@@ -343,7 +343,7 @@ public class InventoryMenu : MonoBehaviour {
 				makeSound(confirm);
 			}
 		}
-		else if(Input.GetButtonDown("Roll")) { //Basically the "B" button
+		else if(Input.GetButtonDown("Deny")) { //Basically the "B" button
 			currentState = state.SELECT_STATE;
 			swapSelector.active = false;
 			makeSound(deny);
@@ -396,7 +396,7 @@ public class InventoryMenu : MonoBehaviour {
 	void swapItem(int currentIndex) {
 		swapSelector.active = true;
 		//Select Item
-		if(Input.GetButtonDown("Charge")) { //Charge is basically the A button
+		if(Input.GetButtonDown("Confirm")) { //Charge is basically the A button
 			if(itemDisplayType == listKind.CONSUMABLES) ListUtil.SwapConsumables(inventory.itemsList, currentIndex, index);
 			else if(itemDisplayType == listKind.VALUABLES) ListUtil.SwapValuables(inventory.keyItemsList, currentIndex, index);
 			currentState = state.SELECT_ITEM;
@@ -405,7 +405,7 @@ public class InventoryMenu : MonoBehaviour {
 			moveSwapSelector();
 			makeSound(confirm);
 		}
-		else if(Input.GetButtonDown("Roll")) { //Basically the "B" button
+		else if(Input.GetButtonDown("Deny")) { //Basically the "B" button
 			currentState = state.SELECT_ITEM;
 			swapSelector.active = false;
 			makeSound(deny);

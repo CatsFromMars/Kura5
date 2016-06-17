@@ -27,6 +27,29 @@ public class CharacterSwapper : MonoBehaviour {
 		else transform.position = emil.position;
 	}
 
+	public void displayBoth() {
+		//displays both characters at once
+		emil.active = true;
+		annie.active = true;
+		if(data.currentPlayer == GameData.player.Annie) emil.transform.position = emil.transform.position+(emil.transform.forward*2);
+		if(data.currentPlayer == GameData.player.Emil) annie.transform.position = annie.transform.position+(annie.transform.forward*2);
+	}
+
+	public void hideInactivePlayer() {
+		if(data.currentPlayer == GameData.player.Annie && data.emilCurrentLife > 0) {
+			Vector3 spawnPoint = annie.transform.position;
+			emil.transform.position = spawnPoint;
+			annie.active = true;
+			emil.active = false;
+		}
+		else if(data.currentPlayer == GameData.player.Emil && data.annieCurrentLife > 0) {
+			Vector3 spawnPoint = emil.transform.position;
+			annie.transform.position = spawnPoint;
+			emil.active = true;
+			annie.active = false;
+		}
+	}
+
 	public void switchPlayers() {
 		if(data.currentPlayer == GameData.player.Annie && data.emilCurrentLife > 0) {
 			Vector3 spawnPoint = annie.transform.position;

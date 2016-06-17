@@ -9,8 +9,10 @@ public class WadjetBoss : BossEnemy {
 	public Transform player; //REPLACE LATER! REPLACE. LATER!
 	public Vector3 originalPosition;
 	public ParticleSystem breath;
-	public ParticleSystem scream;
+	public Transform scream;
 	private bool wasFrozen;
+	public Transform sonicWave;
+	private bool facingPlayer = false;
 
 	//More test vars
 	public Transform[] wayPoints;
@@ -32,8 +34,10 @@ public class WadjetBoss : BossEnemy {
 	}
 
 	void manageSpeed() {
+		if(facingPlayer) RotateTowards(player);
+
 		if(currentAnim(Animator.StringToHash("Base Layer.Slither"))) {
-			agent.updateRotation = true;
+			if(!facingPlayer) agent.updateRotation = true;
 			agent.speed = speed;
 		}
 		else {
@@ -43,11 +47,12 @@ public class WadjetBoss : BossEnemy {
 	}
 	
 	public override void InitialPattern() {
-		canBeSealed = true;
+		if(currentAnim(Animator.StringToHash("Base Layer.Idle"))) canBeSealed = true;
 		//breath attack
 		animator.SetBool (Animator.StringToHash ("Breath"), true);
-		if(hitCounter > 3) {
-			animator.SetTrigger(Animator.StringToHash ("Recoil"));
+		if(wasFrozen && !frozen) {
+			wasFrozen = false;
+			//animator.SetTrigger(Animator.StringToHash ("Recoil"));
 			DesparatePattern();
 		}
 		else if(currentAnim(Animator.StringToHash("Base Layer.Pause"))) {
@@ -60,7 +65,7 @@ public class WadjetBoss : BossEnemy {
 	}
 
 	public void playScream() {
-		scream.Play ();
+		StartCoroutine (startScream());
 	}
 
 	public void toggleFog() {
@@ -69,19 +74,19 @@ public class WadjetBoss : BossEnemy {
 
 	public override void DesparatePattern() {
 		hitCounter = 0;
+		animator.SetBool (Animator.StringToHash ("Breath"), false);
 		animator.ResetTrigger(Animator.StringToHash ("Recoil"));
 		if(currentAnim(Animator.StringToHash("Base Layer.Scream"))) currentAttackPattern = attackPattern.INITIAL;
 		else if(currentAttackPattern != attackPattern.DESPARATE) {
 			currentAttackPattern = attackPattern.DESPARATE;
 			StartCoroutine(LoopAround());
 		}
-
 	}
 
 	protected IEnumerator LoopAround()
 	{	
+		canBeSealed = false;
 		agent.updateRotation = true;
-		yield return new WaitForSeconds(5f);
 		//Loop around once
 		foreach (Transform w in wayPoints) {
 			agent.SetDestination(w.transform.position);
@@ -91,8 +96,6 @@ public class WadjetBoss : BossEnemy {
 			}
 			yield return null;
 		}
-
-		Debug.Log("GOTO");
 		//Goto Player
 		Transform minPoint = wayPoints[0];
 		foreach (Transform w in wayPoints) {
@@ -103,6 +106,11 @@ public class WadjetBoss : BossEnemy {
 
 		//Loop to closets playerPoint
 		foreach (Transform w in wayPoints) {
+			if(w == minPoint) {
+				//agent.updateRotation = false;
+				//facingPlayer = true;
+			}
+
 			agent.SetDestination(w.transform.position);
 			while(agent.remainingDistance > agent.stoppingDistance) {
 				animator.SetBool(Animator.StringToHash("Moving"), true);
@@ -112,11 +120,13 @@ public class WadjetBoss : BossEnemy {
 			if(w==minPoint) break;
 		}
 
+		agent.updateRotation = false;
+		facingPlayer = true;
 		while(agent.velocity.x != 0 || agent.velocity.z != 0) yield return null;
 		animator.SetBool(Animator.StringToHash("Moving"), false);
 		yield return new WaitForSeconds(0.7f);
-		quickLook ();
 		agent.updateRotation = true;
+		facingPlayer = false;
 	}
 
 	public void DarkenRoom() {
@@ -142,5 +152,19 @@ public class WadjetBoss : BossEnemy {
 		}
 		yield return new WaitForSeconds(3f);
 		animator.SetBool(Animator.StringToHash("Dissapear"), false);
+	}
+
+	public IEnumerator startScream() {
+		facingPlayer = false;
+		for(int i=0; i<5; i++) {
+			Instantiate(sonicWave, scream.transform.position, scream.transform.rotation);
+			yield return new WaitForSeconds(0.2f);
+		}
+	}
+
+	private void RotateTowards(Transform target) {
+		Vector3 direction = (target.position - transform.position).normalized;
+		Quaternion lookRotation = Quaternion.LookRotation(direction);
+		transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
 	}
 }

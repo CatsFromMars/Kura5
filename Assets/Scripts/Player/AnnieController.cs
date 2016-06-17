@@ -144,7 +144,7 @@ public class AnnieController : PlayerContainer {
 			else if(gameData.annieCurrentElem == GameData.elementalProperty.Fire) Instantiate(fireBullet, bulletSpawnPoint, transform.rotation);
 			else if(gameData.annieCurrentElem == GameData.elementalProperty.Earth) Instantiate(earthBullet, bulletSpawnPoint, transform.rotation);
 			else makeSound(clickNoise);
-			gameData.annieCurrentEnergy -= energyCost; //REMEMBER TO CHANGE THIS! FOR TESTING PURPOSES ONLY!
+			gameData.annieCurrentEnergy -= energyCost;
 			makeSound(shootNoise);
 		}
 		else {
@@ -168,5 +168,13 @@ public class AnnieController : PlayerContainer {
 		//Animation event: has annie's feet emit particle effects depending on weather
 		if(lightLevels.w.conditionName.Contains("Snow") && !isIndoors && inSnow) Instantiate (footPrintPrefab, footPrintL.position, transform.rotation);
 		else dustL.Emit (2);
+	}
+
+	public float getEnergy() {
+		return gameData.annieCurrentEnergy;
+	}
+
+	public float getEnergyCost() {
+		return energyCost;
 	}
 }

@@ -151,16 +151,27 @@ public class EnemyClass : MonoBehaviour {
 
 		if (collision.collider.gameObject.tag == "EnemyWeapon" && collision.collider.gameObject.name!="HitBox") {
 			WeaponData weapon = collision.collider.gameObject.GetComponent<WeaponData>();
-			int dmg = damageCalculator.getDamage(weapon.element, element, weapon.damage, 1);
-			//Get stunned from friendly fire
-			stunned = true;
-			animator.SetTrigger(hash.hurtTrigger);
-			animator.SetBool(hash.stunnedBool, true);
-			takeDamage(dmg, weapon.element);
-
-			superEffectiveSmoke(element, weapon.element);
+			hurtEnemy(weapon);
 		}
 		
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (collider.gameObject.tag == "EnemyWeapon" && collider.gameObject.name!="HitBox") {
+			WeaponData weapon = collider.gameObject.GetComponent<WeaponData>();
+			hurtEnemy(weapon);
+		}
+	}
+
+	void hurtEnemy(WeaponData weapon) {
+		int dmg = damageCalculator.getDamage(weapon.element, element, weapon.damage, 1);
+		//Get stunned from friendly fire
+		stunned = true;
+		animator.SetTrigger(hash.hurtTrigger);
+		animator.SetBool(hash.stunnedBool, true);
+		takeDamage(dmg, weapon.element);
+		
+		superEffectiveSmoke(element, weapon.element);
 	}
 
 	public void superEffectiveSmoke(string e1, string e2) {
@@ -234,6 +245,9 @@ public class EnemyClass : MonoBehaviour {
 
 	protected void Die() {
 		dying = true;
+		//Disable collider upon death so that the player doesn't get hurt
+		CapsuleCollider cc = GetComponent<CapsuleCollider>();
+		if(cc!=null) cc.enabled = false;
 		if(agent!=null) agent.speed = 0;
 		if(rigidbody!=null) rigidbody.velocity = Vector3.zero;
 		animator.SetTrigger(hash.dyingTrigger);

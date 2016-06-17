@@ -97,10 +97,13 @@ public class SkylightWeather : MonoBehaviour {
 		//Rain
 		bool isRaining = w.conditionID.GetValue() >= rainMin && w.conditionID.GetValue() <= rainMax;
 		bool isDrizzling = w.conditionID.GetValue() >= drizzleMin && w.conditionID.GetValue() <= drizzleMax;
+
 		if (isRaining||isDrizzling) {
-			adjustEmission(50, rain);
+			if(w.conditionID.GetValue() < 502) adjustEmission(50, rain);
+			else adjustEmission(100, rain);
 			swapWeather(rain, "Rain");
 		}
+
 		//Clouds
 //		else if(w.conditionID >= cloudMin && w.conditionID <= cloudMax) {
 //			if(currentWeatherEffect != null && currentWeatherEffect != clouds) currentWeatherEffect.Stop();
@@ -126,6 +129,7 @@ public class SkylightWeather : MonoBehaviour {
 	}
 
 	void swapWeather(ParticleSystem weather, string name) {
+		Debug.Log (name);
 		if(currentWeatherEffect != null && currentWeatherEffect != weather) currentWeatherEffect.Stop();
 		if(!rain.isPlaying)weather.Play();
 		currentWeatherEffect = weather;

@@ -101,13 +101,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110207536}
   m_DstState: {fileID: 110258108}
-  m_TransitionDuration: .0384132639
+  m_TransitionDuration: .0760232061
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: 
     m_EventTreshold: 0
-    m_ExitTime: 1.40356791
+    m_ExitTime: .949480653
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -138,10 +138,10 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Dying
-  m_Speed: 5
+  m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: e98c0c143f5044f4e92a640cc7cf1757, type: 2}
+  - {fileID: 7400000, guid: 4e6bd7d7ecc022549bdacba9e0eb0858, type: 2}
   m_ParentStateMachine: {fileID: 110704276}
   m_Position: {x: 288, y: 24, z: 0}
   m_IKOnFeet: 0
@@ -183,12 +183,12 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Revive
-  m_Speed: .600000024
+  m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 051212f66b157f048a33c378c43b6fa3, type: 3}
+  - {fileID: 7400000, guid: 261d58b912ccb8c46b54d46c48fe3743, type: 2}
   m_ParentStateMachine: {fileID: 110704276}
-  m_Position: {x: 288, y: 132, z: 0}
+  m_Position: {x: 288, y: 96, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 

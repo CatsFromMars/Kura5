@@ -34,6 +34,8 @@ public class GameData : MonoBehaviour {
 	public player currentPlayer = player.Annie;
 
 	//LEVEL DATA: USEFUL FOR LOADING SAVES
+	public Vector3 lastDungeonPos = Vector3.zero; //To be altered by SceneTransition.cs
+	public Vector3 lastDungeonScene; //To be altered by SceneTransition.cs
 	public Vector3 lastCheckpoint = Vector3.zero; //To be altered by SceneTransition.cs
 	public string sceneName; //NAME OF DUNGEON. WILL BE LOADED AS "Application.LoadLevel(sceneName);"
 

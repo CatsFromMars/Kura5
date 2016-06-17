@@ -61,12 +61,14 @@ public class EmilController : PlayerContainer {
 			absorb(1);
 
 			if(slashCounter >= smileThreshold) {
+				smile.gameObject.SetActive(true);
 				smile.SetTrigger(Animator.StringToHash("Smile"));
 			}
 			if(slashCounter >= smileThreshold+3) {
 				if(smile.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base Layer.Smile")) {
 					darkenedFace.SetActive(true);
 				}
+				smile.gameObject.SetActive(false);
 				slashCounter = 0;
 				smile.ResetTrigger(Animator.StringToHash("Smile"));
 			}
@@ -322,5 +324,9 @@ public class EmilController : PlayerContainer {
 			//Play hurt voice
 			playVoiceClip(hurtVoices[Random.Range(0, hurtVoices.Length)]);
 		}
+	}
+
+	public float getEnergy() {
+		return gameData.emilCurrentEnergy;
 	}
 }

@@ -23,6 +23,7 @@ public class PlayerContainer : MonoBehaviour {
 
 	//ACTION VARIABLES
 	public bool nearCoffin = false;
+	public bool knockedOver = false;
 	protected bool pullingCoffin = false;
 	protected bool dead = false;
 	public bool targeting = false;
@@ -144,8 +145,6 @@ public class PlayerContainer : MonoBehaviour {
 
 	}
 
-
-
 	void FixedUpdate() {
 		//updateInput();
 		//updateAnimations();
@@ -164,7 +163,7 @@ public class PlayerContainer : MonoBehaviour {
 	}
 
 	protected void manageMovement () {
-		ableToRotate = (!(charging || dead || whistling || targeting&&forceLookAtTarget || targeting&&!moving)) && !(currentAnim(hash.comboState1) ||                                                               currentAnim(hash.comboState3) ||
+		ableToRotate = (!(knockedOver || charging || dead || whistling || targeting&&forceLookAtTarget || targeting&&!moving)) && !(currentAnim(hash.comboState1) ||                                                               currentAnim(hash.comboState3) ||
 		                                                                    currentAnim(hash.shootingState));
 		//Speed
 		if(rolling) playerSpeed = playerRollingSpeed;
@@ -199,8 +198,8 @@ public class PlayerContainer : MonoBehaviour {
 			animator.SetBool(hash.rollingBool, false);
 			animator.SetBool(hash.taiyouBool, false);
 			animator.SetBool(hash.holdWeaponBool, false);
+			animator.SetBool(hash.targetingBool, false);
 		}
-
 		weaponMeshRenderer.enabled = !inCoffin;
 		if(meshObjects!=null) meshObjects.SetActive(!inCoffin);
 		if(performingAction) inCoffin = false;
@@ -245,14 +244,25 @@ public class PlayerContainer : MonoBehaviour {
 		transform.rotation = newRotation;
 	}
 
+	void hurtPlayer(WeaponData weapon, GameObject other) {
+		int d = weapon.damage;
+		string e = weapon.element;
+		Vector3 k = weapon.knockBack * other.transform.forward;
+		if(weapon.knockBack == 0) k = transform.forward*-3;
+		hitPlayer(d, e, k);
+	}
+
+	public void OnParticleCollision(GameObject other) {
+		if (other.gameObject.tag == "EnemyWeapon") {
+			WeaponData weapon = other.GetComponent<WeaponData>();
+			hurtPlayer(weapon, other);
+		}
+	}
+
 	public void OnCollisionEnter(Collision other) {
 		if (other.gameObject.tag == "EnemyWeapon") {
 			WeaponData weapon = other.collider.GetComponent<WeaponData>();
-			int d = weapon.damage;
-			string e = weapon.element;
-			Vector3 k = weapon.knockBack * other.transform.forward;
-			if(weapon.knockBack == 0) k = transform.forward*-3;
-			hitPlayer(d, e, k);
+			hurtPlayer(weapon, other.gameObject);
 		}
 	}
 
@@ -265,11 +275,7 @@ public class PlayerContainer : MonoBehaviour {
 
 		if (other.gameObject.tag == "EnemyWeapon") {
 			WeaponData weapon = other.collider.GetComponent<WeaponData>();
-			int d = weapon.damage;
-			string e = weapon.element;
-			Vector3 k = weapon.knockBack * other.transform.forward;
-			if(weapon.knockBack == 0) k = transform.forward*-3;
-			hitPlayer(d, e, k);
+			hurtPlayer(weapon, other.gameObject);
 		}
 
 	}
@@ -470,6 +476,10 @@ public class PlayerContainer : MonoBehaviour {
 	public void randomRollingSound() {
 		//For rolling animation
 		playVoiceClip(rollVoices[Random.Range(0, rollVoices.Length)]);
+	}
+
+	public void knockOver() {
+		animator.SetTrigger (Animator.StringToHash("KnockedOver"));
 	}
 
 	public IEnumerator characterWalkTo(Vector3 target, Transform lookAt=null) {

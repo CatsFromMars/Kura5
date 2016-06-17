@@ -64,9 +64,9 @@ public class BossEnemy : EnemyClass {
 			animator.SetBool(Animator.StringToHash("Frozen"), true);
 			shadowStunEffect.gameObject.SetActive(true);
 			frozen = true;
-			//animator.enabled = false;
+			animator.enabled = false;
 			yield return new WaitForSeconds(lightLevels.darkness.GetValue());
-			//animator.enabled = true;
+			animator.enabled = true;
 			frozen = false;
 			animator.SetBool(Animator.StringToHash("Frozen"), false);
 			shadowStunEffect.gameObject.SetActive(false);

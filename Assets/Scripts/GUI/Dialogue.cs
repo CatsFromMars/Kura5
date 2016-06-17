@@ -17,7 +17,9 @@ public class Dialogue : MonoBehaviour {
 	public GameObject arrow;
 
 	public GUISkin skin;
-	public float textRate = 10; // how fast the text appears
+	public float textRate = 15; // how fast the text appears
+	private float fastTextRate = 70;
+	public float normalTextRate = 15;
 	public AudioClip tickSound; // audio
 	public AudioClip finishSound;
 	public int border=5, height=300; // size of dialog 
@@ -26,6 +28,7 @@ public class Dialogue : MonoBehaviour {
 	Texture2D leftImage, rightImage; // images
 	string theText = null; // the text (null means hidden)
 	Rect mainRect; // rectangle for box
+	private bool labelMode = false;
 
 	//audiosources
 	public AudioSource tickAudio;
@@ -49,10 +52,19 @@ public class Dialogue : MonoBehaviour {
 		}
 	}
 
-	public void Show(string txt, Sprite left, Sprite right)
+	public void Show(string txt, Sprite left, Sprite right, bool isLabel=false)
 	{
+		Debug.Log(left);
+		if(isLabel) {
+			textRate = fastTextRate;
+			labelMode = true;
+		}
+		else {
+			textRate = normalTextRate;
+			labelMode = false;
+		}
 		arrow.SetActive (false);
-		displayBox.SetActive (true);
+		if(displayBox!=null) displayBox.SetActive (true);
 		theText = txt;
 		if(left != null) {
 			leftSprite.sprite = left;
@@ -69,7 +81,7 @@ public class Dialogue : MonoBehaviour {
 	{
 		theText=null;
 		displayText.text = theText;
-		displayBox.SetActive (false);
+		if(displayBox!=null) displayBox.SetActive (false);
 	}
 
 	
@@ -101,9 +113,10 @@ public class Dialogue : MonoBehaviour {
 		// if finished & space bar
 		if (textCounter >= theText.Length)
 		{   
-			arrow.SetActive(true);
-			bool push = Input.GetButtonDown("Charge") || Input.GetButtonDown("Confirm") || Input.GetButton("Attack");
-			if (push) {
+			if(!labelMode) arrow.SetActive(true);
+			else arrow.SetActive (false);
+			bool push = Input.GetButtonDown("Confirm") || Input.GetButtonDown("Deny");
+			if (push && !labelMode) {
 				Hide();
 				makeSound(finishAudio, finishSound);
 			}

@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour {
 	public float velocity = 100f;
 	public Transform elec;
 	private bool hit = false;
+	public bool reflected = false; //if bullet reflected by enemy
 
 	//ACTIVE BULLET TIME
 	private float elapsedTime;
@@ -17,11 +18,10 @@ public class Bullet : MonoBehaviour {
 	public Transform hitEffect;
 
 	void Update() {
-		if(!GetComponent<MeshRenderer>().renderer.isVisible) Destroy(this.gameObject);
-	}
-
-	void FixedUpdate() {
-		transform.position += transform.forward * velocity * Time.deltaTime;
+		//if(!GetComponent<MeshRenderer>().renderer.isVisible) Destroy(this.gameObject);
+		Vector3 direction = transform.forward * velocity * Time.unscaledDeltaTime;
+		if(reflected) direction *= -1;
+		transform.position += direction;
 		elapsedTime++;
 	}
 

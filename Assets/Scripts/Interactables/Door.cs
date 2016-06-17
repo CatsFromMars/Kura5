@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Door : MonoBehaviour {
@@ -6,7 +6,7 @@ public class Door : MonoBehaviour {
 	public enum doorType {REGULAR, TRIANGLE, CIRCLE, SQUARE};
 	public doorType type;
 	private bool doorLocked = true;
-	private bool inRange;
+	private bool inRange = false;
 	int keyItemID;
 	private TextAsset lockedDoorPrompt;
 	private TextAsset openedDoorPrompt;
@@ -16,6 +16,7 @@ public class Door : MonoBehaviour {
 	private SphereCollider col;
 	public float triggerRadius = 5f;
 	public float lockedRadius = 2.7f;
+	public AudioClip unlockSound;
 
 	void Awake() {
 		GameObject global = GameObject.FindGameObjectWithTag ("GameController");
@@ -56,7 +57,6 @@ public class Door : MonoBehaviour {
 	void Update() {
 		if (doorLocked && inRange && Input.GetButtonDown("Charge")) {
 			int hasKey = inventory.checkForKeyItem(keyItemID);
-			Debug.Log(hasKey);
 			if(hasKey != -1) {
 				doorLocked = false;
 				inventory.removeKeyItem(hasKey);
@@ -80,18 +80,18 @@ public class Door : MonoBehaviour {
 			if(other.tag == "Player" || other.tag == "EnemyWeapon") 
 				animator.SetBool(Animator.StringToHash("PlayerInRange"), true);
 		}
-		else inRange = true;
+		else if(other.tag == "Player") inRange = true;
 
-		if(doorLocked) data.nearInteractable = true;
+		if(doorLocked && other.tag == "Player") data.nearInteractable = true;
 	}
 
 	void OnTriggerExit(Collider other) {
 		if(!doorLocked) {
-			if(other.tag == "Player" || other.tag == "EnemyWeapon") 
+			if(other.tag == "Player") 
 				animator.SetBool(Animator.StringToHash("PlayerInRange"), false);
 		}
-		else inRange = false;
+		else if(other.tag == "Player") inRange = false;
 
-		if(doorLocked) data.nearInteractable = false;
+		if(doorLocked && other.tag == "Player") data.nearInteractable = false;
 	}
 }

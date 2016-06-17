@@ -44,7 +44,6 @@ public class StatusGUI : MonoBehaviour {
 		if((lifeSlider.value <= (lifeSlider.maxValue/4f)) && !lowHP) {
 			lowHP = true;
 			StartCoroutine(redFlash());
-			Debug.Log ("CALLED!");
 		}
 		else if (lifeSlider.value <= (lifeSlider.maxValue/2f) && (lifeSlider.value >= (lifeSlider.maxValue/4f))) {
 			lifeColor.color = halfColor;

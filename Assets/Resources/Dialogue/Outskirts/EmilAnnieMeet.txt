@@ -1,0 +1,39 @@
+##Cutscene where Annie and Emil first meet Player walks up to Bok, sees it shadow sealed.
+<CAM_GOTO_POINT=CutsceneBok>
+<O=AnniePlayer_0>
+Monster<n>..............
+<CAM_GOTO_POINT=PlayerPositionContainer>
+<A=EmilNPC_1>
+Annie<n>(Stiff as a statue!)
+<E=AnniePlayer_1>
+M=VampireEmil
+Mysterious Boy<n>Well? Are you going to kill it, or aren't you?
+<CAM_GOTO_POINT=EmilNPC>
+Mysterious Boy<n>What are you waiting for?!
+Mysterious Boy<n>Use your [Solar Gun] to kill this servant!
+<CAM_GOTO_POINT=Center>
+Mysterious Boy<n>Do it quickly before the seal-!
+<T=EmilNPC_1>
+<A=EmilNPC_2>
+<A=CutsceneBok_2>
+Emil<n>...Wears off...
+<A=EmilNPC_3>
+<T=EmilNPC_0>
+<O=EmilNPC_0>
+<E=AnniePlayer_1>
+Emil<n>Ugh...!
+<A=EmilNPC_4>
+<A=CutsceneBok_3>
+<CAM_GOTO_POINT=EmilNPC>
+Emil<n>...
+<CAM_GOTO_POINT=Center>
+Annie<n>Vampire...!
+<A=EmilNPC_0>
+Mysterious Boy<n>Oh goodie, I'm thrilled you have basic observation skills.
+Mysterious Boy<n>Although I'm afraid that doesn't make up for your lack of competence.
+Mysterious Boy<n>You had prey practically handed to you on a silver platter and still you didn't strike!
+Mysterious Boy<n>Where's your bloodlust?
+<E=EmilNPC_1>
+<A=AnniePlayer_2>
+Annie<n>You want bloodlust?
+Annie<n>(Just like last time!)<n>[Target + Shoot]

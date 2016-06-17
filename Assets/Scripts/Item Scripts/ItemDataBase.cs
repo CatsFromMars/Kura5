@@ -14,7 +14,7 @@ public class ItemDatabase : MonoBehaviour {
 
 		//Consumable Items
 		n = "Earth Fruit";
-		desc = "Fruit blessed by the Earth.\nRestores Some Life.";
+		desc = "Fruit blessed by the earth.\nRestores Some Life.";
 		Consumable apple = new Consumable (0, n, desc, "RESTORE_LIFE", "ANNIE", 30);
 		apple.model = Resources.Load ("Items/Earth Fruit") as GameObject;
 		consumableItems.Add(apple);
@@ -47,17 +47,17 @@ public class ItemDatabase : MonoBehaviour {
 		n = "Blue Key";
 		desc = "A key held together by the\ndark magic of an Immortal.";
 		KeyItem key = new KeyItem (0, n, desc, false, "UNLOCKS_DOORS");
-		key.model = Resources.Load ("Items/Key") as GameObject;
+		key.model = Resources.Load ("Items/Blue Key") as GameObject;
 		keyItems.Add(key);
 
 		n = "Dark Loans Card";
-		desc = "A credit card from Dark Loans.\nSummons a shady loan shark.";
+		desc = "A credit card from Dark Loans.\nSummons Doomy.";
 		KeyItem card = new KeyItem (1, n, desc, false, "SUMMONS_DOOMY");
-		card.model = Resources.Load ("Items/Card") as GameObject;
+		card.model = Resources.Load ("Items/Dark Loans Card") as GameObject;
 		keyItems.Add(card);
 
 		n = "Coffin";
-		desc = "An old family coffin once belonging\nto a Vampire Lord. Hides bodies.";
+		desc = "An old family coffin once belonging\nto a Vampire Lord.";
 		KeyItem coffin = new KeyItem (2, n, desc, false, "COFFIN");
 		coffin.model = Resources.Load ("Items/Coffin") as GameObject;
 		keyItems.Add(coffin);
@@ -65,13 +65,13 @@ public class ItemDatabase : MonoBehaviour {
 		n = "Red Key";
 		desc = "A key held together by the\ndark magic of an Immortal.";
 		KeyItem key2 = new KeyItem (3, n, desc, false, "UNLOCKS_DOORS");
-		key2.model = Resources.Load ("Items/RedKey") as GameObject;
+		key2.model = Resources.Load ("Items/Red Key") as GameObject;
 		keyItems.Add(key2);
 
 		n = "Yellow Key";
 		desc = "A key held together by the\ndark magic of an Immortal.";
 		KeyItem key3 = new KeyItem (4, n, desc, false, "UNLOCKS_DOORS");
-		key3.model = Resources.Load ("Items/YellowKey") as GameObject;
+		key3.model = Resources.Load ("Items/Yellow Key") as GameObject;
 		keyItems.Add(key3);
 
 		//Lens
@@ -111,7 +111,7 @@ public class ItemDatabase : MonoBehaviour {
 		lens.Add (cloud);
 
 		n = "Astro Lens";
-		desc = "A [ALL PURPOSELENS] containing the Cloud Property";
+		desc = "A [ALL PURPOSE LENS] containing the Cloud Property";
 		Lens astro = new Lens (7, n, desc, "EMIL", "Astro");
 		lens.Add (astro);
 

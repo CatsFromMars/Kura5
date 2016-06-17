@@ -36,6 +36,7 @@ public class Inventory : MonoBehaviour {
 		itemsList.Add (database.consumableItems[3]);
 		itemsList.Add (database.consumableItems[4]);
 		keyItemsList.Add (database.keyItems[2]);
+		keyItemsList.Add (database.keyItems[1]);
 
 		//INIT SLOTS FOR ITEMS
 		for (int i = 0; i < slotsX * slotsY; i++)
@@ -74,6 +75,18 @@ public class Inventory : MonoBehaviour {
 
 	//Functions for manipulating inventory
 
+	public int checkForConsumable(int itemID) {
+		//RETURNS INDEX OF ITEM. RETURNS -1 IF NOT FOUND
+		for(int i = 0; i < slotsX*slotsY; i++)
+		{
+			if(itemsList[i].id==itemID && itemsList[i].name!=null)
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+	
 	public bool AddConsumable(int itemID) {
 		//Add item to inventory via item id
 		//If returns false, that means it failed to add the item
@@ -186,6 +199,10 @@ public class Inventory : MonoBehaviour {
 
 			return true;
 		}
+		else if(item.effect == "SUMMONS_DOOMY") {
+			SceneTransition scene = GameObject.FindGameObjectWithTag("Fader").GetComponent<SceneTransition>();
+			scene.gotoScene("DarkLoans", true, false, true);
+		}
 
 
 
@@ -217,11 +234,11 @@ public class Inventory : MonoBehaviour {
 			if(item.preference != player && item.preference != "NONE") {
 				healing = Mathf.FloorToInt(healing*0.2f);
 			}
-			if(player == "ANNIE" && gameData.annieCurrentEnergy > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy) {
+			if(player == "ANNIE" && gameData.annieCurrentLife > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy) {
 				gameData.annieCurrentEnergy += healing;
 				itemUsed = true;
 			}
-			else if(player == "EMIL" && gameData.emilCurrentEnergy > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy) {
+			else if(player == "EMIL" && gameData.emilCurrentLife > 0 && gameData.emilCurrentEnergy < gameData.emilMaxEnergy) {
 				gameData.emilCurrentEnergy += healing;
 				itemUsed = true;
 			}

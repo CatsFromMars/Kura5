@@ -146,11 +146,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 400018}
   - 95: {fileID: 9500000}
-  - 114: {fileID: 11400000}
   - 136: {fileID: 13600000}
   - 82: {fileID: 8200000}
   - 54: {fileID: 5400002}
   - 195: {fileID: 19500000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: SkeletonVaquero
   m_TagString: Enemy
@@ -1370,7 +1370,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100018}
@@ -1456,6 +1456,7 @@ MonoBehaviour:
   damage: 20
   element: Dark
   knockBack: 10
+  multiplier: 1
 --- !u!119 &11900000
 Projector:
   m_ObjectHideFlags: 1

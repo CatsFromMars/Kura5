@@ -11,28 +11,37 @@ public class Bat : EnemyClass {
 	void Update() {
 		bool canMove = animator.GetCurrentAnimatorStateInfo (0).nameHash == hash.walkState;
 
+		if (hitCounter > 0 && !detected) {
+			player = GameObject.FindGameObjectWithTag("Player").transform;
+			startCombat();
+		}
+
 		if(!dead) {
 			if(canMove) {
 				agent.Resume();
-				agent.updateRotation = true;
+				//agent.updateRotation = true;
 			}
 			else { 
 				agent.velocity = Vector3.zero;
 				agent.Stop();
-				agent.updateRotation = false;
+				//agent.updateRotation = false;
 			}
 		}
 	}
 	
 	void OnTriggerEnter (Collider other) {
 		if (other.gameObject.tag == "Player" && !detected) {
-			playerContainer = GameObject.FindGameObjectWithTag ("PlayerSwapper").transform;
-			animator.SetTrigger(Animator.StringToHash("PlayerDetected"));
-			detected = true;
-			StartCoroutine(combatLoop());
 			player = other.transform;
-			voice.Play();
+			startCombat();
 		}
+	}
+
+	void startCombat() {
+		playerContainer = GameObject.FindGameObjectWithTag ("PlayerSwapper").transform;
+		animator.SetTrigger(Animator.StringToHash("PlayerDetected"));
+		detected = true;
+		StartCoroutine(combatLoop());
+		voice.Play();
 	}
 
 	IEnumerator combatLoop() {
@@ -41,7 +50,7 @@ public class Bat : EnemyClass {
 			playerPos = playerContainer.position;
 			agent.SetDestination (playerContainer.position);
 			playerPos = playerContainer.position;
-			quickLook();
+			//quickLook();
 			yield return new WaitForSeconds(interval);
 		}
 	}

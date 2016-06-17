@@ -93,7 +93,7 @@ public class MeleeWeaponTrail : MonoBehaviour
 		_trailObject.AddComponent(typeof(MeshFilter));
 		_trailObject.AddComponent(typeof(MeshRenderer));
 		_trailObject.renderer.material = _material;
-		
+		_trailObject.layer = LayerMask.NameToLayer("Lighting");
 		_trailMesh = new Mesh();
 		_trailMesh.name = name + "TrailMesh";
 		_trailObject.GetComponent<MeshFilter>().mesh = _trailMesh;

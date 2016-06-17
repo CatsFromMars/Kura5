@@ -33,6 +33,7 @@ ModelImporter:
     100054: WingR2
     100056: WingR3
     100058: WingR4
+    100060: Cube_001
     400000: Cube
     400002: Plane
     400004: //RootNode
@@ -63,6 +64,7 @@ ModelImporter:
     400054: WingR2
     400056: WingR3
     400058: WingR4
+    400060: Cube_001
     2300000: Cube
     2300002: Plane
     2300004: //RootNode
@@ -71,10 +73,12 @@ ModelImporter:
     3300004: //RootNode
     4300000: Cube
     4300002: Plane
+    4300004: Cube_001
     7400000: Default Take
-    7400002: ArmatureAction
+    7400002: Flight
     9500000: //RootNode
     13700000: Cube
+    13700002: Cube_001
   materials:
     importMaterials: 1
     materialName: 0
@@ -90,7 +94,179 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: -1
+      lastFrame: 129
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Stomach
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingL1
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingL1/WingL2
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingL1/WingL2/WingL3
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingL1/WingL2/WingL3/WingL4
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingR1
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingR1/WingR2
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingR1/WingR2/WingR3
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingR1/WingR2/WingR3/WingR4
+        weight: 1
+      - path: Armature/Hip/ThighL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL/FootL
+        weight: 1
+      - path: Armature/Hip/ThighR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR/FootR
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Cube_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Flight
+      takeName: ArmatureAction
+      firstFrame: 0
+      lastFrame: 119
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Stomach
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingL1
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingL1/WingL2
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingL1/WingL2/WingL3
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingL1/WingL2/WingL3/WingL4
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingR1
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingR1/WingR2
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingR1/WingR2/WingR3
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingR1/WingR2/WingR3/WingR4
+        weight: 1
+      - path: Armature/Hip/ThighL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL/FootL
+        weight: 1
+      - path: Armature/Hip/ThighR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR/FootR
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Cube_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []

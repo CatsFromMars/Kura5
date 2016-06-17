@@ -10,14 +10,14 @@ public class Mummy : PatrolEnemy {
 	public WeaponData weapon;
 	private bool listeningForPlayer = false;
 	public GameObject fireEffect;
-	private int fireCounter = 20;
+	private int fireCounter = 5;
 	
 	// Update is called once per frame
 	void Update () {
 
 		//Lights ablaze if his with fire attack
 		if(mostRecentAttackElem == "Fire") {
-			StartCoroutine(BurnStart());
+			if(!onFire) StartCoroutine(BurnStart());
 			mostRecentAttackElem = "Null";
 		}
 

@@ -88,7 +88,7 @@ public class PatrolEnemy : EnemyClass {
 			playerPos = other.transform.position;
 			seePlayer(other); //DETECT PLAYER THROUGH SIGHT
 
-			audio.enabled = true;
+			//audio.enabled = true;
 		}
 
 		//Handle noise
@@ -103,7 +103,7 @@ public class PatrolEnemy : EnemyClass {
 			playerInSight = false;
 		}
 
-		audio.enabled = false;
+		//audio.enabled = false;
 	}
 
 	void hearPlayer(Collider other) {
