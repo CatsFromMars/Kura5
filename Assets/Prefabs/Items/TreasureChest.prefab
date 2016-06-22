@@ -171,7 +171,7 @@ Transform:
   m_GameObject: {fileID: 143416}
   m_LocalRotation: {x: 0, y: .923879564, z: 0, w: .382683456}
   m_LocalPosition: {x: 59.4399986, y: -.920000017, z: 65.3600006}
-  m_LocalScale: {x: .875835478, y: .875835419, z: .875835359}
+  m_LocalScale: {x: .769043922, y: .875835419, z: .875835359}
   m_Children:
   - {fileID: 443412}
   - {fileID: 443414}
@@ -299,6 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jingle: {fileID: 0}
   playsJingle: 0
+  stopsMusic: 1
   type: 0
   pullsUpPrompt: 0
   itemID: 0
@@ -315,7 +316,7 @@ Projector:
   m_NearClipPlane: .100000001
   m_FarClipPlane: 50
   m_FieldOfView: 30
-  m_AspectRatio: 1.20000005
+  m_AspectRatio: 1
   m_Orthographic: 1
   m_OrthographicSize: 1
   m_Material: {fileID: 2100000, guid: 3c8e8d172abcfb142a748eeb9b0ed6fe, type: 2}

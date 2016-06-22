@@ -7557,15 +7557,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 478222, guid: afc93ed159390be4f9f54285dafec699, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -12.1000004
+      value: -47.2000008
       objectReference: {fileID: 0}
     - target: {fileID: 478222, guid: afc93ed159390be4f9f54285dafec699, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.9000001
       objectReference: {fileID: 0}
     - target: {fileID: 478222, guid: afc93ed159390be4f9f54285dafec699, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -.899999976
+      value: 88.9000015
       objectReference: {fileID: 0}
     - target: {fileID: 478222, guid: afc93ed159390be4f9f54285dafec699, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7589,7 +7589,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11478222, guid: afc93ed159390be4f9f54285dafec699, type: 2}
       propertyPath: initialLevel
-      value: WadjetFloor1A
+      value: outdoorD
       objectReference: {fileID: 0}
     - target: {fileID: 178222, guid: afc93ed159390be4f9f54285dafec699, type: 2}
       propertyPath: m_IsActive
@@ -11445,7 +11445,7 @@ Transform:
   m_PrefabInternal: {fileID: 365536877}
   m_GameObject: {fileID: 582312676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.1000004, y: 0, z: -.899999976}
+  m_LocalPosition: {x: -47.2000008, y: 2.9000001, z: 88.9000015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1126424403}
@@ -11463,7 +11463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8131577bccc641140a7be770af56237d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialLevel: WadjetFloor1A
+  initialLevel: outdoorD
   w: {fileID: 883157861}
 --- !u!1 &583148842
 GameObject:
@@ -15396,7 +15396,7 @@ Transform:
   m_PrefabInternal: {fileID: 908211981}
   m_GameObject: {fileID: 881421840}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32, y: 0, z: 15.6000004}
+  m_LocalPosition: {x: -67.0999985, y: 2.9000001, z: 105.400002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1768064750}
@@ -15780,15 +15780,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 458448, guid: e64d4956958ad664fba622298afa2794, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -32
+      value: -67.0999985
       objectReference: {fileID: 0}
     - target: {fileID: 458448, guid: e64d4956958ad664fba622298afa2794, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.9000001
       objectReference: {fileID: 0}
     - target: {fileID: 458448, guid: e64d4956958ad664fba622298afa2794, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 15.6000004
+      value: 105.400002
       objectReference: {fileID: 0}
     - target: {fileID: 458448, guid: e64d4956958ad664fba622298afa2794, type: 2}
       propertyPath: m_LocalRotation.x
@@ -15852,7 +15852,7 @@ Prefab:
       objectReference: {fileID: 8300000, guid: 89745d04c5c4d1246a934df61147d7aa, type: 3}
     - target: {fileID: 8263284, guid: e64d4956958ad664fba622298afa2794, type: 2}
       propertyPath: Mute
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8263284, guid: e64d4956958ad664fba622298afa2794, type: 2}
       propertyPath: m_audioClip
@@ -15909,6 +15909,10 @@ Prefab:
     - target: {fileID: 11465170, guid: e64d4956958ad664fba622298afa2794, type: 2}
       propertyPath: annieCurrentEnergy
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 158444, guid: e64d4956958ad664fba622298afa2794, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e64d4956958ad664fba622298afa2794, type: 2}
@@ -20238,7 +20242,7 @@ AudioSource:
   m_Volume: .800000012
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1

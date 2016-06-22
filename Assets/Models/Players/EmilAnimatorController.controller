@@ -122,6 +122,18 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: CutsceneMode
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: CutsceneAction
+    m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -282,6 +294,30 @@ Transition:
     m_ConditionEvent: Targeting
     m_EventTreshold: 1
     m_ExitTime: .876520157
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110122818
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 0}
+  m_DstState: {fileID: 110256826}
+  m_TransitionDuration: .100000001
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: CutsceneMode
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  - m_ConditionMode: 6
+    m_ConditionEvent: CutsceneAction
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -515,7 +551,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: CutsceneMode
     m_EventTreshold: 0
     m_ExitTime: .874948859
   m_Atomic: 1
@@ -690,6 +726,46 @@ Transition:
     m_ConditionEvent: Hurt
     m_EventTreshold: 0
     m_ExitTime: .899999976
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110165172
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110256826}
+  m_DstState: {fileID: 110254168}
+  m_TransitionDuration: .0825537294
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: CutsceneAction
+    m_EventTreshold: 2
+    m_ExitTime: .846153855
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110166418
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110211868}
+  m_DstState: {fileID: 110256826}
+  m_TransitionDuration: .151008606
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: CutsceneAction
+    m_EventTreshold: 0
+    m_ExitTime: .684210658
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -922,6 +998,26 @@ Transition:
     m_ConditionEvent: HoldingWeapon
     m_EventTreshold: 0
     m_ExitTime: .95261842
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110182654
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110254168}
+  m_DstState: {fileID: 110256826}
+  m_TransitionDuration: .616137683
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: CutsceneAction
+    m_EventTreshold: 0
+    m_ExitTime: .571429014
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -1738,6 +1834,26 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
+--- !u!1101 &110192298
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110256826}
+  m_DstState: {fileID: 110211868}
+  m_TransitionDuration: .0687208995
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: CutsceneAction
+    m_EventTreshold: 1
+    m_ExitTime: .846153855
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1101 &110192878
 Transition:
   serializedVersion: 2
@@ -1790,6 +1906,22 @@ State:
   - {fileID: 7400000, guid: 14a70448c25a69e4c9dec721644f0924, type: 2}
   m_ParentStateMachine: {fileID: 110755536}
   m_Position: {x: 348, y: 72, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110211868
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Facepalm
+  m_Speed: .5
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400042, guid: aff60439fcc786248b5740313c666246, type: 3}
+  - {fileID: 0}
+  m_ParentStateMachine: {fileID: 110795378}
+  m_Position: {x: 564, y: 204, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -1870,6 +2002,38 @@ State:
   - {fileID: 7400006, guid: aff60439fcc786248b5740313c666246, type: 3}
   m_ParentStateMachine: {fileID: 110755536}
   m_Position: {x: 96, y: 72, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110254168
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Deny
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400044, guid: aff60439fcc786248b5740313c666246, type: 3}
+  - {fileID: 0}
+  m_ParentStateMachine: {fileID: 110795378}
+  m_Position: {x: 792, y: 204, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110256826
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Cutscene_Idle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400032, guid: aff60439fcc786248b5740313c666246, type: 3}
+  - {fileID: 0}
+  m_ParentStateMachine: {fileID: 110795378}
+  m_Position: {x: 564, y: 120, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -2354,27 +2518,32 @@ StateMachine:
   - {fileID: 110787116}
   - {fileID: 110755536}
   - {fileID: 110790486}
+  - {fileID: 110795378}
   m_ChildStateMachinePosition:
   - {x: 348, y: -288, z: 0}
   - {x: 348, y: -156, z: 0}
   - {x: 84, y: -288, z: 0}
+  - {x: -132, y: -72, z: 0}
   m_OrderedTransitions:
     data:
-      first: {fileID: 110219150}
+      first: {fileID: 110254168}
       second:
-      - {fileID: 110156880}
-      - {fileID: 110147110}
-      - {fileID: 110168538}
+      - {fileID: 110182654}
     data:
-      first: {fileID: 110242992}
+      first: {fileID: 110211868}
       second:
-      - {fileID: 110172154}
-      - {fileID: 110113238}
+      - {fileID: 110166418}
+    data:
+      first: {fileID: 110256826}
+      second:
+      - {fileID: 110192298}
+      - {fileID: 110165172}
     data:
       first: {fileID: 0}
       second:
       - {fileID: 110164476}
       - {fileID: 110128260}
+      - {fileID: 110122818}
     data:
       first: {fileID: 110269422}
       second:
@@ -2384,6 +2553,17 @@ StateMachine:
       - {fileID: 110183230}
       - {fileID: 110182406}
       - {fileID: 110138620}
+    data:
+      first: {fileID: 110242992}
+      second:
+      - {fileID: 110172154}
+      - {fileID: 110113238}
+    data:
+      first: {fileID: 110219150}
+      second:
+      - {fileID: 110156880}
+      - {fileID: 110147110}
+      - {fileID: 110168538}
     data:
       first: {fileID: 110213288}
       second:
@@ -2572,3 +2752,21 @@ StateMachine:
   m_MotionSetCount: 2
   m_AnyStatePosition: {x: 72, y: -24, z: 0}
   m_ParentStateMachinePosition: {x: 180, y: -168, z: 0}
+--- !u!1107 &110795378
+StateMachine:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: CutsceneMode
+  m_DefaultState: {fileID: 110256826}
+  m_States:
+  - {fileID: 110256826}
+  - {fileID: 110211868}
+  - {fileID: 110254168}
+  m_ChildStateMachine: []
+  m_ChildStateMachinePosition: []
+  m_OrderedTransitions: {}
+  m_MotionSetCount: 2
+  m_AnyStatePosition: {x: 588, y: 48, z: 0}
+  m_ParentStateMachinePosition: {x: 864, y: 48, z: 0}

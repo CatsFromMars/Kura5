@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class LiveWeather : MonoBehaviour {
 	//API Key
-	private string APIKEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXX";
+	private string APIKEY = "dc9a8ccf17ac92f754c1755832360a71";
 	//Data
 	private string currentIP;
 	public string currentError;
@@ -25,7 +25,7 @@ public class LiveWeather : MonoBehaviour {
 
 	void Awake() {
 		currentError = "";
-		Debug.LogError ("API Key is currently "+APIKEY+". Replace it with your own API Key and delete this Log Error line of code!");
+		//Debug.LogError ("API Key is currently "+APIKEY+". Replace it with your own API Key and delete this Log Error line of code!");
 		//APIKEY = SimpleXOREncryption.EncryptorDecryptor.EncryptDecrypt(APIKEY);
 	}
 

@@ -25,7 +25,8 @@ public class Flags : MonoBehaviour {
 	}
 
 	public bool CheckCutsceneFlag(string d) {
-		return cutscenes[d];
+		if(cutscenes.ContainsKey(d)) return cutscenes[d];
+		else return false;
 	}
 
 	//Traps

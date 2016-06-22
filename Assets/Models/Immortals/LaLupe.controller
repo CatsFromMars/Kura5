@@ -38,6 +38,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: Hurt
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -83,7 +89,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: Hurt
     m_EventTreshold: 0
     m_ExitTime: .940067053
   m_Atomic: 1
@@ -103,7 +109,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: Hurt
     m_EventTreshold: 0
     m_ExitTime: .931313038
   m_Atomic: 1
@@ -194,6 +200,26 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
+--- !u!1101 &110145384
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 0}
+  m_DstState: {fileID: 110293606}
+  m_TransitionDuration: .100000001
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1101 &110148192
 Transition:
   serializedVersion: 2
@@ -207,7 +233,7 @@ Transition:
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: Hurt
     m_EventTreshold: 0
     m_ExitTime: .9690907
   m_Atomic: 1
@@ -508,6 +534,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110293606
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Hurt 0
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400006, guid: c991b2ac3fcc8d047a21767b2a2373d8, type: 3}
+  m_ParentStateMachine: {fileID: 110707440}
+  m_Position: {x: 0, y: -156, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1107 &110707440
 StateMachine:
   serializedVersion: 2
@@ -527,46 +568,14 @@ StateMachine:
   - {fileID: 110227970}
   - {fileID: 110250152}
   - {fileID: 110243672}
+  - {fileID: 110293606}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110250152}
-      second:
-      - {fileID: 110120434}
-    data:
-      first: {fileID: 110227970}
-      second:
-      - {fileID: 110196494}
-    data:
-      first: {fileID: 110276474}
-      second:
-      - {fileID: 110118978}
-    data:
-      first: {fileID: 110265482}
-      second:
-      - {fileID: 110115976}
-    data:
-      first: {fileID: 110281510}
-      second:
-      - {fileID: 110113648}
-    data:
-      first: {fileID: 110257852}
-      second:
-      - {fileID: 110171114}
-    data:
-      first: {fileID: 110236514}
-      second:
-      - {fileID: 110148192}
-      - {fileID: 110131490}
-    data:
-      first: {fileID: 110210426}
-      second:
-      - {fileID: 110136028}
-      - {fileID: 110155938}
-    data:
       first: {fileID: 0}
-      second: []
+      second:
+      - {fileID: 110145384}
     data:
       first: {fileID: 110236602}
       second:
@@ -575,6 +584,43 @@ StateMachine:
       - {fileID: 110195720}
       - {fileID: 110182390}
       - {fileID: 110199934}
+    data:
+      first: {fileID: 110210426}
+      second:
+      - {fileID: 110136028}
+      - {fileID: 110155938}
+    data:
+      first: {fileID: 110236514}
+      second:
+      - {fileID: 110148192}
+      - {fileID: 110131490}
+    data:
+      first: {fileID: 110257852}
+      second:
+      - {fileID: 110171114}
+    data:
+      first: {fileID: 110281510}
+      second:
+      - {fileID: 110113648}
+    data:
+      first: {fileID: 110265482}
+      second:
+      - {fileID: 110115976}
+    data:
+      first: {fileID: 110276474}
+      second:
+      - {fileID: 110118978}
+    data:
+      first: {fileID: 110227970}
+      second:
+      - {fileID: 110196494}
+    data:
+      first: {fileID: 110250152}
+      second:
+      - {fileID: 110120434}
+    data:
+      first: {fileID: 110243672}
+      second: []
   m_MotionSetCount: 1
-  m_AnyStatePosition: {x: 0, y: -168, z: 0}
+  m_AnyStatePosition: {x: 12, y: -228, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

@@ -100,12 +100,14 @@ public class DisplayDialogue : MonoBehaviour {
 	}
 
 	public static void moveTo(string txt) {
-		string name = getName(txt);
 		string number = getNumber(txt);
+		string name = txt.Replace("<T=","").Replace("_"+number+">","");
+		Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+		name = rgx.Replace(name, ""); //filter out alphanumeric characters
 		GameObject go = GameObject.Find (name);
 		GameObject posGo = GameObject.Find ("Position" + number);
 		if(go!=null && posGo!=null) {
-			Debug.Log("Moved "+go.name+" to "+posGo.name+".");
+			//Debug.Log("Moved "+go.name+" to "+posGo.name+".");
 			go.transform.position = posGo.transform.position;
 		}
 		else Debug.LogError("No gameobject found!");
