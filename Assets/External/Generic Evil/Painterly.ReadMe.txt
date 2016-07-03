@@ -1,0 +1,55 @@
+Painterly by Generic Evil Business Ltd.
+
+Video Tutorial:
+The fastest and BEST way to get up to speed with Painterly is to watch this video tutorial!
+http://www.youtube.com/watch?v=y8Un83TQ6a4
+The video explains all aspects of Painterly’s set up and configuration.
+
+Live Web Demo:
+http://www.genericevil.com/painterly you can view a demo of the test scene used in the tutorial video in 
+the unity web player here.
+http://www.genericevil.com/Painterly/RoboSelfie this is a webplayer verion of the included 'Robot Selfie' demo scene
+
+Demo Scene:
+Assets/Generic Evil/Demo/Demo.unity is a small test scene, consiting of models published by Unity on the asset
+store. Open this for a fully working example of the effect attached to a camera.
+
+
+Quick Start Guide:
+Add the Painterly component to your scenes camera. You can find it in 
+Components -> Image Effect-> Generic Evil -> Painterly. The camera will now have a Painterly component
+ attached to it. Painterly has a whole bunch of parameters you can tweak in the inspector
+
+* Samples: Controls how many per-pixel samples are collected. The more samples, the smoother the effect.
+* Sample Radius: Controls how far out samples are taken. Higher values make brushstrokes look really chunky.
+* Sample Mode: Controls which sampling pattern is being used.
+	* Regular: Sends out samples in a circular pattern around each pixel.
+	* Randomize: Jitters each sample by a random amount. This gives edges a fuzzy effect.
+	* URotate: Creates a curvy brush-stroke effect.
+* Combine Mode: Controls how the samples are combined together
+	* Max: The brightest colours are used in the paint strokes.
+	* Min: The darkest colours are used in the paint strokes.
+	* Intensity: The samples are split in to groups based on how intense/bright they are. The average colour of the group with most entries is used.
+* Enable Color Grading: Turns on and off Grading. this can be used to raise or lower the intensity of the colours
+  in the scene
+* Enable Depth Fade: Turns on and off Depth Fading. This turns Painterly in to a Depth of Field style effect. When turned you will see two new sliders, Depth Start and Depth End.
+  A slider value of 0 is the camera near clip plane and 1 is your camera far clip plane. the values in between scale linearly inbetween near and far. (So, if your cameras near 
+  plane was 0.3 and the far was 100, setting the start slider to 0.5 would start the plane at about 50 units away from the camer... halfway!). It can be helpful when tweaking these
+  values to make sure that you camera far plane is set the lowest value possible, as that will make these sliders easier to set.
+
+Tips:
+* You can stack multiple instances of the effect to create more interesting results.
+* On Max combine mode, darker objects against bright backgrounds can lose a lot of their shape. Try stacking 
+  an image effect that darkens the edges of object above painterly. Unitys standard assets ships with both Edge 
+  Detection shaders and a shader called Crease that can help with this artefact.
+* You can stack an Edge Detection post process over the top of painterly to get a comic book inking style!
+* Painterly is stable enough to be used with 3D displays, like the oculus rift!
+
+
+Version History
+v1.5 x Added Depth Fade mode
+	 x Added Intensity Combine mode 
+v1.0 x Initial Release
+
+Support:
+Need help? Got feedback> Send us an email! hello@genericevil.com

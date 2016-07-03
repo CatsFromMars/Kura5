@@ -19,6 +19,8 @@ public class WeatherSync : MonoBehaviour {
 	public SafeInt sunlight = new SafeInt(0);
 	public SafeInt lightMax = new SafeInt(0);
 	public bool isNightTime = false;
+	public bool isIndoors = false;
+	public bool inSnow = false;
 
 	//Data
 	public string conditionName = "";

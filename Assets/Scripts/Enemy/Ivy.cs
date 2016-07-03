@@ -52,7 +52,7 @@ public class Ivy : EnemyClass {
 
 	void Attack() {
 		attackTimer = 0;
-		if(distanceFromPlayer <= range) {
+		if(distanceFromPlayer <= range && Time.timeScale!=0) {
 			player.GetComponent<PlayerContainer>().hitPlayer(strength, "Sol", knockback*transform.forward);
 		}
 

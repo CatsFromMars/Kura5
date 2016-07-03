@@ -22,23 +22,42 @@ public class SkylightWeather : MonoBehaviour {
 	public Color cloudyDay;
 
 	//Weather Effects
+	private int previousConditionID = -1000;
+	private int currentConditionID = 0;
 	public string conditionName = "clear";
 	private ParticleSystem currentWeatherEffect;
 	public ParticleSystem rain;
-	public ParticleSystem clouds;
+	//public ParticleSystem clouds;
 	public ParticleSystem snow;
+	public ParticleSystem hail;
+	public ParticleSystem snowStorm;
+	public ParticleSystem rainStorm;
+	public ParticleSystem fog;
+
+	//Weather Sounds
+	public AudioClip drizzleLoop;
+	public AudioClip rainLoop;
+	public AudioClip windLoop;
 
 	//Weather ID Ranges
+	private int stormMin = 200;
+	private int stormMax = 232;
 	private int drizzleMin = 300;
 	private int drizzleMax = 321;
-	private int rainMin = 200;
+	private int rainMin = 500;
 	private int rainMax = 531;
 	private int clearMin = 800;
 	private int clearMax = 801;
-	private int cloudMin = 802;
-	private int cloudMax = 804;
+	//private int cloudMin = 802;
+	//private int cloudMax = 804;
 	private int snowMin = 600;
-	private int snowMax = 622;
+	private int snowMax = 601;
+	private int hailMin = 906;
+	private int hailMax = 906;
+	private int snowStormMin = 602;
+	private int snowStormMax = 622;
+	private int fogMin = 701;
+	private int fogMax = 741;
 
 	// Use this for initialization
 	void Start() {
@@ -46,28 +65,45 @@ public class SkylightWeather : MonoBehaviour {
 		light = lightProjector.GetComponent<Projector>().material;
 		shadows = GameObject.FindGameObjectsWithTag("Shadow");
 		skylights = GameObject.FindGameObjectsWithTag("Sunlight");
-		Debug.Log (w.conditionID);
+		currentConditionID = w.conditionID.GetValue();
+		//Debug.Log (w.conditionID);
+
+		updateSkylightColor();
+		w.isIndoors = isIndoors;
 		if(!isIndoors) {
 			updateWeatherEffects();
 			if(snowProjector != null) {
-				if(conditionName == "Snow") {
+				bool snow = (currentConditionID >= snowMin && currentConditionID <= snowMax);
+				bool snowStorm = currentConditionID >= snowStormMin && currentConditionID <= snowStormMax;
+				if(snow||snowStorm) {
 					snowProjector.SetActive(true);
 					snowActive = true;
+					w.inSnow = true;
 				}
 				else if(snowProjector != null) {
 					snowProjector.SetActive(false);
 					snowActive = false;
+					w.inSnow = false;
 				}
 
 			}
-			else snowActive = false;
+			else {
+				snowActive = false;
+				w.inSnow = false;
+			}
 		}
 
 	}
 
 	void Update() {
-		if(!isIndoors) updateWeatherEffects();
-		updateSkylightColor();
+		if(!isIndoors) {
+			currentConditionID = w.conditionID.GetValue();
+			if(previousConditionID != currentConditionID) {
+				previousConditionID = currentConditionID;
+				updateWeatherEffects();
+			}
+		}
+
 		updateLightVisibility();
 	}
 
@@ -95,27 +131,46 @@ public class SkylightWeather : MonoBehaviour {
 	public void updateWeatherEffects() {
 
 		//Rain
-		bool isRaining = w.conditionID.GetValue() >= rainMin && w.conditionID.GetValue() <= rainMax;
-		bool isDrizzling = w.conditionID.GetValue() >= drizzleMin && w.conditionID.GetValue() <= drizzleMax;
-
+		//Split it up here to treat rain and drizzle as the same thing
+		bool isRaining = currentConditionID >= rainMin && currentConditionID <= rainMax;
+		bool isDrizzling = currentConditionID >= drizzleMin && currentConditionID <= drizzleMax;
 		if (isRaining||isDrizzling) {
-			if(w.conditionID.GetValue() < 502) adjustEmission(50, rain);
+			if(currentConditionID < 502) adjustEmission(50, rain);
 			else adjustEmission(100, rain);
-			swapWeather(rain, "Rain");
+			swapWeather(rain, "Rain", drizzleLoop);
 		}
-
-		//Clouds
-//		else if(w.conditionID >= cloudMin && w.conditionID <= cloudMax) {
-//			if(currentWeatherEffect != null && currentWeatherEffect != clouds) currentWeatherEffect.Stop();
-//			if(!clouds.isPlaying)clouds.Play();
-//			currentWeatherEffect = clouds;
-//		}
-		else if(w.conditionID.GetValue() >= snowMin && w.conditionID.GetValue() <= snowMax) {
-			adjustEmission(200, snow);
+		//heavy storms
+		else if(currentConditionID >= stormMin && currentConditionID <= stormMax) {
+			adjustEmission(250, rainStorm);
+			swapWeather(rainStorm, "Storm", rainLoop);
+		}
+		//Ordinary, gentle, snowfall
+		else if(currentConditionID >= snowMin && currentConditionID <= snowMax) {
+			adjustEmission(30, snow);
 			swapWeather(snow, "Snow");
 		}
+		//snowstorms
+		else if(currentConditionID >= snowStormMin && currentConditionID <= snowStormMax) {
+			adjustEmission(200, snowStorm);
+			swapWeather(snowStorm, "SnowStorm", windLoop);
+		}
+		//fog
+		else if(currentConditionID >= fogMin && currentConditionID <= fogMax) {
+			adjustEmission(1, fog);
+			swapWeather(fog, "Fog");
+		}
+		//hail
+		else if(currentConditionID >= hailMin && currentConditionID <= hailMax) {
+			adjustEmission(200, hail);
+			swapWeather(hail, "Hail");
+		}
+		//Otherwise, assume it's clear outside
 		else {
-			if(currentWeatherEffect != null) currentWeatherEffect.Stop ();
+			if(currentWeatherEffect != null) {
+				audio.clip = null;
+				currentWeatherEffect.Stop();
+				audio.Stop();
+			}
 			currentWeatherEffect = null;
 			conditionName = "Clear";
 		}
@@ -123,17 +178,21 @@ public class SkylightWeather : MonoBehaviour {
 
 	void adjustEmission(int mildE, ParticleSystem p) {
 		float multiplier;
-		if(w.conditionID.GetValue()%10 == 1 || w.conditionID.GetValue()%10 == 0) multiplier = mildE;
+		if(currentConditionID%10 == 1 || currentConditionID%10 == 0) multiplier = mildE;
 		else multiplier = mildE*10f;
 		p.emissionRate = multiplier*transform.localScale.x;
 	}
 
-	void swapWeather(ParticleSystem weather, string name) {
+	void swapWeather(ParticleSystem weather, string name, AudioClip sound=null) {
 		Debug.Log (name);
 		if(currentWeatherEffect != null && currentWeatherEffect != weather) currentWeatherEffect.Stop();
 		if(!rain.isPlaying)weather.Play();
 		currentWeatherEffect = weather;
 		conditionName = name;
+		//swap out audio
+		audio.Stop();
+		audio.clip = sound;
+		audio.Play();
 	}
 
 	public void updateSkylightColor() {

@@ -9,6 +9,7 @@ public class AnnieController : PlayerContainer {
 	public AudioClip shootNoise;
 	public AudioClip clickNoise;
 	public AudioClip regularStep;
+	public AudioClip splashStep;
 	public AudioClip snowStep;
 
 	//VARIABLES REGARDING SHOOTING/COMBAT
@@ -24,6 +25,8 @@ public class AnnieController : PlayerContainer {
 
 	//Visual
 	public ParticleSystem sunParticles;
+	public ParticleSystem splashL;
+	public ParticleSystem splashR;
 	public ParticleSystem dustL;
 	public ParticleSystem dustR;
 	public Transform footPrintL;
@@ -154,20 +157,27 @@ public class AnnieController : PlayerContainer {
 	}
 
 	public void makeStepNoise() {
-		if(lightLevels.w.conditionName.Contains("Snow") && !isIndoors && inSnow) makeSound(snowStep);
+		if(lightLevels.w.inSnow) makeSound(snowStep);
+		else if(lightLevels.w.conditionName.Contains("rain") || lightLevels.w.conditionName.Contains("storm")) makeSound(splashStep);
 		else makeSound(regularStep);
 	}
 
 	public void puffL() {
-		//Animation event: has annie's feet emit particle effects depending on weather
-		if(lightLevels.w.conditionName.Contains("Snow") && !isIndoors && inSnow) Instantiate (footPrintPrefab, footPrintR.position, transform.rotation);
-		else dustL.Emit (2);
+		if (!isIndoors) {
+			if(lightLevels.w.inSnow) Instantiate (footPrintPrefab, footPrintL.position, transform.rotation);
+			else if(lightLevels.w.conditionName.Contains("rain") || lightLevels.w.conditionName.Contains("storm")) splashL.Play();
+			else dustL.Play();
+		}
+		else dustL.Play();
 	}
 
 	public void puffR() {
-		//Animation event: has annie's feet emit particle effects depending on weather
-		if(lightLevels.w.conditionName.Contains("Snow") && !isIndoors && inSnow) Instantiate (footPrintPrefab, footPrintL.position, transform.rotation);
-		else dustL.Emit (2);
+		if (!isIndoors) {
+			if(lightLevels.w.inSnow) Instantiate (footPrintPrefab, footPrintR.position, transform.rotation);
+			else if(lightLevels.w.conditionName.Contains("rain") || lightLevels.w.conditionName.Contains("storm")) splashR.Play();
+			else dustR.Play();
+		}
+		else dustR.Play();
 	}
 
 	public float getEnergy() {

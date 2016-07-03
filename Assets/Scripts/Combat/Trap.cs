@@ -5,6 +5,8 @@ public class Trap : MonoBehaviour {
 
 	bool initialized = false;
 	public GameObject[] gates;
+	public bool isMiniboss=false;
+	public AudioClip minibossMusic;
 	public AudioClip trapMusic;
 	public Transform[] enemies;
 	private CamLooker looker; //Camera
@@ -38,6 +40,14 @@ public class Trap : MonoBehaviour {
 	void Awake() {
 		Time.timeScale = 0;
 		if(!initialized) initialize();
+	}
+
+	public bool isTrapClear() {
+		return trapCleared;
+	}
+
+	public bool isTrapActivated() {
+		return trapActivated;
 	}
 
 	void initialize() {
@@ -195,15 +205,19 @@ public class Trap : MonoBehaviour {
 		}
 		else if(!trapActivated) {
 			if(other.tag == "Player" && !trapCleared) {
-				player = other.transform;
-				StartCoroutine(startTrap());
-				trapActivated = true;
+				springTrap(other.transform);
 				//GameObject effect = Resources.Load("Effects/TrapEffect") as GameObject;
 				//Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane+1)); 
 				//Instantiate(effect, pos, Quaternion.identity);
 			}
 		}
 
+	}
+
+	public void springTrap(Transform p) {
+		player = p;
+		StartCoroutine(startTrap());
+		trapActivated = true;
 	}
 
 	void checkEnemyDeath() {
@@ -256,7 +270,8 @@ public class Trap : MonoBehaviour {
 		//Finish it!
 		yield return StartCoroutine(looker.lookAtTarget(player, 20f));
 		yield return StartCoroutine(DisplayDialogue.Speak(trapPrompt));
-		music.changeMusic(trapMusic, 0.1f);
+		if(isMiniboss)music.changeMusic(minibossMusic, 0.1f); 
+		else music.changeMusic(trapMusic, 0.1f);
 		canvas.SetActive (true);
 		Time.timeScale = 1;
 	}

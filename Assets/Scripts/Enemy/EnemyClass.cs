@@ -120,7 +120,7 @@ public class EnemyClass : MonoBehaviour {
 		}
 		col = GetComponent<SphereCollider>();
 
-		if (body != null) {
+		if (body != null && changesElementWithWeather) {
 			materials = body.GetComponent<SkinnedMeshRenderer>().materials;
 			colors = new Color[materials.Length];
 			storeColors();

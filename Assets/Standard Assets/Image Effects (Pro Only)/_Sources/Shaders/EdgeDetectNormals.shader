@@ -60,7 +60,7 @@ Shader "Hidden/EdgeDetect" {
 		half3 p3 = tex2D(_MainTex, i.uv[2]).rgb;
 		
 		half3 diff = p1 * 2 - p2 - p3;
-		half len = dot(diff, diff);
+		half len = dot(diff*0.5f, diff);
 		len = step(len, _Threshold);
 		//if(len >= _Threshold)
 		//	original.rgb = 0;
@@ -289,7 +289,8 @@ Subshader {
 	  Fog { Mode off }      
 
       CGPROGRAM
-      #pragma vertex vertRobert
+      //#pragma vertex vertRobert
+      #pragma vertex vertThin
       #pragma fragment fragRobert
       ENDCG
   }

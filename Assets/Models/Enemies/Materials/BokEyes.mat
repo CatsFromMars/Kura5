@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: BokEyes
-  m_Shader: {fileID: 201, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 203, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -37,12 +37,12 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Outline
-        second: .0299999993
-      data:
-        first:
           name: _InvFade
         second: 1
+      data:
+        first:
+          name: _Outline
+        second: .0299999993
     m_Colors:
       data:
         first:
@@ -50,9 +50,9 @@ Material:
         second: {r: 1, g: .724137902, b: 0, a: 1}
       data:
         first:
-          name: _OutlineColor
-        second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
           name: _TintColor
         second: {r: 1, g: .393103421, b: 0, a: .501960814}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: 0, g: 0, b: 0, a: 1}

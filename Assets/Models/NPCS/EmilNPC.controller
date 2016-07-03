@@ -11,7 +11,7 @@ AnimatorController:
   - m_Name: CutsceneAction
     m_Type: 3
     m_DefaultFloat: 0
-    m_DefaultInt: 0
+    m_DefaultInt: 8
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   - m_Name: Parry
@@ -112,6 +112,46 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
+--- !u!1101 &110124450
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110252194}
+  m_DstState: {fileID: 110221626}
+  m_TransitionDuration: .12507838
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
+    m_EventTreshold: 0
+    m_ExitTime: 2.07672143
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110125432
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110201016}
+  m_DstState: {fileID: 110252194}
+  m_TransitionDuration: .148235202
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: CutsceneAction
+    m_EventTreshold: 8
+    m_ExitTime: .400000453
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1101 &110134970
 Transition:
   serializedVersion: 2
@@ -121,7 +161,7 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110265326}
   m_DstState: {fileID: 110201016}
-  m_TransitionDuration: .110747479
+  m_TransitionDuration: .0234675631
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 6
@@ -252,6 +292,26 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
+--- !u!1101 &110174366
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110221626}
+  m_DstState: {fileID: 110201016}
+  m_TransitionDuration: .0162465982
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: CutsceneAction
+    m_EventTreshold: 5
+    m_ExitTime: .800000012
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1101 &110176646
 Transition:
   serializedVersion: 2
@@ -342,6 +402,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110221626
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Fiddle
+  m_Speed: .800000012
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: b731a1438b197b34da742b82a6014418, type: 2}
+  m_ParentStateMachine: {fileID: 110761356}
+  m_Position: {x: -48, y: 240, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110224358
 State:
   m_ObjectHideFlags: 3
@@ -402,6 +477,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110252194
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Appear 0
+  m_Speed: 1.39999998
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: ca263aa2b56bd674ba62edc2a90993d6, type: 2}
+  m_ParentStateMachine: {fileID: 110761356}
+  m_Position: {x: 156, y: 300, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110260378
 State:
   m_ObjectHideFlags: 3
@@ -443,7 +533,7 @@ State:
   m_Motions:
   - {fileID: 7400000, guid: ca263aa2b56bd674ba62edc2a90993d6, type: 2}
   m_ParentStateMachine: {fileID: 110761356}
-  m_Position: {x: 312, y: 168, z: 0}
+  m_Position: {x: 336, y: 168, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -464,9 +554,19 @@ StateMachine:
   - {fileID: 110201016}
   - {fileID: 110231996}
   - {fileID: 110265326}
+  - {fileID: 110221626}
+  - {fileID: 110252194}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
+    data:
+      first: {fileID: 110252194}
+      second:
+      - {fileID: 110124450}
+    data:
+      first: {fileID: 110221626}
+      second:
+      - {fileID: 110174366}
     data:
       first: {fileID: 110224358}
       second:
@@ -495,6 +595,7 @@ StateMachine:
       first: {fileID: 110201016}
       second:
       - {fileID: 110176646}
+      - {fileID: 110125432}
     data:
       first: {fileID: 110231996}
       second:

@@ -47,7 +47,7 @@ GameObject:
   - 114: {fileID: 11462862}
   m_Layer: 0
   m_Name: LaticeGate
-  m_TagString: Untagged
+  m_TagString: Gate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,6 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9d8c1ccde673c4dbca40c96f781a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alwaysSimulate: 0
 --- !u!114 &11462862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -321,6 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 1
+  disableCollider: 1
   assignedSwitch: {fileID: 0}
 --- !u!119 &11906582
 Projector:

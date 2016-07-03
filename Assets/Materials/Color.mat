@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Color
-  m_Shader: {fileID: 4800000, guid: b18ca9ec5b32b3c4582c938cd2a3cc43, type: 3}
+  m_Shader: {fileID: 4800000, guid: 9ce107479d11178d11005b9844295342, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -18,6 +18,13 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ToonShade
+        second:
+          m_Texture: {fileID: 8900000, guid: cfcae4c641388234ca24ab05aaee0454, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -37,6 +44,10 @@ Material:
     m_Floats:
       data:
         first:
+          name: _Outline
+        second: .00499999989
+      data:
+        first:
           name: _Shininess
         second: 1
       data:
@@ -48,3 +59,7 @@ Material:
         first:
           name: _Color
         second: {r: .0882353187, g: .0882353187, b: .0882353187, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: 0, g: 0, b: 0, a: 1}
