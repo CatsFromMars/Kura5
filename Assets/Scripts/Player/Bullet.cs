@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour {
 	public float velocity = 100f;
 	public Transform elec;
 	private bool hit = false;
+	public bool cutSceneBullet = false; //Cutscene bullets move in paused time
 	
 	//ACTIVE BULLET TIME
 	private float elapsedTime;
@@ -21,7 +22,8 @@ public class Bullet : MonoBehaviour {
 	}
 	
 	void FixedUpdate() {
-		transform.position += transform.forward * velocity * Time.deltaTime;
+		if(!cutSceneBullet) transform.position += transform.forward * velocity * Time.deltaTime;
+		else transform.position += transform.forward * velocity * Time.unscaledDeltaTime;
 		elapsedTime++;
 	}
 	

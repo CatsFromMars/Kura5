@@ -27,12 +27,32 @@ public class SceneTransition : MonoBehaviour
 		// Lerp the colour of the texture between itself and transparent.
 		ren.color = Color.Lerp(ren.color, Color.clear, fadeSpeed * Time.unscaledDeltaTime);
 	}
-	
+
+	void FadeToWhite (float speed=1.5f)
+	{
+		// Lerp the colour of the texture between itself and black.
+		ren.color = Color.Lerp(ren.color, Color.white, speed * Time.unscaledDeltaTime);
+	}
 	
 	void FadeToBlack ()
 	{
 		// Lerp the colour of the texture between itself and black.
 		ren.color = Color.Lerp(ren.color, Color.black, fadeSpeed * Time.unscaledDeltaTime);
+	}
+
+	public IEnumerator whiteFlash() {
+		ren.enabled = true;
+		while(ren.color.a < 0.95f) { 
+			yield return null;
+			FadeToWhite(3f);
+		}
+		yield return new WaitForSeconds (0.2f);
+		while(ren.color.a > 0.001f) {
+			FadeToClear();
+			yield return null;
+		}
+		ren.color = Color.clear;
+		ren.enabled = false;
 	}
 
 	public IEnumerator fadeOut() {

@@ -29,6 +29,7 @@ Emil<n>...
 <CAM_GOTO_POINT=Center>
 Annie<n>Vampire...!
 <A=EmilNPC_0>
+<A=AnniePlayer_0>
 Mysterious Boy<n>Oh goodie, I'm thrilled you have basic observation skills.
 Mysterious Boy<n>Although I'm afraid that doesn't make up for your lack of competence.
 Mysterious Boy<n>You had prey practically handed to you on a silver platter and still you didn't strike!
@@ -36,6 +37,34 @@ Mysterious Boy<n>Where's your bloodlust?
 <A=AnniePlayer_2>
 <E=EmilNPC_2>
 Annie<n>You want bloodlust?
-<E=EmilNPC_0>
+<A=AnniePlayer_3>
+<CAM_GOTO_POINT=EmilNPC>
+<A=EmilNPC_8>
+Mysterious Boy<n>Hahaha! Please.
+<CAM_GOTO_POINT=Center>
+<A=EmilNPC_0>
+Mysterious Boy<n>I'm familiar with the tricks you and your kin keep up their sleeves.
+Mysterious Boy<n>...Also you forgot to target. Tsk tsk!
+<A=AnniePlayer_0>
+Mysterious Boy<n>Would it be a great idea to pick a fight with me here and-
+M=Null
+<A=AnniePlayer_4>
+SHAKE_CAMERA
+S=Dramatic
+Annie<n>Move aside, Vampire!
+<CAM_GOTO_POINT=EmilNPC>
+Mysterious Boy<n>Listen-!
 <CAM_GOTO_POINT=PlayerPositionContainer>
-Annie<n>(Just like last time!)<n>[Target + Shoot]
+S=Dramatic
+SHAKE_CAMERA
+Annie<n>I don't got time fer yer yappin'!
+<CAM_GOTO_POINT=EmilNPC>
+<A=EmilNPC_7>
+Mysterious Boy<n>.........
+<A=EmilNPC_6>
+S=SnottyBrittishHmph
+Mysterious Boy<n>...Hmph!
+<A=AnniePlayer_0>
+<CAM_GOTO_POINT=PlayerPositionContainer>
+S=AnnieGrunt
+Annie<n>The heck was that about?!

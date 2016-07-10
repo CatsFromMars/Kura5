@@ -14,6 +14,7 @@ public class AnnieController : PlayerContainer {
 
 	//VARIABLES REGARDING SHOOTING/COMBAT
 	private Vector3 bulletSpawnPoint;
+	public Transform cutsceneBullet;
 	public Transform bullet;
 	public Transform fireBullet;
 	public Transform earthBullet;
@@ -154,6 +155,12 @@ public class AnnieController : PlayerContainer {
 			makeSound(clickNoise);
 		}
 		
+	}
+
+	void cutsceneShoot() {
+		bulletSpawnPoint = weapon.transform.position;
+		Instantiate(cutsceneBullet, bulletSpawnPoint, transform.rotation);
+		makeSound(shootNoise);
 	}
 
 	public void makeStepNoise() {

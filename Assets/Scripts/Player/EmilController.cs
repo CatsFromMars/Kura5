@@ -21,6 +21,7 @@ public class EmilController : PlayerContainer {
 	
 	public Transform weapon;
 	public MeleeWeaponTrail trail;
+
 	private float burnRate = 1f;
 	private float burnCounter = 0f;
 	private float burnCounterTime = 20f;
@@ -85,11 +86,18 @@ public class EmilController : PlayerContainer {
 
 	void handleBurning() {
 		if(lightLevels.sunlight > 0 && !lightLevels.w.isNightTime && !inCoffin) {
+			if(!burning) {
+				burning = true;
+				animator.SetTrigger(Animator.StringToHash("Burn"));
+			}
 			burnCounterTime = 100 * 1/lightLevels.sunlight;
 			takeSunDamage(burnRate);
 			if(!smoke.isPlaying) smoke.Play();
 		}
-		else if (smoke.isPlaying) smoke.Stop();
+		else {
+			burning = false;
+			if(smoke.isPlaying) smoke.Stop();
+		}
 	}
 
 	void takeSunDamage(float rate) {

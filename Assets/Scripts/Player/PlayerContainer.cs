@@ -38,6 +38,7 @@ public class PlayerContainer : MonoBehaviour {
 	public bool isIndoors = false;
 	protected bool inSnow = false;
 	public bool inCoffin = false;
+	public bool burning=false;
 
 	//VARIABLES REGARDING WHETHER AN ACTION SHOULD BE PERFORMED
 	protected bool ableToPush = false;
@@ -128,6 +129,7 @@ public class PlayerContainer : MonoBehaviour {
 		if(switchVoices.Length>0) playVoiceClip(switchVoices[Random.Range(0, switchVoices.Length)]);
 		invincible = false;
 		blinker.active = false;
+		burning = false;
 	}
 
 	void OnLevelWasLoaded(int level) {
@@ -172,7 +174,7 @@ public class PlayerContainer : MonoBehaviour {
 		else playerSpeed = playerRunningSpeed;
 
 		//Actually move and rotate player
-		if(currentAnim(hash.runningState) || currentAnim(hash.pullingState) || currentAnim(hash.rollState) || (currentAnim(hash.targetState))) movePlayer (horizontal, vertical);
+		if(currentAnim(hash.runningState) || currentAnim(hash.pullingState) || currentAnim(hash.rollState) || currentAnim(Animator.StringToHash("Combat.Burn")) || (currentAnim(hash.targetState))) movePlayer (horizontal, vertical);
 		if(ableToRotate) rotatePlayer (horizontal, vertical);
 	}
 

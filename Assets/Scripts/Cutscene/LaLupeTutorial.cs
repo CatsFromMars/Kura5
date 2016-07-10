@@ -55,12 +55,21 @@ public class LaLupeTutorial : MonoBehaviour {
 					animator.SetBool(Animator.StringToHash("Attacking"), false);
 					animator.SetTrigger(Animator.StringToHash("Warp"));
 					animator.updateMode = AnimatorUpdateMode.UnscaledTime;
-					if(!cutscene2) StartCoroutine(DisplayDialogue.Speak(speech1));
-					else StartCoroutine(DisplayDialogue.Speak(speech3));
+					if(!cutscene2) {
+						StartCoroutine(missedMe(speech1));
+					}
+					else {
+						StartCoroutine(missedMe(speech3));
+					}
 					cutscene2=true;
 				}
 			}
 		}
+	}
+
+	IEnumerator missedMe(TextAsset txt) {
+		yield return new WaitForSeconds(0.6f);
+		StartCoroutine(DisplayDialogue.Speak(txt));
 	}
 
 	void OnCollisionEnter(Collision collision) {

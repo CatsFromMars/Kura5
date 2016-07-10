@@ -17,7 +17,7 @@ public class AnnieEffects : MonoBehaviour {
 		if(w.finalTemp.GetValue() <= 0) breath.SetActive(true);
 		else breath.SetActive(false);
 
-		if(w.finalTemp.GetValue() <= 0) sweat.SetActive(true);
+		if(w.finalTemp.GetValue() >= 30) sweat.SetActive(true);
 		else sweat.SetActive(false);
 	}
 }

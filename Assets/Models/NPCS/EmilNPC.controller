@@ -11,7 +11,7 @@ AnimatorController:
   - m_Name: CutsceneAction
     m_Type: 3
     m_DefaultFloat: 0
-    m_DefaultInt: 8
+    m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   - m_Name: Parry
@@ -104,7 +104,7 @@ Transition:
   m_TransitionDuration: .315788954
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 5
+  - m_ConditionMode: 6
     m_ConditionEvent: CutsceneAction
     m_EventTreshold: 0
     m_ExitTime: .862455785
@@ -264,9 +264,9 @@ Transition:
   m_TransitionDuration: .02766647
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Parry
-    m_EventTreshold: 2
+  - m_ConditionMode: 6
+    m_ConditionEvent: CutsceneAction
+    m_EventTreshold: 8
     m_ExitTime: .846153855
   m_Atomic: 1
   m_Solo: 0
@@ -408,7 +408,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Fiddle
-  m_Speed: .800000012
+  m_Speed: .699999988
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: b731a1438b197b34da742b82a6014418, type: 2}
@@ -452,11 +452,11 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Parry
+  m_Name: Dodge
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400016, guid: aff60439fcc786248b5740313c666246, type: 3}
+  - {fileID: 7400036, guid: aff60439fcc786248b5740313c666246, type: 3}
   m_ParentStateMachine: {fileID: 110761356}
   m_Position: {x: 312, y: 12, z: 0}
   m_IKOnFeet: 0
@@ -468,7 +468,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Sword
-  m_Speed: 1
+  m_Speed: 1.29999995
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: f52d340fe05d6ea4b8d8a4bd688accd8, type: 2}
@@ -560,14 +560,6 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110252194}
-      second:
-      - {fileID: 110124450}
-    data:
-      first: {fileID: 110221626}
-      second:
-      - {fileID: 110174366}
-    data:
       first: {fileID: 110224358}
       second:
       - {fileID: 110156110}
@@ -605,6 +597,14 @@ StateMachine:
       second:
       - {fileID: 110178382}
       - {fileID: 110134970}
+    data:
+      first: {fileID: 110221626}
+      second:
+      - {fileID: 110174366}
+    data:
+      first: {fileID: 110252194}
+      second:
+      - {fileID: 110124450}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

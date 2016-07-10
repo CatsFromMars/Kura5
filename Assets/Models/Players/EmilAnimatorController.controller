@@ -221,7 +221,7 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 0}
   m_DstState: {fileID: 110203394}
-  m_TransitionDuration: .100000001
+  m_TransitionDuration: .0338428952
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
@@ -593,13 +593,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110203394}
   m_DstState: {fileID: 110269422}
-  m_TransitionDuration: .183446586
+  m_TransitionDuration: .0905656368
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Burn
     m_EventTreshold: 0
-    m_ExitTime: .946421325
+    m_ExitTime: .922493994
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -1961,7 +1961,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Burn
-  m_Speed: .800000012
+  m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 3396d3d009a176046874f572601fff96, type: 2}
@@ -2207,7 +2207,7 @@ State:
   - {fileID: 0}
   m_ParentStateMachine: {fileID: 110761910}
   m_Position: {x: 84, y: -156, z: 0}
-  m_IKOnFeet: 0
+  m_IKOnFeet: 1
   m_Mirror: 0
   m_Tag: 
 --- !u!1102 &110275346
@@ -2588,10 +2588,6 @@ StateMachine:
   - {x: -132, y: -72, z: 0}
   m_OrderedTransitions:
     data:
-      first: {fileID: 110203394}
-      second:
-      - {fileID: 110147392}
-    data:
       first: {fileID: 0}
       second:
       - {fileID: 110164476}
@@ -2618,6 +2614,10 @@ StateMachine:
       - {fileID: 110156880}
       - {fileID: 110147110}
       - {fileID: 110168538}
+    data:
+      first: {fileID: 110203394}
+      second:
+      - {fileID: 110147392}
     data:
       first: {fileID: 110254168}
       second:

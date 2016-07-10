@@ -13,6 +13,7 @@ public class WadjetBoss : BossEnemy {
 	private bool wasFrozen;
 	public Transform sonicWave;
 	private bool facingPlayer = false;
+	SceneTransition transition; 
 
 	//More test vars
 	public Transform[] wayPoints;
@@ -31,6 +32,7 @@ public class WadjetBoss : BossEnemy {
 
 	void Start() {
 		originalPosition = transform.position;
+		transition = GameObject.FindGameObjectWithTag("Fader").GetComponent<SceneTransition>();
 	}
 
 	void manageSpeed() {
