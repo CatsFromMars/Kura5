@@ -13,26 +13,27 @@ public class WadjetBoss : BossEnemy {
 	private bool wasFrozen;
 	public Transform sonicWave;
 	private bool facingPlayer = false;
-	SceneTransition transition; 
+	SceneTransition transition;
+	public GameObject humanoidForm;
+	private bool isDark=false;
 
 	//More test vars
 	public Transform[] wayPoints;
 	private int currentPoint = 0;
 
+	void OnEnable() {
+		//StartCoroutine(Decide());
+	}
+
 	void Update() {
 		playerPos = player.transform.position;
-		if (!frozen) {
-			manageAttackStates();
-		}
-		else {
-			wasFrozen = true;
-		}
 		manageSpeed();
 	}
 
 	void Start() {
 		originalPosition = transform.position;
 		transition = GameObject.FindGameObjectWithTag("Fader").GetComponent<SceneTransition>();
+		StartCoroutine(Decide());
 	}
 
 	void manageSpeed() {
@@ -48,18 +49,12 @@ public class WadjetBoss : BossEnemy {
 		}
 	}
 	
-	public override void InitialPattern() {
-		if(currentAnim(Animator.StringToHash("Base Layer.Idle"))) canBeSealed = true;
+	IEnumerator Decide() {
 		//breath attack
-		animator.SetBool (Animator.StringToHash ("Breath"), true);
-		if(wasFrozen && !frozen) {
-			wasFrozen = false;
-			//animator.SetTrigger(Animator.StringToHash ("Recoil"));
-			DesparatePattern();
-		}
-		else if(currentAnim(Animator.StringToHash("Base Layer.Pause"))) {
-			DesparatePattern();
-		}
+		if(!isDark) animator.SetBool (Animator.StringToHash ("Breath"), true);
+		//else animator.SetBool (Animator.StringToHash ("Breath"), false); //scream
+		yield return new WaitForSeconds(3);
+		StartCoroutine(LoopAround());
 	}
 
 	public void playBreath() {
@@ -72,17 +67,6 @@ public class WadjetBoss : BossEnemy {
 
 	public void toggleFog() {
 		shadow.SetBool (Animator.StringToHash("Dark"), !shadow.GetBool(Animator.StringToHash("Dark")));
-	}
-
-	public override void DesparatePattern() {
-		hitCounter = 0;
-		animator.SetBool (Animator.StringToHash ("Breath"), false);
-		animator.ResetTrigger(Animator.StringToHash ("Recoil"));
-		if(currentAnim(Animator.StringToHash("Base Layer.Scream"))) currentAttackPattern = attackPattern.INITIAL;
-		else if(currentAttackPattern != attackPattern.DESPARATE) {
-			currentAttackPattern = attackPattern.DESPARATE;
-			StartCoroutine(LoopAround());
-		}
 	}
 
 	protected IEnumerator LoopAround()
@@ -98,37 +82,47 @@ public class WadjetBoss : BossEnemy {
 			}
 			yield return null;
 		}
-		//Goto Player
-		Transform minPoint = wayPoints[0];
-		foreach (Transform w in wayPoints) {
-			float compareDist = Vector3.Distance(w.transform.position, player.transform.position);
-			float curDist = Vector3.Distance(minPoint.transform.position, player.transform.position);
-			if(compareDist < curDist) minPoint = w;
-		}
-
-		//Loop to closets playerPoint
-		foreach (Transform w in wayPoints) {
-			if(w == minPoint) {
-				//agent.updateRotation = false;
-				//facingPlayer = true;
-			}
-
-			agent.SetDestination(w.transform.position);
-			while(agent.remainingDistance > agent.stoppingDistance) {
-				animator.SetBool(Animator.StringToHash("Moving"), true);
-				yield return null;
-			}
-			yield return null;
-			if(w==minPoint) break;
-		}
+//		//Goto Player
+//		Transform minPoint = wayPoints[0];
+//		foreach (Transform w in wayPoints) {
+//			float compareDist = Vector3.Distance(w.transform.position, player.transform.position);
+//			float curDist = Vector3.Distance(minPoint.transform.position, player.transform.position);
+//			if(compareDist < curDist) minPoint = w;
+//		}
+//
+//		//Loop to closets playerPoint
+//		foreach (Transform w in wayPoints) {
+//			if(w == minPoint) {
+//				//agent.updateRotation = false;
+//				//facingPlayer = true;
+//			}
+//
+//			agent.SetDestination(w.transform.position);
+//			while(agent.remainingDistance > agent.stoppingDistance) {
+//				animator.SetBool(Animator.StringToHash("Moving"), true);
+//				yield return null;
+//			}
+//			yield return null;
+//			if(w==minPoint) break;
+//		}
 
 		agent.updateRotation = false;
 		facingPlayer = true;
 		while(agent.velocity.x != 0 || agent.velocity.z != 0) yield return null;
 		animator.SetBool(Animator.StringToHash("Moving"), false);
-		yield return new WaitForSeconds(0.7f);
 		agent.updateRotation = true;
 		facingPlayer = false;
+		swapToHuman();
+	}
+
+	public void swapToHuman() {
+		StartCoroutine(transition.whiteFlash());
+		float posY = humanoidForm.transform.position.y;
+		Vector3 pos = transform.position;
+		pos.y = posY;
+		humanoidForm.transform.position = pos;
+		humanoidForm.SetActive (true);
+		gameObject.SetActive (false);
 	}
 
 	public void DarkenRoom() {

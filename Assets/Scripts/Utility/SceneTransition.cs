@@ -41,12 +41,15 @@ public class SceneTransition : MonoBehaviour
 	}
 
 	public IEnumerator whiteFlash() {
+		// Make sure the texture is enabled.
 		ren.enabled = true;
+		// Start fading towards black.
 		while(ren.color.a < 0.95f) { 
 			yield return null;
-			FadeToWhite(3f);
+			FadeToWhite();
 		}
-		yield return new WaitForSeconds (0.2f);
+		yield return CoroutineUtil.WaitForRealSeconds (0.5f);
+		
 		while(ren.color.a > 0.001f) {
 			FadeToClear();
 			yield return null;
@@ -66,6 +69,7 @@ public class SceneTransition : MonoBehaviour
 	public IEnumerator EndScene (string scene, bool stopTime=true, bool setCheckpoint = true, bool stopTimeOnLoad=false)
 	{
 		loadingScene = true;
+		//AudioListener.volume = 0;
 		if(stopTime) Time.timeScale = 0;
 		playerGO = GameObject.FindWithTag ("Player");
 		if(playerGO!=null){
@@ -96,6 +100,7 @@ public class SceneTransition : MonoBehaviour
 		if(playerGO!=null) player.playerInControl = true;
 		if(!stopTimeOnLoad)Time.timeScale = 1;
 		loadingScene = false;
+		AudioListener.volume = 1;
 	}
 
 	public void gotoScene(string scene, bool stopTime=true, bool markCheckpoint=true, bool stopTimeOnLoad=false) {

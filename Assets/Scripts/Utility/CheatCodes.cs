@@ -46,5 +46,13 @@ public class CheatCodes : MonoBehaviour {
 			w.cloudinessPercentage = new SafeInt(75);
 			w.conditionName = "Mist";
 		}
+		if(Input.GetKeyDown(KeyCode.Alpha7)) {
+			GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(-40,-2,4);
+			Application.LoadLevel("WadjetFloor1A");
+		}
+		if(Input.GetKeyDown(KeyCode.Alpha8)) {
+			Destroy(d.transform.root.gameObject);
+			Application.LoadLevel("ModelSetupScene");
+		}
 	}
 }

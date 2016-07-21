@@ -17,6 +17,7 @@ public class Menu : MonoBehaviour {
 	private bool changingScene = false;
 
 	void Awake() {
+		AudioListener.volume = 1;
 		Time.timeScale = 1;
 		int percent = GenericPattern.getPercent();
 		if(percent >= 100 || percent <= 0) isNightTime = true;
@@ -44,7 +45,7 @@ public class Menu : MonoBehaviour {
 
 		if (Input.GetButtonDown("Inventory") && Time.timeScale!=0 && !changingScene) {
 			changingScene = true;
-			fader.gotoScene("Intro");
+			fader.gotoScene("LoadingScene");
 
 		}
 		if(!audio.isPlaying && !changingScene) {

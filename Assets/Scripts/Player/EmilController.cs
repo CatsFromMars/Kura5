@@ -85,7 +85,7 @@ public class EmilController : PlayerContainer {
 //	}
 
 	void handleBurning() {
-		if(lightLevels.sunlight > 0 && !lightLevels.w.isNightTime && !inCoffin) {
+		if(lightLevels.sunlight > 0 && !lightLevels.w.isNightTime && !inCoffin && (!currentAnim(Animator.StringToHash("Base Layer.Switch")))) {
 			if(!burning) {
 				burning = true;
 				animator.SetTrigger(Animator.StringToHash("Burn"));

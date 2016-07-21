@@ -65,6 +65,19 @@ public class InventoryMenu : MonoBehaviour {
 	public Slider annieLIFESlider;
 	public Slider emilLIFESlider;
 	public Slider emilENESlider;
+
+	//Current Elem Variables
+	public Sprite darkText;
+	public Sprite solText;
+	public Sprite fireText;
+	public Sprite frostText;
+	public Sprite earthText;
+	public Sprite cloudText;
+	public Sprite lunaText;
+	public Sprite astroText;
+	public Sprite noneText;
+	public SpriteRenderer annieCurElem;
+	public SpriteRenderer emilCurElem;
 	
 	public List<Consumable> slots = new List<Consumable>();
 	public List<KeyItem> keySlots = new List<KeyItem>();
@@ -125,7 +138,15 @@ public class InventoryMenu : MonoBehaviour {
 		annieENESlider.value = data.annieCurrentEnergy;
 		emilLIFESlider.value = data.emilCurrentLife;
 		emilENESlider.value = data.emilCurrentEnergy;
-
+		GameData.elementalProperty a = data.annieCurrentElem;
+		GameData.elementalProperty e = data.emilCurrentElem;
+		if(a==GameData.elementalProperty.Sol) annieCurElem.sprite=solText;
+		else if(a==GameData.elementalProperty.Fire) annieCurElem.sprite=fireText;
+		else if(a==GameData.elementalProperty.Earth) annieCurElem.sprite=earthText;
+		if(e==GameData.elementalProperty.Dark) emilCurElem.sprite=darkText;
+		else if(e==GameData.elementalProperty.Frost) emilCurElem.sprite=frostText;
+		else if(e==GameData.elementalProperty.Cloud) emilCurElem.sprite=cloudText;
+		else if(e==GameData.elementalProperty.Null) emilCurElem.sprite=noneText;
 	}
 
 	bool selectedPlayerNotDead() {
@@ -507,7 +528,7 @@ public class InventoryMenu : MonoBehaviour {
 			}
 		}
 		displayModel();
-		updateSliders ();
+		updateSliders();
 	}
 
 	void displayItem(GameObject model, Vector3 pos) {

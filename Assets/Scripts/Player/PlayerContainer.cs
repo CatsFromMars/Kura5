@@ -126,6 +126,8 @@ public class PlayerContainer : MonoBehaviour {
 
 	void OnEnable() {
 		//When made active
+		//aka when swapped out
+		animator.SetTrigger (Animator.StringToHash ("Switch"));
 		if(switchVoices.Length>0) playVoiceClip(switchVoices[Random.Range(0, switchVoices.Length)]);
 		invincible = false;
 		blinker.active = false;
@@ -467,7 +469,7 @@ public class PlayerContainer : MonoBehaviour {
 	}
 
 	public void attemptSwap() {
-		GameObject.FindGameObjectWithTag("PlayerSwapper").GetComponent<CharacterSwapper>().switchPlayers ();
+		GameObject.FindGameObjectWithTag("PlayerSwapper").GetComponent<CharacterSwapper>().switchPlayers();
 	}
 
 	public void toggleBlendShape(float weight) {

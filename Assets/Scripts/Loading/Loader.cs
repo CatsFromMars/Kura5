@@ -9,6 +9,7 @@ public class Loader : MonoBehaviour {
 	void Awake () {
 		fader = GameObject.FindGameObjectWithTag("Fader").GetComponent<SceneTransition>();
 		StartCoroutine(load());
+		AudioListener.volume = 0;
 	}
 
 	IEnumerator load() {

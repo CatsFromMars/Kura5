@@ -48,21 +48,18 @@ public class LaLupeTutorial : MonoBehaviour {
 				animator.SetBool(Animator.StringToHash("Attacking"), true);
 				animator.SetTrigger(Animator.StringToHash("Warp"));
 			}
-			if(other.tag == "Bullet") {
-				bool beingTargeted = player.targeting;
-				if(!beingTargeted) {
-					//cutscene if player tries to shoot
-					animator.SetBool(Animator.StringToHash("Attacking"), false);
-					animator.SetTrigger(Animator.StringToHash("Warp"));
-					animator.updateMode = AnimatorUpdateMode.UnscaledTime;
-					if(!cutscene2) {
-						StartCoroutine(missedMe(speech1));
-					}
-					else {
-						StartCoroutine(missedMe(speech3));
-					}
-					cutscene2=true;
+			if(other.tag == "Bullet" && !done) {
+				//cutscene if player tries to shoot
+				animator.SetBool(Animator.StringToHash("Attacking"), false);
+				animator.SetTrigger(Animator.StringToHash("Warp"));
+				animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+				if(!cutscene2) {
+					StartCoroutine(missedMe(speech1));
 				}
+				else {
+					StartCoroutine(missedMe(speech3));
+				}
+				cutscene2=true;
 			}
 		}
 	}
