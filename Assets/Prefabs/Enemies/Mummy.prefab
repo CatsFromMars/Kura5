@@ -281,7 +281,7 @@ GameObject:
   - 198: {fileID: 19853180}
   - 199: {fileID: 19953180}
   - 114: {fileID: 11453180}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: BurnEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - 198: {fileID: 19853182}
   - 199: {fileID: 19953182}
   - 114: {fileID: 11453182}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: InnerFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   - 4: {fileID: 453148}
   - 198: {fileID: 19853184}
   - 199: {fileID: 19953184}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: Small flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +560,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 453172}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 453176}
   - 119: {fileID: 11953184}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: Burn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1663,6 +1663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e78bb68e1a1fb4491a1832b939fc05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  burnSound: {fileID: 8300000, guid: 5afed3d22aedea94b8c52f5fa52379c7, type: 3}
   commonLoot: {fileID: 463196, guid: 0c9c8d236315706459067023b73ab9d5, type: 2}
   rareLoot: {fileID: 407162, guid: 6730c99ac753d84418a2738ef8419287, type: 2}
   maxLife: 120

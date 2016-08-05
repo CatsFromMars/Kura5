@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class EnemyClass : MonoBehaviour {
+	//AUDIO VARS
+	public AudioClip burnSound;
 	//LOOT VARIABLES
 	public Transform commonLoot;
 	public Transform rareLoot;
@@ -135,7 +137,7 @@ public class EnemyClass : MonoBehaviour {
 
 	protected void storeColors() {
 		for(int i=0; i<materials.Length; i++) {
-			colors[i] = materials[i].color;
+			if(materials[i].HasProperty("color"))colors[i] = materials[i].color;
 		}
 	}
 
@@ -321,6 +323,7 @@ public class EnemyClass : MonoBehaviour {
 		if(sunDetector.sunlight > 0) {
 			burnCounterTime = 5 * 1/sunDetector.sunlight;
 			takeSunDamage(burnRate);
+			superEffectiveSmoke(element, "Sol");
 			if(!smoke.isPlaying) smoke.Play();
 			stunned = true;
 		}
@@ -335,11 +338,12 @@ public class EnemyClass : MonoBehaviour {
 	void takeSunDamage(float rate) {
 		burnCounter++;
 		if(burnCounter >= burnCounterTime) {
-			currentLife -= rate;
+			makeSound(burnSound);
+			takeDamage(50, "Sol");
 			burnCounter = 0f;
 		}
 		
-		if(currentLife <= 0) Die(); //KILL PLAYER IF GAME OVER.	
+		if(currentLife <= 0) Die();
 	}
 
 	protected void setPitch(int pitch) {

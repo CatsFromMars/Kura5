@@ -10,15 +10,20 @@ public class Mummy : PatrolEnemy {
 	public WeaponData weapon;
 	private bool listeningForPlayer = false;
 	public GameObject fireEffect;
-	private int fireCounter = 5;
+	private int fireCounter = 3;
+	private GameObject[] occluders;
 	
 	// Update is called once per frame
 	void Update () {
 
 		//Lights ablaze if his with fire attack
 		if(mostRecentAttackElem == "Fire") {
-			if(!onFire) StartCoroutine(BurnStart());
-			mostRecentAttackElem = "Null";
+			if(!onFire) {
+				occluders = GameObject.FindGameObjectsWithTag("Occlusion");
+				brightenRoom();
+				StartCoroutine(BurnStart());
+				mostRecentAttackElem = "Null";
+			}
 		}
 
 		float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
@@ -54,6 +59,14 @@ public class Mummy : PatrolEnemy {
 		agent.speed = burnedSpeed;
 		patrolWaitTime = 10;
 	}
+	void brightenRoom() {
+		//Disables all GameObjects tagged as Occlusion
+		foreach (GameObject i in occluders) i.SetActive (false);
+	}
+
+	void darkenRoom() {
+		foreach (GameObject i in occluders) i.SetActive (true);
+	}
 
 	IEnumerator BurnStart() {
 		onFire = true;
@@ -71,6 +84,8 @@ public class Mummy : PatrolEnemy {
 		animator.SetBool (Animator.StringToHash("OnFire"), false);
 		patrolWaitTime = 100;
 		weapon.element = element;
+		mostRecentAttackElem = "Null";
+		darkenRoom ();
 	}
 
 	public override void Seek() {

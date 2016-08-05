@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour {
 	public Transform elec;
 	private bool hit = false;
 	public bool cutSceneBullet = false; //Cutscene bullets move in paused time
+	public float aliveTime = 5;
 	
 	//ACTIVE BULLET TIME
 	private float elapsedTime;
@@ -18,13 +19,18 @@ public class Bullet : MonoBehaviour {
 	public Transform hitEffect;
 	
 	void Update() {
-		if(!GetComponent<MeshRenderer>().renderer.isVisible) Destroy(this.gameObject);
+		//if(!GetComponent<MeshRenderer>().renderer.isVisible) Destroy(this.gameObject);
+		if(Time.timeScale == 0 && cutSceneBullet) {
+			transform.position += transform.forward * velocity * Time.unscaledDeltaTime;
+			elapsedTime+=Time.unscaledDeltaTime;
+			if(elapsedTime >= aliveTime) Destroy (this.gameObject);
+		}
 	}
 	
 	void FixedUpdate() {
-		if(!cutSceneBullet) transform.position += transform.forward * velocity * Time.deltaTime;
-		else transform.position += transform.forward * velocity * Time.unscaledDeltaTime;
-		elapsedTime++;
+		transform.position += transform.forward * velocity * Time.unscaledDeltaTime;
+		elapsedTime+=Time.unscaledDeltaTime;
+		if(elapsedTime >= aliveTime) Destroy (this.gameObject);
 	}
 	
 	void OnCollisionEnter(Collision collision) {

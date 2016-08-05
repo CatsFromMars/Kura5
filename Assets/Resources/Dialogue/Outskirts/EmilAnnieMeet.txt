@@ -1,22 +1,28 @@
 ##Cutscene where Annie and Emil first meet Player walks up to Bok, sees it shadow sealed.
 <CAM_GOTO_POINT=CutsceneBok>
 <O=AnniePlayer_0>
-Monster<n>..............
+<E=CutsceneBok_0>
+<PAUSE_FOR=3>
+<CLEAR_EMOJI=CutsceneBok>
 <CAM_GOTO_POINT=PlayerPositionContainer>
 <A=EmilNPC_1>
 Annie<n>(Stiff as a statue!)
 <E=AnniePlayer_1>
-M=VampireEmil
+M=VampireEmilIntro
 Mysterious Boy<n>Well? Are you going to kill it, or aren't you?
 <CAM_GOTO_POINT=EmilNPC>
+M=VampireEmil
+<PAUSE_FOR=1>
 Mysterious Boy<n>What are you waiting for?!
 Mysterious Boy<n>Use your [Solar Gun] to kill this servant!
 <CAM_GOTO_POINT=Center>
-Mysterious Boy<n>Do it quickly before the seal-!
+Mysterious Boy<n>Do it quickly before the seal wears off!
+<A=CutsceneBok_2>
 <T=EmilNPC_1>
 <A=EmilNPC_2>
-<A=CutsceneBok_2>
-Emil<n>...Wears off...
+<A=AnniePlayer_8>
+<PAUSE_FOR=1>
+<A=AnniePlayer_0>
 <A=EmilNPC_3>
 <T=EmilNPC_0>
 <O=EmilNPC_0>
@@ -25,29 +31,34 @@ Emil<n>Ugh...!
 <A=EmilNPC_4>
 <A=CutsceneBok_3>
 <CAM_GOTO_POINT=EmilNPC>
-Emil<n>...
+<PAUSE_FOR=2>
 <CAM_GOTO_POINT=Center>
-Annie<n>Vampire...!
+<A=AnniePlayer_2>
+S=Aim
+Annie<n>A [Vampire]...!
 <A=EmilNPC_0>
-<A=AnniePlayer_0>
 Mysterious Boy<n>Oh goodie, I'm thrilled you have basic observation skills.
 Mysterious Boy<n>Although I'm afraid that doesn't make up for your lack of competence.
 Mysterious Boy<n>You had prey practically handed to you on a silver platter and still you didn't strike!
 Mysterious Boy<n>Where's your bloodlust?
-<A=AnniePlayer_2>
 <E=EmilNPC_2>
-Annie<n>You want bloodlust?
+Annie<n>You want bloodlust...?
 <A=AnniePlayer_3>
 <CAM_GOTO_POINT=EmilNPC>
 <A=EmilNPC_8>
+<CLEAR_EMOJI=EmilNPC>
 Mysterious Boy<n>Hahaha! Please.
 <CAM_GOTO_POINT=Center>
 <A=EmilNPC_0>
+<E=AnniePlayer_0>
 Mysterious Boy<n>I'm familiar with the tricks you and your kin keep up their sleeves.
+<A=EmilNPC_2>
 Mysterious Boy<n>...Also you forgot to target. Tsk tsk!
 <A=AnniePlayer_0>
+<A=EmilNPC_0>
 Mysterious Boy<n>Would it be a great idea to pick a fight with me here and-
 M=Null
+<CLEAR_EMOJI=AnniePlayer>
 <A=AnniePlayer_4>
 SHAKE_CAMERA
 S=Dramatic
@@ -59,8 +70,9 @@ S=Dramatic
 SHAKE_CAMERA
 Annie<n>I don't got time fer yer yappin'!
 <CAM_GOTO_POINT=EmilNPC>
-<A=EmilNPC_7>
 Mysterious Boy<n>.........
+<A=EmilNPC_7>
+<PAUSE_FOR=2>
 <A=EmilNPC_6>
 S=SnottyBrittishHmph
 Mysterious Boy<n>...Hmph!

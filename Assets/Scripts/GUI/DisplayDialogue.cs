@@ -146,6 +146,25 @@ public class DisplayDialogue : MonoBehaviour {
 		GameObject.FindGameObjectWithTag("Fader").GetComponent<SceneTransition>().gotoScene(name);
 	}
 
+	public static void camZoomTo(string txt) {
+		txt = txt.Replace("<CAM_ZOOM_TO=","");
+		string no = txt.Replace(">","");
+		Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+		no = rgx.Replace(no, ""); //filter out alphanumeric characters
+		Debug.Log (no);
+		int z = int.Parse(no);
+		Camera.main.GetComponent<CamZoomer>().zoomTo(z);
+	}
+
+	public static void disableGO(string txt) {
+		txt = txt.Replace("DISABLE_GO=","");
+		string name = txt.Replace(">","");
+		Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+		name = rgx.Replace(name, ""); //filter out alphanumeric characters
+		GameObject target = GameObject.Find(name);
+		target.SetActive(false);
+	}
+
 	public static GameObject getLookTarget(string txt) {
 		txt = txt.Replace("<CAM_GOTO_POINT=","");
 		string name = txt.Replace(">","");
@@ -153,6 +172,16 @@ public class DisplayDialogue : MonoBehaviour {
 		name = rgx.Replace(name, ""); //filter out alphanumeric characters
 		GameObject target = GameObject.Find(name);
 		return target;
+	}
+
+	public static int getWaitTime(string txt) {
+		txt = txt.Replace("<PAUSE_FOR=","");
+		string no = txt.Replace(">","");
+		Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+		no = rgx.Replace(no, ""); //filter out alphanumeric characters
+		Debug.Log (no);
+		int z = int.Parse(no);
+		return z;
 	}
 
 	public static void changeMusic(string txt) {
@@ -171,6 +200,20 @@ public class DisplayDialogue : MonoBehaviour {
 		if (data.currentPlayer == GameData.player.Annie) {
 			if(!data.emilRaven.gameObject.activeSelf) data.emilRaven.gameObject.SetActive(true);
 			else data.emilRaven.gameObject.GetComponent<Animator>().SetTrigger(Animator.StringToHash("Exit"));
+			data.canSwapToEmil=!data.emilRaven.gameObject.activeSelf;
+		}
+	}
+
+	public static void toggleCharacter(string txt) {
+		//Really dumb but we're only checking two characters here
+		GameData data = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameData>();
+		if (txt.Contains ("EMIL")) {
+			if(txt.Contains("FALSE")) data.canSwapToEmil = false;
+			else data.canSwapToEmil = true;
+		}
+		else if (txt.Contains ("ANNIE")) {
+			if(txt.Contains("FALSE")) data.canSwapToAnnie = false;
+			else data.canSwapToAnnie = true;
 		}
 	}
 
@@ -179,11 +222,25 @@ public class DisplayDialogue : MonoBehaviour {
 		string asset = getNumber(txt);
 		GameObject go = GameObject.Find (name);
 		if(go!=null) {
-			Vector3 offset = new Vector3(0,5,0);
+			Vector3 offset = new Vector3(0,3,0);
 			string filepath = "Emotions/"+asset;
 			GameObject emoticon = Resources.Load<GameObject>(filepath);
-			Debug.Log(filepath);
-			Instantiate(emoticon, go.transform.position+offset+(go.transform.forward*-1), Quaternion.identity);
+			GameObject emoticonInstance = (Instantiate(emoticon, go.transform.position+offset+(go.transform.forward*-1), Quaternion.identity)) as GameObject;
+			emoticonInstance.transform.parent = go.transform;
+			emoticonInstance.name = "Emoticon";
+		}
+		else Debug.LogError("No gameobject found!");
+	}
+
+	public static void clearEmoticon(string txt) {
+		txt = txt.Replace("<CLEAR_EMOJI=","");
+		string name = txt.Replace(">","");
+		Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+		name = rgx.Replace(name, ""); //filter out alphanumeric characters
+		GameObject go = GameObject.Find(name);
+		if(go!=null) {
+			Transform emotion = go.transform.Find("Emoticon");
+			if(emotion!=null) Destroy(emotion.gameObject);
 		}
 		else Debug.LogError("No gameobject found!");
 	}
@@ -222,6 +279,13 @@ public class DisplayDialogue : MonoBehaviour {
 				index++;
 				continue;
 			}
+			//Disable GameObject
+			if(dialogueSpeech[index].Contains("<DISABLE_GO=")) {
+				nullSpeech = false;
+				disableGO(dialogueSpeech[index]);
+				index++;
+				continue;
+			}
 			//Move transform to a numbered marker
 			if(dialogueSpeech[index].Contains("<T=")) {
 				nullSpeech = false;
@@ -233,6 +297,13 @@ public class DisplayDialogue : MonoBehaviour {
 			if(dialogueSpeech[index].Contains("<E=")) {
 				nullSpeech = false;
 				displayEmoticon(dialogueSpeech[index]);
+				index++;
+				continue;
+			}
+			//Clear Emoticon
+			if(dialogueSpeech[index].Contains("<CLEAR_EMOJI=")) {
+				nullSpeech = false;
+				clearEmoticon(dialogueSpeech[index]);
 				index++;
 				continue;
 			}
@@ -279,6 +350,12 @@ public class DisplayDialogue : MonoBehaviour {
 				index++;
 				continue;
 			}
+			//Camera zoom
+			if(dialogueSpeech[index].Contains("<CAM_ZOOM_TO=")) {
+				camZoomTo(dialogueSpeech[index]);
+				index++;
+				continue;
+			}
 
 			//Camera Shake
 			if(dialogueSpeech[index].Contains("SHAKE_CAMERA")) {
@@ -300,11 +377,27 @@ public class DisplayDialogue : MonoBehaviour {
 				index++;
 				continue;
 			}
+			if(dialogueSpeech[index].Contains("TOGGLE_CHARACTER")) {
+				toggleCharacter(dialogueSpeech[index]);
+				index++;
+				continue;
+			}
+
+			if(dialogueSpeech[index].Contains("<PAUSE_FOR=")) {
+				int time = getWaitTime(dialogueSpeech[index]);
+				float counter = 0;
+				while (counter<time) {
+					counter += Time.unscaledDeltaTime;
+					yield return null;
+				}
+				index++;
+				continue;
+			}
 
 			if(index < dialogueSpeech.Length) {
 				string speech = dialogueSpeech[index];
 				speech = speech.Replace("<n>", "\n");
-				Debug.Log(leftSprite);
+				//Debug.Log(leftSprite);
 				dialogue.Show(speech, leftSprite, rightSprite, isLabel);
 				rightSprite = null;
 				leftSprite = null;

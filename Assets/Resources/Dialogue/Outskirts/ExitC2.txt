@@ -1,9 +1,17 @@
 ##When player chases after La Lupe
 <T=EmilRaven_0>
+<A=CutsceneFade_1>
+<PAUSE_FOR=1>
 <CAM_GOTO_POINT=EmilRaven>
 ...
+<A=CutsceneFade_0>
+<PAUSE_FOR=2>
 <A=EmilRaven_1>
-...
+<PAUSE_FOR=2>
 <A=EmilRaven_2>
-...
+<CAM_GOTO_POINT=EmilRaven>
+<PAUSE_FOR=1>
+<A=CutsceneFade_1>
+<CAM_GOTO_POINT=PlayerPositionContainer>
+<PAUSE_FOR=1>
 <GOTO_SCENE=OutskirtsC2>

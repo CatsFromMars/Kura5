@@ -75,6 +75,7 @@ public class PlayerContainer : MonoBehaviour {
 	public DamageCalculator damageCalculator;
 	public GameObject body;
 	public GameObject meshObjects;
+	public GameObject playerArmature;
 	protected SkinnedMeshRenderer mesh;
 	AudioSource audio;
 	protected AudioSource voice;
@@ -205,7 +206,10 @@ public class PlayerContainer : MonoBehaviour {
 			animator.SetBool(hash.targetingBool, false);
 		}
 		weaponMeshRenderer.enabled = !inCoffin;
-		if(meshObjects!=null) meshObjects.SetActive(!inCoffin);
+		if(meshObjects!=null && playerArmature!=null) {
+			meshObjects.SetActive(!inCoffin);
+			playerArmature.SetActive(!inCoffin);
+		}
 		if(performingAction) inCoffin = false;
 		
 	}

@@ -1,11 +1,141 @@
 <CAM_GOTO_POINT=LookIvy>
 Annie<n>What the heck?!
 Annie<n>I can't get rid of this stuff!
+##Emil Appears
 <CAM_GOTO_POINT=EmilNPC>
 <A=EmilNPC_3>
 <T=EmilNPC_0>
 <O=EmilNPC_1>
 <O=AnniePlayer_0>
-Mysterious Boy<n>Incredible, you’re still alive!
+Mysterious Boy<n>Incredible, you're still alive!
 <CAM_GOTO_POINT=PlayerPositionContainer>
-Annie<n>You...!
+Annie<n>You!
+Annie<n>Had enough of trying to kill me!?
+Annie<n>Cus when I get out of here you’re next!
+<CAM_GOTO_POINT=EmilNPC>
+Mysterious Boy<n>If you hadn’t noticed, I was trying to HELP you!
+Mysterious Boy<n>And even more, this is another Immortal’s place of power.
+Mysterious Boy<n>It would be a waste of power to try to overpower her influence with my own just to lure you into a trap.
+<A=EmilNPC_2>
+Mysterious Boy<n>In short, not my dungeon, not my trap.
+<A=EmilNPC_0>
+Annie<n>Grr...Fine. If yer gunna run yer mouth, what the heck is this stuff?
+<CAM_GOTO_POINT=LookIvy>
+Mysterious Boy<n>Corrupted Solar Ivy.
+Mysterious Boy<n>It takes an attack of the [Dark Property] to get rid of this menace.
+##Emil hacks through the Ivy
+<CAM_GOTO_POINT=EmilNPC>
+<A=LookIvy_1>
+<A=EmilNPC_4>
+<PAUSE_FOR=3>
+Emil<n>Like so.
+##They glare at each other
+<CAM_GOTO_POINT=AnniePlayer>
+<E=AnniePlayer_0>
+<PAUSE_FOR=3>
+<CAM_GOTO_POINT=EmilNPC>
+<E=EmilNPC_0>
+<PAUSE_FOR=3>
+##Move Annie and Emil into place
+<A=CutsceneFade_1>
+<PAUSE_FOR=1>
+<T=AnniePlayer_1>
+<T=EmilNPC_2>
+<O=AnniePlayer_2>
+<O=EmilNPC_3>
+<CAM_GOTO_POINT=Position1>
+<R=EMIL_2>
+Emil<n>What's with that look?
+<L=ANNIE_1>
+Annie<n>Why are yer' helpin’ me?
+<R=EMIL_1>
+Mysterious Boy<n>NOW you ask.
+<CLEAR_EMOJI=AnniePlayer>
+<CLEAR_EMOJI=EmilNPC>
+##Fade in
+<A=CutsceneFade_0>
+<A=EmilNPC_0>
+<L=NULL>
+<R=NULL>
+Mysterious Boy<n>Because I require your help.
+Annie<n>Help with what, gettin' yer next meal?
+Mysterious Boy<n>I'm no savage.
+Mysterious Boy<n>No. I need you to help me kill the Immortal, [La Lupe].
+<E=AnniePlayer_1>
+<PAUSE_FOR=1>
+Annie<n>Kill one of yer own?
+Mysterious Boy<n>Not all those of the Dark see eye to eye.
+Mysterious Boy<n>Though, you could say I have deeper reasons to hold her in low regard.
+Mysterious Boy<n>All to your benefit: you want to kill La Lupe? So do I.
+##Emil turns into a bird
+<A=EmilNPC_5>
+<PAUSE_FOR=1>
+<T=EmilRaven_2>
+<O=EmilRaven_3>
+<A=EmilRaven_2>
+Mysterious Boy<n>Up until now, I've been watching you like this.
+Mysterious Boy<n>And I see you've managed to come this far and not die. There is potential in your abilities.
+Annie<n>All that sneaking around ain't helping yer case, tarfeathers.
+##Turn Emil back into a vampire for now
+<A=EmilRaven_3>
+<PAUSE_FOR=1>
+<A=EmilNPC_3>
+<PAUSE_FOR=1>
+<R=EMIL_4>
+Mysterious Boy<n>Good, good. You are shrewd, wary. You have good reason to be fearful of me!
+<R=EMIL_5>
+Mysterious Boy<n>But you're missing the point!
+<R=EMIL_2>
+Mysterious Boy<n>Go in there as you are now, and you will likely be taken unawares by another trap, and find yourself in the arms of death before long.
+<R=EMIL_1>
+Mysterious Boy<n>Meanwhile, I alone cannot destroy La Lupe.
+<R=EMIL_5>
+Mysterious Boy<n>Without the Sun's power, she will merely use the [Dark Matter] to return even from Death.
+<R=EMIL_2>
+Mysterious Boy<n>If we combine our powers we put an end to a common foe. We can end her for good!
+<R=EMIL_2>
+Mysterious Boy<n>Work with me, and I will ensure that fury you hide behind that sunny face of yours will reach her.
+<L=ANNIE_4>
+Annie<n>Yer not seriously askin' me to trust a vamp that looks like Peter Pan's evil twin, aye?
+<R=EMIL_1>
+Mysterious Boy<n>No, I am asking you to work with me. Whether or not you trust me is irrelevant.
+<R=EMIL_2>
+Mysterious Boy<n>You may not trust me, but you may trust your gun should I fail to hold up my end of the bargain.
+<L=ANNIE_1>
+Annie<n>Hm...
+<L=ANNIE_2>
+Annie<n>(I'm not gunna be able to shake him off, huh?)
+<L=ANNIE_1>
+Annie<n>...If I see ya getting up to any vampire funny business, you'll be seein' the business end of this Solar Gun.
+<L=ANNIE_0>
+Annie<n>Got a name, Vamp?
+<R=EMIL_4>
+Emil<n>I am [Emil].
+<L=NULL_0>
+<R=NULL_0>
+Annie<n>Well, Emil...
+<A=AnniePlayer_7>
+Annie<n>Call me [Annie].
+Annie<n>Guess we're partners, huh?
+<A=EmilNPC_9>
+Emil<n>In all but gesture, I suppose.
+<A=EmilNPC_0>
+Annie<n>I knew Vampires were cold-blooded, but not that cold.
+<A=AnniePlayer_0>
+Emil<n>I see you can make wisecracks as well.
+Emil<n>Shall we continue on?
+<A=EmilNPC_2>
+Emil<n>I imagine you'll want to eliminate the Immortal while your heart still beats.
+<A=EmilNPC_0>
+<E=AnniePlayer_0>
+<PAUSE_FOR=3>
+<CLEAR_EMOJI=AnniePlayer>
+Annie<n>(Oh Sol, what am I gettin' myself into?)
+Annie<n>(I hope the Guildmaster never sees me like this...)
+<A=CutsceneFade_1>
+<PAUSE_FOR=1>
+<DISABLE_GO=EmilNPC>
+Emil has partnered with Annie!
+Press the ^^SWITCH to switch characters.
+<A=CutsceneFade_0>
+TOGGLE_CHARACTER_EMIL_TRUE

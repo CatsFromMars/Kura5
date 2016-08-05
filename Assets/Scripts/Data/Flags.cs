@@ -9,10 +9,14 @@ public class Flags : MonoBehaviour {
 
 	public Dictionary<string, bool> traps;
 	public Dictionary<string, bool> cutscenes;
+	public Dictionary<Vector3, bool> treasurechests;
+	public Dictionary<Vector3, bool> doors;
 
 	void Awake() {
 		traps = new Dictionary<string, bool>();
 		cutscenes = new Dictionary<string, bool>();
+		treasurechests = new Dictionary<Vector3, bool>();
+		doors = new Dictionary<Vector3, bool>();
 	}
 	//Cutscenes
 	public void AddCutsceneFlag(string d) {
@@ -43,5 +47,30 @@ public class Flags : MonoBehaviour {
 
 	public bool CheckTrapFlag() {
 		return traps [Application.loadedLevelName];
+	}
+
+	//Treasure Chests
+	public void AddTreasureFlag(Vector3 chest) {
+		if(!treasurechests.ContainsKey(chest)) treasurechests.Add(chest, false);
+	}
+	
+	public void SetTreasureToOpen(Vector3 chest) {
+		treasurechests[chest] = true;
+	}
+	
+	public bool CheckTreasureFlag(Vector3 chest) {
+		return treasurechests[chest];
+	}
+	//Locked Doors
+	public void AddDoorFlag(Vector3 door) {
+		if(!doors.ContainsKey(door)) doors.Add(door, false);
+	}
+	
+	public void SetDoorToOpen(Vector3 door) {
+		doors[door] = true;
+	}
+	
+	public bool CheckDoorFlag(Vector3 chest) {
+		return doors[chest];
 	}
 }

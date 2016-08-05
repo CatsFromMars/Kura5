@@ -43,6 +43,7 @@ public class EmilController : PlayerContainer {
 	private bool darkCharging = false;
 	public ParticleSystem darkParticles;
 	public GameObject darkenedFace;
+	private bool isSmiling;
 	
 	void Start() {
 		changeWeaponColor ();
@@ -60,21 +61,20 @@ public class EmilController : PlayerContainer {
 			handleBurning();
 			//handleCape();
 			absorb(1);
-
-			if(slashCounter >= smileThreshold) {
-				smile.gameObject.SetActive(true);
-				smile.SetTrigger(Animator.StringToHash("Smile"));
-			}
-			if(slashCounter >= smileThreshold+3) {
-				if(smile.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base Layer.Smile")) {
-					darkenedFace.SetActive(true);
-				}
-				smile.gameObject.SetActive(false);
-				slashCounter = 0;
-				smile.ResetTrigger(Animator.StringToHash("Smile"));
-			}
-
+			handleSlasherSmileEffect();
 			changeWeaponColor();
+		}
+	}
+
+	void handleSlasherSmileEffect() {
+		if(slashCounter >= smileThreshold) {
+			smile.gameObject.SetActive(true);
+			darkenedFace.gameObject.SetActive(true);
+		}
+		else if(slashCounter >= smileThreshold+5) {
+			smile.gameObject.SetActive(false);
+			darkenedFace.gameObject.SetActive(false);
+			slashCounter = 0;
 		}
 	}
 

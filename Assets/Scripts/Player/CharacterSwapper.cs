@@ -85,7 +85,7 @@ public class CharacterSwapper : MonoBehaviour {
 	}
 
 	public void switchPlayers() {
-		if(data.currentPlayer == GameData.player.Annie && data.emilCurrentLife > 0) {
+		if(data.canSwapToEmil && data.currentPlayer == GameData.player.Annie && data.emilCurrentLife > 0) {
 			audio.Play();
 			emil.transform.rotation = Quaternion.identity;
 			annie.transform.rotation = Quaternion.identity;
@@ -97,7 +97,7 @@ public class CharacterSwapper : MonoBehaviour {
 			StartCoroutine(deactivateOnAnimEnd(annieAnimator)); //Deactivate
 			data.currentPlayer = GameData.player.Emil;
 		}
-		else if(data.currentPlayer == GameData.player.Emil && data.annieCurrentLife > 0) {
+		else if(data.canSwapToAnnie && data.currentPlayer == GameData.player.Emil && data.annieCurrentLife > 0) {
 			audio.Play();
 			emil.transform.rotation = Quaternion.identity;
 			annie.transform.rotation = Quaternion.identity;

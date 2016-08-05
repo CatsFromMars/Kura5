@@ -1,6 +1,5 @@
 ##Part 2<n>Player smacks La Lupe in the face
 <A=LaLupe_3>
-<O=AnniePlayer_0>
 SHAKE_CAMERA
 M=Null
 S=LLHurt
@@ -33,14 +32,19 @@ S=Dramatic
 La Lupe<n>¡Bailaré sobre tu tumba!
 <A=LaLupe_6>
 <CAM_GOTO_POINT=PlayerPositionContainer>
-Annie<n>......
+<E=AnniePlayer_0>
+<PAUSE_FOR=3>
+<A=CutsceneFade_1>
+<PAUSE_FOR=1>
+<CLEAR_EMOJI=AnniePlayer>
 Annie<n>(There's no doubt in my mind... That was an Immortal.)
 Annie<n>(Guildmaster's suspicions were on the mark- no, even worse than she thought.)
 Annie<n>(Then the source of the [Eclipse] must be that Immortal.)
 Annie<n>...
 Annie<n>(I should report it, but I can't sit here waiting for the Guild to show up neither.)
 Annie<n>(That Immortal will have no problem keepin' it's promise then...)
-<A=AnniePlayer_6>
+<A=AnniePlayer_0>
+<A=CutsceneFade_0>
 Annie<n>(I need to deal with it right now!)
 Annie<n>(I can still feel it's presence near here... It ain't too far. I can still catch it!)
 Annie<n>(Sorry Guildmaster, I know this is reckless... But I gotta do somethin'!)

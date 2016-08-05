@@ -30,7 +30,7 @@ public class Trap : MonoBehaviour {
 
 	//Stealth variables
 	private PatrolEnemy[] ais;
-	public enum trapType {COMBAT, STEALTH}
+	public enum trapType {COMBAT, STEALTH, CUTSCENE}
 	public trapType type = trapType.COMBAT;
 	public enum stealthType {TREASURE, SWITCH}
 	public stealthType stealthMethod = stealthType.TREASURE;
@@ -190,20 +190,7 @@ public class Trap : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if(!initialized) initialize();
-
-		if (trapPreDisarmed ()) {
-			if(other.tag == "Player" && !trapCleared) {
-				Time.timeScale = 0; //Pause
-				music.stopMusic();
-				StartCoroutine(disarmTrap());
-				GameObject effect = Resources.Load("Effects/DisarmEffect") as GameObject;
-				Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane+1)); 
-				Instantiate(effect, pos, Quaternion.identity);
-				trapCleared = true;
-				flags.SetTrapToCleared();
-			}
-		}
-		else if(!trapActivated) {
+		if(!trapActivated) {
 			if(other.tag == "Player" && !trapCleared) {
 				springTrap(other.transform);
 				//GameObject effect = Resources.Load("Effects/TrapEffect") as GameObject;

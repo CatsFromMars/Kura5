@@ -1,9 +1,9 @@
+<A=AnniePlayer_0>
 <CAM_GOTO_POINT=EmilNPC>
 <A=EmilNPC_8>
-Mysterious Boy<n>Did you not hear me when I said 'wait'?
 <E=AnniePlayer_1>
+Mysterious Boy<n>Did you not hear me when I said 'wait'?
 <O=AnniePlayer_0>
-<A=AnniePlayer_8>
 <L=ANNIE_3>
 Annie<n>What's yer problem, Vampire!?
 <R=EMIL_3>
@@ -18,14 +18,22 @@ Annie<n>You tryin' to make a point here?
 Mysterious Boy<n>Of course! But let's talk about that when you're done trying to get yourself killed, hm?
 <R=EMIL_2>
 Mysterious Boy<n>In the meantime, I suggest you pay attention to the servant behind you.
-<R=NULL_0>
-<L=NULL_0>
-<E=AnniePlayer_2>
-<A=AnniePlayer_7>
 Annie<n>Servant?
+<L=NULL_0>
+<R=NULL_0>
+<E=AnniePlayer_0>
+SHAKE_CAMERA
+S=Dramatic
+<PAUSE_FOR=3>
+<CLEAR_EMOJI=AnniePlayer>
+SHAKE_CAMERA
+S=Dramatic
+<CAM_GOTO_POINT=SkeletonVaquero>
+<PAUSE_FOR=2>
 <A=SkeletonVaquero_1>
-<CAM_GOTO_POINT=PlayerPositionContainer>
-Annie<n>...Oh...
+SHAKE_CAMERA
+S=Dramatic
+<PAUSE_FOR=5>
 <CAM_GOTO_POINT=EmilNPC>
 <O=AnniePlayer_1>
 <A=AnniePlayer_0>

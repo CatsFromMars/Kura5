@@ -16,6 +16,7 @@ public class Follow : MonoBehaviour {
 
 	void Awake() {
 		GameObject player = GameObject.FindGameObjectWithTag ("Player");
+		target = player.transform;
 		transform.position = player.transform.position - player.transform.right + player.transform.forward*4f;
 	}
 

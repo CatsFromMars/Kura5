@@ -20,6 +20,8 @@ public class InventoryMenu : MonoBehaviour {
 	private int index = 0;
 	private int swapIndex = 0;
 	private string trashPrompt;
+	public GameObject annieMenu;
+	public GameObject emilMenu;
 
 	float horiz;
 	float vert;
@@ -118,6 +120,8 @@ public class InventoryMenu : MonoBehaviour {
 		playerSelector.active = false;
 		deleteSelector.active = false;
 		redrawAll();
+		emilMenu.SetActive (data.canSwapToEmil);
+		annieMenu.SetActive (data.canSwapToAnnie);
 	}
 
 	void Update() {

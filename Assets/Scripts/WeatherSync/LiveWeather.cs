@@ -53,7 +53,8 @@ public class LiveWeather : MonoBehaviour {
 		if (IPRequest.error == null || IPRequest.error == "")
 		{
 			var N = JSON.Parse(IPRequest.text);
-			currentIP = N["ip"].Value;		
+			if(N!=null) currentIP = N["ip"].Value;
+			else currentError = "No IP Address detected! ";
 		}
 		else {
 			currentError = "IP error: " + IPRequest.error;

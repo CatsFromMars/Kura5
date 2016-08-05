@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Talk : MonoBehaviour {
 	public bool walkToSpeaker = false;
+	public bool lookatSpeaker = false;
 	public bool autoSpeak = false; //Do this for intro cutscenes and stuff.
 	public bool destroyGameobject = false;
 	public bool npcObject = false; //Talk on button press, as opposed to automatically
@@ -60,6 +61,12 @@ public class Talk : MonoBehaviour {
 			player = GameObject.FindWithTag ("Player").GetComponent<PlayerContainer> ();
 			Vector3 pos = transform.position + this.transform.forward*4f;
 			yield return StartCoroutine(player.characterWalkTo(pos, this.transform));
+		}
+		else if(lookatSpeaker) {
+			PlayerContainer player;
+			player = GameObject.FindWithTag ("Player").GetComponent<PlayerContainer> ();
+			Vector3 pos = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
+			player.transform.LookAt(pos);
 		}
 		yield return StartCoroutine(DisplayDialogue.Speak(text));
 		isTalking = false;

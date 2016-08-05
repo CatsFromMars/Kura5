@@ -4374,9 +4374,7 @@ GameObject:
   - 82: {fileID: 567030151}
   - 95: {fileID: 567030152}
   - 114: {fileID: 567030153}
-  - 114: {fileID: 567030156}
   - 114: {fileID: 567030155}
-  - 114: {fileID: 567030154}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4543,24 +4541,6 @@ MonoBehaviour:
   dayColor: {r: 0, g: .4835971, b: .838235259, a: 1}
   nightColor: {r: 0, g: .0788031965, b: .308823526, a: 1}
   fader: {fileID: 627226528}
---- !u!114 &567030154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 567030145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97b4768c3683045e4bfdb2e78272970c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  threshhold: .400000006
-  intensity: .25
-  blurSize: .25
-  resolution: 0
-  blurIterations: 1
-  blurType: 0
-  fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
 --- !u!114 &567030155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4581,29 +4561,6 @@ MonoBehaviour:
   m_MinZ: .0500000007
   m_SSAOShader: {fileID: 4800000, guid: 43ca18288c424f645aaa1e9e07f04c50, type: 3}
   m_RandomTexture: {fileID: 2800000, guid: e80c3c84ea861404d8a427db8b7abf04, type: 3}
---- !u!114 &567030156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 567030145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bef3d242a13c447ac90c2d2dc213b1ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 1
-  intensity: 2
-  chromaticAberration: .200000003
-  axialAberration: .5
-  blur: .5
-  blurSpread: .100000001
-  luminanceDependency: 1
-  blurDistance: 2.5
-  vignetteShader: {fileID: 4800000, guid: 627943dc7a9a74286b70a4f694a0acd5, type: 3}
-  separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
-  chromAberrationShader: {fileID: 4800000, guid: 2b4f29398d9484ccfa9fd220449f5eee,
-    type: 3}
 --- !u!1001 &575934172
 Prefab:
   m_ObjectHideFlags: 0

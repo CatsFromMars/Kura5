@@ -2186,6 +2186,22 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110258014
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ShakeHands
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: ae5af6f6ec9d93247a7c20faa9e81417, type: 2}
+  - {fileID: 0}
+  m_ParentStateMachine: {fileID: 110795378}
+  m_Position: {x: 348, y: 120, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110261076
 State:
   m_ObjectHideFlags: 3
@@ -2692,13 +2708,6 @@ StateMachine:
   - {x: -132, y: -72, z: 0}
   m_OrderedTransitions:
     data:
-      first: {fileID: 110230100}
-      second: []
-    data:
-      first: {fileID: 110286698}
-      second:
-      - {fileID: 110162388}
-    data:
       first: {fileID: 0}
       second:
       - {fileID: 110164476}
@@ -2727,6 +2736,13 @@ StateMachine:
       - {fileID: 110156880}
       - {fileID: 110147110}
       - {fileID: 110168538}
+    data:
+      first: {fileID: 110286698}
+      second:
+      - {fileID: 110162388}
+    data:
+      first: {fileID: 110230100}
+      second: []
     data:
       first: {fileID: 110203394}
       second:
@@ -2945,6 +2961,7 @@ StateMachine:
   - {fileID: 110256826}
   - {fileID: 110211868}
   - {fileID: 110254168}
+  - {fileID: 110258014}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions: {}

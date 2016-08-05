@@ -11,20 +11,21 @@ public class MusicManager : MonoBehaviour {
 
 	void Awake() {
 		src = GetComponent<AudioSource>();
-		StartCoroutine(load());
-	}
-
-	IEnumerator load() {
-		yield return w.conditionName != "";
-		yield return new WaitForSeconds(0.5f);
-		if(w.isNightTime) src.clip = nightMusic;
-		else src.clip = dayMusic;
-		src.Play ();
-		previousMusic = src.clip;
 	}
 
 	void OnLevelWasLoaded(int level) {
+		load();
+	}
 
+	public void load() {
+		AudioClip newClip;
+		if(w.isNightTime) newClip = nightMusic;
+		else newClip = dayMusic;
+		if(newClip != src.clip) {
+			src.clip = newClip;
+			src.Play();
+			previousMusic = src.clip;
+		}
 	}
 
 	public void stopMusic() {

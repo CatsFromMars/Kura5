@@ -26,22 +26,22 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1101 &110156104
+--- !u!1101 &110129458
 Transition:
   serializedVersion: 2
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110238404}
+  m_SrcState: {fileID: 110263480}
   m_DstState: {fileID: 110265412}
-  m_TransitionDuration: .141210765
+  m_TransitionDuration: .100000001
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: 
-    m_EventTreshold: 0
-    m_ExitTime: .879310071
+  - m_ConditionMode: 6
+    m_ConditionEvent: CutsceneAction
+    m_EventTreshold: 1
+    m_ExitTime: .899999976
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -66,76 +66,6 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
---- !u!1101 &110180498
-Transition:
-  serializedVersion: 2
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_SrcState: {fileID: 110265412}
-  m_DstState: {fileID: 110218072}
-  m_TransitionDuration: .258620679
-  m_TransitionOffset: 0
-  m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: CutsceneAction
-    m_EventTreshold: 0
-    m_ExitTime: 1.5
-  m_Atomic: 1
-  m_Solo: 0
-  m_Mute: 0
-  m_CanTransitionToSelf: 0
---- !u!1101 &110186568
-Transition:
-  serializedVersion: 2
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_SrcState: {fileID: 110263480}
-  m_DstState: {fileID: 110238404}
-  m_TransitionDuration: .100000001
-  m_TransitionOffset: 0
-  m_Conditions:
-  - m_ConditionMode: 6
-    m_ConditionEvent: CutsceneAction
-    m_EventTreshold: 1
-    m_ExitTime: .899999976
-  m_Atomic: 1
-  m_Solo: 0
-  m_Mute: 0
-  m_CanTransitionToSelf: 0
---- !u!1102 &110218072
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: TumbleWeedDissapear
-  m_Speed: .600000024
-  m_CycleOffset: 0
-  m_Motions:
-  - {fileID: 7400000, guid: b5a31cf4e857b3b46ab057dfd1471fcb, type: 2}
-  m_ParentStateMachine: {fileID: 110765412}
-  m_Position: {x: 192, y: 48, z: 0}
-  m_IKOnFeet: 0
-  m_Mirror: 0
-  m_Tag: 
---- !u!1102 &110238404
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: TumbleWeedAppear
-  m_Speed: 2
-  m_CycleOffset: 0
-  m_Motions:
-  - {fileID: 7400000, guid: cffc7ed0194d8b54e8379c9b21c97b95, type: 2}
-  m_ParentStateMachine: {fileID: 110765412}
-  m_Position: {x: -120, y: -48, z: 0}
-  m_IKOnFeet: 0
-  m_Mirror: 0
-  m_Tag: 
 --- !u!1102 &110263480
 State:
   m_ObjectHideFlags: 3
@@ -157,12 +87,12 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Tumble
-  m_Speed: 1
+  m_Speed: 3
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 5df737a8e5f20fc4a947644794fefa5c, type: 2}
   m_ParentStateMachine: {fileID: 110765412}
-  m_Position: {x: -120, y: 48, z: 0}
+  m_Position: {x: -120, y: -60, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -176,27 +106,17 @@ StateMachine:
   m_DefaultState: {fileID: 110263480}
   m_States:
   - {fileID: 110265412}
-  - {fileID: 110218072}
   - {fileID: 110263480}
-  - {fileID: 110238404}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110238404}
-      second:
-      - {fileID: 110156104}
-    data:
       first: {fileID: 110263480}
       second:
-      - {fileID: 110186568}
-    data:
-      first: {fileID: 110218072}
-      second: []
+      - {fileID: 110129458}
     data:
       first: {fileID: 110265412}
-      second:
-      - {fileID: 110180498}
+      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 180, y: -60, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

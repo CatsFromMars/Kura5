@@ -13,6 +13,7 @@ public class GameData : MonoBehaviour {
 	private Transform globalObject;
 
 	//PLAYER DATA: ANNIE
+	public bool canSwapToAnnie = true;
 	public float annieCurrentLife = 100;
 	public float annieCurrentEnergy = 100;
 	public float annieMaxEnergy = 100;
@@ -20,6 +21,7 @@ public class GameData : MonoBehaviour {
 	public elementalProperty annieCurrentElem = elementalProperty.Sol;
 
 	//PLAYER DATA: EMIL
+	public bool canSwapToEmil = false;
 	public float emilCurrentLife;
 	public float emilCurrentEnergy;
 	public float emilMaxEnergy;

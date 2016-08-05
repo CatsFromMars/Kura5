@@ -125,13 +125,34 @@ public class Dialogue : MonoBehaviour {
 		//Write out the text
 		if (theText != null)
 		{
-			theText = theText.Replace("#USER",System.Environment.UserName);
+			if(theText.Contains("^^")) theText = filterText(theText);
 			string s = theText;
 			if ((int)textCounter < theText.Length)
 				s = getDisplayText(theText.Substring(0, (int)textCounter));
 			else s = getDisplayText(theText);
 			displayText.text = s;
 		}
+	}
+
+	string filterText(string txt) {
+		bool joystick = false; //Check for a joystick present
+		string[] c;
+		string[] kc = new string[]{"[W Key]","[A Key]","[S Key]","[D Key]","[Q Key]","[Arrow Keys]","[Space Bar]","[Enter Button]"};
+		string[] jc = new string[]{"[LB Button]","[B Button]","[A Button]","[X Button]","[RB Button]","[Joystick]","[Back/Select Button]","[Start Button]"};
+		if(Input.GetJoystickNames().Length > 0) c = jc;
+		else c = kc;
+
+		txt = txt.Replace("^^","");
+		txt = txt.Replace("TARGET",c[0]);
+		txt = txt.Replace("ROLL",c[1]);
+		txt = txt.Replace("CHARGE",c[2]);
+		txt = txt.Replace("ATTACK",c[3]);
+		txt = txt.Replace("SWAP",c[4]);
+		txt = txt.Replace("MOVE",c[5]);
+		txt = txt.Replace("SWITCH",c[6]);
+		txt = txt.Replace("START",c[7]);
+
+		return txt;
 	}
 
 	string getDisplayText(string txt) {

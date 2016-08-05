@@ -17,11 +17,18 @@ public class LaLupeTutorial : MonoBehaviour {
 	private bool done = false;
 	private bool cutscene2 = false;
 	private bool playerOnEmpty = false;
+	private Flags flags;
+	public GameObject cutsceneExit;
+	public GameObject normalExit;
+	public CapsuleCollider col;
 
 	// Use this for initialization
 	void Awake () {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<AnnieController>();
 		animator = GetComponent<Animator>();
+		GameObject c = GameObject.FindGameObjectWithTag ("GameController");
+		flags = c.GetComponent<Flags>();
+		flags.AddCutsceneFlag(speech2.name);
 	}
 
 	void Update() {
@@ -43,13 +50,15 @@ public class LaLupeTutorial : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other) {
 		if(Time.timeScale > 0) {
-			if(other.tag == "Player") {
+			bool isBeingTargeted = player.targeting;
+			if(other.tag == "Player" && !done) {
 				//Smack player if they get too close
 				animator.SetBool(Animator.StringToHash("Attacking"), true);
 				animator.SetTrigger(Animator.StringToHash("Warp"));
 			}
-			if(other.tag == "Bullet" && !done) {
+			if(other.tag == "Bullet" && !isBeingTargeted && !done) {
 				//cutscene if player tries to shoot
+				col.enabled = false;
 				animator.SetBool(Animator.StringToHash("Attacking"), false);
 				animator.SetTrigger(Animator.StringToHash("Warp"));
 				animator.updateMode = AnimatorUpdateMode.UnscaledTime;
@@ -61,6 +70,7 @@ public class LaLupeTutorial : MonoBehaviour {
 				}
 				cutscene2=true;
 			}
+			else if(isBeingTargeted) col.enabled = true;
 		}
 	}
 
@@ -70,22 +80,27 @@ public class LaLupeTutorial : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collision) {
-		if(Time.timeScale > 0) {
-			if (collision.gameObject.tag == "Bullet" && !done) {
+		if(Time.timeScale > 0 && !done) {
+			bool isBeingTargeted = player.targeting;
+			if (collision.gameObject.tag == "Bullet" && isBeingTargeted) {
 				animator.SetBool(Animator.StringToHash("CutsceneMode"), true);
+				done = true;
 				StartCoroutine(startCutscene());
 			}
+			else Destroy(collision.gameObject);
 		}
 	}
 
 	IEnumerator startCutscene() {
-		done = true;
 		animator.updateMode = AnimatorUpdateMode.UnscaledTime;
 		animator.SetBool(Animator.StringToHash("Attacking"), false);
 		animator.SetTrigger(Animator.StringToHash("Warp"));
 		yield return new WaitForSeconds (0.7f);
 		smoke.gameObject.SetActive(true);
-		StartCoroutine(DisplayDialogue.Speak(speech2));
+		yield return StartCoroutine(DisplayDialogue.Speak(speech2));
+		flags.SetCutscene(speech2.name);
+		normalExit.SetActive (false);
+		cutsceneExit.SetActive (true);
 	}
 
 	void KnockOverPlayer() {

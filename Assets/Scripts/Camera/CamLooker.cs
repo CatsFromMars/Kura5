@@ -22,7 +22,7 @@ public class CamLooker : MonoBehaviour {
 	}
 
 	public IEnumerator lookAtTarget(Transform target, float speed=21f) {
-		while(transform.position != target.position) {
+		while(Vector3.Distance(transform.position, target.transform.position) > 0.1f) {
 			float step = speed * Time.unscaledDeltaTime;
 			transform.position = Vector3.MoveTowards(transform.position, target.position, step);
 			yield return null;

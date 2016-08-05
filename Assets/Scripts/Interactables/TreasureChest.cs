@@ -7,6 +7,7 @@ public class TreasureChest : MonoBehaviour {
 	GameObject gameData;
 	GameData data;
 	HashIDs hash;
+	private Flags flags;
 	private MusicManager music;
 	Inventory inventory;
 	public AudioSource jingle;
@@ -27,11 +28,16 @@ public class TreasureChest : MonoBehaviour {
 	// Use this for initialization
 	void Awake() {
 		gameData = GameObject.FindGameObjectWithTag("GameController");
+		flags = gameData.GetComponent<Flags>();
 		animator = GetComponent<Animator>();
 		data = gameData.GetComponent<GameData>();
 		hash = gameData.GetComponent<HashIDs>();
 		inventory = gameData.GetComponent<Inventory>();
 		music = GameObject.FindGameObjectWithTag("Music").GetComponent<MusicManager>();
+		flags.AddTreasureFlag(transform.position);
+		if(flags.CheckTreasureFlag(transform.position)) {
+			gameObject.SetActive(false);
+		}
 	}
 	
 	void OnTriggerStay(Collider other) {
@@ -40,9 +46,10 @@ public class TreasureChest : MonoBehaviour {
 				animator.SetBool (hash.unlockedBool, true);
 				if(!itemSpawned) data.nearInteractable = true;
 				//audio.Play();
-
 				if(!pullsUpPrompt) spawnLoot();
 				else displayPrompt();
+
+				flags.SetTreasureToOpen(transform.position);
 			}
 		}
 		

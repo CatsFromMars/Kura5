@@ -45,6 +45,13 @@ public class Vaquero : EnemyClass {
 
 	IEnumerator Move() {
 		animator.SetBool (Animator.StringToHash ("Moving"), true);
+		UpdatePlayerPos();
+		animator.SetBool (Animator.StringToHash ("Moving"), true);
+		agent.SetDestination(playerPos);
+		while(agent.remainingDistance > agent.stoppingDistance) {
+			yield return null;
+		}
+
 		foreach (Transform w in wayPoints) {
 			animator.SetBool (Animator.StringToHash ("Moving"), true);
 			agent.SetDestination(w.transform.position);
@@ -62,7 +69,7 @@ public class Vaquero : EnemyClass {
 	IEnumerator Attack() {
 		animator.ResetTrigger(Animator.StringToHash("Shoot"));
 		animator.ResetTrigger (Animator.StringToHash("Fire"));
-		UpdatePlayerPos ();
+		UpdatePlayerPos();
 		float d = Vector3.Distance(player.transform.position, transform.position);
 
 		animator.SetTrigger (Animator.StringToHash("Shoot"));

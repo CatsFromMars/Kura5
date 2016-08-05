@@ -9,6 +9,7 @@ public class Cutscene : MonoBehaviour {
 	SceneTransition transition;
 	Animator annieAnimator;
 	Animator emilAnimator;
+	public bool ignoreFlag = false;
 
 	void Awake() {
 		GameObject c = GameObject.FindGameObjectWithTag ("GameController");
@@ -34,6 +35,9 @@ public class Cutscene : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if(other.tag == "Player" && !flags.CheckCutsceneFlag(cutsceneDialogue.name)) StartCoroutine(playCutscene());
+		if(other.tag == "Player") {
+			if(ignoreFlag) StartCoroutine(playCutscene());
+			else if(!flags.CheckCutsceneFlag(cutsceneDialogue.name)) StartCoroutine(playCutscene());
+		}
 	}
 }

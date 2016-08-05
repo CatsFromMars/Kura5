@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class Door : MonoBehaviour {
+	private Flags flags;
 	Animator animator;
 	public enum doorType {REGULAR, TRIANGLE, CIRCLE, SQUARE};
 	public doorType type;
@@ -23,9 +24,15 @@ public class Door : MonoBehaviour {
 		inventory = global.GetComponent<Inventory>();
 		animator = GetComponent<Animator>();
 		data = global.GetComponent<GameData>();
+		flags = global.GetComponent<Flags>();
 
 		//doorCollider = transform.FindChild("door1").GetComponent<BoxCollider>();
 		col = GetComponent<SphereCollider>();
+
+		flags.AddDoorFlag(transform.position);
+		if(flags.CheckDoorFlag(transform.position)) {
+			type = doorType.REGULAR;
+		}
 
 		if(type == doorType.REGULAR) {
 			doorLocked = false;
@@ -58,6 +65,7 @@ public class Door : MonoBehaviour {
 		if (doorLocked && inRange && Input.GetButtonDown("Charge")) {
 			int hasKey = inventory.checkForKeyItem(keyItemID);
 			if(hasKey != -1) {
+				flags.SetDoorToOpen(transform.position);
 				doorLocked = false;
 				inventory.removeKeyItem(hasKey);
 				animator.SetBool(Animator.StringToHash("PlayerInRange"), true);

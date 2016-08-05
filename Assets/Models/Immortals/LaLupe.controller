@@ -56,6 +56,26 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!1101 &110111302
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110227970}
+  m_DstState: {fileID: 110257852}
+  m_TransitionDuration: .0535031706
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: CutsceneAction
+    m_EventTreshold: 3
+    m_ExitTime: .333333313
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1101 &110113648
 Transition:
   serializedVersion: 2
@@ -300,6 +320,26 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
+--- !u!1101 &110189882
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110276474}
+  m_DstState: {fileID: 110257852}
+  m_TransitionDuration: .666666687
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: CutsceneAction
+    m_EventTreshold: 3
+    m_ExitTime: .333333313
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1101 &110195720
 Transition:
   serializedVersion: 2
@@ -415,7 +455,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Idle
-  m_Speed: .600000024
+  m_Speed: .300000012
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: e625fed4c27eb4144a5c763e67bec9e1, type: 2}
@@ -588,10 +628,12 @@ StateMachine:
       first: {fileID: 110276474}
       second:
       - {fileID: 110118978}
+      - {fileID: 110189882}
     data:
       first: {fileID: 110227970}
       second:
       - {fileID: 110196494}
+      - {fileID: 110111302}
     data:
       first: {fileID: 110250152}
       second:
@@ -600,5 +642,5 @@ StateMachine:
       first: {fileID: 110243672}
       second: []
   m_MotionSetCount: 1
-  m_AnyStatePosition: {x: 12, y: -228, z: 0}
+  m_AnyStatePosition: {x: -24, y: -144, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

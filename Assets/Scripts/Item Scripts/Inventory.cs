@@ -62,12 +62,12 @@ public class Inventory : MonoBehaviour {
 
 	void Start() {
 		//Lens
-		AddLens (3);
-		AddLens (4);
-		AddLens (5);
+		//AddLens (3);
+		//AddLens (4);
+		//AddLens (5);
 
 		AddLens (0); //Sol
-		AddLens (2); //Fire
+		//AddLens (2); //Fire
 		AddLens (1); //Dark
 
 		AddLens (8); //Empty
@@ -178,9 +178,12 @@ public class Inventory : MonoBehaviour {
 	}
 
 	public void removeKeyItem(int index) {
-		KeyItem empty = new KeyItem();
-		keyItemsList [index] = empty;
-		slots [index] = empty;
+		if(index==-1) return;
+		else {
+			KeyItem empty = new KeyItem();
+			keyItemsList [index] = empty;
+			slots [index] = empty;
+		}
 	}
 
 	public void removeConsumableItem(int index) {

@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class ElementSwapping : MonoBehaviour {
-
+	public Animator rightAnim;
+	public Animator leftAnim;
 	public Inventory inventory;
 	public GameData data;
 	public LensGUI gui;
@@ -23,6 +24,11 @@ public class ElementSwapping : MonoBehaviour {
 	private bool open = false;
 	public AudioClip swapSound;
 	public AudioClip openSound;
+	private float timer = 0;
+	private int waitTime = 3;
+	float horiz = 0;
+	private int pushWaitTime = 15;
+	public int pushCounter;
 
 	void Awake() {
 		annieLens = new int[5];
@@ -83,7 +89,11 @@ public class ElementSwapping : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		updateDisplay ();
+		checkForToggle ();
+		horiz = Input.GetAxisRaw ("Horizontal");
+	}
 
+	void checkForToggle() {
 		if(Input.GetButton("Swap")) { //if holding button down
 			if(!open) {
 				open = true;
@@ -91,7 +101,32 @@ public class ElementSwapping : MonoBehaviour {
 				arrow.gameObject.SetActive(true);
 				makeSound(openSound);
 			}
-			if(Input.GetButtonDown("Target")) toggleLens();
+			if(Input.GetButtonDown("SelectLeft")) {
+				leftAnim.SetTrigger(Animator.StringToHash("Select"));
+				toggleLens(1);
+			}
+			else if(Input.GetButtonDown("SelectRight")) {
+				rightAnim.SetTrigger(Animator.StringToHash("Select"));
+				toggleLens(-1);
+			}
+
+			if(horiz == -1) {
+				pushCounter++;
+				if(pushCounter>=pushWaitTime) {
+					pushCounter = 0;
+					leftAnim.SetTrigger(Animator.StringToHash("Select"));
+					toggleLens(1);
+				}
+			}
+			else if(horiz==1) {
+				pushCounter++;
+				if(pushCounter>=pushWaitTime) {
+					pushCounter = 0;
+					rightAnim.SetTrigger(Animator.StringToHash("Select"));
+					toggleLens(-1);
+				}
+			}
+			else pushCounter = pushWaitTime;
 		}
 		else {
 			if(open) {
@@ -117,18 +152,17 @@ public class ElementSwapping : MonoBehaviour {
 		}
 	}
 
-	void toggleLens() {
+	void toggleLens(int index) { //index should be either 1 or -1
 		updateList();
 		makeSound(swapSound);
 		if (data.currentPlayer == GameData.player.Annie) {
 			//Is probably dangerous in the event there are no lenses...
 			gui.solLens.gameObject.SetActive(true);
-
-
-			annieIndex = (annieIndex+1)%annieLens.Length;
-			int inventoryLocation = annieLens[annieIndex];
+			int inventoryLocation = -1;
 			while(inventoryLocation == -1) {
-				annieIndex = (annieIndex+1)%annieLens.Length;
+				annieIndex = (annieIndex+index);
+				if(annieIndex < 0) annieIndex = annieLens.Length-1;
+				annieIndex = annieIndex%annieLens.Length;
 				inventoryLocation = annieLens[annieIndex];
 			}
 			inventory.EquipLens(inventoryLocation);
@@ -137,11 +171,11 @@ public class ElementSwapping : MonoBehaviour {
 		else if(data.currentPlayer == GameData.player.Emil) {
 			//Is probably dangerous in the event there are no lenses...
 			gui.solLens.gameObject.SetActive(false);
-
-			emilIndex = (emilIndex+1)%emilLens.Length;
-			int inventoryLocation = emilLens[emilIndex];
+			int inventoryLocation = -1;
 			while(inventoryLocation == -1) {
-				emilIndex = (emilIndex+1)%emilLens.Length;
+				emilIndex = (emilIndex+index);
+				if(emilIndex < 0) emilIndex=emilLens.Length-1;
+				emilIndex = emilIndex%emilLens.Length;
 				inventoryLocation = emilLens[emilIndex];
 			}
 			inventory.EquipLens(inventoryLocation);

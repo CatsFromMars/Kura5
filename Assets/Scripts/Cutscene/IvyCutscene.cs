@@ -9,6 +9,7 @@ public class IvyCutscene : MonoBehaviour {
 	private bool ivyDied = false;
 	private bool startedBossFight = false;
 
+	public Transform inisibleWall;
 	private PlayerContainer player;
 	public Vaquero vaquero;
 	public Transform walkTo1;
@@ -17,6 +18,7 @@ public class IvyCutscene : MonoBehaviour {
 	public Animator[] ivies;
 	public GameObject[] ivyObjects;
 	public Animator emil;
+	private GameObject deadIvy;
 
 	public TextAsset introCutscene;
 	public TextAsset trapCutscene;
@@ -55,6 +57,7 @@ public class IvyCutscene : MonoBehaviour {
 		foreach(Animator ivy in ivies) {
 			if(ivy.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base Layer.Dying")) {
 				ivy.gameObject.name = "LookIvy";
+				deadIvy = ivy.gameObject;
 				return true;
 			}
 			//if(ivy.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base Layer.Revive") && ivyDied) return true;
@@ -65,6 +68,7 @@ public class IvyCutscene : MonoBehaviour {
 	IEnumerator startIvyCutscene() {
 		yield return new WaitForSeconds(1);
 		yield return StartCoroutine(DisplayDialogue.Speak(ivyCutscene));
+		Destroy (deadIvy.transform.root.gameObject);
 	}
 
 	IEnumerator startTrapCutscene() {
