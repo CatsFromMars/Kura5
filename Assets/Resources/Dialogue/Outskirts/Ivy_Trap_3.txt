@@ -2,6 +2,7 @@
 Annie<n>What the heck?!
 Annie<n>I can't get rid of this stuff!
 ##Emil Appears
+M=VampireEmilIntro
 <CAM_GOTO_POINT=EmilNPC>
 <A=EmilNPC_3>
 <T=EmilNPC_0>
@@ -9,9 +10,10 @@ Annie<n>I can't get rid of this stuff!
 <O=AnniePlayer_0>
 Mysterious Boy<n>Incredible, you're still alive!
 <CAM_GOTO_POINT=PlayerPositionContainer>
+M=VampireEmil
 Annie<n>You!
 Annie<n>Had enough of trying to kill me!?
-Annie<n>Cus when I get out of here you’re next!
+Annie<n>Cus when I get out of here you're next!
 <CAM_GOTO_POINT=EmilNPC>
 Mysterious Boy<n>If you hadn’t noticed, I was trying to HELP you!
 Mysterious Boy<n>And even more, this is another Immortal’s place of power.
@@ -19,15 +21,16 @@ Mysterious Boy<n>It would be a waste of power to try to overpower her influence 
 <A=EmilNPC_2>
 Mysterious Boy<n>In short, not my dungeon, not my trap.
 <A=EmilNPC_0>
+<CAM_GOTO_POINT=PlayerPositionContainer>
 Annie<n>Grr...Fine. If yer gunna run yer mouth, what the heck is this stuff?
 <CAM_GOTO_POINT=LookIvy>
 Mysterious Boy<n>Corrupted Solar Ivy.
 Mysterious Boy<n>It takes an attack of the [Dark Property] to get rid of this menace.
 ##Emil hacks through the Ivy
 <CAM_GOTO_POINT=EmilNPC>
-<A=LookIvy_1>
+<A=DeathIvy_1>
 <A=EmilNPC_4>
-<PAUSE_FOR=3>
+<PAUSE_FOR=1>
 Emil<n>Like so.
 ##They glare at each other
 <CAM_GOTO_POINT=AnniePlayer>
@@ -52,14 +55,14 @@ Annie<n>Why are yer' helpin’ me?
 Mysterious Boy<n>NOW you ask.
 <CLEAR_EMOJI=AnniePlayer>
 <CLEAR_EMOJI=EmilNPC>
-##Fade in
-<A=CutsceneFade_0>
 <A=EmilNPC_0>
-<L=NULL>
-<R=NULL>
+<L=NULL_0>
+<R=NULL_0>
 Mysterious Boy<n>Because I require your help.
 Annie<n>Help with what, gettin' yer next meal?
 Mysterious Boy<n>I'm no savage.
+##Fade in
+<A=CutsceneFade_0>
 Mysterious Boy<n>No. I need you to help me kill the Immortal, [La Lupe].
 <E=AnniePlayer_1>
 <PAUSE_FOR=1>
@@ -75,15 +78,18 @@ Mysterious Boy<n>All to your benefit: you want to kill La Lupe? So do I.
 <A=EmilRaven_2>
 Mysterious Boy<n>Up until now, I've been watching you like this.
 Mysterious Boy<n>And I see you've managed to come this far and not die. There is potential in your abilities.
-Annie<n>All that sneaking around ain't helping yer case, tarfeathers.
+<A=AnniePlayer_4>
+Annie<n>All that sneaking around ain't helping yer case, tarfeathers!
 ##Turn Emil back into a vampire for now
 <A=EmilRaven_3>
+<A=AnniePlayer_0>
 <PAUSE_FOR=1>
 <A=EmilNPC_3>
 <PAUSE_FOR=1>
 <R=EMIL_4>
 Mysterious Boy<n>Good, good. You are shrewd, wary. You have good reason to be fearful of me!
 <R=EMIL_5>
+<L=ANNIE_1>
 Mysterious Boy<n>But you're missing the point!
 <R=EMIL_2>
 Mysterious Boy<n>Go in there as you are now, and you will likely be taken unawares by another trap, and find yourself in the arms of death before long.
@@ -135,6 +141,8 @@ Annie<n>(I hope the Guildmaster never sees me like this...)
 <A=CutsceneFade_1>
 <PAUSE_FOR=1>
 <DISABLE_GO=EmilNPC>
+M=Null
+S=Sun!
 Emil has partnered with Annie!
 Press the ^^SWITCH to switch characters.
 <A=CutsceneFade_0>

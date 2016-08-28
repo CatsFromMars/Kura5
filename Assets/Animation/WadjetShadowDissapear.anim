@@ -12,84 +12,100 @@ AnimationClip:
   m_UseHighQualityCurve: 1
   m_RotationCurves: []
   m_CompressedRotationCurves: []
-  m_PositionCurves: []
+  m_PositionCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: -23.8999996, y: .0299999993, z: -4.5999999}
+        inSlope: {x: 0, y: 43.1154938, z: 0}
+        outSlope: {x: 0, y: 43.1154938, z: 0}
+        tangentMode: 488386596
+      - time: 1.18333328
+        value: {x: -23.8999996, y: 51.0499992, z: -4.5999999}
+        inSlope: {x: 0, y: 43.1154938, z: 0}
+        outSlope: {x: 0, y: 43.1154938, z: 0}
+        tangentMode: 97660464
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    path: 
   m_ScaleCurves: []
   m_FloatCurves:
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      - time: 2.01666665
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_IsActive
-    path: Skylights
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      - time: .283333331
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: EmissionModule.enabled
-    path: Fog Flow
-    classID: 198
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      - time: 1.2166667
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_Enabled
-    path: 
-    classID: 65
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 100
-        inSlope: -49.1803284
-        outSlope: -49.1803284
+        value: .0602941401
+        inSlope: 1.5661763
+        outSlope: 1.5661763
         tangentMode: 10
-      - time: 2.0333333
-        value: 0
-        inSlope: -49.1803284
-        outSlope: -49.1803284
+      - time: .600000024
+        value: 1
+        inSlope: 1.5661763
+        outSlope: 1.5661763
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
-    attribute: m_FarClipPlane
-    path: Shadow
-    classID: 119
+    attribute: material._Color.r
+    path: Light
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 1.66666663
+        outSlope: 1.66666663
+        tangentMode: 10
+      - time: .600000024
+        value: 1
+        inSlope: 1.66666663
+        outSlope: 1.66666663
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: material._Color.g
+    path: Light
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: .213235304
+        inSlope: 1.31127441
+        outSlope: 1.31127441
+        tangentMode: 10
+      - time: .600000024
+        value: 1
+        inSlope: 1.31127441
+        outSlope: 1.31127441
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: material._Color.b
+    path: Light
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .600000024
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: material._Color.a
+    path: Light
+    classID: 23
     script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
@@ -99,35 +115,41 @@ AnimationClip:
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
     genericBindings:
-    - path: 3503903555
-      attribute: 2086281974
-      script: {fileID: 0}
-      classID: 1
-      customType: 0
-      isPPtrCurve: 0
-    - path: 4037582523
-      attribute: 1087013301
-      script: {fileID: 0}
-      classID: 198
-      customType: 0
-      isPPtrCurve: 0
     - path: 0
-      attribute: 3305885265
+      attribute: 1
       script: {fileID: 0}
-      classID: 65
+      classID: 4
       customType: 0
       isPPtrCurve: 0
-    - path: 1926924059
-      attribute: 3420000740
+    - path: 2866508787
+      attribute: 1303350129
       script: {fileID: 0}
-      classID: 119
-      customType: 0
+      classID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - path: 2866508787
+      attribute: 1571785585
+      script: {fileID: 0}
+      classID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - path: 2866508787
+      attribute: 1840221041
+      script: {fileID: 0}
+      classID: 23
+      customType: 22
+      isPPtrCurve: 0
+    - path: 2866508787
+      attribute: 2108656497
+      script: {fileID: 0}
+      classID: 23
+      customType: 22
       isPPtrCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: 2.0333333
+    m_StopTime: 1.20000005
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -146,77 +168,141 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      - time: 2.01666665
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
+        value: -23.8999996
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.18333328
+        value: -23.8999996
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
-    attribute: m_IsActive
-    path: Skylights
-    classID: 1
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      - time: .283333331
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: EmissionModule.enabled
-    path: Fog Flow
-    classID: 198
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      - time: 1.2166667
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_Enabled
+    attribute: m_LocalPosition.x
     path: 
-    classID: 65
+    classID: 4
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 100
-        inSlope: -49.1803284
-        outSlope: -49.1803284
+        value: .0299999993
+        inSlope: 43.1154938
+        outSlope: 43.1154938
         tangentMode: 10
-      - time: 2.0333333
-        value: 0
-        inSlope: -49.1803284
-        outSlope: -49.1803284
+      - time: 1.18333328
+        value: 51.0499992
+        inSlope: 43.1154938
+        outSlope: 43.1154938
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
-    attribute: m_FarClipPlane
-    path: Shadow
-    classID: 119
+    attribute: m_LocalPosition.y
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -4.5999999
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.18333328
+        value: -4.5999999
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_LocalPosition.z
+    path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: .0602941401
+        inSlope: 1.5661763
+        outSlope: 1.5661763
+        tangentMode: 10
+      - time: .600000024
+        value: 1
+        inSlope: 1.5661763
+        outSlope: 1.5661763
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: material._Color.r
+    path: Light
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 1.66666663
+        outSlope: 1.66666663
+        tangentMode: 10
+      - time: .600000024
+        value: 1
+        inSlope: 1.66666663
+        outSlope: 1.66666663
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: material._Color.g
+    path: Light
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: .213235304
+        inSlope: 1.31127441
+        outSlope: 1.31127441
+        tangentMode: 10
+      - time: .600000024
+        value: 1
+        inSlope: 1.31127441
+        outSlope: 1.31127441
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: material._Color.b
+    path: Light
+    classID: 23
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: .600000024
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: material._Color.a
+    path: Light
+    classID: 23
     script: {fileID: 0}
   m_EulerEditorCurves: []
-  m_Events: []
+  m_Events:
+  - time: 1.20000005
+    functionName: toggleActive
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

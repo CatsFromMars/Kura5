@@ -17,9 +17,10 @@ public class Dialogue : MonoBehaviour {
 	public GameObject arrow;
 
 	public GUISkin skin;
-	public float textRate = 15; // how fast the text appears
-	private float fastTextRate = 70;
-	public float normalTextRate = 15;
+	public float textRate = 45; // how fast the text appears
+	private float fastTextRate = 80;
+	public float normalTextRate = 3;
+	private float normalize = 20f;
 	public AudioClip tickSound; // audio
 	public AudioClip finishSound;
 	public int border=5, height=300; // size of dialog 
@@ -86,7 +87,7 @@ public class Dialogue : MonoBehaviour {
 
 	
 	// Update is called once per frame
-	void Update () 
+	void Update() 
 	{
 		if(isFinished) {
 			leftSprite.sprite = null;
@@ -97,9 +98,9 @@ public class Dialogue : MonoBehaviour {
 		int oldCounter=Mathf.FloorToInt(textCounter); // for use later in audio
 		if (Input.anyKey)   // any key makes it faster
 
-			textCounter += Time.unscaledDeltaTime * textRate*4;
+			textCounter += (textRate*4)*Time.unscaledDeltaTime;
 		else
-			textCounter += Time.unscaledDeltaTime * textRate;
+			textCounter += (textRate)*Time.unscaledDeltaTime;
 		// tick sound when displaying
 		if (tickSound!=null && textCounter < theText.Length)
 		{
@@ -135,12 +136,7 @@ public class Dialogue : MonoBehaviour {
 	}
 
 	string filterText(string txt) {
-		bool joystick = false; //Check for a joystick present
-		string[] c;
-		string[] kc = new string[]{"[W Key]","[A Key]","[S Key]","[D Key]","[Q Key]","[Arrow Keys]","[Space Bar]","[Enter Button]"};
-		string[] jc = new string[]{"[LB Button]","[B Button]","[A Button]","[X Button]","[RB Button]","[Joystick]","[Back/Select Button]","[Start Button]"};
-		if(Input.GetJoystickNames().Length > 0) c = jc;
-		else c = kc;
+		string[] c = JoystickUtil.getControlScheme();
 
 		txt = txt.Replace("^^","");
 		txt = txt.Replace("TARGET",c[0]);

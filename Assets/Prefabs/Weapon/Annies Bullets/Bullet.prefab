@@ -15,7 +15,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 96: {fileID: 9600000}
   - 82: {fileID: 8200000}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ GameObject:
   - 198: {fileID: 19800010}
   - 199: {fileID: 19900010}
   - 114: {fileID: 11400018}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   - 198: {fileID: 19800012}
   - 199: {fileID: 19900012}
   - 114: {fileID: 11455452}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Elec
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - 4: {fileID: 449672}
   - 198: {fileID: 19849672}
   - 199: {fileID: 19949672}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: CFX4_Plasma Ball Bigger (Red-Orange, CFX Blend)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - 4: {fileID: 449674}
   - 198: {fileID: 19849674}
   - 199: {fileID: 19949674}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: CFX4 Small Balls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,6 +353,7 @@ MonoBehaviour:
   velocity: 50
   elec: {fileID: 400020}
   cutSceneBullet: 0
+  aliveTime: 1
   hitEffect: {fileID: 411096, guid: 6f84a79366419e141a5cb384337a83e1, type: 2}
 --- !u!114 &11400018
 MonoBehaviour:

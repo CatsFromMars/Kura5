@@ -112,6 +112,7 @@
      <Compile Include="Assets\Scripts\Cutscene\LaLupeHumanoid.cs" />
      <Compile Include="Assets\Scripts\Cutscene\LaLupeTutorial.cs" />
      <Compile Include="Assets\Scripts\Cutscene\LookTargetFollow.cs" />
+     <Compile Include="Assets\Scripts\Cutscene\OutskirtsIntro.cs" />
      <Compile Include="Assets\Scripts\Cutscene\Prophecy.cs" />
      <Compile Include="Assets\Scripts\Cutscene\Ruinedtown.cs" />
      <Compile Include="Assets\Scripts\Cutscene\ToggleOnCutsceneFlag.cs" />
@@ -189,6 +190,7 @@
      <Compile Include="Assets\Scripts\Player\CharacterSwapper.cs" />
      <Compile Include="Assets\Scripts\Player\EmilController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerContainer.cs" />
+     <Compile Include="Assets\Scripts\Puzzles\OrderPuzzle.cs" />
      <Compile Include="Assets\Scripts\Puzzles\UnburdenPuzzle.cs" />
      <Compile Include="Assets\Scripts\Utility\AnimationEventDestroy.cs" />
      <Compile Include="Assets\Scripts\Utility\Broadcaster.cs" />
@@ -199,6 +201,7 @@
      <Compile Include="Assets\Scripts\Utility\FPSCounter.cs" />
      <Compile Include="Assets\Scripts\Utility\FollowPlayer.cs" />
      <Compile Include="Assets\Scripts\Utility\GetActivePlayer.cs" />
+     <Compile Include="Assets\Scripts\Utility\JoystickUtil.cs" />
      <Compile Include="Assets\Scripts\Utility\ListUtil.cs" />
      <Compile Include="Assets\Scripts\Utility\MakeNoiseAnimationEvent.cs" />
      <Compile Include="Assets\Scripts\Utility\ParseUtil.cs" />
@@ -240,6 +243,7 @@
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixURotateGrade.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Resources\Dialogue\Outskirts\Ivy_Trap_3.txt" />
+     <None Include="Assets\Resources\Dialogue\Outskirts\beginning.txt" />
      <None Include="Assets\Resources\Dialogue\WadjetDungeon\BokTutorial.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixRandomizeMinGradeDepth.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
@@ -303,6 +307,7 @@
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixURotateIntensityGradeDepth.shader" />
      <None Include="Assets\Resources\Dialogue\WadjetDungeon\TalkFunctionality.txt" />
+     <None Include="Assets\Resources\Dialogue\Outskirts\Grave3.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFourIntensityGradeDepth.shader" />
      <None Include="Assets\External\WallVisionOutlineEffect\WallVisionOutlineEffectOccluder.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\GlowCompose.shader" />
@@ -318,6 +323,7 @@
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFiveRandomizeGradeDepth.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyThreeURotateMin.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixIntensity.shader" />
+     <None Include="Assets\Resources\Dialogue\Outskirts\Grave5.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\RadialBlur.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixURotateMinGrade.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFiveGradeDepth.shader" />
@@ -342,6 +348,7 @@
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixGradeDepth.shader" />
      <None Include="Assets\Resources\Dialogue\Hints\Rolling.txt" />
      <None Include="Assets\Standard Assets\Water (Pro Only)\Water4\Sources\Shaders\FX-SimpleWater4.shader" />
+     <None Include="Assets\Resources\Dialogue\Outskirts\LLAnimSet.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyThreeMinGradeDepth.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixIntensityDepth.shader" />
      <None Include="Assets\External\JMO Assets2\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAlphaBlend_Alpha8.shader" />
@@ -363,7 +370,9 @@
      <None Include="Assets\Resources\Dialogue\MenuTutorial.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyThreeURotateIntensity.shader" />
      <None Include="Assets\Resources\Dialogue\Hints\Sun.txt" />
+     <None Include="Assets\Resources\Dialogue\Outskirts\Grave4.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFourRandomizeIntensity.shader" />
+     <None Include="Assets\Resources\Dialogue\WadjetDungeon\Puzzle.txt" />
      <None Include="Assets\Resources\Dialogue\TriangleDoor.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyThree.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\UnlitWShader.shader" />
@@ -386,6 +395,7 @@
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixRandomizeIntensityGradeDepth.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFourURotateIntensity.shader" />
      <None Include="Assets\Resources\Dialogue\Test\AnnieEmilMeet.txt" />
+     <None Include="Assets\Resources\Dialogue\Outskirts\Bird\sinisterlaugh.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixMin.shader" />
      <None Include="Assets\Resources\Dialogue\WadjetDungeon\ShadowSealingTutorial.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyThreeRandomize.shader" />
@@ -395,6 +405,7 @@
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFiveURotateGradeDepth.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFiveRandomizeMinGrade.shader" />
      <None Include="Assets\Resources\Dialogue\Hints\DarkLoans.txt" />
+     <None Include="Assets\Resources\Dialogue\Outskirts\Grave6.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\MobileBlur.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SSAOShader.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFourRandomizeIntensityDepth.shader" />
@@ -421,6 +432,7 @@
      <None Include="Assets\Resources\Dialogue\DarkLoans\ThankYou.txt" />
      <None Include="Assets\External\JMO Assets2\!JMO Assets Readme.txt" />
      <None Include="Assets\External\JMO Assets2\Cartoon FX\Shaders\CFX4 Hidden.shader" />
+     <None Include="Assets\Resources\Dialogue\WadjetDungeon\PreBoss.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ChromaticAberrationShader.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFiveIntensityGrade.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyThreeURotateDepth.shader" />
@@ -467,6 +479,7 @@
      <None Include="Assets\Resources\Dialogue\WadjetDungeon\LaLupe_2.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\CameraMotionBlur.shader" />
      <None Include="Assets\Resources\Dialogue\Outskirts\DramaticTumbleweed.txt" />
+     <None Include="Assets\Resources\Dialogue\Outskirts\Grave1.txt" />
      <None Include="Assets\Standard Assets\Water (Pro Only)\Sources\Shaders\FX-Water.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFiveRandomizeIntensityGradeDepth.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\DLAA.shader" />
@@ -482,6 +495,7 @@
      <None Include="Assets\Resources\Dialogue\Test\AnnieAnimTest.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFiveRandomizeMinGradeDepth.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFourMinGradeDepth.shader" />
+     <None Include="Assets\Resources\Dialogue\Outskirts\Bird\caw2.txt" />
      <None Include="Assets\Resources\Dialogue\WadjetDungeon\OtenkoSwitch.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFourRandomizeGrade.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFiveIntensity.shader" />
@@ -506,6 +520,7 @@
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixURotateIntensity.shader" />
      <None Include="Assets\External\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Tint.shader" />
      <None Include="Assets\aa00bb11Super Important Document.txt" />
+     <None Include="Assets\Resources\Dialogue\Outskirts\Grave2.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyThreeDepth.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixRandomizeIntensityGrade.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\VignettingShader.shader" />
@@ -546,6 +561,7 @@
      <None Include="Assets\Resources\Dialogue\WadjetDungeon\OtenkoFireLens.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixURotateMinDepth.shader" />
      <None Include="Assets\Resources\Dialogue\WadjetDungeon\virtuousgunslinger.txt" />
+     <None Include="Assets\Resources\Dialogue\Outskirts\town.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SimpleClear.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlyFiveRandomizeDepth.shader" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixMinGrade.shader" />
@@ -563,6 +579,7 @@
      <None Include="Assets\Resources\Dialogue\DarkLoans\Reset.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySix.shader" />
      <None Include="Assets\Resources\Dialogue\Outskirts\Ivy_Trap_2.txt" />
+     <None Include="Assets\Resources\Dialogue\Outskirts\Bird\caw1.txt" />
      <None Include="Assets\External\Cartoon FX\CartoonFX Readme.txt" />
      <None Include="Assets\External\Generic Evil\Painterly Post Process\Resources\Shaders\PainterlySixRandomizeGradeDepth.shader" />
      <None Include="Assets\Resources\Dialogue\Test\PiledriverTest.txt" />

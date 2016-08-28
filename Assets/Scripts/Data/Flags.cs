@@ -11,12 +11,14 @@ public class Flags : MonoBehaviour {
 	public Dictionary<string, bool> cutscenes;
 	public Dictionary<Vector3, bool> treasurechests;
 	public Dictionary<Vector3, bool> doors;
+	public Dictionary<string, bool> other; //Use for puzzles and weird story flags
 
 	void Awake() {
 		traps = new Dictionary<string, bool>();
 		cutscenes = new Dictionary<string, bool>();
 		treasurechests = new Dictionary<Vector3, bool>();
 		doors = new Dictionary<Vector3, bool>();
+		other = new Dictionary<string, bool>();
 	}
 	//Cutscenes
 	public void AddCutsceneFlag(string d) {
@@ -73,4 +75,20 @@ public class Flags : MonoBehaviour {
 	public bool CheckDoorFlag(Vector3 chest) {
 		return doors[chest];
 	}
+
+	//Other
+	public void AddOtherFlag(string d) {
+		if(!other.ContainsKey(d)) other.Add(d, false);
+	}
+	
+	public void SetOther(string d) {
+		//Works because only one trap allowed per scene
+		other[d] = true;
+	}
+	
+	public bool CheckOtherFlag(string d) {
+		if(other.ContainsKey(d)) return other[d];
+		else return false;
+	}
+
 }

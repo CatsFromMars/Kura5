@@ -9,6 +9,7 @@ public class PlayerContainer : MonoBehaviour {
 	public float playerRunningSpeed = 8f;
 	public float playerPullSpeed = 4f;
 	public float playerRollingSpeed = 18f;
+	private float rotationSpeed = 30f;
 	protected float vertical;
 	protected float horizontal;
 	protected Vector3 lastNonZeroAxis;
@@ -55,6 +56,7 @@ public class PlayerContainer : MonoBehaviour {
 	private float invincibilityFrames = 1f;
 
 	//ANIMATION AND DATA VARIABLES
+	public ElementSwapping lensSwapper;
 	public GameObject weaponObject;
 	private MeshRenderer weaponMeshRenderer;
 	public GameObject soundEffect;
@@ -128,8 +130,10 @@ public class PlayerContainer : MonoBehaviour {
 	void OnEnable() {
 		//When made active
 		//aka when swapped out
-		animator.SetTrigger (Animator.StringToHash ("Switch"));
-		if(switchVoices.Length>0) playVoiceClip(switchVoices[Random.Range(0, switchVoices.Length)]);
+		//if(GameObject.FindGameObjectsWithTag("Player").Length==1) {
+		//	animator.SetTrigger (Animator.StringToHash ("Switch"));
+		//	if(switchVoices.Length>0) playVoiceClip(switchVoices[Random.Range(0, switchVoices.Length)]);
+		//}
 		invincible = false;
 		blinker.active = false;
 		burning = false;
@@ -151,7 +155,7 @@ public class PlayerContainer : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		//updateInput();
+		updateInput();
 		//updateAnimations();
 		if(playerInControl) {
 			if(moving || currentAnim(hash.rollState)) manageMovement();
@@ -197,6 +201,7 @@ public class PlayerContainer : MonoBehaviour {
 			animator.SetBool(hash.holdWeaponBool, holdingWeapon);
 			animator.SetBool(hash.attackBool, attacking);
 			animator.SetBool(hash.targetingBool, targeting);
+			animator.SetBool(Animator.StringToHash("DoingAnything"),Input.anyKeyDown); //Put here for the idle animations
 		}
 		else {
 			animator.SetBool(hash.movingBool, false);
@@ -204,13 +209,14 @@ public class PlayerContainer : MonoBehaviour {
 			animator.SetBool(hash.taiyouBool, false);
 			animator.SetBool(hash.holdWeaponBool, false);
 			animator.SetBool(hash.targetingBool, false);
+			animator.SetBool(Animator.StringToHash("DoingAnything"),true); //disable idle anim on cutcenes
 		}
 		weaponMeshRenderer.enabled = !inCoffin;
 		if(meshObjects!=null && playerArmature!=null) {
 			meshObjects.SetActive(!inCoffin);
 			playerArmature.SetActive(!inCoffin);
 		}
-		if(performingAction) inCoffin = false;
+		if(performingAction||animator.GetBool(Animator.StringToHash("CutsceneMode"))) inCoffin = false;
 		
 	}
 
@@ -247,7 +253,7 @@ public class PlayerContainer : MonoBehaviour {
 		
 		Vector3 targetDirection = new Vector3(horizontal, 0f, vertical);
 		Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-		Quaternion newRotation = Quaternion.Lerp(rigidbody.rotation, targetRotation, 100 * Time.deltaTime);
+		Quaternion newRotation = Quaternion.Lerp(rigidbody.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
 		
 		transform.rotation = newRotation;
 	}
@@ -299,6 +305,10 @@ public class PlayerContainer : MonoBehaviour {
 			inShadow = false;
 			
 		}
+	}
+
+	protected void checkForLensSwap() {
+		if(currentAnim(hash.idleState)) lensSwapper.checkForToggle();
 	}
 
 	public void OnTriggerEnter(Collider other) {
@@ -470,6 +480,10 @@ public class PlayerContainer : MonoBehaviour {
 		voice.pitch = originalPitch;
 		voice.clip = clip;
 		voice.Play();
+	}
+
+	public void switchVoiceClip() {
+		if(switchVoices.Length>0) playVoiceClip(switchVoices[Random.Range(0, switchVoices.Length)]);
 	}
 
 	public void attemptSwap() {

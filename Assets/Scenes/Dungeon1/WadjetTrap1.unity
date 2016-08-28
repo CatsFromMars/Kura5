@@ -14316,7 +14316,7 @@ Transform:
   m_PrefabInternal: {fileID: 1185704658}
   m_GameObject: {fileID: 537585871}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: -2.31999993, z: .200000003}
+  m_LocalPosition: {x: 0, y: -2.43199992, z: .200000003}
   m_LocalScale: {x: .800000131, y: .800000012, z: .799999893}
   m_Children: []
   m_Father: {fileID: 1418550321}
@@ -16698,6 +16698,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: .99999994
       objectReference: {fileID: 0}
+    - target: {fileID: 11451622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: commonLoot
+      value: 
+      objectReference: {fileID: 463196, guid: 0c9c8d236315706459067023b73ab9d5, type: 2}
+    - target: {fileID: 11451622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: rareLoot
+      value: 
+      objectReference: {fileID: 422646, guid: 08e1d6725b060d347a6a4ba48477305d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
   m_RootGameObject: {fileID: 1836384897}
@@ -21132,6 +21140,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: .99999994
       objectReference: {fileID: 0}
+    - target: {fileID: 11451622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: commonLoot
+      value: 
+      objectReference: {fileID: 463196, guid: 0c9c8d236315706459067023b73ab9d5, type: 2}
+    - target: {fileID: 11451622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: rareLoot
+      value: 
+      objectReference: {fileID: 422646, guid: 08e1d6725b060d347a6a4ba48477305d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
   m_RootGameObject: {fileID: 1819880175}
@@ -24032,6 +24048,7 @@ MonoBehaviour:
   rotationSet: 0
   swapsMusic: 0
   newMusic: {fileID: 0}
+  deleteKeys: 0
 --- !u!65 &753652758
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26912,7 +26929,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &872452293
 GameObject:
   m_ObjectHideFlags: 0
@@ -37136,6 +37153,14 @@ Prefab:
       propertyPath: wayPoints.Array.data[1]
       value: 
       objectReference: {fileID: 650386394}
+    - target: {fileID: 11451622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: commonLoot
+      value: 
+      objectReference: {fileID: 463196, guid: 0c9c8d236315706459067023b73ab9d5, type: 2}
+    - target: {fileID: 11451622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: rareLoot
+      value: 
+      objectReference: {fileID: 422646, guid: 08e1d6725b060d347a6a4ba48477305d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
   m_RootGameObject: {fileID: 1418550320}
@@ -38938,7 +38963,7 @@ Transform:
   m_PrefabInternal: {fileID: 583997310}
   m_GameObject: {fileID: 1360077097}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: -2.31999993, z: .200000003}
+  m_LocalPosition: {x: 0, y: -2.43199992, z: .200000003}
   m_LocalScale: {x: .800000131, y: .800000012, z: .799999893}
   m_Children: []
   m_Father: {fileID: 1836384898}
@@ -41778,8 +41803,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   burnSound: {fileID: 8300000, guid: 5afed3d22aedea94b8c52f5fa52379c7, type: 3}
-  commonLoot: {fileID: 461012, guid: f3fba80897916e743bd991382a8fe2f3, type: 2}
-  rareLoot: {fileID: 407162, guid: 6730c99ac753d84418a2738ef8419287, type: 2}
+  commonLoot: {fileID: 463196, guid: 0c9c8d236315706459067023b73ab9d5, type: 2}
+  rareLoot: {fileID: 422646, guid: 08e1d6725b060d347a6a4ba48477305d, type: 2}
   maxLife: 71
   currentLife: 71
   strength: 5
@@ -41929,7 +41954,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 2.4000001
+  m_BaseOffset: 2.5
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!136 &1418550326
@@ -41943,7 +41968,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
-  m_Height: 4
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: -.400000006, z: 0}
 --- !u!135 &1418550327
@@ -48925,6 +48950,7 @@ MonoBehaviour:
   rotationSet: 0
   swapsMusic: 0
   newMusic: {fileID: 0}
+  deleteKeys: 0
 --- !u!23 &1641629176
 Renderer:
   m_ObjectHideFlags: 0
@@ -53536,7 +53562,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &1819880175
 GameObject:
   m_ObjectHideFlags: 0
@@ -53594,8 +53620,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   burnSound: {fileID: 8300000, guid: 5afed3d22aedea94b8c52f5fa52379c7, type: 3}
-  commonLoot: {fileID: 461012, guid: f3fba80897916e743bd991382a8fe2f3, type: 2}
-  rareLoot: {fileID: 407162, guid: 6730c99ac753d84418a2738ef8419287, type: 2}
+  commonLoot: {fileID: 463196, guid: 0c9c8d236315706459067023b73ab9d5, type: 2}
+  rareLoot: {fileID: 422646, guid: 08e1d6725b060d347a6a4ba48477305d, type: 2}
   maxLife: 71
   currentLife: 71
   strength: 5
@@ -53745,7 +53771,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 2.4000001
+  m_BaseOffset: 2.5
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!136 &1819880181
@@ -53759,7 +53785,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
-  m_Height: 4
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: -.400000006, z: 0}
 --- !u!135 &1819880182
@@ -54054,8 +54080,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   burnSound: {fileID: 8300000, guid: 5afed3d22aedea94b8c52f5fa52379c7, type: 3}
-  commonLoot: {fileID: 461012, guid: f3fba80897916e743bd991382a8fe2f3, type: 2}
-  rareLoot: {fileID: 407162, guid: 6730c99ac753d84418a2738ef8419287, type: 2}
+  commonLoot: {fileID: 463196, guid: 0c9c8d236315706459067023b73ab9d5, type: 2}
+  rareLoot: {fileID: 422646, guid: 08e1d6725b060d347a6a4ba48477305d, type: 2}
   maxLife: 71
   currentLife: 71
   strength: 5
@@ -54205,7 +54231,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 2.4000001
+  m_BaseOffset: 2.5
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!136 &1836384903
@@ -54219,7 +54245,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
-  m_Height: 4
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: -.400000006, z: 0}
 --- !u!135 &1836384904
@@ -63331,7 +63357,7 @@ Transform:
   m_PrefabInternal: {fileID: 681704050}
   m_GameObject: {fileID: 2063289238}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: -2.31999993, z: .200000003}
+  m_LocalPosition: {x: 0, y: -2.43199992, z: .200000003}
   m_LocalScale: {x: .800000131, y: .800000012, z: .799999893}
   m_Children: []
   m_Father: {fileID: 1819880176}

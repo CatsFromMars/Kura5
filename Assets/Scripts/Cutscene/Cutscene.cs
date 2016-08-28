@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Cutscene : MonoBehaviour {
 	public TextAsset cutsceneDialogue;
-	public bool showBothPlayers = false;
-	public bool fadeout = true;
+	//public bool showBothPlayers = false;
+	//public bool fadeout = true;
 	private Flags flags;
 	SceneTransition transition;
 	Animator annieAnimator;
@@ -14,7 +14,7 @@ public class Cutscene : MonoBehaviour {
 	void Awake() {
 		GameObject c = GameObject.FindGameObjectWithTag ("GameController");
 		flags = c.GetComponent<Flags>();
-		transition = GameObject.FindGameObjectWithTag("Fader").GetComponent<SceneTransition>();
+		//transition = GameObject.FindGameObjectWithTag("Fader").GetComponent<SceneTransition>();
 		flags.AddCutsceneFlag(cutsceneDialogue.name);
 	}
 
@@ -25,12 +25,13 @@ public class Cutscene : MonoBehaviour {
 	}
 
 	IEnumerator playCutscene() {
-		if(fadeout) {
-			Time.timeScale = 0;
-			yield return StartCoroutine (transition.cutsceneArrange(showBothPlayers));
-		}
+		//if(fadeout) {
+		//	Time.timeScale = 0;
+		//	yield return StartCoroutine (transition.cutsceneArrange(showBothPlayers));
+		//}
+		//if(showBothPlayers) transition.showBothPlayers();
 		yield return StartCoroutine(DisplayDialogue.Speak(cutsceneDialogue));
-		if(fadeout)yield return StartCoroutine (transition.deArrange());
+		//if(showBothPlayers)transition.swapper.hideInactivePlayer();
 		endCutscene();
 	}
 

@@ -25,6 +25,7 @@ public class Restart : MonoBehaviour {
 
 
 	void Awake() {
+		Time.timeScale = 0;
 		if (snapsToCamera) {
 			transform.parent = Camera.main.transform;
 			transform.localPosition = Vector3.zero;
@@ -107,6 +108,7 @@ public class Restart : MonoBehaviour {
 	}
 
 	IEnumerator LoadNewGame() {
+		Time.timeScale = 1;
 		yield return StartCoroutine(go.sceneManager.fadeOut());
 		yield return new WaitForSeconds (1);
 		go.Restart();

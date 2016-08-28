@@ -38,6 +38,10 @@ public class DisplayDialogue : MonoBehaviour {
 		if(emil!=null) emilAnimator = emil.GetComponent<Animator>();
 		if(annieAnimator!=null) annieAnimator.Rebind();
 		if(emilAnimator!=null) emilAnimator.Rebind();
+		GameObject[] emotions = GameObject.FindGameObjectsWithTag ("Emotion");
+		if(emotions!=null) {
+			foreach(GameObject e in emotions) Destroy(e);
+		}
 	}
 	
 	public static AudioClip getSound(string txt) {
@@ -204,6 +208,16 @@ public class DisplayDialogue : MonoBehaviour {
 		}
 	}
 
+	public static void showBothCharacters() {
+		SceneTransition transition = GameObject.FindGameObjectWithTag("Fader").GetComponent<SceneTransition>();
+		transition.showBothPlayers();
+	}
+
+	public static void hideInactiveCharacter() {
+		SceneTransition transition = GameObject.FindGameObjectWithTag("Fader").GetComponent<SceneTransition>();
+		transition.swapper.hideInactivePlayer();
+	}
+
 	public static void toggleCharacter(string txt) {
 		//Really dumb but we're only checking two characters here
 		GameData data = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameData>();
@@ -245,16 +259,21 @@ public class DisplayDialogue : MonoBehaviour {
 		else Debug.LogError("No gameobject found!");
 	}
 
-	public static void finishDialogue() {
+	public static void finishDialogue(bool stopTime=false) {
 		Controller = GameObject.FindGameObjectWithTag("GameController");
 		dialogue = Controller.GetComponent<Dialogue>();
 		dialogue.Hide();
 		if(dialogue.canvas != null) dialogue.canvas.SetActive (true);
-		Time.timeScale = 1;
+		if(!stopTime) Time.timeScale = 1;
 	}
 
-	public static IEnumerator Speak(TextAsset text, bool isLabel=false) {
-		startCutscene ();
+	public static IEnumerator Speak(TextAsset text, bool isLabel=false, bool canSkip=true) {
+		if(GameObject.Find("DialogueBox") != null) DisplayDialogue.finishDialogue(); //only one instance of dialogue can be displayed at a time
+		startCutscene();
+		bool skip = false;
+		MusicManager music = null;
+		if(canSkip) music = GameObject.FindGameObjectWithTag ("Music").GetComponent<MusicManager>();
+
 		bool nullSpeech = true; //Is this a segment that involves NO portraits?
 		Time.timeScale = 0; //Pause
 		//Data get 
@@ -266,6 +285,7 @@ public class DisplayDialogue : MonoBehaviour {
 		if(dialogue.canvas != null) dialogue.canvas.SetActive(false);
 		int index = 0;
 		while(index < dialogueSpeech.Length) {
+
 			//comments. Skip them
 			if(dialogueSpeech[index].Contains("##")) {
 				nullSpeech = false;
@@ -383,7 +403,19 @@ public class DisplayDialogue : MonoBehaviour {
 				continue;
 			}
 
-			if(dialogueSpeech[index].Contains("<PAUSE_FOR=")) {
+			if(dialogueSpeech[index].Contains("SHOW_BOTH_CHARACTERS")) {
+				showBothCharacters();
+				index++;
+				continue;
+			}
+
+			if(dialogueSpeech[index].Contains("HIDE_INACTIVE_CHARACTER")) {
+				hideInactiveCharacter();
+				index++;
+				continue;
+			}
+
+			if(dialogueSpeech[index].Contains("<PAUSE_FOR=") &&!skip) {
 				int time = getWaitTime(dialogueSpeech[index]);
 				float counter = 0;
 				while (counter<time) {
@@ -394,15 +426,27 @@ public class DisplayDialogue : MonoBehaviour {
 				continue;
 			}
 
+			Animator fader = null;
 			if(index < dialogueSpeech.Length) {
 				string speech = dialogueSpeech[index];
+				//Debug.Log("Displaying Dialogue...");
 				speech = speech.Replace("<n>", "\n");
 				//Debug.Log(leftSprite);
 				dialogue.Show(speech, leftSprite, rightSprite, isLabel);
 				rightSprite = null;
 				leftSprite = null;
 				bool push = Input.GetButtonDown("Charge") || Input.GetButtonDown("Confirm");
-				if(!isLabel) while(!dialogue.isFinished) yield return null;
+				if(!isLabel&&!skip) while(!dialogue.isFinished) {
+					//Skip the cutscene here
+					if(Input.GetButtonDown("Inventory")&&canSkip) {
+						skip=true;
+						//dialogue.Hide();
+						break;
+						//Debug.Log("Attempting Skip");
+					}
+					yield return null;
+				}
+				else if(isLabel) while(!dialogue.isFinished) yield return null;
 				index++;
 				continue;
 			}
@@ -413,6 +457,8 @@ public class DisplayDialogue : MonoBehaviour {
 			if(dialogue.canvas != null) dialogue.canvas.SetActive (true);
 			Time.timeScale = 1;
 		}
-		endCutscene ();
+		Debug.Log ("We're done here folks");
+		dialogue.Hide();
+		endCutscene();
 	}
 }

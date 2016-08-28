@@ -130,10 +130,18 @@ ModelImporter:
     7400028: Breath
     7400030: Slam
     7400032: Scream
-    7400034: Flop
+    7400034: Rise
     7400036: Slithertest
     7400038: CoilIdle
     7400040: Death
+    7400042: Sealed
+    7400044: Breakfree
+    7400046: Flop
+    7400048: Bite
+    7400050: Spit
+    7400052: Tailslap
+    7400054: Sealspit
+    7400056: SealPose
     9500000: //RootNode
     13700000: Cube
   materials:
@@ -292,7 +300,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -803,10 +811,10 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Flop
+      name: Rise
       takeName: ArmatureAction
       firstFrame: 219
-      lastFrame: 261
+      lastFrame: 235
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1197,6 +1205,1046 @@ ModelImporter:
       takeName: ArmatureAction_001
       firstFrame: 144
       lastFrame: 167
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Middle
+        weight: 1
+      - path: Armature/Middle/LowerBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarL
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarR
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/LowerJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/UpperJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL/WingTipL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR/WingTipR
+        weight: 1
+      - path: Armature/Middle/Tail0
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21/Tail22
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Sealed
+      takeName: ArmatureAction
+      firstFrame: 375
+      lastFrame: 420
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Middle
+        weight: 1
+      - path: Armature/Middle/LowerBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarL
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarR
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/LowerJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/UpperJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL/WingTipL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR/WingTipR
+        weight: 1
+      - path: Armature/Middle/Tail0
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21/Tail22
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Breakfree
+      takeName: ArmatureAction
+      firstFrame: 420
+      lastFrame: 446
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Middle
+        weight: 1
+      - path: Armature/Middle/LowerBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarL
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarR
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/LowerJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/UpperJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL/WingTipL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR/WingTipR
+        weight: 1
+      - path: Armature/Middle/Tail0
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21/Tail22
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Flop
+      takeName: ArmatureAction
+      firstFrame: 235
+      lastFrame: 260
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Middle
+        weight: 1
+      - path: Armature/Middle/LowerBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarL
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarR
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/LowerJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/UpperJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL/WingTipL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR/WingTipR
+        weight: 1
+      - path: Armature/Middle/Tail0
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21/Tail22
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Bite
+      takeName: ArmatureAction_001
+      firstFrame: 85
+      lastFrame: 140
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Middle
+        weight: 1
+      - path: Armature/Middle/LowerBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarL
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarR
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/LowerJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/UpperJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL/WingTipL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR/WingTipR
+        weight: 1
+      - path: Armature/Middle/Tail0
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21/Tail22
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Spit
+      takeName: ArmatureAction_001
+      firstFrame: 260
+      lastFrame: 299
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Middle
+        weight: 1
+      - path: Armature/Middle/LowerBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarL
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarR
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/LowerJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/UpperJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL/WingTipL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR/WingTipR
+        weight: 1
+      - path: Armature/Middle/Tail0
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21/Tail22
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Tailslap
+      takeName: ArmatureAction_001
+      firstFrame: 300
+      lastFrame: 349
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Middle
+        weight: 1
+      - path: Armature/Middle/LowerBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarL
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarR
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/LowerJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/UpperJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL/WingTipL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR/WingTipR
+        weight: 1
+      - path: Armature/Middle/Tail0
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21/Tail22
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Sealspit
+      takeName: ArmatureAction
+      firstFrame: 420
+      lastFrame: 484
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Middle
+        weight: 1
+      - path: Armature/Middle/LowerBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarL
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/EarR
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/LowerJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/MiddleBack/UpperBack/Neck/UpperJaw
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingL/MiddleWingL/WingTipL
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR
+        weight: 1
+      - path: Armature/Middle/LowerBack/UpperWingR/MiddleWingR/WingTipR
+        weight: 1
+      - path: Armature/Middle/Tail0
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21
+        weight: 1
+      - path: Armature/Middle/Tail0/Tail1/Tail1_001/Tail2/Tail3/Tail4/Tail4_001/Tail5/Tail5_001/Tail6/Tail7/Tail7_001/Tail8/Tail8_001/Tail9/Tail10/Tail11/Tail12/Tail12_001/Tail13/Tail14/Tail15/Tail15_001/Tail16/Tail16_001/Tail17/Tail17_001/Tail18/Tail18_001/Tail19/Tail19_001/Tail20/Tail21/Tail22
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SealPose
+      takeName: ArmatureAction
+      firstFrame: 400
+      lastFrame: 420
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -14,7 +14,7 @@ public class Loader : MonoBehaviour {
 
 	IEnumerator load() {
 		Time.timeScale = 0;
-		while(w.finalTemp.GetValue() != -1000) yield return null;
+		while(w.finalTemp.GetValue() == -1000) yield return null;
 		yield return CoroutineUtil.WaitForRealSeconds (2);
 		fader.gotoScene (initialLevel);
 	}

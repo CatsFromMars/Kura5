@@ -5590,6 +5590,14 @@ Prefab:
       propertyPath: changesElementWithWeather
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13751622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 342abe7c3d946c7419e7d3d6550ae2d4, type: 2}
+    - target: {fileID: 13751622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ce3d751814ff254ea0e845c2192c382, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
   m_RootGameObject: {fileID: 501301938}
@@ -5864,7 +5872,7 @@ Transform:
   m_PrefabInternal: {fileID: 1757087024}
   m_GameObject: {fileID: 120718232}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: -2.31999993, z: .200000003}
+  m_LocalPosition: {x: 0, y: -2.43199992, z: .200000003}
   m_LocalScale: {x: .800000131, y: .800000012, z: .799999893}
   m_Children: []
   m_Father: {fileID: 1186102633}
@@ -19858,7 +19866,7 @@ Transform:
   m_PrefabInternal: {fileID: 99184681}
   m_GameObject: {fileID: 482929842}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: -2.31999993, z: .200000003}
+  m_LocalPosition: {x: 0, y: -2.43199992, z: .200000003}
   m_LocalScale: {x: .800000131, y: .800000012, z: .799999893}
   m_Children: []
   m_Father: {fileID: 501301939}
@@ -19961,6 +19969,14 @@ Prefab:
       propertyPath: wayPoints.Array.data[2]
       value: 
       objectReference: {fileID: 559532083}
+    - target: {fileID: 13751622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 342abe7c3d946c7419e7d3d6550ae2d4, type: 2}
+    - target: {fileID: 13751622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ce3d751814ff254ea0e845c2192c382, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
   m_RootGameObject: {fileID: 1503365532}
@@ -20256,7 +20272,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 2.4000001
+  m_BaseOffset: 2.5
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!136 &501301944
@@ -20270,7 +20286,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
-  m_Height: 4
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: -.400000006, z: 0}
 --- !u!135 &501301945
@@ -24444,9 +24460,9 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: eaac6432796aada46b3ba1fe642d93d9, type: 2}
+  - {fileID: 2100000, guid: 4ce3d751814ff254ea0e845c2192c382, type: 2}
   - {fileID: 2100000, guid: 0605575a2c14a7e43a70a96a8690fa1d, type: 2}
-  - {fileID: 2100000, guid: e2363ccef62d4094abc1062de5e3c090, type: 2}
+  - {fileID: 2100000, guid: 342abe7c3d946c7419e7d3d6550ae2d4, type: 2}
   - {fileID: 2100000, guid: 3ef03607bbc54b843875b5e5a433e9e3, type: 2}
   - {fileID: 2100000, guid: 9ef6f4d22bbdf3e47962297a877c62a7, type: 2}
   - {fileID: 2100000, guid: 38b3b7b3da017e940a3d8fd167b3dfa6, type: 2}
@@ -27316,6 +27332,14 @@ Prefab:
       propertyPath: changesElementWithWeather
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13751622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 342abe7c3d946c7419e7d3d6550ae2d4, type: 2}
+    - target: {fileID: 13751622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ce3d751814ff254ea0e845c2192c382, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
   m_RootGameObject: {fileID: 1486949579}
@@ -30808,6 +30832,7 @@ MonoBehaviour:
   rotationSet: 0
   swapsMusic: 0
   newMusic: {fileID: 0}
+  deleteKeys: 0
 --- !u!65 &784042284
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31290,7 +31315,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 2.4000001
+  m_BaseOffset: 2.5
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!136 &804194227
@@ -31304,7 +31329,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
-  m_Height: 4
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: -.400000006, z: 0}
 --- !u!135 &804194228
@@ -35913,6 +35938,14 @@ Prefab:
       propertyPath: changesElementWithWeather
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13751622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 342abe7c3d946c7419e7d3d6550ae2d4, type: 2}
+    - target: {fileID: 13751622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ce3d751814ff254ea0e845c2192c382, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
   m_RootGameObject: {fileID: 804194221}
@@ -40474,7 +40507,7 @@ Transform:
   m_PrefabInternal: {fileID: 929337940}
   m_GameObject: {fileID: 1012453276}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: -2.31999993, z: .200000003}
+  m_LocalPosition: {x: 0, y: -2.43199992, z: .200000003}
   m_LocalScale: {x: .800000131, y: .800000012, z: .799999893}
   m_Children: []
   m_Father: {fileID: 804194222}
@@ -45559,9 +45592,9 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: eaac6432796aada46b3ba1fe642d93d9, type: 2}
+  - {fileID: 2100000, guid: 4ce3d751814ff254ea0e845c2192c382, type: 2}
   - {fileID: 2100000, guid: 0605575a2c14a7e43a70a96a8690fa1d, type: 2}
-  - {fileID: 2100000, guid: e2363ccef62d4094abc1062de5e3c090, type: 2}
+  - {fileID: 2100000, guid: 342abe7c3d946c7419e7d3d6550ae2d4, type: 2}
   - {fileID: 2100000, guid: 3ef03607bbc54b843875b5e5a433e9e3, type: 2}
   - {fileID: 2100000, guid: 9ef6f4d22bbdf3e47962297a877c62a7, type: 2}
   - {fileID: 2100000, guid: 38b3b7b3da017e940a3d8fd167b3dfa6, type: 2}
@@ -47867,7 +47900,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 2.4000001
+  m_BaseOffset: 2.5
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!136 &1186102638
@@ -47881,7 +47914,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
-  m_Height: 4
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: -.400000006, z: 0}
 --- !u!135 &1186102639
@@ -48116,7 +48149,7 @@ Transform:
   m_PrefabInternal: {fileID: 650807106}
   m_GameObject: {fileID: 1194779549}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: -2.31999993, z: .200000003}
+  m_LocalPosition: {x: 0, y: -2.43199992, z: .200000003}
   m_LocalScale: {x: .800000131, y: .800000012, z: .799999893}
   m_Children: []
   m_Father: {fileID: 1486949580}
@@ -63393,7 +63426,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 2.4000001
+  m_BaseOffset: 2.5
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!136 &1486949585
@@ -63407,7 +63440,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
-  m_Height: 4
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: -.400000006, z: 0}
 --- !u!135 &1486949586
@@ -63837,7 +63870,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 2.4000001
+  m_BaseOffset: 2.5
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!136 &1503365538
@@ -63851,7 +63884,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
-  m_Height: 4
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: -.400000006, z: 0}
 --- !u!135 &1503365539
@@ -66224,7 +66257,7 @@ Transform:
   m_PrefabInternal: {fileID: 483990310}
   m_GameObject: {fileID: 1543222080}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: -2.31999993, z: .200000003}
+  m_LocalPosition: {x: 0, y: -2.43199992, z: .200000003}
   m_LocalScale: {x: .800000131, y: .800000012, z: .799999893}
   m_Children: []
   m_Father: {fileID: 1503365533}
@@ -67229,9 +67262,9 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: eaac6432796aada46b3ba1fe642d93d9, type: 2}
+  - {fileID: 2100000, guid: 4ce3d751814ff254ea0e845c2192c382, type: 2}
   - {fileID: 2100000, guid: 0605575a2c14a7e43a70a96a8690fa1d, type: 2}
-  - {fileID: 2100000, guid: e2363ccef62d4094abc1062de5e3c090, type: 2}
+  - {fileID: 2100000, guid: 342abe7c3d946c7419e7d3d6550ae2d4, type: 2}
   - {fileID: 2100000, guid: 3ef03607bbc54b843875b5e5a433e9e3, type: 2}
   - {fileID: 2100000, guid: 9ef6f4d22bbdf3e47962297a877c62a7, type: 2}
   - {fileID: 2100000, guid: 38b3b7b3da017e940a3d8fd167b3dfa6, type: 2}
@@ -76275,6 +76308,14 @@ Prefab:
       propertyPath: changesElementWithWeather
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13751622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 342abe7c3d946c7419e7d3d6550ae2d4, type: 2}
+    - target: {fileID: 13751622, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ce3d751814ff254ea0e845c2192c382, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 072e79ce311ba4c448a96e2703996720, type: 2}
   m_RootGameObject: {fileID: 1186102632}
@@ -76353,9 +76394,9 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: eaac6432796aada46b3ba1fe642d93d9, type: 2}
+  - {fileID: 2100000, guid: 4ce3d751814ff254ea0e845c2192c382, type: 2}
   - {fileID: 2100000, guid: 0605575a2c14a7e43a70a96a8690fa1d, type: 2}
-  - {fileID: 2100000, guid: e2363ccef62d4094abc1062de5e3c090, type: 2}
+  - {fileID: 2100000, guid: 342abe7c3d946c7419e7d3d6550ae2d4, type: 2}
   - {fileID: 2100000, guid: 3ef03607bbc54b843875b5e5a433e9e3, type: 2}
   - {fileID: 2100000, guid: 9ef6f4d22bbdf3e47962297a877c62a7, type: 2}
   - {fileID: 2100000, guid: 38b3b7b3da017e940a3d8fd167b3dfa6, type: 2}
@@ -85471,9 +85512,9 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: eaac6432796aada46b3ba1fe642d93d9, type: 2}
+  - {fileID: 2100000, guid: 4ce3d751814ff254ea0e845c2192c382, type: 2}
   - {fileID: 2100000, guid: 0605575a2c14a7e43a70a96a8690fa1d, type: 2}
-  - {fileID: 2100000, guid: e2363ccef62d4094abc1062de5e3c090, type: 2}
+  - {fileID: 2100000, guid: 342abe7c3d946c7419e7d3d6550ae2d4, type: 2}
   - {fileID: 2100000, guid: 3ef03607bbc54b843875b5e5a433e9e3, type: 2}
   - {fileID: 2100000, guid: 9ef6f4d22bbdf3e47962297a877c62a7, type: 2}
   - {fileID: 2100000, guid: 38b3b7b3da017e940a3d8fd167b3dfa6, type: 2}

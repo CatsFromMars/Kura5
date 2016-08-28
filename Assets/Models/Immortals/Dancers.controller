@@ -7,7 +7,13 @@ AnimatorController:
   m_PrefabInternal: {fileID: 0}
   m_Name: Dancers
   serializedVersion: 2
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: CutsceneAction
+    m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -20,18 +26,53 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!1101 &110148994
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110270868}
+  m_DstState: {fileID: 110215662}
+  m_TransitionDuration: .0259740259
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: CutsceneAction
+    m_EventTreshold: 1
+    m_ExitTime: .974025965
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1102 &110215662
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Idle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400002, guid: fa51930288e3311418308aeec9448462, type: 3}
+  m_ParentStateMachine: {fileID: 110770868}
+  m_Position: {x: 48, y: 144, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110270868
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ArmatureAction
+  m_Name: Dance
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400002, guid: fdc8595addb91e149b4eb9e5681d7ada, type: 3}
   m_ParentStateMachine: {fileID: 110770868}
-  m_Position: {x: 50, y: 50, z: 0}
+  m_Position: {x: 48, y: 72, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -45,9 +86,17 @@ StateMachine:
   m_DefaultState: {fileID: 110270868}
   m_States:
   - {fileID: 110270868}
+  - {fileID: 110215662}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
-  m_OrderedTransitions: {}
+  m_OrderedTransitions:
+    data:
+      first: {fileID: 110215662}
+      second: []
+    data:
+      first: {fileID: 110270868}
+      second:
+      - {fileID: 110148994}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

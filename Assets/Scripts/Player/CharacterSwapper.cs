@@ -93,6 +93,7 @@ public class CharacterSwapper : MonoBehaviour {
 			emil.transform.position = spawnPoint;
 			//annie.active = false;
 			emil.active = true; //Activate
+			emilAnimator.SetTrigger (Animator.StringToHash ("Switch"));
 			annieAnimator.SetTrigger (Animator.StringToHash ("Leave"));
 			StartCoroutine(deactivateOnAnimEnd(annieAnimator)); //Deactivate
 			data.currentPlayer = GameData.player.Emil;
@@ -105,6 +106,7 @@ public class CharacterSwapper : MonoBehaviour {
 			annie.transform.position = spawnPoint;
 			//emil.active = false;
 			annie.active = true; //Activate
+			annieAnimator.SetTrigger (Animator.StringToHash ("Switch"));
 			emilAnimator.SetTrigger (Animator.StringToHash ("Leave"));
 			StartCoroutine(deactivateOnAnimEnd(emilAnimator)); //Deactivate
 

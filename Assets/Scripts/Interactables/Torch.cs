@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Torch : Activatable {
 	private GameObject fire;
+	private GameObject[] o;
 
 	void Awake() {
 		fire = transform.FindChild("Fire").gameObject;
@@ -19,19 +20,35 @@ public class Torch : Activatable {
 		}
 	}
 
+	public void douse() {
+		fire.SetActive(false);
+		darkenRoom();
+		audio.Play();
+		Deactivate();
+	}
+
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "EnemyWeapon") {
 			if(other.gameObject.GetComponent<WeaponData>().element == "Fire") {
-				fire.SetActive(true);
-				brightenRoom();
-				audio.Play();
-				Activate();
+				light();
 			}
 		}
 	}
 
+	public void light() {
+		fire.SetActive(true);
+		brightenRoom();
+		audio.Play();
+		Activate();
+	}
+
 	void brightenRoom() {
 		//Disables all GameObjects tagged as Occlusion
-		foreach (GameObject i in GameObject.FindGameObjectsWithTag("Occlusion")) i.SetActive (false);
+		o = GameObject.FindGameObjectsWithTag ("Occlusion");
+		foreach (GameObject i in o) i.SetActive (false);
+	}
+
+	void darkenRoom() {
+		//if(o!=null) foreach (GameObject i in o) if(i!=null) i.SetActive (true);
 	}
 }

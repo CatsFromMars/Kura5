@@ -109,6 +109,9 @@ public class SceneTransition : MonoBehaviour
 		StartCoroutine (coroutine);
 	}
 
+	public void showBothPlayers() {
+		swapper.displayBoth();
+	}
 
 	public IEnumerator cutsceneArrange(bool displayBothPlayers=false) {
 		// Make sure the texture is enabled.

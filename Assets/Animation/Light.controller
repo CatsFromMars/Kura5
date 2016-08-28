@@ -8,11 +8,11 @@ AnimatorController:
   m_Name: Light
   serializedVersion: 2
   m_AnimatorParameters:
-  - m_Name: Dark
-    m_Type: 4
+  - m_Name: Disable
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
@@ -26,7 +26,7 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1101 &110109236
+--- !u!1101 &110153932
 Transition:
   serializedVersion: 2
   m_ObjectHideFlags: 3
@@ -35,33 +35,17 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110223448}
   m_DstState: {fileID: 110212274}
-  m_TransitionDuration: .0158781633
+  m_TransitionDuration: .16483517
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Dark
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
     m_EventTreshold: 0
-    m_ExitTime: .917127073
-  m_Atomic: 1
-  m_Solo: 0
-  m_Mute: 0
-  m_CanTransitionToSelf: 0
---- !u!1101 &110163970
-Transition:
-  serializedVersion: 2
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_SrcState: {fileID: 110212274}
-  m_DstState: {fileID: 110223448}
-  m_TransitionDuration: .0254185311
-  m_TransitionOffset: 0
-  m_Conditions:
+    m_ExitTime: .835164845
   - m_ConditionMode: 1
-    m_ConditionEvent: Dark
+    m_ConditionEvent: Disable
     m_EventTreshold: 0
-    m_ExitTime: .876033068
+    m_ExitTime: .835164845
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -103,7 +87,7 @@ StateMachine:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
-  m_DefaultState: {fileID: 110212274}
+  m_DefaultState: {fileID: 110223448}
   m_States:
   - {fileID: 110223448}
   - {fileID: 110212274}
@@ -111,13 +95,12 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110212274}
-      second:
-      - {fileID: 110163970}
-    data:
       first: {fileID: 110223448}
       second:
-      - {fileID: 110109236}
+      - {fileID: 110153932}
+    data:
+      first: {fileID: 110212274}
+      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

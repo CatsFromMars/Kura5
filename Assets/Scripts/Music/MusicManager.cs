@@ -36,6 +36,11 @@ public class MusicManager : MonoBehaviour {
 		if(!src.isPlaying) src.Play();
 	}
 
+	public void revertToPrevious() {
+		changeMusic(previousMusic);
+		startMusic ();
+	}
+
 	public void changeMusic(AudioClip music, float delay=0) {
 		//Wrapper
 		stopMusic();

@@ -87,7 +87,6 @@ public class LaLupeTutorial : MonoBehaviour {
 				done = true;
 				StartCoroutine(startCutscene());
 			}
-			else Destroy(collision.gameObject);
 		}
 	}
 

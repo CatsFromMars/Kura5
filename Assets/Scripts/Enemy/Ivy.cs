@@ -36,7 +36,7 @@ public class Ivy : EnemyClass {
 	}
 
 	void DecideAttack() {
-		if(distanceFromPlayer <= range) {
+		if(distanceFromPlayer <= range&&Time.timeScale!=0) {
 			animator.SetBool(hash.attackBool, false);
 			if(attackTimer >= attackWaitTime) {
 				animator.SetBool(hash.attackBool, true);

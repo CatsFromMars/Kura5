@@ -8,6 +8,7 @@ public class IvyCutscene : MonoBehaviour {
 	private bool activatedIvy = false;
 	private bool ivyDied = false;
 	private bool startedBossFight = false;
+	private Flags flags;
 
 	public Transform inisibleWall;
 	private PlayerContainer player;
@@ -25,6 +26,7 @@ public class IvyCutscene : MonoBehaviour {
 	public TextAsset ivyCutscene;
 
 	void Start() {
+		flags = GameObject.FindGameObjectWithTag ("GameController").GetComponent<Flags>();
 		emil.SetInteger (Animator.StringToHash("CutsceneAction"), 5); //Have Emil hide himself
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerContainer>();
 		StartCoroutine (startTrapCutscene());
@@ -56,7 +58,7 @@ public class IvyCutscene : MonoBehaviour {
 	bool checkForIvyKill() {
 		foreach(Animator ivy in ivies) {
 			if(ivy.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base Layer.Dying")) {
-				ivy.gameObject.name = "LookIvy";
+				ivy.transform.root.gameObject.name = "LookIvy";
 				deadIvy = ivy.gameObject;
 				return true;
 			}
@@ -69,6 +71,7 @@ public class IvyCutscene : MonoBehaviour {
 		yield return new WaitForSeconds(1);
 		yield return StartCoroutine(DisplayDialogue.Speak(ivyCutscene));
 		Destroy (deadIvy.transform.root.gameObject);
+		flags.SetCutscene(ivyCutscene.name);
 	}
 
 	IEnumerator startTrapCutscene() {

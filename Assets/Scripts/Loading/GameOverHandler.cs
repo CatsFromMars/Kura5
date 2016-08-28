@@ -12,7 +12,9 @@ public class GameOverHandler : MonoBehaviour {
 
 	public void Update() {
 		//Check for Game Over
-		if (data.annieCurrentLife <= 0 && data.emilCurrentLife <= 0 && !data.isGameOver) {
+		bool a = data.annieCurrentLife <= 0 || !data.canSwapToAnnie;
+		bool e = data.emilCurrentLife <= 0 || !data.canSwapToEmil;
+		if (a && e && !data.isGameOver) {
 			setGameOver();
 		}
 	}

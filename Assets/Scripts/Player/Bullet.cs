@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour {
 	public Transform elec;
 	private bool hit = false;
 	public bool cutSceneBullet = false; //Cutscene bullets move in paused time
-	public float aliveTime = 5;
+	public float aliveTime = 1f;
 	
 	//ACTIVE BULLET TIME
 	private float elapsedTime;
@@ -28,8 +28,9 @@ public class Bullet : MonoBehaviour {
 	}
 	
 	void FixedUpdate() {
-		transform.position += transform.forward * velocity * Time.unscaledDeltaTime;
-		elapsedTime+=Time.unscaledDeltaTime;
+		//Debug.Log (elapsedTime);
+		transform.position += transform.forward * velocity * Time.deltaTime;
+		elapsedTime+=(Time.deltaTime);
 		if(elapsedTime >= aliveTime) Destroy (this.gameObject);
 	}
 	

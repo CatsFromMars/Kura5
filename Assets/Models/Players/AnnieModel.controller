@@ -31,7 +31,22 @@ State:
   m_Motions:
   - {fileID: 7400050, guid: faffeb5bb561a794dac02602f15f5b1a, type: 3}
   m_ParentStateMachine: {fileID: 110709552}
-  m_Position: {x: 48, y: 48, z: 0}
+  m_Position: {x: 60, y: 72, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110269206
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: LongIdle
+  m_Speed: .800000012
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400052, guid: faffeb5bb561a794dac02602f15f5b1a, type: 3}
+  m_ParentStateMachine: {fileID: 110709552}
+  m_Position: {x: 60, y: 120, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -42,9 +57,10 @@ StateMachine:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
-  m_DefaultState: {fileID: 110209552}
+  m_DefaultState: {fileID: 110269206}
   m_States:
   - {fileID: 110209552}
+  - {fileID: 110269206}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions: {}

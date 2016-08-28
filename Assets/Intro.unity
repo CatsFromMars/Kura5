@@ -2034,7 +2034,7 @@ AudioSource:
   m_GameObject: {fileID: 530879872}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 2d93481b429de5a4ead8d82b834c22ab, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 435b705268af2c841b56d36e6d9da795, type: 3}
   m_PlayOnAwake: 1
   m_Volume: .75
   m_Pitch: 1
@@ -8994,8 +8994,6 @@ GameObject:
   - 92: {fileID: 1897171895}
   - 124: {fileID: 1897171894}
   - 81: {fileID: 1897171893}
-  - 114: {fileID: 1897171899}
-  - 114: {fileID: 1897171898}
   - 114: {fileID: 1897171892}
   m_Layer: 0
   m_Name: Main Camera
@@ -9012,16 +9010,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1897171891}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97b4768c3683045e4bfdb2e78272970c, type: 3}
+  m_Script: {fileID: 11500000, guid: a773099f140e846f7835d27351846623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshhold: .25
-  intensity: .75
-  blurSize: 1
-  resolution: 1
-  blurIterations: 1
-  blurType: 0
-  fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
+  tweakMode: 0
+  screenBlendMode: 1
+  hdr: 0
+  sepBlurSpread: 2.5
+  quality: 1
+  bloomIntensity: 1
+  bloomThreshhold: .5
+  bloomThreshholdColor: {r: 1, g: 1, b: 1, a: 1}
+  bloomBlurIterations: 1
+  hollywoodFlareBlurIterations: 2
+  flareRotation: 0
+  lensflareMode: 1
+  hollyStretchWidth: 2.5
+  lensflareIntensity: 0
+  lensflareThreshhold: .300000012
+  lensFlareSaturation: .75
+  flareColorA: {r: .400000006, g: .400000006, b: .800000012, a: .75}
+  flareColorB: {r: .400000006, g: .800000012, b: .800000012, a: .75}
+  flareColorC: {r: .800000012, g: .400000006, b: .800000012, a: .75}
+  flareColorD: {r: .800000012, g: .400000006, b: 0, a: .75}
+  blurWidth: 1
+  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
+    type: 3}
+  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
+  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
+  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
+  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
+    type: 3}
 --- !u!81 &1897171893
 AudioListener:
   m_ObjectHideFlags: 0
@@ -9089,41 +9108,6 @@ Transform:
   - {fileID: 941575577}
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!114 &1897171898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1897171891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0923359e9e352a4b9b11c7b7161ad67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Radius: .400000006
-  m_SampleCount: 2
-  m_OcclusionIntensity: 1
-  m_Blur: 0
-  m_Downsampling: 1
-  m_OcclusionAttenuation: 1
-  m_MinZ: .0500000007
-  m_SSAOShader: {fileID: 4800000, guid: 43ca18288c424f645aaa1e9e07f04c50, type: 3}
-  m_RandomTexture: {fileID: 2800000, guid: e80c3c84ea861404d8a427db8b7abf04, type: 3}
---- !u!114 &1897171899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1897171891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9b41ef81e8d74f3a814d061ec18b3a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blendMode: 2
-  intensity: 1
-  texture: {fileID: 2800000, guid: 1c54c187a312f854da533c52643df96e, type: 3}
-  overlayShader: {fileID: 4800000, guid: 8c81db0e527d24acc9bcec04e87781bd, type: 3}
 --- !u!1 &1916709897
 GameObject:
   m_ObjectHideFlags: 0

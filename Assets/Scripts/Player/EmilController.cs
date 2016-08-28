@@ -59,24 +59,25 @@ public class EmilController : PlayerContainer {
 			handleTargeting();
 			handleParticeEffects();
 			handleBurning();
+			checkForLensSwap();
 			//handleCape();
 			absorb(1);
-			handleSlasherSmileEffect();
+			//handleSlasherSmileEffect();
 			changeWeaponColor();
 		}
 	}
 
-	void handleSlasherSmileEffect() {
-		if(slashCounter >= smileThreshold) {
-			smile.gameObject.SetActive(true);
-			darkenedFace.gameObject.SetActive(true);
-		}
-		else if(slashCounter >= smileThreshold+5) {
-			smile.gameObject.SetActive(false);
-			darkenedFace.gameObject.SetActive(false);
-			slashCounter = 0;
-		}
-	}
+//	void handleSlasherSmileEffect() {
+//		if(slashCounter >= smileThreshold) {
+//			smile.gameObject.SetActive(true);
+//			darkenedFace.gameObject.SetActive(true);
+//		}
+//		else if(slashCounter >= smileThreshold+5) {
+//			smile.gameObject.SetActive(false);
+//			darkenedFace.gameObject.SetActive(false);
+//			slashCounter = 0;
+//		}
+//	}
 
 //	void handleCape() {
 //		bool capeWings = currentAnim (hash.rollState) || currentAnim(hash.hurtState);
@@ -169,7 +170,7 @@ public class EmilController : PlayerContainer {
 				Destroy(lockOn.gameObject);
 				zoomToPlayer();
 			}
-			if(!dead) {
+			if(!dead && agent.hasPath) {
 				agent.ResetPath();
 				agent.speed = originalAgentSpeed;
 				agent.stoppingDistance = originalStoppingDistance;
@@ -211,7 +212,10 @@ public class EmilController : PlayerContainer {
 				float dist = Vector3.Distance(transform.position, target.position);
 				RaycastHit hit;
 				if(Physics.Raycast (transform.position, targetDir, out hit, dist)) {
-					if(hit.collider.gameObject.tag == "Enemy") hitEnemy(hit);
+					if(hit.collider.gameObject.tag == "Enemy") {
+						hitEnemy(hit);
+						if(checkForBossSegment(hit)) break;
+					}
 					else if(hit.collider.gameObject.tag == "Breakable") Smash(hit);
 					else if(hit.collider.gameObject.tag == "Wall") hitWall(hit);
 			
@@ -259,6 +263,11 @@ public class EmilController : PlayerContainer {
 	void hitWall(RaycastHit hit) {
 		makeSound (wallHit);
 		Instantiate (soundEffect, hit.point, Quaternion.identity);
+	}
+
+
+	bool checkForBossSegment(RaycastHit hit) {
+		return hit.collider.GetComponent<EnemyClass>() != null;
 	}
 	
 	void hitEnemy(RaycastHit hit) {

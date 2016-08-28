@@ -4,10 +4,16 @@ using System.Collections;
 public class EmilShadow : MonoBehaviour {
 	//Dumb workaround for issue with Emil's shadow
 	public Transform bone;
+	private float y;
+	void Awake() {
+		y = transform.localPosition.y;
+	}
 
 	// Update is called once per frame
 	void Update () {
-		Vector3 pos = new Vector3 (bone.transform.position.x, this.transform.position.y, bone.transform.position.z);
-		this.transform.position = pos;
+		transform.position = bone.transform.position;
+		Vector3 pos = transform.localPosition;
+		pos.y = y;
+		transform.localPosition = pos;
 	}
 }

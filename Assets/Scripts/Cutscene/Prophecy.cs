@@ -10,7 +10,7 @@ public class Prophecy : MonoBehaviour {
 	}
 
 	IEnumerator introSequence() {
-		yield return StartCoroutine(DisplayDialogue.Speak(prophecy));
+		yield return StartCoroutine(DisplayDialogue.Speak(prophecy,false,false));
 		fader.SetBool(Animator.StringToHash("fadebool"),true);
 		float t = 0;
 		float f = AudioListener.volume;

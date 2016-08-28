@@ -63,6 +63,7 @@ ModelImporter:
     7400004: Dissapear
     7400006: Wink
     7400008: Pose
+    7400010: Snooze
     9500000: //RootNode
     13700000: Cube_001
     13700002: Circle
@@ -307,6 +308,64 @@ ModelImporter:
       takeName: Default Take
       firstFrame: 98.9000015
       lastFrame: 99
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone_001
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_002
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_002/Bone_003
+        weight: 1
+      - path: Armature/Bone/Bone_001/Bone_002/Bone_003/Bone_004
+        weight: 1
+      - path: Armature/Bone/Bone_001/EyeL
+        weight: 1
+      - path: Armature/Bone/Bone_001/EyeR
+        weight: 1
+      - path: Armature/Bone/Bone_001/Petals
+        weight: 1
+      - path: Armature/Bone_005
+        weight: 1
+      - path: Armature/Bone_005/Bone_006
+        weight: 1
+      - path: Armature/Bone_005/Bone_006/Bone_007
+        weight: 1
+      - path: Armature/Bone_008
+        weight: 1
+      - path: Armature/Bone_009
+        weight: 1
+      - path: Circle
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Snooze
+      takeName: ArmatureAction
+      firstFrame: 110
+      lastFrame: 129
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

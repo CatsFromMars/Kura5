@@ -63,15 +63,15 @@ public class LiveWeather : MonoBehaviour {
 	
 
 	IEnumerator getLocation() {
-		WWW cityRequest = new WWW("http://www.geoplugin.net/json.gp?ip=" + currentIP); //get our location info
+		WWW cityRequest = new WWW("freegeoip.net/json/" + currentIP); //get our location info
 		yield return cityRequest;
 		if (cityRequest.error == null || cityRequest.error == "")
 		{
 			var N = JSON.Parse(cityRequest.text);
-			string code = N["geoplugin_countryCode"].Value;
-			string country = N["geoplugin_countryName"].Value;
-			string region = N["geoplugin_regionCode"].Value;
-			string city = (N["geoplugin_city"].Value).Replace(" ", "");
+			string code = N["country_code"].Value;
+			string country = N["country_name"].Value;
+			string region = N["region_code"].Value;
+			string city = (N["city"].Value).Replace(" ", "");
 			currentLocation = city+","+region+","+code;
 			Debug.Log(currentLocation);
 		}
@@ -82,7 +82,7 @@ public class LiveWeather : MonoBehaviour {
 
 	IEnumerator getLiveWeather() {
 		WWW weatherRequest = new WWW("http://api.openweathermap.org/data/2.5/weather?q=" + currentLocation + "&units=metric" + "&APPID=" + APIKEY); //get our weather
-		//Debug.Log (weatherRequest.url);
+		Debug.Log (weatherRequest.url);
 		yield return weatherRequest;
 		if (weatherRequest.error == null || weatherRequest.error == "")
 		{

@@ -44,11 +44,11 @@ public class AnnieController : PlayerContainer {
 	// Update is called once per frame
 	void Update () {
 		if (playerInControl) {
-			updateInput();
+			//updateInput();
 			updateAnimations();
 			//handleCombos();
 			handleTargeting();
-
+			checkForLensSwap();
 			absorb(1);
 		}
 	}

@@ -10,7 +10,7 @@ public class Mummy : PatrolEnemy {
 	public WeaponData weapon;
 	private bool listeningForPlayer = false;
 	public GameObject fireEffect;
-	private int fireCounter = 3;
+	private int fireCounter = 6;
 	private GameObject[] occluders;
 	
 	// Update is called once per frame
@@ -75,7 +75,7 @@ public class Mummy : PatrolEnemy {
 		weapon.element = "Fire";
 		for (int i=0; i<fireCounter; i++) {
 			yield return new WaitForSeconds(2);
-			takeDamage(1, "Fire");
+			takeDamage(3, "Fire");
 		}
 
 		patrolWaitTime = 10;

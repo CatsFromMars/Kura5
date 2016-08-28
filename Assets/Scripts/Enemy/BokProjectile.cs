@@ -10,6 +10,7 @@ public class BokProjectile : MonoBehaviour {
 	//HOW FAST SHOULD THE BULLET GO?
 	private Vector3 direction;
 	public float velocity = 100f;
+	private float maxAngle = 65;
 	
 	//BE SURE TO CHANGE THIS LATER. MAKE IT NOT PUBLIC.
 	public Transform hitEffect;
@@ -18,12 +19,20 @@ public class BokProjectile : MonoBehaviour {
 	bool gooSpawned = false;
 
 	void Awake() {
+		lookAtPlayer();
+		direction = transform.forward;
+	}
+
+	void lookAtPlayer() {
 		GameObject player = GameObject.FindGameObjectWithTag ("Player");
 		if (player != null) {
-			Vector3 pos = new Vector3(player.transform.position.x, player.transform.position.y-1f, player.transform.position.z);
-			transform.LookAt(pos);
+			Vector3 target = new Vector3(player.transform.position.x, player.transform.position.y-1f, player.transform.position.z);
+			Vector3 look = target - transform.position;
+			//transform.LookAt(pos);
+			Quaternion q = Quaternion.LookRotation(look);
+			if (Quaternion.Angle (q, transform.rotation) <= maxAngle)
+				transform.rotation = q;
 		}
-		direction = transform.forward;
 	}
 	
 	void FixedUpdate() {

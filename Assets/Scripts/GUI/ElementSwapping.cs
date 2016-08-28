@@ -89,26 +89,26 @@ public class ElementSwapping : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		updateDisplay ();
-		checkForToggle ();
+		//checkForToggle ();
 		horiz = Input.GetAxisRaw ("Horizontal");
 	}
-
-	void checkForToggle() {
+	
+	public void checkForToggle() {
 		if(Input.GetButton("Swap")) { //if holding button down
-			if(!open) {
+			if(!open&&Time.timeScale!=0) {
 				open = true;
 				Time.timeScale = 0;
 				arrow.gameObject.SetActive(true);
 				makeSound(openSound);
 			}
-			if(Input.GetButtonDown("SelectLeft")) {
-				leftAnim.SetTrigger(Animator.StringToHash("Select"));
-				toggleLens(1);
-			}
-			else if(Input.GetButtonDown("SelectRight")) {
-				rightAnim.SetTrigger(Animator.StringToHash("Select"));
-				toggleLens(-1);
-			}
+//			if(Input.GetButtonDown("SelectLeft")) {
+//				leftAnim.SetTrigger(Animator.StringToHash("Select"));
+//				toggleLens(1);
+//			}
+//			else if(Input.GetButtonDown("SelectRight")) {
+//				rightAnim.SetTrigger(Animator.StringToHash("Select"));
+//				toggleLens(-1);
+//			}
 
 			if(horiz == -1) {
 				pushCounter++;
@@ -118,7 +118,7 @@ public class ElementSwapping : MonoBehaviour {
 					toggleLens(1);
 				}
 			}
-			else if(horiz==1) {
+			else if(horiz == 1) {
 				pushCounter++;
 				if(pushCounter>=pushWaitTime) {
 					pushCounter = 0;

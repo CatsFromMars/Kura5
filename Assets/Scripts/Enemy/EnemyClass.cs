@@ -27,6 +27,7 @@ public class EnemyClass : MonoBehaviour {
 	public bool changesElementWithWeather;
 	public string originalElement;
 	public WeaponData selfWeaponData;
+	private float backStab = 1.3f;
 
 	//DETECTION VARIABLES
 	protected bool trackingPlayer = false;
@@ -202,6 +203,7 @@ public class EnemyClass : MonoBehaviour {
 					stunned = true;
 					animator.SetTrigger(hash.hurtTrigger);
 					animator.SetBool(hash.stunnedBool, true);
+					damage=Mathf.RoundToInt(damage*backStab);
 				}
 				else if(animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.enemyHurtState
 				        && animator.GetCurrentAnimatorStateInfo(0).nameHash != hash.attackState) animator.SetTrigger(hash.hurtTrigger);
