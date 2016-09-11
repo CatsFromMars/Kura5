@@ -271,26 +271,34 @@ public class EmilController : PlayerContainer {
 	}
 	
 	void hitEnemy(RaycastHit hit) {
+		int m = 1;
+		BossSegment b = null;
 		//Ordinary Enemies
 		EnemyClass enemy = hit.collider.GetComponent<EnemyClass>();
 		//if it's a boss segment...
-		if(enemy == null) enemy = hit.collider.transform.root.GetComponent<EnemyClass>();
+		if(enemy == null) { 
+			b = hit.collider.GetComponent<BossSegment>();
+			b.hitWithSword();
+			enemy = b.bossParent;
+			m = b.damageMultiplier;
+		}
 
 		//Insta-kill Ivy
 		Ivy ivy = hit.collider.GetComponent<Ivy>();
 		if(ivy != null && gameData.emilCurrentElem == GameData.elementalProperty.Dark) ivy.hitWithDarkAttack = true;
-
 		int dmg = damageCalculator.getDamage(gameData.emilCurrentElem.ToString(), enemy.element, strength, 1);
-		enemy.takeDamage (dmg, gameData.emilCurrentElem.ToString());
+		enemy.takeDamage (dmg*m, gameData.emilCurrentElem.ToString());
 		enemy.knockback (transform.forward);
 
 		//Shadow Stun Code
 		if(lightLevels.darkness > 0) {
-			PatrolEnemy patrol = hit.collider.GetComponent<PatrolEnemy>();
-			if(patrol != null && gameData.emilCurrentElem == GameData.elementalProperty.Dark) patrol.Freeze();
-			else {
-				BossSegment boss = hit.collider.GetComponent<BossSegment>();
-				if(boss != null && gameData.emilCurrentElem == GameData.elementalProperty.Dark) boss.bossParent.ShadowSeal();
+			if(b!=null&&gameData.emilCurrentElem == GameData.elementalProperty.Dark) {
+				Debug.Log("Um...");
+				b.shadowSeal(lightLevels.darkness);
+			}
+			else if(enemy != null && gameData.emilCurrentElem == GameData.elementalProperty.Dark) {
+				Debug.Log (enemy);
+				enemy.shadowSeal();
 			}
 		}
 		//Sparkly Effects and Sound

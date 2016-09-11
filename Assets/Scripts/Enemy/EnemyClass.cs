@@ -69,7 +69,7 @@ public class EnemyClass : MonoBehaviour {
 	protected bool hurtCaution;
 	protected bool okayToAttack = true;
 	protected bool isBeingTargeted;
-	protected int hitCounter = 0;
+	public int hitCounter = 0;
 	protected bool isInvincible = false;
 	protected string mostRecentAttackElem = "Null";
 
@@ -110,7 +110,7 @@ public class EnemyClass : MonoBehaviour {
 		hash = globalData.GetComponent<HashIDs>();
 		gameData = globalData.GetComponent<GameData>();
 		agent = GetComponent<NavMeshAgent>();
-		blinkShader = Shader.Find("Reflective/Bumped Diffuse");
+		//blinkShader = Shader.Find("Reflective/Bumped Diffuse");
 		lightLevels = GameObject.FindGameObjectWithTag("LightLevels").GetComponent<LightLevels>();
 		audio = GetComponent<AudioSource>();
 		lifeBar = GameObject.Find ("EnemyLife").GetComponent<Slider>();
@@ -166,6 +166,11 @@ public class EnemyClass : MonoBehaviour {
 		}
 	}
 
+	public virtual void shadowSeal() {
+		Debug.Log ("It's a stiff!");
+		return;
+	}
+
 	void hurtEnemy(WeaponData weapon) {
 		int dmg = damageCalculator.getDamage(weapon.element, element, weapon.damage, 1);
 		//Get stunned from friendly fire
@@ -190,11 +195,11 @@ public class EnemyClass : MonoBehaviour {
 	}
 
 	//COMBAT: TAKE DAMAGE
-	public void takeDamage(int damage, string element="Null") {
+	public void takeDamage(int damage, string element="Null", bool flash=true) {
 
 		if(!isInvincible) {
 			hitCounter++;
-			StartCoroutine(flashWhite());
+			if(flash) StartCoroutine(flashWhite());
 			mostRecentAttackElem = element;
 			if(!dead || !dying)
 			{

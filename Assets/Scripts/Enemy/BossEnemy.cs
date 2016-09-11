@@ -48,8 +48,4 @@ public class BossEnemy : EnemyClass {
 		yield return null;
 	}
 
-	public virtual void ShadowSeal() {
-		Debug.Log ("I got shadow sealed!");
-	}
-
 }

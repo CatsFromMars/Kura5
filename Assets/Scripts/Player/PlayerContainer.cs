@@ -201,7 +201,7 @@ public class PlayerContainer : MonoBehaviour {
 			animator.SetBool(hash.holdWeaponBool, holdingWeapon);
 			animator.SetBool(hash.attackBool, attacking);
 			animator.SetBool(hash.targetingBool, targeting);
-			animator.SetBool(Animator.StringToHash("DoingAnything"),Input.anyKeyDown); //Put here for the idle animations
+			animator.SetBool(Animator.StringToHash("DoingAnything"),Input.anyKey); //Put here for the idle animations
 		}
 		else {
 			animator.SetBool(hash.movingBool, false);

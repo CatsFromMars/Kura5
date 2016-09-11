@@ -315,6 +315,11 @@ public class PatrolEnemy : EnemyClass {
 
 	}
 
+	public override void shadowSeal()
+	{
+		Freeze();
+	}
+
 	public void Freeze() {
 		//Handles Emil's shadow stunning;
 		stunned = false; //A hack to make sure stuntime and shadowsealing time isn't stacked.

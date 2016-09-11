@@ -8,6 +8,8 @@ public class OrderPuzzle : MonoBehaviour {
 	private GameObject global;
 	private Flags flags;
 	private bool puzzleSolved = false;
+	public AudioClip correct;
+	public AudioClip incorrect;
 
 	void Awake() {
 		torches = new Torch[solution.Length];
@@ -33,6 +35,8 @@ public class OrderPuzzle : MonoBehaviour {
 		//flags
 		flags.SetOther(flag);
 		//play jingle
+		makeSound (correct);
+		puzzleSolved = true;
 	}
 
 	void addTorchToList(Torch t) {
@@ -79,9 +83,18 @@ public class OrderPuzzle : MonoBehaviour {
 
 	void resetTorches() {
 		Debug.Log ("Resetting Torches");
+		makeSound (incorrect);
 		foreach (Torch t in solution) {
 			t.douse();
 		}
 		torches = new Torch[solution.Length];
+	}
+
+	public void makeSound(AudioClip clip) {
+		//ANIMATION EVENTS FOR ALL THINGS THAT NEED SOUND
+		if(audio.enabled) {
+			audio.clip = clip;
+			audio.Play();
+		}
 	}
 }

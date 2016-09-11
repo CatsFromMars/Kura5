@@ -7,7 +7,6 @@ public class WadjetBoss : BossEnemy {
 	private int numberDebris = 10;
 	private float debrisWaitTime = 2;
 	public Animator shadow;
-	public Transform player; //REPLACE LATER! REPLACE. LATER!
 	public Vector3 originalPosition;
 	public ParticleSystem breath;
 	public Transform scream;
@@ -18,120 +17,132 @@ public class WadjetBoss : BossEnemy {
 	private bool slithering=false;
 	public Transform[] wayPoints;
 	private int currentPoint = 0;
-	public GameObject shadowSealVFX;
-	public GameObject breakFreeVFX;
 	//environment vars
 	public ParticleSystem fog;
-	public ParticleSystem darkFogRing;
 	public GameObject skylights;
 	public GameObject projectile;
 	public Transform projectileSpawner;
+	public Transform[] tails;
+	public Transform tailTip;
+	public ParticleSystem[] tailparticles;
+	public GameObject fogForm;
+	public ParticleSystem selfFog;
+	private int screamThresh = 6;
+	public CapsuleCollider c;
 
-
-	void OnEnable() {
+	void OnEnabled() {
 		//StartCoroutine(Decide());
+		foreach(Transform t in tails) {
+			t.gameObject.SetActive(false);
+		}
+		StartCoroutine (spawnTails());
 	}
 
-	void Update() {
-		manageSpeed();
+	IEnumerator spawnTails() {
+		foreach(ParticleSystem p in tailparticles) {
+			p.Play();
+		}
+		yield return new WaitForSeconds (0.9f);
+		foreach(Transform t in tails) {
+			t.GetComponent<Animator>().gameObject.SetActive(true);
+			yield return new WaitForSeconds(0.9f);
+		}
+	}
+
+	IEnumerator despawnTails() {
+		foreach(Transform t in tails) {
+			t.GetComponent<Animator>().SetTrigger(Animator.StringToHash("Exit"));
+			yield return new WaitForSeconds(0.9f);
+		}
+
+		foreach(ParticleSystem p in tailparticles) {
+			p.Stop();
+		}
+	}
+
+	bool tailSegmentsSlain() {
+		foreach(Transform t in tails) {
+			if (t.gameObject.active) return false;
+		}
+		return true;
 	}
 
 	public override IEnumerator INITIAL()
 	{
 		while (state==attackPattern.INITIAL) {
-		
-			Debug.Log("Back to snaking");
-			animator.SetBool(Animator.StringToHash("Moving"), true);
-			agent.updateRotation = true;
-			if(state!=attackPattern.INITIAL) break;
-			foreach (Transform w in wayPoints) {
-				agent.SetDestination(w.transform.position);
-				if(state!=attackPattern.INITIAL) break;
-				while(agent.remainingDistance > agent.stoppingDistance) {
-					yield return null;
-					if(state!=attackPattern.INITIAL) break;
-				}
-				Debug.Log("Yeah! Made it!");
-				if(state!=attackPattern.INITIAL) break;
-				yield return null;
+			c.enabled = true;
+			transform.tag = "Enemy";
+			if(hitCounter > screamThresh) {
+				hitCounter = 0;
+				animator.SetBool(Animator.StringToHash("Scream"), true);
+				StartCoroutine(despawnTails());
+				state = attackPattern.WEAKNESS;
 			}
-			if(state!=attackPattern.INITIAL) break;
-			//Goto Player
-			Transform minPoint = wayPoints[0];
-			foreach (Transform w in wayPoints) {
-				float compareDist = Vector3.Distance(w.transform.position, player.transform.position);
-				float curDist = Vector3.Distance(minPoint.transform.position, player.transform.position);
-				if(compareDist < curDist) minPoint = w;
-			}
+			yield return null;
+		}
+	}
 
-			foreach (Transform q in wayPoints) {
-				if(q==minPoint) agent.updateRotation = false;
-				agent.SetDestination(q.transform.position);
-				while(agent.remainingDistance > agent.stoppingDistance) {
-					yield return null;
-				}
-				if(q==minPoint) {
-					break;
-				}
-				else if(state!=attackPattern.INITIAL) break;
-				yield return null;
-			}
+	public void showTip() {
+		//reveal the tip of the tail
+		tailTip.gameObject.SetActive(true);
+	}
 
-			agent.updateRotation = false;
-			animator.SetBool(Animator.StringToHash("Moving"), false);
-			if(state!=attackPattern.INITIAL) break;
-			yield return new WaitForSeconds(3);
-			animator.SetBool(Animator.StringToHash("Desparate"), false);
+	public void showTipIfAllDestroyed() {
+		if(tailSegmentsSlain()&&!tailTip.gameObject.activeSelf) {
+			tailTip.gameObject.SetActive(true);
 		}
 	}
 
 	public override IEnumerator WEAKNESS() {
-		//La Lupe gets shadowsealed by emil
 		while (state==attackPattern.WEAKNESS) {
-			//Debug.Log("Still frozen");
-			yield return new WaitForSeconds(3);
-			//Debug.Log("Should be free!");
-			shadowSealVFX.SetActive(false);
-			animator.SetBool(Animator.StringToHash("Frozen"), false);
-			breakFreeVFX.SetActive(true);
-			yield return new WaitForSeconds(5);
-			animator.SetBool(Animator.StringToHash("Desparate"), true);
-			state=attackPattern.INITIAL;
+			c.enabled = false;
+			transform.tag = "Untagged";
+			animator.SetBool(Animator.StringToHash("Hidden"), true);
+			while (!currentAnim(Animator.StringToHash("Base Layer.Hide"))) yield return null;
+			selfFog.Stop();
+			yield return new WaitForSeconds(1f);
+			fogForm.SetActive(true);
+			while(fogForm.active == true) yield return null;
+			selfFog.Play();
+			foreach(ParticleSystem p in tailparticles) {
+				p.Play();
+			}
+			yield return new WaitForSeconds(2f);
+			animator.SetBool(Animator.StringToHash("Hidden"), false);
+			while (!currentAnim(Animator.StringToHash("Base Layer.Breath"))) yield return null;
+			StartCoroutine(spawnTails());
+			animator.SetBool(Animator.StringToHash("Scream"), false);
+			state = attackPattern.INITIAL;
 		}
 	}
-	
-	void manageSpeed() {
-		//if(facingPlayer) RotateTowards(player);
-		
-		if(currentAnim(Animator.StringToHash("Base Layer.Slither")) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0)) {
-			if(!facingPlayer) agent.updateRotation = true;
-			agent.speed = speed;
-		}
-		else {
-			agent.updateRotation = false;
-			agent.speed = 0;
-		}
+
+	public void tailSliced() {
+		//play this when the tail gets cut off
+		Debug.Log ("OUCH!");
+		animator.SetTrigger (Animator.StringToHash ("Tail"));
+		StartCoroutine(despawnTails());
+		state = attackPattern.WEAKNESS;
+	}
+
+	public void shocked() {
+		//happens if tail gets shadow sealed
+		animator.SetTrigger(Animator.StringToHash ("Shocked"));
+		showTip();
 	}
 
 	public void playBreath() {
 		breath.Play();
 		shadow.gameObject.SetActive(true);
 		fog.Play();
-		darkFogRing.Play();
 		skylights.SetActive (false);
-		animator.SetBool(Animator.StringToHash("Dark"), true);
 	}
+	
 
 	public void playScream() {
 		shadow.SetTrigger (Animator.StringToHash ("Disable"));
 		fog.Stop();
-		darkFogRing.Stop();
 		skylights.SetActive (true);
 		animator.SetBool(Animator.StringToHash("Dark"), false);
-	}
-
-	public void tailSlap() {
-		StartCoroutine(spawnDebris());
 	}
 
 	IEnumerator spawnDebris() {
@@ -143,15 +154,10 @@ public class WadjetBoss : BossEnemy {
 		Instantiate (debrisObject, spawnPos, Random.rotation);
 	}
 	
-	public override void ShadowSeal() {
-		if(state != attackPattern.WEAKNESS) {
-			Debug.Log("Stiff as a statue!");
-			breakFreeVFX.SetActive(false);
-			shadowSealVFX.SetActive(true);
-			animator.SetTrigger(Animator.StringToHash("ShadowSeal"));
-			animator.SetBool(Animator.StringToHash("Frozen"), true);
-			state = attackPattern.WEAKNESS;
-		}
+	public override void shadowSeal() {
+		//Debug.Log("Stiff as a statue!");
+		shadowStunBreakEffect.gameObject.SetActive (false);
+		shadowStunBreakEffect.gameObject.SetActive (true);
 	}
 
 	public void ShootProjectile() {

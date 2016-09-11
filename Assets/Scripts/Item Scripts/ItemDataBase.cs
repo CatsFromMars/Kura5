@@ -74,6 +74,30 @@ public class ItemDatabase : MonoBehaviour {
 		key3.model = Resources.Load ("Items/Yellow Key") as GameObject;
 		keyItems.Add(key3);
 
+		n = "Ezra Charm";
+		desc = "A charm held by those who\nhave endured freezing weather.";
+		KeyItem ezra = new KeyItem (5, n, desc, false, "CHARM");
+		//ezra.model = Resources.Load ("Items/Yellow Key") as GameObject;
+		keyItems.Add(ezra);
+
+		n = "Ursula Charm";
+		desc = "A charm held by those who\nhave endured sweltering weather.";
+		KeyItem ursula = new KeyItem (6, n, desc, false, "CHARM");
+		//ezra.model = Resources.Load ("Items/Yellow Key") as GameObject;
+		keyItems.Add(ursula);
+
+		n = "Tove Charm";
+		desc = "A charm held by those who\nhave endured muggy weather.";
+		KeyItem tove = new KeyItem (7, n, desc, false, "CHARM");
+		//ezra.model = Resources.Load ("Items/Yellow Key") as GameObject;
+		keyItems.Add(tove);
+
+		n = "Alexander Charm";
+		desc = "A charm held by those who\nhave endured blustery weather.";
+		KeyItem alexander = new KeyItem (8, n, desc, false, "CHARM");
+		//ezra.model = Resources.Load ("Items/Yellow Key") as GameObject;
+		keyItems.Add(alexander);
+
 		//Lens
 		n = "Sol Lens";
 		desc = "A [SOLAR GUN LENS] containing the Sol Property";

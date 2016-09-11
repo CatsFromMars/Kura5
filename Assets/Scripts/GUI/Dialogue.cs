@@ -17,10 +17,9 @@ public class Dialogue : MonoBehaviour {
 	public GameObject arrow;
 
 	public GUISkin skin;
-	public float textRate = 45; // how fast the text appears
-	private float fastTextRate = 80;
-	public float normalTextRate = 3;
-	private float normalize = 20f;
+	public float textRate = 80; // how fast the text appears
+	private float fastTextRate = 150;
+	public float normalTextRate = 80;
 	public AudioClip tickSound; // audio
 	public AudioClip finishSound;
 	public int border=5, height=300; // size of dialog 
@@ -98,9 +97,9 @@ public class Dialogue : MonoBehaviour {
 		int oldCounter=Mathf.FloorToInt(textCounter); // for use later in audio
 		if (Input.anyKey)   // any key makes it faster
 
-			textCounter += (textRate*4)*Time.unscaledDeltaTime;
+			textCounter += (textRate*8)*Time.unscaledDeltaTime;
 		else
-			textCounter += (textRate)*Time.unscaledDeltaTime;
+			textCounter += (textRate*4)*Time.unscaledDeltaTime;
 		// tick sound when displaying
 		if (tickSound!=null && textCounter < theText.Length)
 		{

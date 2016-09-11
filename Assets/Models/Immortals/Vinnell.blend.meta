@@ -49,6 +49,7 @@ ModelImporter:
     100086: ArmIKR
     100088: ElbowL
     100090: ElbowR
+    100092: Cube_001
     400000: Armature
     400002: Chest
     400004: Circle
@@ -95,6 +96,7 @@ ModelImporter:
     400086: ArmIKR
     400088: ElbowL
     400090: ElbowR
+    400092: Cube_001
     2300000: Circle
     2300002: Icosphere
     3300000: Circle
@@ -102,11 +104,13 @@ ModelImporter:
     4300000: Icosphere
     4300002: Circle
     4300004: Cube
+    4300006: Cube_001
     7400000: Default Take
     7400002: Idle
     7400004: Grief
     9500000: //RootNode
     13700000: Cube
+    13700002: Cube_001
   materials:
     importMaterials: 1
     materialName: 0
@@ -257,6 +261,10 @@ ModelImporter:
         weight: 1
       - path: Armature
         weight: 1
+      - path: Armature/Hat
+        weight: 1
+      - path: Armature/Hat/HatFlap
+        weight: 1
       - path: Armature/Hip
         weight: 1
       - path: Armature/Hip/CoatBottom
@@ -278,10 +286,6 @@ ModelImporter:
       - path: Armature/Hip/Tummy/Chest
         weight: 1
       - path: Armature/Hip/Tummy/Chest/Head
-        weight: 1
-      - path: Armature/Hip/Tummy/Chest/Head/Hat
-        weight: 1
-      - path: Armature/Hip/Tummy/Chest/Head/Hat/HatFlap
         weight: 1
       - path: Armature/Hip/Tummy/Chest/ShoulderL
         weight: 1
@@ -333,19 +337,21 @@ ModelImporter:
         weight: 1
       - path: Cube
         weight: 1
+      - path: Cube_001
+        weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
       name: Grief
       takeName: ArmatureAction
       firstFrame: 84
-      lastFrame: 129
+      lastFrame: 167
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -362,6 +368,10 @@ ModelImporter:
       - path: 
         weight: 1
       - path: Armature
+        weight: 1
+      - path: Armature/Hat
+        weight: 1
+      - path: Armature/Hat/HatFlap
         weight: 1
       - path: Armature/Hip
         weight: 1
@@ -384,10 +394,6 @@ ModelImporter:
       - path: Armature/Hip/Tummy/Chest
         weight: 1
       - path: Armature/Hip/Tummy/Chest/Head
-        weight: 1
-      - path: Armature/Hip/Tummy/Chest/Head/Hat
-        weight: 1
-      - path: Armature/Hip/Tummy/Chest/Head/Hat/HatFlap
         weight: 1
       - path: Armature/Hip/Tummy/Chest/ShoulderL
         weight: 1
