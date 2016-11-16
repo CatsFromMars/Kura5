@@ -12,10 +12,11 @@ public class DarkLoans : MenuClass {
 	public TextAsset thankyou;
 	public TextAsset revival;
 	public TextAsset reset;
-	private bool exiting = false;
+	//private bool exiting = false;
 
 	void Start() {
 		music = GameObject.FindGameObjectWithTag("Music").GetComponent<MusicManager>();
+		music.previousMusic = music.audio.clip;
 		music.changeMusic(darkLoansTheme);
 		transform.parent = Camera.main.transform;
 		transform.localPosition = Vector3.zero;
@@ -33,7 +34,9 @@ public class DarkLoans : MenuClass {
 			}
 			else if(index == 1) {
 				//RestartRoom
-				StartCoroutine(resetRoom());
+				//StartCoroutine(resetRoom());
+				DisplayDialogue.finishDialogue(true);
+				StartCoroutine(DisplayDialogue.Speak(notAvailable, true, false));
 			}
 			else if(index == 2) {
 				//DarkLoans
@@ -52,12 +55,18 @@ public class DarkLoans : MenuClass {
 	}
 
 	IEnumerator resetRoom() {
-		exiting = true;
-		DisplayDialogue.finishDialogue(true);
-		StartCoroutine(DisplayDialogue.Speak(reset, true, false));
-		GameObject.FindGameObjectWithTag ("Player").transform.position = data.lastCheckpoint;
-		yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(1.5f));
-		StartCoroutine(exit());
+		GameObject[] gos = GameObject.FindGameObjectsWithTag("EnemyWeapon");
+		if(gos.Length==0) {
+			exiting = true;
+			DisplayDialogue.finishDialogue(true);
+			yield return StartCoroutine(DisplayDialogue.Speak(reset));
+			GameObject.FindGameObjectWithTag ("Player").transform.position = data.lastCheckpoint;
+			StartCoroutine(exit());
+		}
+		else {
+			DisplayDialogue.finishDialogue(true);
+			StartCoroutine(DisplayDialogue.Speak(notAvailable, true));
+		}
 	}
 
 	IEnumerator revivePartner() {
@@ -67,8 +76,7 @@ public class DarkLoans : MenuClass {
 			data.annieCurrentLife = data.annieMaxLife/2;
 			go.annie.revive();
 			DisplayDialogue.finishDialogue(true);
-			StartCoroutine(DisplayDialogue.Speak(revival, true, false));
-			yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(2f));
+			yield return StartCoroutine(DisplayDialogue.Speak(revival));
 			StartCoroutine(exit());
 		}
 		else if(data.emilCurrentLife <= 0) {
@@ -76,8 +84,7 @@ public class DarkLoans : MenuClass {
 			data.emilCurrentLife = data.emilMaxLife/2;
 			go.emil.revive();
 			DisplayDialogue.finishDialogue(true);
-			StartCoroutine(DisplayDialogue.Speak(revival, true, false));
-			yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(2f));
+			yield return StartCoroutine(DisplayDialogue.Speak(revival));
 			StartCoroutine(exit());
 		}
 		else {
@@ -89,15 +96,16 @@ public class DarkLoans : MenuClass {
 	IEnumerator exit() {
 		Debug.Log ("Goodbye!");
 		exiting = true;
-		transform.parent = null;
+		//transform.parent = null;
 		doomy.SetTrigger (Animator.StringToHash("Goodbye"));
 		DisplayDialogue.finishDialogue(true);
 		StartCoroutine(DisplayDialogue.Speak(thankyou, true, false));
 		yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(2.0f));
-		DisplayDialogue.finishDialogue();
-		yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(0.3f));
-		scene.gotoScene (data.sceneName);
+		Time.timeScale = 1;
 		music.changeMusic (music.previousMusic);
+		DisplayDialogue.finishDialogue();
+		Dialogue dialogue = data.gameObject.GetComponent<Dialogue>();
+		dialogue.Hide();
 		Destroy (this.gameObject);
 	}
 }

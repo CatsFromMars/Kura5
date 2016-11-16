@@ -29,8 +29,8 @@ public class Door : MonoBehaviour {
 		//doorCollider = transform.FindChild("door1").GetComponent<BoxCollider>();
 		col = GetComponent<SphereCollider>();
 
-		flags.AddDoorFlag(transform.position);
-		if(flags.CheckDoorFlag(transform.position)) {
+		flags.AddDoorFlag(this.gameObject);
+		if(flags.CheckDoorFlag(this.gameObject)) {
 			type = doorType.REGULAR;
 		}
 
@@ -65,7 +65,7 @@ public class Door : MonoBehaviour {
 		if (doorLocked && inRange && Input.GetButtonDown("Charge")) {
 			int hasKey = inventory.checkForKeyItem(keyItemID);
 			if(hasKey != -1) {
-				flags.SetDoorToOpen(transform.position);
+				flags.SetDoorToOpen(this.gameObject);
 				doorLocked = false;
 				inventory.removeKeyItem(hasKey);
 				animator.SetBool(Animator.StringToHash("PlayerInRange"), true);

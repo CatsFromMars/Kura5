@@ -9,6 +9,7 @@ public class GameOverHandler : MonoBehaviour {
 	public PlayerContainer annie;
 	public PlayerContainer emil;
 	public MusicManager music;
+	private AudioClip priorMusic;
 
 	public void Update() {
 		//Check for Game Over
@@ -27,6 +28,7 @@ public class GameOverHandler : MonoBehaviour {
 
 	IEnumerator go() {
 		//Instantiate(Resources.Load ("Effects/GameOver"), gameOverSpawner.position, Quaternion.Euler(45,0,0));
+		priorMusic = music.audio.clip;
 		music.stopMusic();
 		yield return sceneManager.fadeOut();
 		Application.LoadLevel("GameOver");
@@ -42,7 +44,7 @@ public class GameOverHandler : MonoBehaviour {
 		emil.revive();
 		GameObject.FindGameObjectWithTag ("Player").transform.position = data.lastCheckpoint;
 		sceneManager.gotoScene (data.sceneName, true, false);
-		music.changeMusic(music.previousMusic);
+		music.changeMusic(priorMusic);
 		HUD.SetActive (true);
 	}
 }

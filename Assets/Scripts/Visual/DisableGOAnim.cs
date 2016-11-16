@@ -8,4 +8,8 @@ public class DisableGOAnim : MonoBehaviour {
 	public void toggleActive() {
 		go.gameObject.SetActive (false);
 	}
+
+	public void Enable() {
+		go.gameObject.SetActive (true);
+	}
 }

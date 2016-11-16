@@ -1747,6 +1747,7 @@ MonoBehaviour:
   maxLife: 71
   currentLife: 71
   strength: 5
+  personalBubble: 1
   type: 0
   element: Dark
   changesElementWithWeather: 1
@@ -1755,6 +1756,7 @@ MonoBehaviour:
   lightLevels: {fileID: 0}
   damageCalculator: {fileID: 0}
   stunned: 0
+  hitCounter: 0
   sunDetector: {fileID: 11413584}
   body: {fileID: 451678}
   shadowStunEffect: {fileID: 451642}
@@ -1769,18 +1771,19 @@ MonoBehaviour:
   enemyWalkingSpeed: 1.60000002
   enemyRunningSpeed: 4
   cautionTimer: 0
-  cautionWaitTime: 100
+  cautionWaitTime: 25
   stunTimer: 0
   stunWaitTime: 50
   seekTimer: 0
   seekWaitTime: 100
-  attackTimer: 0
-  attackWaitTime: 200
+  attackTimer: 45
+  attackWaitTime: 50
   pauseTimer: 199
   pauseWaitTime: 200
   patrolTimer: 0
   patrolWaitTime: 100
   attacking: 0
+  persistent: 0
   emotion: {fileID: 22451622}
   projectileSpawner: {fileID: 451690}
   projectile: {fileID: 400000, guid: 928cc7a88115b3d498aa4191b2f52b4c, type: 2}
@@ -1926,7 +1929,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.5
+  m_Radius: 1.29999995
   m_Height: 4.82359982
   m_Direction: 1
   m_Center: {x: .0118792336, y: -.17486456, z: -.979769707}
@@ -1939,7 +1942,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: a5ea0c0baf5dad74baf5c8f32d200b2e, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .75
+  m_Radius: .629999995
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: -.400000006, z: 0}
@@ -2014,7 +2017,7 @@ NavMeshAgent:
   m_Radius: 1.10000002
   m_Speed: 1.20000005
   m_Acceleration: 10000
-  avoidancePriority: 50
+  avoidancePriority: 0
   m_AngularSpeed: 500
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
@@ -2022,7 +2025,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 1
   m_BaseOffset: 2.5
-  m_WalkableMask: 1
+  m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!198 &19813584
 ParticleSystem:

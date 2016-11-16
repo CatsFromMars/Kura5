@@ -7,7 +7,13 @@ AnimatorController:
   m_PrefabInternal: {fileID: 0}
   m_Name: Board
   serializedVersion: 2
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: CutsceneAction
+    m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -29,12 +35,12 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110272848}
   m_DstState: {fileID: 110216566}
-  m_TransitionDuration: .581078827
+  m_TransitionDuration: .264752507
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 5
-    m_ConditionEvent: 
-    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: CutsceneAction
+    m_EventTreshold: 1
     m_ExitTime: 105
   m_Atomic: 1
   m_Solo: 0
@@ -49,7 +55,7 @@ State:
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: d7bd0b16b77d8454ea9b5219b723ac26, type: 3}
+  - {fileID: 7400000, guid: 4b3d336744cb6b84db3093a8c3d5a0ce, type: 2}
   m_ParentStateMachine: {fileID: 110716566}
   m_Position: {x: 264, y: 84, z: 0}
   m_IKOnFeet: 0
@@ -88,6 +94,9 @@ StateMachine:
       first: {fileID: 110272848}
       second:
       - {fileID: 110131404}
+    data:
+      first: {fileID: 110216566}
+      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

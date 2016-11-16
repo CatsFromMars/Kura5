@@ -24,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.9000001}
+  m_LocalPosition: {x: .000600780011, y: 0, z: 0}
   m_LocalScale: {x: 96.1547546, y: 31.8067207, z: 31.8067207}
   m_Children: []
   m_Father: {fileID: 0}
@@ -40,11 +40,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3adab56d32d9eaf4c86db10658634174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSpeed: 20
   ren: {fileID: 21208158}
   data: {fileID: 0}
   playerContainer: {fileID: 0}
   loadingIcon: {fileID: 0}
+  loadingScene: 0
+  swapper: {fileID: 0}
+  cutsceneFader: {fileID: 0}
 --- !u!212 &21208158
 SpriteRenderer:
   m_ObjectHideFlags: 1

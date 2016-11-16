@@ -74,7 +74,9 @@ public class DisplayDialogue : MonoBehaviour {
 	}
 
 	public static void playAnim(string txt) {
-		string number = getNumber(txt);
+		string temptxt = txt;
+		string number = Regex.Replace(temptxt,"[^0-9]","");
+		Debug.Log (number);
 		string name = txt.Replace("<A=","").Replace("_"+number+">","");
 		Regex rgx = new Regex("[^a-zA-Z0-9 -]");
 		name = rgx.Replace(name, ""); //filter out alphanumeric characters
@@ -103,6 +105,17 @@ public class DisplayDialogue : MonoBehaviour {
 		else Debug.LogError("No gameobject found!");
 	}
 
+	public static void faceCamera(string txt) {
+		txt = txt.Replace("<FACE_CAMERA=","");
+		string name = txt.Replace(">","");
+		Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+		name = rgx.Replace(name, ""); //filter out alphanumeric characters
+		GameObject go = GameObject.Find(name);
+		GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+		Vector3 pos = new Vector3(cam.transform.position.x,go.transform.position.y,cam.transform.position.z);
+		go.transform.LookAt(pos);
+	}
+
 	public static void moveTo(string txt) {
 		string number = getNumber(txt);
 		string name = txt.Replace("<T=","").Replace("_"+number+">","");
@@ -128,6 +141,16 @@ public class DisplayDialogue : MonoBehaviour {
 			}
 		}
 		return v;
+	}
+
+	public static void faceOther() {
+		//Have Annie and Emil face each other
+		GameObject e = GameObject.Find ("EmilPlayer");
+		GameObject a = GameObject.Find ("AnniePlayer");
+		Vector3 posA = new Vector3(e.transform.position.x,a.transform.position.y,e.transform.position.z);
+		Vector3 posE = new Vector3(a.transform.position.x,e.transform.position.y,a.transform.position.z);
+		e.transform.LookAt(posE);
+		a.transform.LookAt(posA);
 	}
 	
 	public static string getName(string txt){
@@ -166,7 +189,7 @@ public class DisplayDialogue : MonoBehaviour {
 		Regex rgx = new Regex("[^a-zA-Z0-9 -]");
 		name = rgx.Replace(name, ""); //filter out alphanumeric characters
 		GameObject target = GameObject.Find(name);
-		target.SetActive(false);
+		if(target!=null) target.SetActive(false);
 	}
 
 	public static GameObject getLookTarget(string txt) {
@@ -183,7 +206,6 @@ public class DisplayDialogue : MonoBehaviour {
 		string no = txt.Replace(">","");
 		Regex rgx = new Regex("[^a-zA-Z0-9 -]");
 		no = rgx.Replace(no, ""); //filter out alphanumeric characters
-		Debug.Log (no);
 		int z = int.Parse(no);
 		return z;
 	}
@@ -260,14 +282,57 @@ public class DisplayDialogue : MonoBehaviour {
 	}
 
 	public static void finishDialogue(bool stopTime=false) {
+
 		Controller = GameObject.FindGameObjectWithTag("GameController");
 		dialogue = Controller.GetComponent<Dialogue>();
 		dialogue.Hide();
 		if(dialogue.canvas != null) dialogue.canvas.SetActive (true);
 		if(!stopTime) Time.timeScale = 1;
+		endCutscene();
+	}
+
+	public static GameObject lookFor(string txt) {
+		string number = getNumber (txt);
+		string name = txt.Replace("<K=","").Replace("_"+number+">","");
+		Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+		name = rgx.Replace(name, ""); //filter out alphanumeric characters
+		GameObject target = GameObject.Find(name);
+		return target;
+	}
+
+	//SET_BLEND_SHAPE=EmilPlayerMesh,Happy_Mouth,0
+	//Use sparingly, as I imagine this can get expensive...
+	public static void setBlendShape(string txt) {
+		string newText = txt.Replace ("SET_BLEND_SHAPE=", "");
+		string[] blendParams = newText.Split(',');
+		string objName = blendParams [0];
+		SkinnedMeshRenderer mesh = GameObject.Find (objName).GetComponent<SkinnedMeshRenderer> ();
+		int blend = getBlendShapeIndexByName(mesh.gameObject, blendParams[1]);
+		string weight = blendParams [2];
+		//Now do it
+		mesh.SetBlendShapeWeight(blend, float.Parse(weight));
+	}
+
+	public static int getBlendShapeIndexByName(GameObject obj, string name)
+	{
+		SkinnedMeshRenderer head = obj.GetComponent<SkinnedMeshRenderer>();
+		Mesh m = head.sharedMesh;
+		string[] arr;
+		arr = new string [m.blendShapeCount];
+		for (int i=0; i < m.blendShapeCount; i++)
+		{
+			string s = m.GetBlendShapeName(i);
+			if(s==name) return i;
+		}
+		return -1; //Not found, uh-oh!
 	}
 
 	public static IEnumerator Speak(TextAsset text, bool isLabel=false, bool canSkip=true) {
+		bool switchScenes = false;
+		string sceneCommand = "";
+		WallVisionOutlineEffect outline = null;
+		outline = Camera.main.GetComponent<WallVisionOutlineEffect>();
+		if(outline!=null) outline.enabled=false;
 		if(GameObject.Find("DialogueBox") != null) DisplayDialogue.finishDialogue(); //only one instance of dialogue can be displayed at a time
 		startCutscene();
 		bool skip = false;
@@ -284,8 +349,10 @@ public class DisplayDialogue : MonoBehaviour {
 		//Disable GUI
 		if(dialogue.canvas != null) dialogue.canvas.SetActive(false);
 		int index = 0;
+		float counter = 0;
+		float lookCounter = 0;
 		while(index < dialogueSpeech.Length) {
-
+			//Debug.Log (index+" out of "+dialogueSpeech.Length);
 			//comments. Skip them
 			if(dialogueSpeech[index].Contains("##")) {
 				nullSpeech = false;
@@ -314,7 +381,7 @@ public class DisplayDialogue : MonoBehaviour {
 				continue;
 			}
 			//Display Emoticon over head of character
-			if(dialogueSpeech[index].Contains("<E=")) {
+			if(dialogueSpeech[index].Contains("<E=")&&!skip) {
 				nullSpeech = false;
 				displayEmoticon(dialogueSpeech[index]);
 				index++;
@@ -324,6 +391,12 @@ public class DisplayDialogue : MonoBehaviour {
 			if(dialogueSpeech[index].Contains("<CLEAR_EMOJI=")) {
 				nullSpeech = false;
 				clearEmoticon(dialogueSpeech[index]);
+				index++;
+				continue;
+			}
+			//Set Blend Shape
+			if(dialogueSpeech[index].Contains("SET_BLEND_SHAPE=")) {
+				setBlendShape(dialogueSpeech[index]);
 				index++;
 				continue;
 			}
@@ -358,15 +431,26 @@ public class DisplayDialogue : MonoBehaviour {
 			}
 
 			//Get Sounds
-			if(dialogueSpeech[index].Contains("S=")) {
+			if(dialogueSpeech[index].Contains("S=")&&!skip) {
 				dialogue.makeSound(dialogue.tickAudio, getSound(dialogueSpeech[index]));
 				index++;
 				continue;
 			}
 			//Camera Look At
 			if(dialogueSpeech[index].Contains("<CAM_GOTO_POINT=")) {
+				Debug.Log("Made it");
 				GameObject s = getLookTarget(dialogueSpeech[index]);
 				GameObject.FindGameObjectWithTag("CamFollow").GetComponent<CamLooker>().zoomToTarget(s.transform);
+				index++;
+				continue;
+			}
+			if(dialogueSpeech[index].Contains("FACE_OTHER")) {
+				faceOther();
+				index++;
+				continue;
+			}
+			if(dialogueSpeech[index].Contains("<FACE_CAMERA=")) {
+				faceCamera(dialogueSpeech[index]);
 				index++;
 				continue;
 			}
@@ -378,7 +462,7 @@ public class DisplayDialogue : MonoBehaviour {
 			}
 
 			//Camera Shake
-			if(dialogueSpeech[index].Contains("SHAKE_CAMERA")) {
+			if(dialogueSpeech[index].Contains("SHAKE_CAMERA")&&!skip) {
 				Camera.main.GetComponent<Animator>().SetTrigger(Animator.StringToHash("Shake"));
 				index++;
 				continue;
@@ -386,7 +470,9 @@ public class DisplayDialogue : MonoBehaviour {
 
 			//Change Scene
 			if(dialogueSpeech[index].Contains("<GOTO_SCENE=")) {
-				changeScene(dialogueSpeech[index]);
+				//changeScene(dialogueSpeech[index]);
+				switchScenes = true;
+				sceneCommand = dialogueSpeech[index];
 				index++;
 				continue;
 			}
@@ -394,6 +480,21 @@ public class DisplayDialogue : MonoBehaviour {
 			//Little Bird Buddy Spawning
 			if(dialogueSpeech[index].Contains("<TOGGLE_RAVEN>")) {
 				toggleRaven();
+				index++;
+				continue;
+			}
+			//Activate Boss
+			if(dialogueSpeech[index].Contains("<ENABLE_BOSS>")) {
+				if(dialogue.canvas != null) dialogue.canvas.SetActive (true);
+				GameObject target = GameObject.Find("BossContainer");
+				target.transform.GetChild(0).gameObject.SetActive(true);
+				index++;
+				continue;
+			}
+			//Activate Piledriver
+			if(dialogueSpeech[index].Contains("<ENABLE_PILEDRIVER>")) {
+				GameObject target = GameObject.Find("PileDriver");
+				target.transform.GetChild(0).gameObject.SetActive(true);
 				index++;
 				continue;
 			}
@@ -415,13 +516,29 @@ public class DisplayDialogue : MonoBehaviour {
 				continue;
 			}
 
+			if(dialogueSpeech[index].Contains("<K=") &&!skip) {
+				GameObject s = lookFor(dialogueSpeech[index]);
+				CamLooker l = GameObject.FindGameObjectWithTag("CamFollow").GetComponent<CamLooker>();
+				int number = int.Parse(getNumber(dialogueSpeech[index]));
+				lookCounter = 0;
+				while (lookCounter<number) { //CAHNGE LATER!
+					l.zoomToTarget(s.transform);
+					lookCounter += Time.unscaledDeltaTime;
+					yield return null;
+				}
+				index++;
+				continue;
+			}
+
 			if(dialogueSpeech[index].Contains("<PAUSE_FOR=") &&!skip) {
 				int time = getWaitTime(dialogueSpeech[index]);
-				float counter = 0;
+				counter = 0;
 				while (counter<time) {
+					//Debug.Log("counting at index "+index+": "+counter+" out of "+time);
 					counter += Time.unscaledDeltaTime;
 					yield return null;
 				}
+				//Debug.Log("Done counting Down");
 				index++;
 				continue;
 			}
@@ -437,6 +554,7 @@ public class DisplayDialogue : MonoBehaviour {
 				leftSprite = null;
 				bool push = Input.GetButtonDown("Charge") || Input.GetButtonDown("Confirm");
 				if(!isLabel&&!skip) while(!dialogue.isFinished) {
+					//Debug.Log("dialogue ongoing");
 					//Skip the cutscene here
 					if(Input.GetButtonDown("Inventory")&&canSkip) {
 						skip=true;
@@ -446,7 +564,10 @@ public class DisplayDialogue : MonoBehaviour {
 					}
 					yield return null;
 				}
-				else if(isLabel) while(!dialogue.isFinished) yield return null;
+				else if(isLabel) while(!dialogue.isFinished) {
+					//Debug.Log("LabelOngoing");
+					yield return null;
+				}
 				index++;
 				continue;
 			}
@@ -459,6 +580,9 @@ public class DisplayDialogue : MonoBehaviour {
 		}
 		Debug.Log ("We're done here folks");
 		dialogue.Hide();
+		if(outline!=null) outline.enabled=true;
 		endCutscene();
+		//Switch scene here if scripted
+		if(switchScenes) changeScene(sceneCommand);
 	}
 }

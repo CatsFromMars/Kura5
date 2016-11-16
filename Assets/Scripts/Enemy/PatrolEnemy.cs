@@ -30,6 +30,7 @@ public class PatrolEnemy : EnemyClass {
 	protected bool chasing = false;
 	protected bool canMakeDecision = true;
 	protected bool checkedCoffin = false;
+	public bool persistent = false; //If true, never lose track of player
 
 	//VISUAL VARIABLES
 	public Transform emotion;
@@ -161,7 +162,7 @@ public class PatrolEnemy : EnemyClass {
 
 		//Exception: Get in the "personal bubble"
 		float distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
-		if (distanceFromPlayer <= 2.5f) {
+		if (distanceFromPlayer <= 2.5f&&personalBubble) {
 			// ... the player is in sight.
 			playerInSight = true;
 			//Debug.Log ("I SEE YOU!");
@@ -258,9 +259,11 @@ public class PatrolEnemy : EnemyClass {
 		agent.speed = enemyRunningSpeed;
 		agent.stoppingDistance = 2f; //Chasing is less precise
 		moving = true;
-		MoveTowardsTarget(playerLastSighting);
+		if(!persistent) MoveTowardsTarget(playerLastSighting);
+		else MoveTowardsTarget(player.transform.position);
 		if(ArrivedAtPoint()) {
-			Caution();
+			if(!persistent) Caution();
+			else Attack();
 			moving = false;
 		}
 	}
@@ -271,7 +274,8 @@ public class PatrolEnemy : EnemyClass {
 		//Debug.Log ("CAUTION");
 		chasing = false;
 		if (cautionTimer >= cautionWaitTime) {
-			LoseSuspicion();
+			if(!persistent) LoseSuspicion();
+			else Chase();
 			cautionTimer = 0;
 		}
 		else cautionTimer++;
@@ -361,7 +365,7 @@ public class PatrolEnemy : EnemyClass {
 
 	public bool hasPlayerBeenSpotted() {
 		//For trap
-		return animator.GetCurrentAnimatorStateInfo (0).nameHash == hash.attackState;
+		return playerInSight || chasing==true || playerLastSighting != resetPlayerPosition;
 	}
 
 	public Animator getAnimator() {

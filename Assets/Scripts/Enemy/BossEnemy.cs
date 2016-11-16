@@ -10,12 +10,15 @@ public class BossEnemy : EnemyClass {
 	//Initial = Opening attack pattern
 	//Weakness = Attack pattern that contains weak spot vulnerability
 	//Desparate = Attack pattern that deploys if boss is hurt
-	public enum attackPattern {INITIAL, WEAKNESS, DESPARATE}
+	public enum attackPattern {INITIAL, WEAKNESS, DESPARATE, DEATH}
 	public attackPattern state;
 	private IEnumerator currentBehavior;
+	public GameObject cutsceneObject;
+	protected Transform swapper;
 
 	void Start() {
 		StartCoroutine(bossLoop());
+		swapper = GameObject.FindGameObjectWithTag("PlayerSwapper").transform;
 	}
 
 	IEnumerator bossLoop() {
@@ -28,6 +31,13 @@ public class BossEnemy : EnemyClass {
 	protected void changeState(attackPattern a) {
 		StopCoroutine(currentBehavior);
 		state = a;
+	}
+
+	public override void Die() {
+		base.Die();
+		state = attackPattern.DEATH;
+		animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+		cutsceneObject.SetActive (true);
 	}
 
 	public virtual IEnumerator INITIAL() {

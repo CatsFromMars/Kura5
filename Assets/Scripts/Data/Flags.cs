@@ -9,17 +9,19 @@ public class Flags : MonoBehaviour {
 
 	public Dictionary<string, bool> traps;
 	public Dictionary<string, bool> cutscenes;
-	public Dictionary<Vector3, bool> treasurechests;
-	public Dictionary<Vector3, bool> doors;
+	public Dictionary<string, bool> treasurechests;
+	public Dictionary<string, bool> doors;
 	public Dictionary<string, bool> other; //Use for puzzles and weird story flags
+	public int immortalHeartsEaten = 0;
 
 	void Awake() {
 		traps = new Dictionary<string, bool>();
 		cutscenes = new Dictionary<string, bool>();
-		treasurechests = new Dictionary<Vector3, bool>();
-		doors = new Dictionary<Vector3, bool>();
+		treasurechests = new Dictionary<string, bool>();
+		doors = new Dictionary<string, bool>();
 		other = new Dictionary<string, bool>();
 	}
+	
 	//Cutscenes
 	public void AddCutsceneFlag(string d) {
 		if(!cutscenes.ContainsKey(d)) cutscenes.Add(d, false);
@@ -53,27 +55,39 @@ public class Flags : MonoBehaviour {
 
 	//Treasure Chests
 	public void AddTreasureFlag(Vector3 chest) {
-		if(!treasurechests.ContainsKey(chest)) treasurechests.Add(chest, false);
+		float pos = chest.x + chest.y + chest.z;
+		string key = Application.loadedLevelName + pos.ToString();
+		if(!treasurechests.ContainsKey(key)) treasurechests.Add(key, false);
 	}
 	
 	public void SetTreasureToOpen(Vector3 chest) {
-		treasurechests[chest] = true;
+		float pos = chest.x + chest.y + chest.z;
+		string key = Application.loadedLevelName + pos.ToString();
+		treasurechests[key] = true;
 	}
 	
 	public bool CheckTreasureFlag(Vector3 chest) {
-		return treasurechests[chest];
+		float pos = chest.x + chest.y + chest.z;
+		string key = Application.loadedLevelName + pos.ToString();
+		return treasurechests[key];
 	}
 	//Locked Doors
-	public void AddDoorFlag(Vector3 door) {
-		if(!doors.ContainsKey(door)) doors.Add(door, false);
+	public void AddDoorFlag(GameObject door) {
+		float pos = door.transform.position.x + door.transform.position.y + door.transform.position.z;
+		string key = Application.loadedLevelName + pos.ToString();
+		if(!doors.ContainsKey(key)) doors.Add(key, false);
 	}
 	
-	public void SetDoorToOpen(Vector3 door) {
-		doors[door] = true;
+	public void SetDoorToOpen(GameObject door) {
+		float pos = door.transform.position.x + door.transform.position.y + door.transform.position.z;
+		string key = Application.loadedLevelName + pos.ToString();
+		doors[key] = true;
 	}
 	
-	public bool CheckDoorFlag(Vector3 chest) {
-		return doors[chest];
+	public bool CheckDoorFlag(GameObject door) {
+		float pos = door.transform.position.x + door.transform.position.y + door.transform.position.z;
+		string key = Application.loadedLevelName + pos.ToString();
+		return doors[key];
 	}
 
 	//Other
@@ -89,6 +103,10 @@ public class Flags : MonoBehaviour {
 	public bool CheckOtherFlag(string d) {
 		if(other.ContainsKey(d)) return other[d];
 		else return false;
+	}
+
+	public void setImmortalHearts() {
+		immortalHeartsEaten++;
 	}
 
 }

@@ -38,6 +38,7 @@ public class PickupItem : MonoBehaviour {
 					itemAnimator.SetTrigger (Animator.StringToHash("Spawn"));
 					collected = true;
 				}
+				else GetComponent<AudioSource>().Play();
 			}
 		}
 	}

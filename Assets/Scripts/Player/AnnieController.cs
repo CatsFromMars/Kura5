@@ -49,7 +49,7 @@ public class AnnieController : PlayerContainer {
 			//handleCombos();
 			handleTargeting();
 			checkForLensSwap();
-			absorb(1);
+			if(Time.timeScale!=0) absorb(1);
 		}
 	}
 
@@ -78,7 +78,7 @@ public class AnnieController : PlayerContainer {
 			//}
 			//else parryCounter = 0;
 			targetEnemy();
-			if(currentTarget != null) {
+			if(currentTarget != null && currentTarget.gameObject.activeSelf && Time.timeScale != 0) {
 				if(lockOn == null) lockOn = Instantiate (lockOnUI, currentTarget.transform.position, Quaternion.identity) as Transform;
 				else lockOn.transform.position = currentTarget.transform.position;
 				zoomToEnemy();
@@ -86,7 +86,7 @@ public class AnnieController : PlayerContainer {
 			else { 
 				untargetEnemy();
 				if(lockOn != null) Destroy(lockOn.gameObject);
-				zoomToPlayer();
+				if(Time.timeScale != 0)zoomToPlayer();
 			}
 		}
 		else {
@@ -165,14 +165,14 @@ public class AnnieController : PlayerContainer {
 
 	public void makeStepNoise() {
 		if(lightLevels.w.inSnow) makeSound(snowStep);
-		else if(lightLevels.w.conditionName.Contains("rain") || lightLevels.w.conditionName.Contains("storm")) makeSound(splashStep);
+		else if(lightLevels.w.conditionName.Contains("rain") || lightLevels.w.conditionName.Contains("storm")&&!lightLevels.w.isIndoors) makeSound(splashStep);
 		else makeSound(regularStep);
 	}
 
 	public void puffL() {
 		if (!isIndoors) {
 			if(lightLevels.w.inSnow) Instantiate (footPrintPrefab, footPrintL.position, transform.rotation);
-			else if(lightLevels.w.conditionName.Contains("rain") || lightLevels.w.conditionName.Contains("storm")) splashL.Play();
+			else if(lightLevels.w.conditionName.Contains("rain") || lightLevels.w.conditionName.Contains("storm")&&!lightLevels.w.isIndoors) splashL.Play();
 			else dustL.Play();
 		}
 		else dustL.Play();
@@ -181,7 +181,7 @@ public class AnnieController : PlayerContainer {
 	public void puffR() {
 		if (!isIndoors) {
 			if(lightLevels.w.inSnow) Instantiate (footPrintPrefab, footPrintR.position, transform.rotation);
-			else if(lightLevels.w.conditionName.Contains("rain") || lightLevels.w.conditionName.Contains("storm")) splashR.Play();
+			else if(lightLevels.w.conditionName.Contains("rain") || lightLevels.w.conditionName.Contains("storm")&&!lightLevels.w.isIndoors) splashR.Play();
 			else dustR.Play();
 		}
 		else dustR.Play();

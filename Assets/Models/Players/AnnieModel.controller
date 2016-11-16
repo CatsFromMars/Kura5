@@ -20,18 +20,83 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!1101 &110176712
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110242356}
+  m_DstState: {fileID: 110223794}
+  m_TransitionDuration: .450553179
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
+    m_EventTreshold: 0
+    m_ExitTime: .549446821
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1102 &110209552
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Pose
-  m_Speed: 1.5
+  m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400050, guid: faffeb5bb561a794dac02602f15f5b1a, type: 3}
+  - {fileID: 7400074, guid: faffeb5bb561a794dac02602f15f5b1a, type: 3}
   m_ParentStateMachine: {fileID: 110709552}
-  m_Position: {x: 60, y: 72, z: 0}
+  m_Position: {x: 120, y: 108, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110223794
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ScaredIdle
+  m_Speed: .699999988
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400078, guid: faffeb5bb561a794dac02602f15f5b1a, type: 3}
+  m_ParentStateMachine: {fileID: 110709552}
+  m_Position: {x: 336, y: 144, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110238884
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Solemn
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400082, guid: faffeb5bb561a794dac02602f15f5b1a, type: 3}
+  m_ParentStateMachine: {fileID: 110709552}
+  m_Position: {x: 581, y: 195, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110242356
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Pose 0
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: c02e897808065b347b0ea862084c3640, type: 2}
+  m_ParentStateMachine: {fileID: 110709552}
+  m_Position: {x: 336, y: 72, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -44,9 +109,24 @@ State:
   m_Speed: .800000012
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400052, guid: faffeb5bb561a794dac02602f15f5b1a, type: 3}
+  - {fileID: 7400010, guid: faffeb5bb561a794dac02602f15f5b1a, type: 3}
   m_ParentStateMachine: {fileID: 110709552}
-  m_Position: {x: 60, y: 120, z: 0}
+  m_Position: {x: 216, y: -12, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
+--- !u!1102 &110271576
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: AngryIdle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400080, guid: faffeb5bb561a794dac02602f15f5b1a, type: 3}
+  m_ParentStateMachine: {fileID: 110709552}
+  m_Position: {x: 336, y: 204, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -57,13 +137,27 @@ StateMachine:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
-  m_DefaultState: {fileID: 110269206}
+  m_DefaultState: {fileID: 110238884}
   m_States:
   - {fileID: 110209552}
   - {fileID: 110269206}
+  - {fileID: 110242356}
+  - {fileID: 110223794}
+  - {fileID: 110271576}
+  - {fileID: 110238884}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
-  m_OrderedTransitions: {}
+  m_OrderedTransitions:
+    data:
+      first: {fileID: 110209552}
+      second: []
+    data:
+      first: {fileID: 110269206}
+      second: []
+    data:
+      first: {fileID: 110242356}
+      second:
+      - {fileID: 110176712}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

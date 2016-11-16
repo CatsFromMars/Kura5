@@ -21,6 +21,9 @@ public class HashIDs : MonoBehaviour {
 	public int targetState;
 	public int pullIdleState;
 	public int pullingState;
+	public int sidleLeftState;
+	public int sidleRightState;
+	public int sidleState;
 
 	public int stepState;
 	public int leapState;
@@ -115,6 +118,9 @@ public class HashIDs : MonoBehaviour {
 	void Awake () {
 
 		//STATES FOR PLAYER
+		sidleState = Animator.StringToHash("Locomotion.SidleIdle");
+		sidleRightState = Animator.StringToHash("Locomotion.Sidleright");
+		sidleLeftState = Animator.StringToHash("Locomotion.Sidleleft");
 		runningState = Animator.StringToHash("Locomotion.Running");
 		hurtState = Animator.StringToHash("Combat.Hurt");
 		taiyouState = Animator.StringToHash("Charging.Taiyou");

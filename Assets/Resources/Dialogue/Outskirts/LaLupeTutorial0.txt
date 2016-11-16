@@ -1,0 +1,78 @@
+<A=LaLupe_7>
+<CAM_GOTO_POINT=LaLupe>
+S=LLHurt
+La Lupe<n>Augh!
+<A=LaLupe_8>
+<PAUSE_FOR=1>
+<T=LaLupe_2>
+<O=LaLupe_2>
+<A=LaLupe_0>
+<L=Annie_5>
+Annie<n>Huh?
+<L=Annie_5>
+Annie<n>Where'd she run off t-
+##La Lupe appears next to Annie, force chokes her
+<M=Immortals>
+SHAKE_CAMERA
+<O=AnniePlayer_3>
+<CAM_GOTO_POINT=LaLupe>
+<E=AnniePlayer_1>
+SET_BLEND_SHAPE=AnnieBodyMesh,Angry,100
+<A=AnniePlayer_13>
+<A=LaLupe_15>
+<L=NULL_0>
+Annie<n>AUGH!
+La Lupe<n>You think you're clever, don't you?
+La Lupe<n>Using a sneak attack to strike me. 
+La Lupe<n>If nothing else, you are more practical than your comrades who 'valiantly' died attempting the same thing. 
+La Lupe<n>But did you think that alone would be enough to defeat me?
+S=Dramatic
+SHAKE_CAMERA
+La Lupe<n>Fool!
+La Lupe<n>You are still just a human, weak and fragile, and I am [Immortal!]
+<A=AnniePlayer_14>
+<A=LaLupe_0>
+La lupe<n>Insolent child. To think you could harm [La Lupe!]
+<R=LUPE_1>
+La lupe<n>But still, I let my guard down. I was weak enough to allow something like you to maim me.
+<R=LUPE_1>
+La Lupe<n>I accept this wound, as a reminder of this failure. 
+<R=LUPE_0>
+La Lupe<n>But it will not happen again!
+<R=LUPE_0>
+La Lupe<n>Flee, child. Fight me again, and you will die.
+<R=LUPE_0>
+La Lupe<n>This mercy, I offer you for correcting my underestimation of you Guildsmen.
+<R=LUPE_0>
+La Lupe<n>But know this!
+<R=LUPE_0>
+La Lupe<n>In return for this mercy, I shall see to it that five-hundred more of your fellow Guildsmen shall suffer. 
+<R=LUPE_0>
+La Lupe<n>If you wish to prevent that, challenge me again.
+<R=LUPE_0>
+La Lupe<n>Then we will see who laughs last!
+<R=NULL_0>
+##La Lupe Vanishes
+<A=LaLupe_16>
+<PAUSE_FOR=1>
+<PAUSE_FOR=1>
+<CAM_GOTO_POINT=PlayerPositionContainer>
+<E=AnniePlayer_0>
+<PAUSE_FOR=3>
+<A=CutsceneFade_1>
+<PAUSE_FOR=1>
+<CLEAR_EMOJI=AnniePlayer>
+SET_BLEND_SHAPE=AnnieBodyMesh,Angry,0
+Annie<n>. . .
+<A=AnniePlayer_0>
+Annie<n>(So that's an [Immortal.] Just as ugly on the inside as the stories said.)
+Annie<n>(Guildmaster's suspicions were on the mark- no, even worse than she thought.)
+Annie<n>(She offered to spare me but...)
+<M=AnnieBeBrave>
+Annie<n>(If she ain't killin' me, she's probably killin' someone else. That's an offer I can't take.)
+Annie<n>(Too many people have already died. I ain't gonna let anyone else die either...!)
+<A=AnniePlayer_18>
+<A=CutsceneFade_0>
+Annie<n>Sorry Guildmaster, but I've gotta do this. I'll hunt her down while I have a chance!
+<A=LLFog_1>
+<A=AnniePlayer_0>

@@ -15,6 +15,7 @@ public class EnemyClass : MonoBehaviour {
 	protected bool frozen;
 	protected float freezeTimer; //THIS HANDLES EMIL'S SPELLS
 	protected float freezeWaitTime = 400f;
+	public bool personalBubble = true;
 	protected bool canSee = true;
 	protected bool canHear = true;
 	protected string enemyName;
@@ -252,17 +253,23 @@ public class EnemyClass : MonoBehaviour {
 		Destroy(this.gameObject);
 	}
 
-	protected void Die() {
+	public virtual void Die() {
 		dying = true;
 		//Disable collider upon death so that the player doesn't get hurt
 		CapsuleCollider cc = GetComponent<CapsuleCollider>();
 		if(cc!=null) cc.enabled = false;
 		if(agent!=null) agent.speed = 0;
-		if(rigidbody!=null) rigidbody.velocity = Vector3.zero;
+		if(rigidbody!=null&&!rigidbody.isKinematic) rigidbody.velocity = Vector3.zero;
 		animator.SetTrigger(hash.dyingTrigger);
 		if (!dead) {
 			dead = true;
 			animator.SetBool (hash.deadBool, true);
+
+			//Disable hurt
+			foreach (Transform child in transform)
+			{
+				if(child.tag=="EnemyWeapon") child.tag = "Untagged";
+			}
 		}
 	}
 
@@ -273,15 +280,15 @@ public class EnemyClass : MonoBehaviour {
 
 	protected void spawnLoot() {
 		bool playSound = true;
-		int c = Random.Range (0, 11);
+		int c = Random.Range (0, 100);
 		int rare = 2;
-		int common = 4;
+		int common = 8;
 		if(lightLevels.w.conditionName == "snow") {
-			rare = 3;
-			common = 6;
+			rare = 5;
+			common = 11;
 		}
-		if(c > common && commonLoot!=null) Instantiate(commonLoot, transform.position, commonLoot.transform.rotation);
-		else if(c < rare && rareLoot!=null) Instantiate(rareLoot, transform.position, rareLoot.transform.rotation);
+		if(c <= rare && rareLoot!=null) Instantiate(commonLoot, transform.position, commonLoot.transform.rotation);
+		else if(c <= common && commonLoot!=null) Instantiate(rareLoot, transform.position, rareLoot.transform.rotation);
 		else playSound = false;
 		if(playSound) {
 			AudioClip sound = Resources.Load<AudioClip>("Sound Effects/Misc/Drop");

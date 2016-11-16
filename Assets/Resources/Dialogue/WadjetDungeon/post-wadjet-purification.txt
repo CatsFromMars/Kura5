@@ -1,0 +1,98 @@
+##Emil rises from the ground, arms crossed>
+##Annie points her gun at Emil for a bit>
+<M=VampireEmil>
+<A=MainCamera_0>
+<SHOW_BOTH_CHARACTERS>
+<CAM_GOTO_POINT=Position7>
+<T=AnniePlayer_1>
+<T=EmilPlayer_6>
+<FACE_OTHER>
+<A=EmilPlayer_0>
+<PAUSE_FOR=1>
+<E=AnniePlayer_1>
+<A=AnniePlayer_2>
+S=Aim
+<PAUSE_FOR=1>
+<L=ANNIE_3>
+Annie<n>...What the heck was that?!
+<R=EMIL_3>
+Emil<n>Hm, you'll have to elaborate, did you mean the part where I saved your hide, or-
+<L=ANNIE_3>
+Annie<n>The heart! What did you do to it?
+<R=EMIL_2>
+Emil<n>That heart? I devoured it whole, and made it a part of me. 
+<R=EMIL_4>
+Emil<n>And with nothing to cling to, La Lupe's chances of escaping death have been reduced to zero.
+<L=ANNIE_3>
+Annie<n>Yer not a crow, yer a good fer nothin’ vulture!
+<R=EMIL_1>
+Emil<n>[Raven], thank you!
+<R=EMIL_0>
+Emil<n>And perhaps if your so-called ''Pile Driver'' had been working like it had been supposed to, perhaps you could have finished her off more quickly!
+<A=AnniePlayer_0>
+<L=ANNIE_2>
+Annie<n>The sigil was supposed to bind the Immortal to the coffin, but instead...
+<R=EMIL_3>
+Emil<n>It won't be doing much of that.
+<R=EMIL_1>
+Emil<n>I'm not feeling any magic from those sigils, and these... ''reflectors'' look like they haven't been touched up in a century.
+<R=EMIL_2>
+Emil<n>I'm no expert, but I'm amazed they still work.
+<L=NULL_0>
+<R=NULL_0>
+<CAM_GOTO_POINT=AnniePlayer>
+<E=AnniePlayer_0>
+<PAUSE_FOR=2>
+<CLEAR_EMOJI=AnniePlayer>
+<A=AnniePlayer_6>
+Annie<n>Oh, my heart...
+<CAM_GOTO_POINT=EmilPlayer>
+Emil<n>Weak in the knees all of a sudden?
+<CAM_GOTO_POINT=AnniePlayer>
+Annie<n>...You'd best clear outta here while I'm still catching my breath.
+<CAM_GOTO_POINT=Position7>
+Emil<n>Pitiful.
+<A=EmilPlayer_3>
+<PAUSE_FOR=1>
+<T=EmilPlayer_7>
+<A=EmilPlayer_4>
+<PAUSE_FOR=1>
+<A=AnniePlayer_5>
+S=Aim
+Annie<n>Don't try anything now.
+<R=EMIL_1>
+Emil<n>Wouldn't dream of it!
+<R=EMIL_5>
+Emil<n>You see, I'm afraid our ''partnership'' isn't going to end just yet.
+<L=ANNIE_5>
+Annie<n>The Immortal's dead. You said it yerself.
+<R=EMIL_1>
+Emil<n>Indeed I did. And what about it?
+<R=EMIL_4>
+Emil<n>Did you really think it was going to be that simple?
+<L=ANNIE_2>
+Annie<n>...Ya know something yer not tellin' me.
+<R=EMIL_1>
+Emil<n>A skillful observation.
+<L=ANNIE_3>
+Annie<n>Spill it, Vamp!
+<R=EMIL_2>
+Emil<n>Not just yet.
+<R=EMIL_2>
+Emil<n>Something in the darkness may be listening. I'll explain everything once we're outside.
+<R=EMIL_3>
+Emil<n>...Maybe show some gratitude while you're at it.
+SET_BLEND_SHAPE=AnnieBodyMesh,Happy,100
+<L=ANNIE_4>
+Annie<n>Good luck with that!
+<A=EmilPlayer_0>
+<A=AnniePlayer_0>
+<A=CutsceneFade_1>
+<PAUSE_FOR=1>
+SET_BLEND_SHAPE=AnnieBodyMesh,Happy,0
+M=Null
+S=Dawn
+With the Immortal purified, the weather has returned to normal!
+<HIDE_INACTIVE_CHARACTER>
+<A=CutsceneFade_0>
+<CAM_GOTO_POINT=PlayerPositionContainer>

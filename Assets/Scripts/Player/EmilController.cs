@@ -44,6 +44,7 @@ public class EmilController : PlayerContainer {
 	public ParticleSystem darkParticles;
 	public GameObject darkenedFace;
 	private bool isSmiling;
+	public GameObject hoodie;
 	
 	void Start() {
 		changeWeaponColor ();
@@ -57,11 +58,11 @@ public class EmilController : PlayerContainer {
 			updateAnimations();
 			handleCombos();
 			handleTargeting();
-			handleParticeEffects();
-			handleBurning();
+			handleEffects();
+			if(Time.timeScale!=0) handleBurning();
 			checkForLensSwap();
 			//handleCape();
-			absorb(1);
+			if(Time.timeScale!=0) absorb(1);
 			//handleSlasherSmileEffect();
 			changeWeaponColor();
 		}
@@ -86,7 +87,7 @@ public class EmilController : PlayerContainer {
 //	}
 
 	void handleBurning() {
-		if(lightLevels.sunlight > 0 && !lightLevels.w.isNightTime && !inCoffin && (!currentAnim(Animator.StringToHash("Base Layer.Switch")))) {
+		if( lightLevels.sunlight > 0 && !lightLevels.w.isNightTime && !inCoffin && (!currentAnim(Animator.StringToHash("Base Layer.Switch")))) {
 			if(!burning) {
 				burning = true;
 				animator.SetTrigger(Animator.StringToHash("Burn"));
@@ -137,7 +138,7 @@ public class EmilController : PlayerContainer {
 			}
 			else parryCounter = 0;
 			targetEnemy();
-			if(currentTarget != null) {
+			if(currentTarget != null && currentTarget.gameObject.activeSelf && Time.timeScale != 0) {
 				if(lockOn == null) lockOn = Instantiate (lockOnUI, currentTarget.transform.position, Quaternion.identity) as Transform;
 				else lockOn.transform.position = currentTarget.transform.position;
 				zoomToEnemy();
@@ -159,7 +160,7 @@ public class EmilController : PlayerContainer {
 			else { 
 				untargetEnemy();
 				if(lockOn != null) Destroy(lockOn.gameObject);
-				zoomToPlayer();
+				if(Time.timeScale != 0)zoomToPlayer();
 			}
 		}
 		else {
@@ -178,10 +179,21 @@ public class EmilController : PlayerContainer {
 		}
 	}
 
-	void handleParticeEffects() {
+	void handleEffects() {
 		//Sword Slash Effect
 		if(combo > 0 || currentAnim(hash.comboState1)) trail.Emit = true;
 		else trail.Emit = false;
+
+		//Emil's hood
+		if (lightLevels.w.conditionName.Contains ("rain") || lightLevels.w.conditionName.Contains ("storm")) {
+			hoodie.SetActive(true);
+			mesh.SetBlendShapeWeight (10, 100);
+		}
+		else {
+			hoodie.SetActive(false);
+			mesh.SetBlendShapeWeight (10, 0);
+		}
+
 	}
 
 	void handleCombos() {
@@ -272,14 +284,14 @@ public class EmilController : PlayerContainer {
 	
 	void hitEnemy(RaycastHit hit) {
 		int m = 1;
-		BossSegment b = null;
+		EnemySegment b = null;
 		//Ordinary Enemies
 		EnemyClass enemy = hit.collider.GetComponent<EnemyClass>();
 		//if it's a boss segment...
 		if(enemy == null) { 
-			b = hit.collider.GetComponent<BossSegment>();
+			b = hit.collider.GetComponent<EnemySegment>();
 			b.hitWithSword();
-			enemy = b.bossParent;
+			enemy = b.enemyParent;
 			m = b.damageMultiplier;
 		}
 

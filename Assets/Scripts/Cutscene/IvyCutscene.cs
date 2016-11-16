@@ -70,8 +70,12 @@ public class IvyCutscene : MonoBehaviour {
 	IEnumerator startIvyCutscene() {
 		yield return new WaitForSeconds(1);
 		yield return StartCoroutine(DisplayDialogue.Speak(ivyCutscene));
-		Destroy (deadIvy.transform.root.gameObject);
 		flags.SetCutscene(ivyCutscene.name);
+		yield return null;
+		foreach(GameObject ivy in ivyObjects) {
+			Destroy(ivy.gameObject);
+		}
+		yield return null;
 	}
 
 	IEnumerator startTrapCutscene() {
@@ -81,5 +85,6 @@ public class IvyCutscene : MonoBehaviour {
 		yield return StartCoroutine(player.characterWalkTo(walkTo2.position));
 		emil.SetInteger (Animator.StringToHash("CutsceneAction"),8); //Emil appears
 		trap.springTrap(player.transform);
+		flags.SetCutscene(introCutscene.name);
 	}
 }

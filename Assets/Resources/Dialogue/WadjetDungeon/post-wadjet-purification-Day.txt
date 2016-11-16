@@ -1,0 +1,125 @@
+##Emil rises from the ground, arms crossed>
+##Annie points her gun at Emil for a bit>
+<M=AnnieBeBrave>
+<SHOW_BOTH_CHARACTERS>
+<A=MainCamera_0>
+<CAM_GOTO_POINT=Position7>
+<T=AnniePlayer_1>
+<T=EmilPlayer_6>
+<FACE_CAMERA=AnniePlayer>
+<A=EmilPlayer_0>
+<PAUSE_FOR=1>
+##BEGIN
+SET_BLEND_SHAPE=AnnieBodyMesh,Happy,100
+<A=AnniePlayer_16>
+Annie<n>We di-i-id it!
+Emil<n>Farewell, La Lupe!
+Emil<n>And good riddance!
+Emil<n>This is the least of what you deserved.
+SET_BLEND_SHAPE=AnnieBodyMesh,Happy,0
+<FACE_OTHER>
+<A=AnniePlayer_0>
+Annie<n>Oi, yer still in one piece?
+<L=ANNIE_0>
+Annie<n>No singed feathers or nothin'?
+<R=EMIL_1>
+Emil<n>Of course not.
+<R=EMIL_3>
+Emil<n>Unlike some people I know, I don't operate recklessly.
+<L=ANNIE_3>
+Annie<n>Oi!
+<R=EMIL_2>
+Emil<n>Still, fine work for what is almost scrap!
+<R=EMIL_2>
+Emil<n>Your ''Pile Driver'' is looking pretty shoddy, isn't it?
+<R=EMIL_1>
+Emil<n>I'm not feeling any magic from those sigils, and these... ''reflectors'' look like they haven't been touched up in a century.
+<L=ANNIE_4>
+Annie<n>It worked, didn't it? Immortal's purified!
+<L=ANNIE_0>
+Annie<n>Poof, into ash, dark matter and all.
+<R=EMIL_2>
+Emil<n>Well, almost all of it. I had to do a little leg work myself to finish the job.
+<L=ANNIE_5>
+Annie<n>Come again?
+<R=EMIL_4>
+Emil<n>I just took a little bite of her heart for myself. Nothing much, but still enough to sustain me.
+<R=EMIL_5>
+Emil<n>The rest was burned to ashes, and I don't exactly fancy ash for a snack.
+<L=ANNIE_5>
+Annie<n>Ain't that like cannibalism?
+<L=ANNIE_3>
+Annie<n>Gross!
+<R=EMIL_4>
+Emil<n>Never eaten snake jerky before?
+<L=ANNIE_2>
+Annie<n>Ugh.
+<R=EMIL_1>
+Emil<n>Well, at least this way, between your efforts and mine, La Lupe is gone for good.
+##Annie Slumps over
+<L=NULL_0>
+<R=NULL_0>
+<CAM_GOTO_POINT=AnniePlayer>
+<E=AnniePlayer_0>
+<PAUSE_FOR=2>
+<CLEAR_EMOJI=AnniePlayer>
+<A=AnniePlayer_6>
+Annie<n>Then it's over...
+<CAM_GOTO_POINT=EmilPlayer>
+<R=EMIL_1>
+Emil<n>Weak in the knees all of a sudden?
+<R=EMIL_5>
+Emil<n>The adrenaline must be wearing off.
+<R=EMIL_3>
+Emil<n>Don't go to pieces on me now.
+<CAM_GOTO_POINT=AnniePlayer>
+<L=ANNIE_2>
+Annie<n>...You'd best clear outta here while I'm still catching my breath.
+<CAM_GOTO_POINT=Position7>
+Emil<n>Pitiful.
+<L=NULL_0>
+<R=NULL_0>
+<A=EmilPlayer_3>
+<PAUSE_FOR=1>
+<T=EmilPlayer_7>
+<A=EmilPlayer_4>
+<PAUSE_FOR=1>
+<A=AnniePlayer_5>
+S=Aim
+Annie<n>Don't try anything now.
+<R=EMIL_1>
+Emil<n>Wouldn't dream of it!
+<R=EMIL_5>
+Emil<n>You see, I'm afraid our ''partnership'' isn't going to end just yet.
+<L=ANNIE_5>
+Annie<n>The Immortal's dead. You said it yerself.
+<R=EMIL_1>
+Emil<n>Indeed I did. And what about it?
+<R=EMIL_4>
+Emil<n>Did you really think it was going to be that simple?
+<L=ANNIE_2>
+Annie<n>...Ya know something yer not tellin' me.
+<R=EMIL_1>
+Emil<n>A skillful observation.
+<L=ANNIE_3>
+Annie<n>Spill it, Vamp!
+<R=EMIL_2>
+Emil<n>Not just yet.
+<R=EMIL_2>
+Emil<n>Something in the darkness may be listening. I'll explain everything once we're outside.
+<R=EMIL_3>
+Emil<n>...Maybe show some gratitude while you're at it.
+<L=ANNIE_4>
+Annie<n>Good luck with that!
+<L=NULL_0>
+<R=NULL_0>
+<A=EmilPlayer_0>
+<A=AnniePlayer_0>
+<A=CutsceneFade_1>
+<PAUSE_FOR=1>
+M=Null
+S=Dawn
+With the Immortal purified, the weather has returned to normal!
+<HIDE_INACTIVE_CHARACTER>
+<A=CutsceneFade_0>
+<CAM_GOTO_POINT=PlayerPositionContainer>

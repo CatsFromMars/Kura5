@@ -27,6 +27,7 @@ GameObject:
   - 4: {fileID: 400006}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
+  - 65: {fileID: 6596088}
   m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
@@ -197,7 +198,7 @@ GameObject:
   - 198: {fileID: 19855072}
   - 199: {fileID: 19955072}
   - 114: {fileID: 11455072}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SunParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -780,6 +781,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 155034}
   m_Mesh: {fileID: 4300000, guid: c950a38537dd6ca41ba11c85481c96ad, type: 3}
+--- !u!65 &6596088
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.15519595, y: .496994019, z: 2.15519595}
+  m_Center: {x: 0, y: .000996999443, z: 0}
 --- !u!82 &8255070
 AudioSource:
   m_ObjectHideFlags: 1
@@ -960,6 +973,10 @@ MonoBehaviour:
   textLoops:
   - {fileID: 4900000, guid: 099c35896fd71a247a49f300c9085b99, type: 3}
   otenkoAppear: 0
+  isNeroSavePoint: 0
+  annieEmilSplit: 0
+  annieLoops: []
+  emilLoops: []
 --- !u!114 &11419760
 MonoBehaviour:
   m_ObjectHideFlags: 1

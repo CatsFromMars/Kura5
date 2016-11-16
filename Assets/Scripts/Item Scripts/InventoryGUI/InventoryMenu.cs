@@ -99,7 +99,7 @@ public class InventoryMenu : MonoBehaviour {
 
 		pushCounter = pushWaitTime;
 		selectedPlayer = player.ANNIE;
-		currentState = state.SELECT_STATE;
+		currentState = state.SELECT_ITEM;
 		currentFunction = function.USE;
 	}
 
@@ -112,7 +112,7 @@ public class InventoryMenu : MonoBehaviour {
 	void OnEnable() {
 		pushCounter = pushWaitTime;
 		//selectedPlayer = player.ANNIE;
-		currentState = state.SELECT_STATE;
+		currentState = state.SELECT_ITEM;
 		//currentFunction = function.USE;
 		//deletePrompt = prompt.YES;
 		selector.active = false;
@@ -133,7 +133,7 @@ public class InventoryMenu : MonoBehaviour {
 		else if(currentState == state.SELECT_PLAYER) selectPlayer();
 		else if(currentState == state.PROMPT_DELETE) promptDeletion();
 
-		if(currentState != state.SELECT_STATE) manager.performingAction = true;
+		if(currentState != state.SELECT_ITEM) manager.performingAction = true;
 		else manager.performingAction = false;
 	}
 
@@ -162,74 +162,68 @@ public class InventoryMenu : MonoBehaviour {
 	void selectState() {
 		stateSelector.active = true;
 		playerSelector.active = false;
-		selector.active = false;
+		//selector.active = false;
 
 		if (Input.GetButtonDown ("Confirm")) { //Charge is basically the A button
 			if(currentFunction == function.USE || currentFunction == function.DELETE) {
-				currentState = state.SELECT_ITEM;
+				currentState = state.PROMPT_DELETE;
 				makeSound(confirm);
 			}
-			else if(currentFunction == function.SWAP) {
-				currentState = state.SELECT_ITEM;
-				makeSound(confirm);
-			}
+			//else if(currentFunction == function.SWAP) {
+			//	currentState = state.SELECT_ITEM;
+			//	makeSound(confirm);
+			//}
 		}
-		else if(Input.GetButtonDown("Deny")) { //Basically the "B" button
-			manager.closeMenu();
+		else if(Input.GetButtonDown("Deny")||Input.GetButtonDown("Inventory")) { //Basically the "B" button
+			//manager.closeMenu();
+			stateSelector.gameObject.SetActive(false);
+			currentState = state.SELECT_ITEM;
+			makeSound(deny);
 		}
-		else if (vert == -1) {
-			pushCounter++;
-			if(pushCounter>=pushWaitTime) {
-				Vector3 pos = stateSelector.localPosition;
-				makeSound(selectNoise);
-				pushCounter = 0;
-				if(currentFunction == function.USE) {
-					pos.y = -8.3f;
-					currentFunction = function.SWAP;
-				}
-				else if(currentFunction == function.SWAP) {
-					if(deleteState != null) {
-						pos.y = -16.7f;
-						currentFunction = function.DELETE;
-					}
-					else {
-						pos.y = 0;
-						currentFunction = function.USE;
-					}
-				}
-				else if (currentFunction == function.DELETE) {
-					pos.y = 0;
-					currentFunction = function.USE;
-				}
-				stateSelector.localPosition = pos;
-			}
-		}
+//		else if (vert == -1) {
+//			pushCounter++;
+//			if(pushCounter>=pushWaitTime) {
+//				Vector3 pos = stateSelector.localPosition;
+//				makeSound(selectNoise);
+//				pushCounter = 0;
+//				if(currentFunction == function.USE) {
+//					pos.y = -8.3f;
+//					currentFunction = function.SWAP;
+//				}
+//				else if(currentFunction == function.SWAP) {
+//					if(deleteState != null) {
+//						pos.y = -16.7f;
+//						currentFunction = function.DELETE;
+//					}
+//					else {
+//						pos.y = 0;
+//						currentFunction = function.USE;
+//					}
+//				}
+//				else if (currentFunction == function.DELETE) {
+//					pos.y = 0;
+//					currentFunction = function.USE;
+//				}
+//				stateSelector.localPosition = pos;
+//			}
+//		}
 		else if (vert == 1) {
 			pushCounter++;
 			if(pushCounter>=pushWaitTime) {
 				Vector3 pos = stateSelector.localPosition;
 				makeSound(selectNoise);
 				pushCounter = 0;
-
-				if(currentFunction == function.USE) {
-					if(deleteState != null) {
-						pos.y = -16.7f;
-						currentFunction = function.DELETE;
-					}
-					else {
-						pos.y = -8.3f;
-						currentFunction = function.SWAP;
-					}
-				}
-				else if(currentFunction == function.SWAP) {
-					pos.y = 0;
-					currentFunction = function.USE;
-				}
-				else if (currentFunction == function.DELETE) {
-					pos.y = -8.3f;
-					currentFunction = function.SWAP;
-				}
-				stateSelector.localPosition = pos;
+				stateSelector.gameObject.SetActive(false);
+				currentState = state.SWAP_ITEM;
+			}
+		}
+		else if(horiz == -1) {
+			pushCounter++;
+			if(pushCounter>=pushWaitTime) {
+				pushCounter = 0;
+				stateSelector.gameObject.SetActive(false);
+				currentState = state.SWAP_ITEM;
+				makeSound(selectNoise);
 			}
 		}
 		else pushCounter = pushWaitTime;
@@ -247,7 +241,8 @@ public class InventoryMenu : MonoBehaviour {
 
 			if(deletePrompt == prompt.YES) {
 				makeSound(trash);
-				inventory.removeConsumableItem(index);
+				inventory.removeConsumableItem(swapIndex);
+				index = swapIndex;
 			}
 			else {
 				makeSound(deny);
@@ -256,9 +251,11 @@ public class InventoryMenu : MonoBehaviour {
 			redrawAll();
 			pos.y = -7.88f;
 			deletePrompt = prompt.YES;
+			currentState=state.SELECT_ITEM;
 			deleteSelector.localPosition = pos;
 			currentState = state.SELECT_ITEM;
 			deleteSelector.active = false;
+			stateSelector.active = false;
 		}
 		else if(Input.GetButtonDown("Deny")) { //Basically the "B" button
 			Vector3 pos = deleteSelector.localPosition;
@@ -292,10 +289,29 @@ public class InventoryMenu : MonoBehaviour {
 		}
 		else pushCounter = pushWaitTime;
 	}
+		
+	void selectDelete() {
+
+	}
 
 	void selectPlayer() {
 		//Select Player to use an item on
+		//Auto-toggle if a player character is NOT present
 		playerSelector.active = true;
+		if(!data.canSwapToEmil) {
+			Debug.Log("Cannot swap");
+			Vector3 pos = playerSelector.localPosition;
+			selectedPlayer = player.ANNIE;
+			pos.y = -30f;
+			playerSelector.localPosition = pos;
+		}
+		else if(!data.canSwapToAnnie) {
+			Debug.Log("Cannot swap");
+			Vector3 pos = playerSelector.localPosition;
+			selectedPlayer = player.EMIL;
+			pos.y = -121f;
+			playerSelector.localPosition = pos;
+		}
 		//Confirm
 		if(Input.GetButtonDown("Confirm")) { //Charge is basically the A button
 			if(inventory.useCurrentConsumable(index, selectedPlayer.ToString())) {
@@ -310,19 +326,37 @@ public class InventoryMenu : MonoBehaviour {
 		else if(Input.GetButtonDown("Deny")) { //Basically the "B" button
 			currentState = state.SELECT_ITEM;
 			playerSelector.active = false;
+			moveSelector();
 			makeSound(deny);
 		}
+		else if (horiz==1) {
+			Debug.Log("Horiz");
+			if(horiz==1) {
+				pushCounter++;
+				if(pushCounter>=pushWaitTime) {
+					pushCounter=0;
+					//swapIndex = 0;
+					//moveSelector();
+					index = 0;
+					makeSound(selectNoise);
+					moveSwapSelector();
+					currentState = state.SWAP_ITEM;
+					playerSelector.active = false;
+				}
+			}
+		}
 		else if (vert != 0) {
+			Debug.Log("Vert");
 			pushCounter++;
 			if(pushCounter>=pushWaitTime) {
 				pushCounter = 0;
 				Vector3 pos = playerSelector.localPosition;
-				if(selectedPlayer == player.ANNIE) {
+				if(selectedPlayer == player.ANNIE&&data.canSwapToEmil) {
 					selectedPlayer = player.EMIL;
 					pos.y = -121f;
 					makeSound(selectNoise);
 				}
-				else if(selectedPlayer == player.EMIL) {
+				else if(selectedPlayer == player.EMIL&&data.canSwapToAnnie) {
 					selectedPlayer = player.ANNIE;
 					pos.y = -30f;
 					makeSound(selectNoise);
@@ -331,7 +365,10 @@ public class InventoryMenu : MonoBehaviour {
 				playerSelector.localPosition = pos;
 			}
 		}
-		else pushCounter = pushWaitTime;
+		else {
+			Debug.Log("Reset");
+			pushCounter = pushWaitTime;
+		}
 	}
 
 	bool itemNotNull() {
@@ -341,14 +378,17 @@ public class InventoryMenu : MonoBehaviour {
 	}
 
 	void selectItemOnGrid() {
-
+		currentFunction = function.USE;
 		selector.active = true;
 		swapSelector.active = false;
 		//Select Item
 		if(Input.GetButtonDown("Confirm")) { //Charge is basically the A button
 			if(itemNotNull()) {
 				if(currentFunction == function.USE) {
-					if(itemDisplayType == listKind.CONSUMABLES) currentState = state.SELECT_PLAYER;
+					if(itemDisplayType == listKind.CONSUMABLES) {
+						swapIndex = index;
+						currentState = state.SELECT_PLAYER;
+					}
 					else if(itemDisplayType == listKind.VALUABLES) {
 						//use key item
 						inventory.useCurrentKeyItem(index);
@@ -368,10 +408,8 @@ public class InventoryMenu : MonoBehaviour {
 				makeSound(confirm);
 			}
 		}
-		else if(Input.GetButtonDown("Deny")) { //Basically the "B" button
-			currentState = state.SELECT_STATE;
-			swapSelector.active = false;
-			makeSound(deny);
+		else if(Input.GetButtonDown("Deny")||Input.GetButtonDown("Inventory")) { //Basically the "B" button
+			manager.closeMenu();
 		}
 		else if (horiz == 1) {
 			pushCounter++;
@@ -419,7 +457,9 @@ public class InventoryMenu : MonoBehaviour {
 	}
 
 	void swapItem(int currentIndex) {
+		stateSelector.gameObject.SetActive(false);
 		swapSelector.active = true;
+		currentFunction = function.SWAP;
 		//Select Item
 		if(Input.GetButtonDown("Confirm")) { //Charge is basically the A button
 			if(itemDisplayType == listKind.CONSUMABLES) ListUtil.SwapConsumables(inventory.itemsList, currentIndex, index);
@@ -431,6 +471,7 @@ public class InventoryMenu : MonoBehaviour {
 			makeSound(confirm);
 		}
 		else if(Input.GetButtonDown("Deny")) { //Basically the "B" button
+			index=swapIndex;
 			currentState = state.SELECT_ITEM;
 			swapSelector.active = false;
 			makeSound(deny);
@@ -441,8 +482,17 @@ public class InventoryMenu : MonoBehaviour {
 				pushCounter = 0;
 				int row = Mathf.FloorToInt(index / inventory.slotsX);
 				int col = index % inventory.slotsX;
-				index = ((col+1) % (inventory.slotsX)) + row*inventory.slotsY;
-				moveSwapSelector();
+				if(col>=inventory.slotsX-1&&itemDisplayType == listKind.CONSUMABLES) {
+					swapSelector.active = false;
+					//index = swapIndex;
+					makeSound(selectNoise);
+					currentFunction = function.DELETE;
+					currentState = state.SELECT_STATE;
+				}
+				else {
+					index = ((col+1) % (inventory.slotsX)) + row*inventory.slotsY;
+					moveSwapSelector();
+				}
 			}
 		}
 		else if (horiz == -1) {
@@ -452,17 +502,35 @@ public class InventoryMenu : MonoBehaviour {
 				int row = Mathf.FloorToInt(index / inventory.slotsX);
 				int col = index % inventory.slotsX;
 				col = col-1;
-				if(col<0) col = inventory.slotsX-1;
-				index = ((col) % (inventory.slotsX)) + row*inventory.slotsY;
-				moveSwapSelector();
+				if(col < 0) {
+					Debug.Log("swapping to player..");
+					currentState = state.SELECT_PLAYER;
+					swapSelector.active = false;
+				}
+				else {
+					//if(col<0) col = inventory.slotsX-1;
+					index = ((col) % (inventory.slotsX)) + row*inventory.slotsY;
+					moveSwapSelector();
+				}
 			}
 		}
 		else if (vert == -1) {
 			pushCounter++;
 			if(pushCounter>=pushWaitTime) {
 				pushCounter = 0;
-				index = (index+inventory.slotsY)%(inventory.slotsY*inventory.slotsX);
-				moveSwapSelector();
+				int row = Mathf.FloorToInt(index / inventory.slotsX);
+				int col = index % inventory.slotsX;
+				if(row>=inventory.slotsY-1&&itemDisplayType == listKind.CONSUMABLES) {
+					swapSelector.active = false;
+					//index = swapIndex;
+					makeSound(selectNoise);
+					currentFunction = function.DELETE;
+					currentState = state.SELECT_STATE;
+				}
+				else {
+					index = (index+inventory.slotsY)%(inventory.slotsY*inventory.slotsX);
+					moveSwapSelector();
+				}
 			}
 		}
 		else if (vert == 1) {
@@ -497,7 +565,7 @@ public class InventoryMenu : MonoBehaviour {
 		Vector3 pos = new Vector3(x*37, y*-37, 0);
 		swapSelector.transform.localPosition = pos;
 		//if(slots[index] != null) updateDescription();
-		displayModel ();
+		//displayModel();
 		makeSound (selectNoise);
 	}
 

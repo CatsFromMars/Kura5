@@ -14,6 +14,8 @@ public class Entrance : MonoBehaviour {
 	public AudioClip newMusic;
 	public bool deleteKeys=false; //remove all keys from player inventory
 	private Inventory inventory;
+	public bool keepFadedBlack=false;
+	public bool forceSwapToAnnie=false;
 
 	void Awake() {
 		if(deleteKeys) inventory = GameObject.FindGameObjectWithTag("GameController").GetComponent<Inventory>();
@@ -46,11 +48,11 @@ public class Entrance : MonoBehaviour {
 
 	IEnumerator walk() {
 		Vector3 pos = player.transform.position + player.transform.forward;
-		GameObject.FindGameObjectWithTag ("Fader").GetComponent<SceneTransition> ().gotoScene (nextScene);
+		GameObject.FindGameObjectWithTag ("Fader").GetComponent<SceneTransition> ().gotoScene (nextScene,true, true, false, keepFadedBlack);
 		//yield return StartCoroutine(player.characterWalkTo(pos, this.transform));
 		yield return null;
 		if(setPlayerPosition) player.transform.position = positionSet;
-		if (setPlayerPosition) {
+		if (setPlayerRotation) {
 			player.transform.rotation = Quaternion.Euler(player.transform.rotation.x, rotationSet, player.transform.rotation.z);
 		}
 		if (swapsMusic) {
@@ -58,5 +60,6 @@ public class Entrance : MonoBehaviour {
 			music.changeMusic(newMusic);
 			music.startMusic();
 		}
+		if(forceSwapToAnnie) GameObject.FindGameObjectWithTag("PlayerSwapper").GetComponent<CharacterSwapper>().forceSwitchToAnnie();
 	}
 }

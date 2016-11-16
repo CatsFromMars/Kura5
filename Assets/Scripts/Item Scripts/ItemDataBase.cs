@@ -43,11 +43,29 @@ public class ItemDatabase : MonoBehaviour {
 		meat.model = Resources.Load ("Items/Tasty Meat") as GameObject;
 		consumableItems.Add (meat);
 
+		n = "Punkaleta-Spicy";
+		desc = "Layered pop with a spicy coating.\nRestores a little Life and Energy.";
+		Consumable pop1 = new Consumable (5, n, desc, "POP_SPICY", "NONE", 10);
+		pop1.model = Resources.Load ("Items/Punkaleta-Spicy") as GameObject;
+		consumableItems.Add (pop1);
+
+		n = "Punkaleta-Sweet";
+		desc = "Layered pop with a sweet layer.\nRestores a little Life.";
+		Consumable pop2 = new Consumable (6, n, desc, "POP_SWEET", "NONE", 10);
+		pop2.model = Resources.Load ("Items/Punkaleta-Sweet") as GameObject;
+		consumableItems.Add (pop2);
+
+		n = "Punkaleta-Sour";
+		desc = "Layered pop with a sour core.\nRestores a little Energy.";
+		Consumable pop3 = new Consumable (7, n, desc, "RESTORE_ENERGY", "NONE", 10);
+		pop3.model = Resources.Load ("Items/Punkaleta-Sour") as GameObject;
+		consumableItems.Add (pop3);
+
 		//Key Items
-		n = "Blue Key";
+		n = "Key";
 		desc = "A key held together by the\ndark magic of an Immortal.";
 		KeyItem key = new KeyItem (0, n, desc, false, "UNLOCKS_DOORS");
-		key.model = Resources.Load ("Items/Blue Key") as GameObject;
+		key.model = Resources.Load ("Items/Key") as GameObject;
 		keyItems.Add(key);
 
 		n = "Dark Loans Card";

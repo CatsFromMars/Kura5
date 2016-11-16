@@ -26566,4 +26566,12 @@ AnimationClip:
     path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/UpperWingL/MiddleWingL/WingTipL
     classID: 4
     script: {fileID: 0}
-  m_Events: []
+  m_Events:
+  - time: .375
+    functionName: makeSound
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: a39f2091a9c9e614fb9e9248c10ec832,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

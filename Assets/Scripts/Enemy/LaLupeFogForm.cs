@@ -14,9 +14,9 @@ public class LaLupeFogForm : MonoBehaviour {
 	public Color burnColor;
 	private ShakeScreenAnimEvent shaker;
 	public AudioClip burn;
-	private float minSpeed = 3f;
+	private float minSpeed = 7f;
 	private float minTime = 10f;
-	private float maxSpeed = 7f;
+	private float maxSpeed = 12f;
 	private float maxTime = 12f;
 	private float fleeSpeed = 12f;
 	public SphereCollider col;
@@ -82,7 +82,7 @@ public class LaLupeFogForm : MonoBehaviour {
 		}
 
 		if(sunDetector.sunlight.GetValue() > 0 && !burned) {
-			wadjet.takeDamage(sunDetector.sunlight.GetValue());
+			//wadjet.takeDamage(sunDetector.sunlight.GetValue());
 			StartCoroutine(scorch());
 		}
 	}

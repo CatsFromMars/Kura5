@@ -3,15 +3,21 @@ using System.Collections;
 
 public class MenuClass : MonoBehaviour {
 	//Utilities
+	public bool initialize = true;
 	public GameData data;
 	public SceneTransition scene;
 	//For one dimmensional menus like Dark Loans
 	public Transform selector;
 	public Transform[] optionButtons;
 	public Vector3[] arrowPositions;
-	private int pushCounter = 0;
-	private int pushWaitTime = 15;
+	private float pushCounter = 0;
+	private float pushWaitTime = 0.2f;
 	public int index = 0;
+	protected bool exiting = false;
+	public bool canPressEnter;
+	private bool canPress=false;
+	private int confirmDelay = 5;
+	private int confirmDelayCounter = 0;
 
 	//Axis
 	private float horiz = 0;
@@ -24,6 +30,10 @@ public class MenuClass : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake() {
+		if(initialize) init();
+	}
+
+	void init() {
 		data = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameData>();
 		scene = GameObject.FindGameObjectWithTag("Fader").GetComponent<SceneTransition>();
 	}
@@ -31,7 +41,7 @@ public class MenuClass : MonoBehaviour {
 	void Update () {
 		horiz = Mathf.RoundToInt(Input.GetAxisRaw ("Horizontal"));
 		vert = Mathf.RoundToInt(Input.GetAxisRaw ("Vertical"));
-		Select();
+		if(!exiting) Select();
 	}
 
 	public void MoveSelector() {
@@ -50,7 +60,13 @@ public class MenuClass : MonoBehaviour {
 	public void Select() {
 		//Confirm
 		//Debug.Log (horiz);
-		if(Input.GetButtonDown("Confirm")) { //Charge is basically the A button
+		confirmDelayCounter++;
+		if (confirmDelayCounter >= confirmDelay) {
+			if(!Input.GetButton("Inventory")) {
+				canPress = true;
+			}
+		}
+		if(canPress&&(Input.GetButtonDown("Confirm")||(Input.GetButtonDown("Inventory")&&canPressEnter))) { //Charge is basically the A button
 			makeSound(confirm);
 			ChooseOption();
 		}
@@ -60,9 +76,9 @@ public class MenuClass : MonoBehaviour {
 		}
 		else if (horiz > 0 || vert < 0) {
 			Vector3 pos = selector.localPosition;
-			pushCounter++;
+			pushCounter+=Time.unscaledDeltaTime;;
 			if(pushCounter>=pushWaitTime) {
-				makeSound(selectNoise);
+				if(optionButtons.Length>1) makeSound(selectNoise);
 				pushCounter = 0;
 				//Select upward
 				index++;
@@ -71,7 +87,7 @@ public class MenuClass : MonoBehaviour {
 		}
 		else if (horiz < 0 || vert > 0) {
 			Vector3 pos = selector.localPosition;
-			pushCounter++;
+			pushCounter+=Time.unscaledDeltaTime;
 			if(pushCounter>=pushWaitTime) {
 				makeSound(selectNoise);
 				pushCounter = 0;

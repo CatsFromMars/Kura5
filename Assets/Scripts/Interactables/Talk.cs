@@ -15,14 +15,30 @@ public class Talk : MonoBehaviour {
 	private GameData data;
 	public bool otenkoAppear = false; //For hint pannels
 	private PlayerContainer p;
+	private Flags flags;
+	public bool isNeroSavePoint = false;
+	public bool annieEmilSplit = false;
+	public TextAsset[] annieLoops;
+	public TextAsset[] emilLoops;
+	public bool customTagEnter=false;
+	public string customTag = "Bullet";
+	public bool setNPCFlag = false;
 
-	void Awake() {
-		if(autoSpeak) Speak();
-		data = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameData> ();
+	void Start() {
+		data = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameData>();
+		flags = data.gameObject.GetComponent<Flags>();
+		if(autoSpeak) {
+			flags.AddCutsceneFlag(textLoops[0].name);
+		}
+		if(autoSpeak&&!flags.CheckCutsceneFlag(textLoops[0].name)) {
+			Speak();
+			flags.SetCutscene(textLoops[0].name);
+		}
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if(other.tag == "Player") {
+		bool custom = customTagEnter && other.tag == customTag;
+		if((other.tag == "Player"&&!customTagEnter)||custom) {
 			inRange = true;
 			data.nearInteractable = true;
 			if(!autoSpeak && !npcObject) Speak();
@@ -32,7 +48,8 @@ public class Talk : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider other) {
-		if(other.tag == "Player") {
+		bool custom = customTagEnter && other.tag == customTag;
+		if((other.tag == "Player"&&!customTagEnter)||custom) {
 			inRange = false;
 			data.nearInteractable = false;
 		}
@@ -50,12 +67,21 @@ public class Talk : MonoBehaviour {
 	void Speak() {
 		isTalking = true;
 		otenkoAppear = true;
-		text = textLoops [textindex];
+		if(annieEmilSplit) {
+			if(data.currentPlayer==GameData.player.Annie) text = annieLoops [textindex];
+			else if(data.currentPlayer==GameData.player.Emil) text = emilLoops [textindex];
+		}
+		else text = textLoops [textindex];
 		StartCoroutine (SpeakCoroutine());
-		textindex = (textindex+1)%textLoops.Length;
+		if(annieEmilSplit) {
+			if(data.currentPlayer==GameData.player.Annie) textindex = (textindex+1)%annieLoops.Length;
+			else if(data.currentPlayer==GameData.player.Emil) textindex = (textindex+1)%emilLoops.Length;
+		}
+		else textindex = (textindex+1)%textLoops.Length;
 	}
 
 	IEnumerator SpeakCoroutine() {
+		if(autoSpeak) while(Time.timeScale!=1) yield return null;
 		if(walkToSpeaker) {
 			PlayerContainer player;
 			player = GameObject.FindWithTag ("Player").GetComponent<PlayerContainer> ();
@@ -68,10 +94,15 @@ public class Talk : MonoBehaviour {
 			Vector3 pos = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
 			player.transform.LookAt(pos);
 		}
+		if(isNeroSavePoint) SaveLoad.Save();
 		yield return StartCoroutine(DisplayDialogue.Speak(text));
 		isTalking = false;
 		otenkoAppear = false;
 		if(destroyGameobject) Destroy(this.gameObject);
+		if(setNPCFlag) {
+			flags.AddCutsceneFlag(textLoops[0].name);
+			flags.SetCutscene(textLoops[0].name);
+		}
 	}
 	
 }

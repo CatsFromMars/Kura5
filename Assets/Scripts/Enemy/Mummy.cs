@@ -38,7 +38,7 @@ public class Mummy : PatrolEnemy {
 			else if(frozen) Freeze();
 			else if(stunned) Stunned(); //Stunned autotransitions to seek
 			else if(pausing) Pause();
-			else if(distanceFromPlayer<3.5f) Attack();
+			else if(distanceFromPlayer<3.5f&&trackingPlayer) Attack();
 			else if(playerLastSighting != resetPlayerPosition) Seek(); //Seek autotransitions to attack or confused
 			else Patrol(); //Transitions to Pause
 			manageMovement();

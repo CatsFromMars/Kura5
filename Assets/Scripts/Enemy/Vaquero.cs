@@ -73,16 +73,16 @@ public class Vaquero : EnemyClass {
 		float d = Vector3.Distance(player.transform.position, transform.position);
 
 		animator.SetTrigger (Animator.StringToHash("Shoot"));
-		countdownSprite.sprite = countdownSprites[0];
+		if(!dead) countdownSprite.sprite = countdownSprites[0];
 		makeSound (countdownSound);
 		yield return new WaitForSeconds(countdownTime);
-		countdownSprite.sprite = countdownSprites[1];
+		if(!dead) countdownSprite.sprite = countdownSprites[1];
 		makeSound (countdownSound);
 		yield return new WaitForSeconds(countdownTime);
-		countdownSprite.sprite = countdownSprites[2];
+		if(!dead) countdownSprite.sprite = countdownSprites[2];
 		makeSound (countdownSound);
 		yield return new WaitForSeconds(countdownTime);
-		countdownSprite.sprite = countdownSprites[3];
+		if(!dead) countdownSprite.sprite = countdownSprites[3];
 		animator.SetTrigger (Animator.StringToHash("Fire"));
 		yield return new WaitForSeconds (decisionWaitTime);
 		countdownSprite.sprite = null;
@@ -108,6 +108,7 @@ public class Vaquero : EnemyClass {
 
 	public IEnumerator cutsceneDeathStart() {
 		//animation event for DEATH
+		countdownSprite.sprite = null;
 		CamLooker looker;
 		looker = GameObject.FindGameObjectWithTag ("CamFollow").GetComponent<CamLooker> ();
 		looker.zoomToTarget(this.transform);

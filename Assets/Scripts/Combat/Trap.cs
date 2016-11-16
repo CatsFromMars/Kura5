@@ -5,6 +5,7 @@ public class Trap : MonoBehaviour {
 
 	bool initialized = false;
 	public GameObject[] gates;
+	public Activatable[] stealthGates;
 	public bool isMiniboss=false;
 	public AudioClip minibossMusic;
 	public AudioClip trapMusic;
@@ -74,13 +75,15 @@ public class Trap : MonoBehaviour {
 
 		if(!trapCleared) {
 			if(type == trapType.STEALTH) {
-				if(checkForStealthGameOver() && !trapLost) {
+				//if(checkForStealthGameOver() && !trapLost) {
 					//Do coroutine
 					//Access data, call game over from here.
-					Debug.Log("DEAD");
-					trapLost = true;
-					if(stealthMethod == stealthType.TREASURE) StartCoroutine(blowUpTreasureChests());
-				}
+				//	Debug.Log("DEAD");
+				//	trapLost = true;
+				//	if(stealthMethod == stealthType.TREASURE) StartCoroutine(blowUpTreasureChests());
+				//}
+				handleStealthGates();
+
 				if(checkForStealthVictory()) {
 					BlowUpEnemies();
 					deactivateGates();
@@ -158,6 +161,21 @@ public class Trap : MonoBehaviour {
 		}
 		yield return new WaitForSeconds (1f);
 		gameOverHandler.setGameOver();
+
+	}
+
+	void handleStealthGates() {
+		//close a gate if spotted by an enemy
+		if (checkForStealthGameOver ()) {
+			foreach(Activatable gate in stealthGates) {
+				gate.Activate();
+			}
+		}
+		else {
+			foreach(Activatable gate in stealthGates) {
+				gate.Deactivate();
+			}
+		}
 
 	}
 

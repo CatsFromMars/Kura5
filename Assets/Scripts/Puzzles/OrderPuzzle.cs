@@ -32,10 +32,10 @@ public class OrderPuzzle : MonoBehaviour {
 
 	void finishPuzzle() {
 		Debug.Log ("Puzzle Solved!!!");
+		//play jingle
+		if (!flags.CheckOtherFlag (flag)) makeSound (correct);
 		//flags
 		flags.SetOther(flag);
-		//play jingle
-		makeSound (correct);
 		puzzleSolved = true;
 	}
 

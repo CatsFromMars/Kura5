@@ -74,6 +74,7 @@ ModelImporter:
     7400010: Exit
     7400012: Idle
     7400014: ArmatureAction
+    7400016: Transition
     9500000: //RootNode
     13700000: Cube
     13700002: Cube_001
@@ -386,6 +387,80 @@ ModelImporter:
       takeName: ArmatureAction
       firstFrame: 210
       lastFrame: 211
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Bottom
+        weight: 1
+      - path: Armature/Hip/Bottom/Tail
+        weight: 1
+      - path: Armature/Hip/Chest
+        weight: 1
+      - path: Armature/Hip/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Chest/Head/Lower
+        weight: 1
+      - path: Armature/Hip/Chest/Head/Upper
+        weight: 1
+      - path: Armature/Hip/Chest/Head/Upper/EyeL
+        weight: 1
+      - path: Armature/Hip/Chest/Head/Upper/EyeR
+        weight: 1
+      - path: Armature/Hip/LegL
+        weight: 1
+      - path: Armature/Hip/LegL/FootL
+        weight: 1
+      - path: Armature/Hip/LegR
+        weight: 1
+      - path: Armature/Hip/LegR/FootR
+        weight: 1
+      - path: Armature/Hip/ShoulderL
+        weight: 1
+      - path: Armature/Hip/ShoulderL/Wing1L
+        weight: 1
+      - path: Armature/Hip/ShoulderL/Wing1L/Wing2L
+        weight: 1
+      - path: Armature/Hip/ShoulderL/Wing1L/Wing2L/Wing2L_001
+        weight: 1
+      - path: Armature/Hip/ShoulderR
+        weight: 1
+      - path: Armature/Hip/ShoulderR/Wing1R
+        weight: 1
+      - path: Armature/Hip/ShoulderR/Wing1R/Wing2R
+        weight: 1
+      - path: Armature/Hip/ShoulderR/Wing1R/Wing2R/Wing2R_001
+        weight: 1
+      - path: Cube_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Transition
+      takeName: ArmatureAction
+      firstFrame: 209
+      lastFrame: 229
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

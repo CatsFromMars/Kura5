@@ -57,13 +57,13 @@ public class GenericPattern : MonoBehaviour {
 	}
 
 	public static int getSunlight(int percent, int cloudiness) {
-		int sun = Mathf.RoundToInt(normalize(percent) - cloudiness/10f);
+		int sun = Mathf.RoundToInt(normalize(percent) - cloudiness/20f);
 		if(sun<0) sun = 0;
 		return sun;
 	}
 
 	public static int getMoonlight(int cloudiness) {
-		float percent = MoonPhase.moonlightPercent(DateTime.Today) - cloudiness/10f;
+		float percent = MoonPhase.moonlightPercent(DateTime.Today) - cloudiness/20f;
 		return Mathf.RoundToInt(percent);
 	}
 

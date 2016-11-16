@@ -6,14 +6,15 @@ public class TimedDestroy : MonoBehaviour {
 
 	public int destroyTime;
 	public GameObject effect;
-	private int timer;
+	private float timer;
 	public int effectDelta = 20;
 	private bool effectSpawned = false;
+	public bool useRealTime=false;
 	
 	// Update is called once per frame
 	void Update () {
-
-		timer++;
+		if(useRealTime) timer+=Time.unscaledDeltaTime;
+		else timer++;
 		if ((timer >= destroyTime - effectDelta) && !effectSpawned) {
 			if(effect!=null) spawnEffect(effect.transform);
 			effectSpawned = true;

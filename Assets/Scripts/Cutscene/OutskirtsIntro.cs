@@ -20,12 +20,13 @@ public class OutskirtsIntro : MonoBehaviour {
 		if(!flags.CheckCutsceneFlag(introCutscene.name)) {
 			//be sure to disable trap trigger in-scene.
 			IEnumerator c = player.characterWalkTo(walkTo1.position);
-			StartCoroutine(c);
-			yield return new WaitForSeconds(1.1f);
-			StopCoroutine (c);
-			player.playerInControl = true;
+			yield return StartCoroutine(c);
+			//yield return new WaitForSeconds(1.1f);
+			//StopCoroutine (c);
 			yield return StartCoroutine(DisplayDialogue.Speak(introCutscene));
 			flags.SetCutscene(introCutscene.name);
+			SaveLoad.Save();
+			player.playerInControl = true;
 		}
 	}
 }

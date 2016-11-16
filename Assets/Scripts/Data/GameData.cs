@@ -46,6 +46,9 @@ public class GameData : MonoBehaviour {
 	public Transform gameOverSpawner;
 	public bool isGameOver;
 
+	//BANK VARIABLES
+	public int bankSoll = 500;
+
 	//ELEMENT
 	public enum elementalProperty 
 	{

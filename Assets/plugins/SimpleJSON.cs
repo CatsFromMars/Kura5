@@ -328,9 +328,9 @@ namespace SimpleJSON
                         }
                         if (Token != "")
                         {
-                            if (ctx is JSONArray)
+                            if (ctx is JSONArray&&ctx!=null)
                                 ctx.Add(Token);
-                            else if (TokenName != "")
+                            else if (TokenName != ""&&ctx!=null)
                                 ctx.Add(TokenName, Token);
                         }
                         TokenName = "";

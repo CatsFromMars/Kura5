@@ -4,14 +4,23 @@ using System.Collections;
 public class Torch : Activatable {
 	private GameObject fire;
 	private GameObject[] o;
+	public bool setFlag;
+	public string flag;
+	private Flags flags;
 
 	void Awake() {
+		flags = GetUtil.getFlags();
+		if(setFlag) flags.AddOtherFlag(flag);
 		fire = transform.FindChild("Fire").gameObject;
 	}
 
 	void OnCollisionEnter(Collision collision) {
 		if(collision.gameObject.tag == "Bullet") {
 			if(collision.gameObject.GetComponent<Bullet>().element == "Fire") {
+				if(setFlag) {
+					Debug.Log("Set flag at: "+flag);
+					flags.SetOther(flag);
+				}
 				fire.SetActive(true);
 				brightenRoom();
 				audio.Play();
@@ -30,13 +39,20 @@ public class Torch : Activatable {
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "EnemyWeapon") {
 			if(other.gameObject.GetComponent<WeaponData>().element == "Fire") {
+				Debug.Log("Is falg settable? "+setFlag);
+				if(setFlag) {
+					Debug.Log("Set flag at: "+flag);
+					flags.SetOther(flag);
+				}
 				light();
 			}
 		}
 	}
 
 	public void light() {
+		if(fire==null) fire = transform.FindChild("Fire").gameObject;
 		fire.SetActive(true);
+
 		brightenRoom();
 		audio.Play();
 		Activate();

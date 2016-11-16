@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SceneTransition : MonoBehaviour
 {
-	public float fadeSpeed = 1.5f;          // Speed that the screen fades to and from black.
+	private float fadeSpeed = 14f;          // Speed that the screen fades to and from black.
 	public SpriteRenderer ren;
 	public GameData data;
 	public Transform playerContainer;
@@ -13,11 +13,14 @@ public class SceneTransition : MonoBehaviour
 	private GameObject playerGO;
 	public bool loadingScene = false;
 	public CharacterSwapper swapper;
+	public Animator cutsceneFader;
+	private SpriteRenderer cutsceneRen;
 
 
 	void Awake ()
 	{
 		ren = GetComponent<SpriteRenderer>();
+		if(cutsceneFader!=null) cutsceneRen = cutsceneFader.GetComponent<SpriteRenderer>();
 		// Set the texture so that it is the the size of the screen and covers it.
 		//guiTexture.pixelInset = new Rect(0f, Screen.height*-1f, Screen.width, Screen.height);
 	}
@@ -38,6 +41,10 @@ public class SceneTransition : MonoBehaviour
 	{
 		// Lerp the colour of the texture between itself and black.
 		ren.color = Color.Lerp(ren.color, Color.black, fadeSpeed * Time.unscaledDeltaTime);
+	}
+
+	void OnLevelWasLoaded(int level) {
+		//if(cutsceneFader!=null) cutsceneFader.SetInteger(Animator.StringToHash("CutsceneAction"),0);
 	}
 
 	public IEnumerator whiteFlash() {
@@ -66,7 +73,7 @@ public class SceneTransition : MonoBehaviour
 		}
 	}
 
-	public IEnumerator EndScene (string scene, bool stopTime=true, bool setCheckpoint = true, bool stopTimeOnLoad=false)
+	public IEnumerator EndScene (string scene, bool stopTime=true, bool setCheckpoint = true, bool stopTimeOnLoad=false, bool keepFaderBlack=false)
 	{
 		loadingScene = true;
 		//AudioListener.volume = 0;
@@ -76,8 +83,8 @@ public class SceneTransition : MonoBehaviour
 			player = playerGO.GetComponent<PlayerContainer> ();
 			player.playerInControl = false;
 		}
-		if(setCheckpoint) markCheckpoint (scene);
 
+		//if(cutsceneFader!=null&&keepFaderBlack) cutsceneFader.SetInteger(Animator.StringToHash("CutsceneAction"),1);
 		// Make sure the texture is enabled.
 		ren.enabled = true;
 		if(loadingIcon!=null) loadingIcon.SetActive (true);
@@ -86,26 +93,37 @@ public class SceneTransition : MonoBehaviour
 			yield return null;
 			FadeToBlack();
 		}
-
 		AsyncOperation async = Application.LoadLevelAsync(scene); //Load scene
 		yield return async;
-		if(loadingIcon!=null) loadingIcon.SetActive (false);
-		// If the texture is almost clear...
-		while(ren.color.a > 0.001f) {
-			FadeToClear();
+
+		//Wait a little before fading to clear again
+		float timer = 0;
+		float timeToWait = 0.5f;
+		while(timer<timeToWait) {
+			timer+=Time.unscaledDeltaTime;
 			yield return null;
 		}
-		ren.color = Color.clear;
-		ren.enabled = false;
+
+		if(loadingIcon!=null) loadingIcon.SetActive (false);
 		if(playerGO!=null) player.playerInControl = true;
 		if(!stopTimeOnLoad)Time.timeScale = 1;
 		loadingScene = false;
 		AudioListener.volume = 1;
+
+		while(ren.color.a > 0.001f) {
+			FadeToClear();
+			yield return null;
+		}
+
+		ren.color = Color.clear;
+		ren.enabled = false;
+		if(cutsceneFader!=null&&cutsceneRen.color.a >= 0.95f) cutsceneFader.SetInteger(Animator.StringToHash("CutsceneAction"),0);
+		if(setCheckpoint) markCheckpoint (scene);
 	}
 
-	public void gotoScene(string scene, bool stopTime=true, bool markCheckpoint=true, bool stopTimeOnLoad=false) {
+	public void gotoScene(string scene, bool stopTime=true, bool markCheckpoint=true, bool stopTimeOnLoad=false, bool keepFadedBlack=false) {
 		if(coroutine != null) StopCoroutine (coroutine);
-		coroutine = EndScene (scene, stopTime, markCheckpoint, stopTimeOnLoad);
+		coroutine = EndScene (scene, stopTime, markCheckpoint, stopTimeOnLoad, keepFadedBlack);
 		StartCoroutine (coroutine);
 	}
 

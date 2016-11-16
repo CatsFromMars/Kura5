@@ -5,11 +5,16 @@ public class PlayerContainer : MonoBehaviour {
 
 	//MOVEMENT
 	public float playerSpeed = 8;
+	public float sidleSpeed = 7;
 	public float playerTargetingSpeed = 4f;
 	public float playerRunningSpeed = 8f;
 	public float playerPullSpeed = 4f;
 	public float playerRollingSpeed = 18f;
 	private float rotationSpeed = 30f;
+	private float sidleRotationSpeed = 10f;
+	private Quaternion sidleRot;
+	private int sidleCounter;
+	private int sidleWaitTime = 5; //number of frames it takes to flatten against a wall
 	protected float vertical;
 	protected float horizontal;
 	protected Vector3 lastNonZeroAxis;
@@ -29,6 +34,7 @@ public class PlayerContainer : MonoBehaviour {
 	protected bool dead = false;
 	public bool targeting = false;
 	protected bool moving = false;
+	protected bool sidling = false;
 	protected bool charging = false;
 	public bool rolling = false;
 	protected bool attacking = false;
@@ -40,8 +46,11 @@ public class PlayerContainer : MonoBehaviour {
 	protected bool inSnow = false;
 	public bool inCoffin = false;
 	public bool burning=false;
+	protected bool canSidleLeft = false;
+	protected bool canSidleRight = false;
 
 	//VARIABLES REGARDING WHETHER AN ACTION SHOULD BE PERFORMED
+	protected bool canCharge = true;
 	protected bool ableToPush = false;
 	protected bool ableToMove = true;
 	protected bool ableToRotate = true;
@@ -157,6 +166,7 @@ public class PlayerContainer : MonoBehaviour {
 	void FixedUpdate() {
 		updateInput();
 		//updateAnimations();
+		if(Time.timeScale==0) untargetEnemy();
 		if(playerInControl) {
 			if(moving || currentAnim(hash.rollState)) manageMovement();
 			if(!rolling) {
@@ -171,23 +181,36 @@ public class PlayerContainer : MonoBehaviour {
 		}
 	}
 
+	void stopSpeed() {
+		//used for sidling
+		playerSpeed = 0;
+	}
+
+	void startSpeed() {
+		//used for sidling
+		playerSpeed = sidleSpeed;
+	}
+
 	protected void manageMovement () {
 		ableToRotate = (!(knockedOver || charging || dead || whistling || targeting&&forceLookAtTarget || targeting&&!moving)) && !(currentAnim(hash.comboState1) ||                                                               currentAnim(hash.comboState3) ||
 		                                                                    currentAnim(hash.shootingState));
 		//Speed
+		//if(sidling) playerSpeed = sidleSpeed;
 		if(rolling) playerSpeed = playerRollingSpeed;
 		else if(pullingCoffin || inCoffin) playerSpeed = playerPullSpeed;
 		else if(targeting) playerSpeed = playerTargetingSpeed;
-		else playerSpeed = playerRunningSpeed;
+		else if (!sidling) playerSpeed = playerRunningSpeed;
 
 		//Actually move and rotate player
-		if(currentAnim(hash.runningState) || currentAnim(hash.pullingState) || currentAnim(hash.rollState) || currentAnim(Animator.StringToHash("Combat.Burn")) || (currentAnim(hash.targetState))) movePlayer (horizontal, vertical);
+		if(currentAnim(hash.runningState) || currentAnim(hash.pullingState) || currentAnim(hash.rollState) || currentAnim(Animator.StringToHash("Locomotion.Sidleright")) || currentAnim(Animator.StringToHash("Locomotion.Sidleleft")) || currentAnim(Animator.StringToHash("Combat.Burn")) || (currentAnim(hash.targetState))) movePlayer (horizontal, vertical);
 		if(ableToRotate) rotatePlayer (horizontal, vertical);
+
+		if(sidling) detectSidleEdges ();
 	}
 
 	protected void updateAnimations() {
+		if(animator.GetBool(Animator.StringToHash("CutsceneMode"))) blinker.gameObject.SetActive(false);
 		animator.SetBool(hash.pullingBool, pullingCoffin);
-
 		if(Time.timeScale != 0) {
 			if(parrying) {
 				animator.SetTrigger (hash.blockTrigger);
@@ -202,13 +225,19 @@ public class PlayerContainer : MonoBehaviour {
 			animator.SetBool(hash.attackBool, attacking);
 			animator.SetBool(hash.targetingBool, targeting);
 			animator.SetBool(Animator.StringToHash("DoingAnything"),Input.anyKey); //Put here for the idle animations
+			animator.SetBool(Animator.StringToHash("Sidling"),sidling);
+			//for sidling only
+			animator.SetBool(Animator.StringToHash("Left"),(horizontal==-1)&&canSidleLeft&&sidling); //left and up
+			animator.SetBool(Animator.StringToHash("Right"),(horizontal==1)&&canSidleRight&&sidling); //right and down
 		}
 		else {
+			canCharge = false;
 			animator.SetBool(hash.movingBool, false);
 			animator.SetBool(hash.rollingBool, false);
 			animator.SetBool(hash.taiyouBool, false);
 			animator.SetBool(hash.holdWeaponBool, false);
 			animator.SetBool(hash.targetingBool, false);
+			animator.SetBool(Animator.StringToHash("Sidling"),false);
 			animator.SetBool(Animator.StringToHash("DoingAnything"),true); //disable idle anim on cutcenes
 		}
 		weaponMeshRenderer.enabled = !inCoffin;
@@ -223,7 +252,8 @@ public class PlayerContainer : MonoBehaviour {
 	protected void updateInput() {
 		if(playerInControl) {
 			parrying = (canParry && Input.GetButtonDown("Block") && targeting);
-			charging = Input.GetButton("Charge") && !inCoffin && !gameData.nearInteractable;
+			if(!Input.GetButton("Charge")) canCharge = true;
+			charging = canCharge && Input.GetButton("Charge") && !inCoffin && !gameData.nearInteractable;
 			rolling = (currentAnim(hash.rollState));
 			//whistling = Input.GetButtonDown("Whistle");
 			holdingWeapon = ((Input.GetButton("Attack") || Input.GetButtonDown("Attack"))) && !gameData.nearInteractable;
@@ -231,30 +261,58 @@ public class PlayerContainer : MonoBehaviour {
 			pullingCoffin = Input.GetButton("Charge") && nearCoffin;
 			targeting = Input.GetButton ("Target") && Time.timeScale != 0 && !rolling;
 			//if((Input.GetButtonDown("Target") || Input.GetButtonUp("Target")) && Time.timeScale != 0) handleTargetZoom();
+			//if(sidling&&horizontal!=0&&vertical!=0) moving = false;
 			moving = (horizontal != 0 || vertical != 0);
 			performingAction = (attacking || holdingWeapon || whistling || charging || rolling || currentAnim(hash.hurtState)) && Time.timeScale != 0;
+			//if(sidling&&!(currentAnim(hash.sidleState)||currentAnim(hash.sidleRightState)||currentAnim(hash.sidleLeftState))) sidling = false;
 		}
+		else canCharge = false;
+	}
+
+	bool checkForDirectionalForwardness() {
+		//figure out as better way to handle this later
+		//return false;
+		if(transform.forward.z<0&&vertical>0) return true;
+		else if(transform.forward.z>0&&vertical<0) return true;
+		else return false;
 	}
 
 	public void updateInputDirection() {
+		checkForDirectionalForwardness ();
 		horizontal = Mathf.RoundToInt(Input.GetAxis("Horizontal"));
 		vertical = Mathf.RoundToInt(Input.GetAxis("Vertical"));
 		//horizontal = (Input.GetAxis("Horizontal"));
 		//vertical = (Input.GetAxis("Vertical"));
 		if(horizontal != 0 || vertical !=0) lastNonZeroAxis = new Vector3 (horizontal, vertical, 0);
+		if((horizontal==0&&vertical==0)||(checkForDirectionalForwardness())) sidling=false;
 	}
 
 	public void movePlayer(float horizontal, float vertical) {
-		Vector3 targetDirection = new Vector3(horizontal, 0f, vertical);
-		controller.Move(targetDirection * Time.deltaTime * playerSpeed);
+		Vector3 targetDirection;
+		if(sidling) {
+			int m=1;
+			if(transform.rotation.eulerAngles.y<=180)m=-1;
+			if(horizontal*m > 0) controller.Move(transform.right*m * Time.deltaTime * playerSpeed);
+			else if(horizontal*m < 0) controller.Move(transform.right*m*-1 * Time.deltaTime * playerSpeed);
+		}
+		else {
+			targetDirection = new Vector3(horizontal, 0f, vertical);
+			controller.Move(targetDirection * Time.deltaTime * playerSpeed);
+		}
 	}
 
 	public void rotatePlayer(float horizontal, float vertical) {
 		
 		Vector3 targetDirection = new Vector3(horizontal, 0f, vertical);
-		Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
-		Quaternion newRotation = Quaternion.Lerp(rigidbody.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime);
-		
+		Quaternion targetRotation = transform.rotation;
+		if(!sidling) targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+		else {
+			targetRotation = sidleRot;
+		}
+		float rotSpeed;
+		if(sidling) rotSpeed = sidleRotationSpeed;
+		else rotSpeed = rotationSpeed;
+		Quaternion newRotation = Quaternion.Lerp(rigidbody.rotation, targetRotation, rotSpeed * Time.fixedDeltaTime);
 		transform.rotation = newRotation;
 	}
 
@@ -267,6 +325,7 @@ public class PlayerContainer : MonoBehaviour {
 	}
 
 	public void OnParticleCollision(GameObject other) {
+		Debug.Log (other.name);
 		if (other.gameObject.tag == "EnemyWeapon") {
 			WeaponData weapon = other.GetComponent<WeaponData>();
 			hurtPlayer(weapon, other);
@@ -325,6 +384,10 @@ public class PlayerContainer : MonoBehaviour {
 		
 	}
 
+	public void startInvincibilityFrames() {
+		StartCoroutine (startInvinciblity());
+	}
+
 	IEnumerator startInvinciblity() {
 		invincible = true;
 		StartCoroutine (blink ());
@@ -357,7 +420,7 @@ public class PlayerContainer : MonoBehaviour {
 				getHurt(damage, knockback);
 				makeSound(hurt);
 				ShakeScreenAnimEvent.LittleShake();
-				StartCoroutine(startInvinciblity());
+				if(gameObject.activeSelf) StartCoroutine(startInvinciblity());
 			}
 			else if(!alreadySpawnedParryEffect) {
 					Instantiate(Resources.Load("Effects/Parry") as GameObject, transform.position, Quaternion.identity);
@@ -379,8 +442,10 @@ public class PlayerContainer : MonoBehaviour {
 	}
 	
 	protected void Die() {
-		playerSpeed = 0; //CANT MOVE WHEN DEAD!
-		animator.SetTrigger(hash.dyingTrigger);
+		playerSpeed = 0; //Can't move while dead
+		//Have player kneel if partner is alive
+		if(gameData.canSwapToAnnie&&gameData.canSwapToEmil) animator.SetTrigger(Animator.StringToHash("Kneel"));
+		else animator.SetTrigger(hash.dyingTrigger);
 		dead = true;
 		//AudioSource audio = Camera.main.GetComponent<AudioSource>();
 		//audio.clip = Resources.Load ("Sound Effects/Death") as AudioClip;
@@ -388,22 +453,22 @@ public class PlayerContainer : MonoBehaviour {
 	}
 
 	protected void handleTargetZoom() {
-		if(currentTarget != null) looker.zoomToTarget(currentTarget, 50);
-		else if(looker.currentLook != this.transform && Time.timeScale != 0) looker.zoomToTarget(this.transform, 50);
+		if(currentTarget != null&&currentTarget.gameObject.activeSelf) looker.zoomToTarget(currentTarget, 50);
+		else if(looker.currentLook != this.transform && Time.timeScale != 0) zoomToPlayer();
 	}
 
 	protected void zoomToEnemy() {
 		follow.parent = null;
-		looker.zoomToTarget(currentTarget, 25);
+		if(Time.timeScale!=0) looker.zoomToTarget(currentTarget, 25);
 	}
 
-	protected void zoomToPlayer() {
+	public void zoomToPlayer() {
 		follow.parent = swapper;
 		looker.zoomToTarget(this.transform, 50);
 	}
 
 	protected void targetEnemy() {
-		if(currentTarget == null) {
+		if(currentTarget == null || !currentTarget.gameObject.activeSelf) {
 			GameObject closest = FindClosestEnemy();
 			if(closest != null) { 
 				currentTarget = closest.transform;
@@ -429,7 +494,7 @@ public class PlayerContainer : MonoBehaviour {
 		element = e;
 	}
 
-	GameObject FindClosestEnemy() {
+	protected GameObject FindClosestEnemy() {
 		GameObject[] gos;
 		gos = GameObject.FindGameObjectsWithTag("Enemy");
 		GameObject closest = null;
@@ -487,7 +552,7 @@ public class PlayerContainer : MonoBehaviour {
 	}
 
 	public void attemptSwap() {
-		GameObject.FindGameObjectWithTag("PlayerSwapper").GetComponent<CharacterSwapper>().switchPlayers();
+		GameObject.FindGameObjectWithTag("PlayerSwapper").GetComponent<CharacterSwapper>().switchPlayers(true);
 	}
 
 	public void toggleBlendShape(float weight) {
@@ -504,8 +569,102 @@ public class PlayerContainer : MonoBehaviour {
 		animator.SetTrigger (Animator.StringToHash("KnockedOver"));
 	}
 
+	void sidleRotation() {
+		//Animation Event
+		Vector3 fwd = transform.TransformDirection(Vector3.forward);
+		RaycastHit hit;
+
+		if(currentAnim(Animator.StringToHash("Locomotion.Sidleleft"))) {
+			if (Physics.Raycast(transform.position-(transform.right), fwd, out hit, 1.5f)) {
+				Vector3 rot = Quaternion.LookRotation(-hit.normal).eulerAngles;
+				Vector3 r = transform.rotation.eulerAngles;
+				r.y = rot.y;
+				//Debug.Log("Rot: "+r);
+				sidleRot = Quaternion.Euler(r);
+			}
+			else sidleRot = transform.rotation;
+		}
+		else if(currentAnim(Animator.StringToHash("Locomotion.Sidleright"))) {
+			if (Physics.Raycast(transform.position+(transform.right), fwd, out hit, 1.5f)) {
+				Vector3 rot = Quaternion.LookRotation(-hit.normal).eulerAngles;
+				Vector3 r = transform.rotation.eulerAngles;
+				r.y = rot.y;
+				Debug.Log("Rot: "+r);
+				sidleRot = Quaternion.Euler(r);
+			}
+			else sidleRot = transform.rotation;
+		}
+		else {
+			sidleRot = transform.rotation;
+		}
+	}
+
+	void correctPosition() {
+		Vector3 fwd = transform.TransformDirection(Vector3.forward);
+		RaycastHit hit;
+		
+		if (Physics.Raycast (transform.position, fwd, out hit, 2f)) {
+			//Repositionplayer
+			float m = 0.9f;
+			Vector3 pos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+			if(playerSpecies == species.Human) m = 1f; //Offset for Annie
+			Vector3 newPos = pos-(transform.forward*m);
+			transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * sidleSpeed);
+		}
+
+	}
+
+	void detectSidleEdges() {
+		//Note: Layer mask these in the future for scenery, props, and default only
+		Vector3 fwd = transform.TransformDirection(Vector3.forward);
+
+		//Left
+		if (Physics.Raycast(transform.position-(transform.right), fwd, 1.4f)) {
+			canSidleLeft=true;
+		}
+		else canSidleLeft=false;
+		//Right
+		if (Physics.Raycast(transform.position+(transform.right), fwd, 1.4f)) { 
+			canSidleRight=true;
+		}
+		else canSidleRight=false;
+
+		if (!(canSidleLeft||canSidleRight)) sidling=false;
+
+		correctPosition ();
+	}
+
+	void OnControllerColliderHit(ControllerColliderHit hit) {
+		//handle sidle
+//		bool diag = (horizontal != 0 && vertical != 0);
+//		//bool layered = hit.transform.gameObject.layer == LayerMask.NameToLayer ("Scenery");
+//		bool tagged = hit.transform.gameObject.tag == "Wall";
+//		if(!diag||sidling||!diag||inCoffin||!tagged) return;
+//		//Debug.Log ("TRYING to sidle");
+//		if((horizontal!=0&&vertical!=0)&&tagged&&!sidling&&currentAnim(hash.runningState)) sidleCounter++;
+//		if((horizontal!=0&&vertical!=0)&&tagged&&!sidling&&sidleCounter>sidleWaitTime) {
+//			Vector3 fwd = transform.TransformDirection(Vector3.forward);
+//			RaycastHit h;
+//			if (Physics.Raycast(transform.position, fwd, out h, 2f)) {
+//				sidling = true;
+//				sidleCounter=0;
+//				playerSpeed=0;
+//				Vector3 pos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+//				transform.rotation = Quaternion.LookRotation(-hit.normal);
+//				//transform.position = pos;
+//				float m = 0.9f;
+//				if(playerSpecies == species.Human) m = 1.1f; //Offset for Annie
+//				transform.position = pos-(transform.forward*m);
+//				sidleRot = Quaternion.LookRotation(-hit.normal);
+//				//Debug.Log("SIDLING");
+//			}
+//		}
+	}
+
 	public IEnumerator characterWalkTo(Vector3 target, Transform lookAt=null) {
 		//Move player to target
+		GameObject menu = GameObject.Find ("Menu");
+		if(menu!=null) menu.SetActive (false);
 		playerInControl = false;
 		agent.SetDestination (target);
 		transform.LookAt(target);
@@ -527,6 +686,7 @@ public class PlayerContainer : MonoBehaviour {
 		}
 		yield return new WaitForSeconds(0.3f);
 		playerInControl = true;
+		if(menu!=null) menu.SetActive (true);
 	}
 
 	public bool isPlayerMoving() {

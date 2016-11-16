@@ -9,7 +9,8 @@ public class Bat : EnemyClass {
 	private Transform playerContainer;
 
 	void Update() {
-		bool canMove = animator.GetCurrentAnimatorStateInfo (0).nameHash == hash.walkState;
+		bool canMove = false;
+		if(animator!=null) canMove = animator.GetCurrentAnimatorStateInfo (0).nameHash == hash.walkState;
 
 		if (hitCounter > 0 && !detected) {
 			player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -37,8 +38,9 @@ public class Bat : EnemyClass {
 	}
 
 	void startCombat() {
+		detected = true;
 		playerContainer = GameObject.FindGameObjectWithTag ("PlayerSwapper").transform;
-		animator.SetTrigger(Animator.StringToHash("PlayerDetected"));
+		if(animator!=null) animator.SetTrigger(Animator.StringToHash("PlayerDetected"));
 		detected = true;
 		StartCoroutine(combatLoop());
 		voice.Play();

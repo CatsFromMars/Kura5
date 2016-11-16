@@ -9,7 +9,7 @@ public class Disclaimer : MonoBehaviour {
 	}
 
 	IEnumerator scene() {
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (3);
 		fader.gotoScene("MenuScene", false);
 	}
 }

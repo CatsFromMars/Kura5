@@ -13,10 +13,12 @@ public class CheatCodes : MonoBehaviour {
 
 		//Cheat: Make favorable weather conditions for Annie
 		if(Input.GetKeyDown(KeyCode.Alpha1)) {
-			w.conditionID = new SafeInt(601);
-			w.lightMax = new SafeInt(2);
-			w.finalTemp = new SafeInt(0);
-			w.conditionName = "snow";
+			//w.conditionID = new SafeInt(601);
+			//w.lightMax = new SafeInt(2);
+			//w.finalTemp = new SafeInt(0);
+			//w.conditionName = "snow";
+			SaveLoad.Save();
+			Debug.Log("Game Saved!");
 		}
 		if(Input.GetKeyDown(KeyCode.Alpha2)) {
 			w.isNightTime = false;
@@ -50,9 +52,9 @@ public class CheatCodes : MonoBehaviour {
 			GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(73,5,135);
 			Application.LoadLevel("WadjetFloor2-D");
 		}
-//		if(Input.GetKeyDown(KeyCode.Alpha8)) {
-//			Destroy(d.transform.root.gameObject);
-//			Application.LoadLevel("ModelSetupScene");
-//		}
+		if(Input.GetKeyDown(KeyCode.Alpha8)) {
+			//Destroy(d.transform.root.gameObject);
+			//Application.LoadLevel("ModelSetupScene");
+		}
 	}
 }

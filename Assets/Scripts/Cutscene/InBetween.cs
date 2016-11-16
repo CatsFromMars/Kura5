@@ -1,17 +1,29 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using System.Text;
 
 public class InBetween : MonoBehaviour {
-	public SceneTransition t;
+	public TextAsset t;
 
-	// Use this for initialization
-	void OnDialogueEnd() {
-		StartCoroutine(change ());
+	void Start() {
+		StartCoroutine(inBetween());
+		StartCoroutine(fadeInMusic());
 	}
 
-	IEnumerator change() {
-		yield return StartCoroutine(fadeOutMusic());
-		t.gotoScene("Chapter2");
+	IEnumerator inBetween() {
+		yield return StartCoroutine(DisplayDialogue.Speak(t,false,false));
+		yield return new WaitForSeconds (0.15f);
+		Destroy(GameObject.Find("Global"));
+		Application.LoadLevel("MenuScene");
+	}
+
+	IEnumerator fadeInMusic() {
+		AudioListener.volume = 0;
+		while(AudioListener.volume < 1) {
+			AudioListener.volume += Time.unscaledDeltaTime;
+			yield return null;
+		}
+		AudioListener.volume = 1;
 	}
 
 	IEnumerator fadeOutMusic() {

@@ -95,11 +95,11 @@ public class WallVisionOutlineEffect : ImageEffectBase {
 	
 	new void OnDisable () {
 		if (_silhouetteCamGameObject) {
-			DestroyImmediate(_silhouetteCamGameObject);
+			//DestroyImmediate(_silhouetteCamGameObject);
 		}
 		
 		if (_occluderCamGameObject) {
-			DestroyImmediate(_occluderCamGameObject);
+			//DestroyImmediate(_occluderCamGameObject);
 		}
 		
 		base.OnDisable();

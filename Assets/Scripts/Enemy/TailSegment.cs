@@ -3,10 +3,9 @@ using System.Collections;
 
 public class TailSegment : BossSegment {
 	public bool isTailEnd = false;
-	private Animator animator;
 	private GameData data;
 	private int hitCounter = 0;
-	private int hitThresh = 3;
+	private int hitThresh = 1;
 	WadjetBoss wb;
 	private NavMeshAgent agent;
 	private GameObject player;
@@ -26,9 +25,10 @@ public class TailSegment : BossSegment {
 		shadowsealed = false;
 	}
 	// Use this for initialization
-	void Awake () {
+	void Start() {
 		data = GetUtil.getData();
-		animator = GetComponent<Animator>();
+		if(!isTailEnd) animator = transform.parent.parent.parent.GetComponent<Animator>();
+		else animator = GetComponent<Animator>();
 		wb = bossParent.transform.GetComponent<WadjetBoss>();
 		if(isTailEnd) {
 			agent = GetComponent<NavMeshAgent>();
@@ -39,15 +39,21 @@ public class TailSegment : BossSegment {
 	void Update() {
 		if(hitCounter>=hitThresh&&!isTailEnd) {
 			hitCounter=0;
-			wb.showTipIfAllDestroyed();
+			tipActivate();
 			animator.SetTrigger(Animator.StringToHash("Exit"));
 		}
 		if(isTailEnd) seekPlayer();
 	}
 
+	public void tipActivate() {
+		//Animation Event
+		wb.showTipIfAllDestroyed(this.transform);
+	}
+
 	public override void hitWithBullet (Bullet bullet)
 	{
 		base.hitWithBullet (bullet);
+		if(isTailEnd) bossParent.hitCounter++;
 		hitCounter++;
 	}
 
@@ -60,9 +66,8 @@ public class TailSegment : BossSegment {
 
 	public override void shadowSeal(SafeInt darkness)
 	{
-		Debug.Log ("Being called here right?");
 		base.shadowSeal(darkness);
-		if(!shadowsealed && !isTailEnd) StartCoroutine(startSeal(darkness.GetValue()));
+		if(!shadowsealed && !isTailEnd) StartCoroutine(startSeal(Mathf.FloorToInt(darkness.GetValue())/2));
 
 	}
 

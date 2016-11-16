@@ -97,9 +97,9 @@ public class Dialogue : MonoBehaviour {
 		int oldCounter=Mathf.FloorToInt(textCounter); // for use later in audio
 		if (Input.anyKey)   // any key makes it faster
 
-			textCounter += (textRate*8)*Time.unscaledDeltaTime;
+			textCounter += (textRate*6)*Time.unscaledDeltaTime;
 		else
-			textCounter += (textRate*4)*Time.unscaledDeltaTime;
+			textCounter += (textRate*2)*Time.unscaledDeltaTime;
 		// tick sound when displaying
 		if (tickSound!=null && textCounter < theText.Length)
 		{
@@ -146,7 +146,9 @@ public class Dialogue : MonoBehaviour {
 		txt = txt.Replace("MOVE",c[5]);
 		txt = txt.Replace("SWITCH",c[6]);
 		txt = txt.Replace("START",c[7]);
+		txt = txt.Replace("BLOCK",c[9]);
 
+		txt = txt.Replace("USER",System.Environment.UserName);
 		return txt;
 	}
 

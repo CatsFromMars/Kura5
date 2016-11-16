@@ -1,0 +1,90 @@
+M=Uneasy
+<A=CutsceneFade_1>
+<PAUSE_FOR=1>
+<T=EmilRavenCompanionPost_1>
+<O=EmilRavenCompanionPost_0>
+<T=AnniePlayer_0>
+<O=AnniePlayer_0>
+<A=CutsceneFade_0>
+<A=AnniePlayer_12>
+SET_BLEND_SHAPE=AnnieBodyMesh,Shocked,70
+Annie<n>N-no...I-it’s gotten worse...
+##Rotate Camera Upward
+<A=MainCamera_5>
+##Fade out
+<A=CutsceneFade_1>
+<PAUSE_FOR=2>
+##Fade in
+<A=CutsceneFade_0>
+<PAUSE_FOR=1>
+Emil<n>Did you think it would be that simple?
+Emil<n>Unfortunately for you, so long as that remains in the sky, the earth will remain in danger.
+Emil<n>Luckily for you, there is a solution! 
+Emil<n>Destroy the Immortals responsible for the Eclipse...
+Emil<n>[Nightmare Clan...]
+Annie<n>Nightmare Clan?
+##Fade out
+<A=CutsceneFade_1>
+<PAUSE_FOR=1>
+##Rotate Camera Downward
+<A=MainCamera_0>
+<PAUSE_FOR=1>
+##Fade in
+<A=CutsceneFade_0>
+SET_BLEND_SHAPE=AnnieBodyMesh,Shocked,0
+<A=AnniePlayer_0>
+<L=ANNIE_1>
+<R=EMIL_1>
+Emil<n>Immortals only kept in check by the powers that be- or rather, once were.
+<R=EMIL_1>
+Emil<n>You see, humanity thinks of Immortalkind as one family, but in actuality we exist in small [Clans] of like-minded individuals.
+<R=EMIL_2>
+Emil<n>The Immortals you are used to hunting are known as the Family of the Night, the [Vampires.]
+<R=EMIL_2>
+Emil<n>Then there are those who are not of this earth;<n>Death Clan, Shadow Clan, Demon Clan...All defeated by your kind in past battles.
+<R=EMIL_2>
+Emil<n>But with nothing to keep Nightmare Clan in check, they can do as they wish, without consequence!
+<L=ANNIE_3>
+SET_BLEND_SHAPE=AnnieBodyMesh,Angry,100
+S=Dramatic
+SHAKE_CAMERA
+Annie<n>''Without consequence'' my rear end!
+<L=ANNIE_5>
+Annie<n>They were literally waltzing over people's dead bodies earlier!
+<L=ANNIE_3>
+Annie<n>They can't just do whatever they want! Not if I can help it!
+<R=EMIL_4>
+Emil<n>Not if WE can help it.
+<R=EMIL_3>
+Emil<n>Actually, what was it you called me earlier?
+<R=EMIL_2>
+Emil<n>[''Partner...'']
+<R=EMIL_4>
+Emil<n>You know, I think I could get used to that. [Partner!] It has a nice ring to it.
+<L=ANNIE_1>
+Annie<n>Yeah? And what’s yer stake in this? What do you get if Nightmare Clan is gone?
+<R=EMIL_5>
+Emil<n>Death for death’s sake.
+<R=EMIL_5>
+Emil<n>Believe me, we have the same murderous intentions, you and I. We would both see the Nightmare Clan turned to ash.
+<R=EMIL_2>
+Emil<n>But we cannot achieve our desires without borrowing each other's power...
+<L=ANNIE_2>
+Annie<n>S-so we'll do it then! Get rid of the Immortals, and that Eclipse goes away!
+<R=EMIL_4>
+Emil<n>Precisely!
+<A=CutsceneFade_0>
+<L=ANNIE_0>
+Annie<n>Ok, I'll do it, but...You could be less of a jerk about it though.
+<R=EMIL_1>
+Emil<n>And you could be less impetuous.
+SET_BLEND_SHAPE=AnnieBodyMesh,Tongue,100
+SET_BLEND_SHAPE=AnnieBodyMesh,Angry,100
+<L=NULL_0>
+<R=NULL_0>
+Annie<n>Nyeh!
+SET_BLEND_SHAPE=AnnieBodyMesh,Tongue,0
+SET_BLEND_SHAPE=AnnieBodyMesh,Angry,0
+<A=AnniePlayer_0>
+S=SnottyBrittishHmph
+Emil<n>Hmph!

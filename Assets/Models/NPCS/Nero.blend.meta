@@ -1,0 +1,406 @@
+fileFormatVersion: 2
+guid: 10011cf9ac67d3347840ebbbc73b0755
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Armature
+    100004: Bone
+    100006: Cube
+    100008: FrontLThigh
+    100010: FrontLToe
+    100012: FrontRThigh
+    100014: FrontRToe
+    100016: Head
+    100018: Hip
+    100020: LeftEar
+    100022: LWhiskers1
+    100024: LWhiskers2
+    100026: RightEar
+    100028: RWhiskers1
+    100030: RWhiskers2
+    100032: Tail1
+    100034: Tail2
+    100036: Tail3
+    100038: ThighL
+    100040: ThighR
+    100042: ToeL
+    100044: ToeR
+    100046: Tum
+    400000: //RootNode
+    400002: Armature
+    400004: Bone
+    400006: Cube
+    400008: FrontLThigh
+    400010: FrontLToe
+    400012: FrontRThigh
+    400014: FrontRToe
+    400016: Head
+    400018: Hip
+    400020: LeftEar
+    400022: LWhiskers1
+    400024: LWhiskers2
+    400026: RightEar
+    400028: RWhiskers1
+    400030: RWhiskers2
+    400032: Tail1
+    400034: Tail2
+    400036: Tail3
+    400038: ThighL
+    400040: ThighR
+    400042: ToeL
+    400044: ToeR
+    400046: Tum
+    2300000: //RootNode
+    2300002: Cube
+    3300000: //RootNode
+    3300002: Cube
+    4300000: Cube
+    7400000: Default Take
+    7400002: Idle
+    7400004: Sleep
+    7400006: Awaken
+    9500000: //RootNode
+    13700000: Cube
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 39
+      lastFrame: 69
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Tail1
+        weight: 1
+      - path: Armature/Hip/Tail1/Tail2
+        weight: 1
+      - path: Armature/Hip/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Hip/ThighL
+        weight: 1
+      - path: Armature/Hip/ThighL/ToeL
+        weight: 1
+      - path: Armature/Hip/ThighR
+        weight: 1
+      - path: Armature/Hip/ThighR/ToeR
+        weight: 1
+      - path: Armature/Hip/Tum
+        weight: 1
+      - path: Armature/Hip/Tum/FrontLThigh
+        weight: 1
+      - path: Armature/Hip/Tum/FrontLThigh/FrontLToe
+        weight: 1
+      - path: Armature/Hip/Tum/FrontRThigh
+        weight: 1
+      - path: Armature/Hip/Tum/FrontRThigh/FrontRToe
+        weight: 1
+      - path: Armature/Hip/Tum/Head
+        weight: 1
+      - path: Armature/Hip/Tum/Head/LeftEar
+        weight: 1
+      - path: Armature/Hip/Tum/Head/LWhiskers1
+        weight: 1
+      - path: Armature/Hip/Tum/Head/LWhiskers1/LWhiskers2
+        weight: 1
+      - path: Armature/Hip/Tum/Head/RightEar
+        weight: 1
+      - path: Armature/Hip/Tum/Head/RWhiskers1
+        weight: 1
+      - path: Armature/Hip/Tum/Head/RWhiskers1/RWhiskers2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: ArmatureAction
+      firstFrame: 40
+      lastFrame: 69
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Tail1
+        weight: 1
+      - path: Armature/Hip/Tail1/Tail2
+        weight: 1
+      - path: Armature/Hip/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Hip/ThighL
+        weight: 1
+      - path: Armature/Hip/ThighL/ToeL
+        weight: 1
+      - path: Armature/Hip/ThighR
+        weight: 1
+      - path: Armature/Hip/ThighR/ToeR
+        weight: 1
+      - path: Armature/Hip/Tum
+        weight: 1
+      - path: Armature/Hip/Tum/FrontLThigh
+        weight: 1
+      - path: Armature/Hip/Tum/FrontLThigh/FrontLToe
+        weight: 1
+      - path: Armature/Hip/Tum/FrontRThigh
+        weight: 1
+      - path: Armature/Hip/Tum/FrontRThigh/FrontRToe
+        weight: 1
+      - path: Armature/Hip/Tum/Head
+        weight: 1
+      - path: Armature/Hip/Tum/Head/LeftEar
+        weight: 1
+      - path: Armature/Hip/Tum/Head/LWhiskers1
+        weight: 1
+      - path: Armature/Hip/Tum/Head/LWhiskers1/LWhiskers2
+        weight: 1
+      - path: Armature/Hip/Tum/Head/RightEar
+        weight: 1
+      - path: Armature/Hip/Tum/Head/RWhiskers1
+        weight: 1
+      - path: Armature/Hip/Tum/Head/RWhiskers1/RWhiskers2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Sleep
+      takeName: ArmatureAction
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Tail1
+        weight: 1
+      - path: Armature/Hip/Tail1/Tail2
+        weight: 1
+      - path: Armature/Hip/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Hip/ThighL
+        weight: 1
+      - path: Armature/Hip/ThighL/ToeL
+        weight: 1
+      - path: Armature/Hip/ThighR
+        weight: 1
+      - path: Armature/Hip/ThighR/ToeR
+        weight: 1
+      - path: Armature/Hip/Tum
+        weight: 1
+      - path: Armature/Hip/Tum/FrontLThigh
+        weight: 1
+      - path: Armature/Hip/Tum/FrontLThigh/FrontLToe
+        weight: 1
+      - path: Armature/Hip/Tum/FrontRThigh
+        weight: 1
+      - path: Armature/Hip/Tum/FrontRThigh/FrontRToe
+        weight: 1
+      - path: Armature/Hip/Tum/Head
+        weight: 1
+      - path: Armature/Hip/Tum/Head/LeftEar
+        weight: 1
+      - path: Armature/Hip/Tum/Head/LWhiskers1
+        weight: 1
+      - path: Armature/Hip/Tum/Head/LWhiskers1/LWhiskers2
+        weight: 1
+      - path: Armature/Hip/Tum/Head/RightEar
+        weight: 1
+      - path: Armature/Hip/Tum/Head/RWhiskers1
+        weight: 1
+      - path: Armature/Hip/Tum/Head/RWhiskers1/RWhiskers2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Awaken
+      takeName: ArmatureAction
+      firstFrame: 80
+      lastFrame: 125
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Tail1
+        weight: 1
+      - path: Armature/Hip/Tail1/Tail2
+        weight: 1
+      - path: Armature/Hip/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Hip/ThighL
+        weight: 1
+      - path: Armature/Hip/ThighL/ToeL
+        weight: 1
+      - path: Armature/Hip/ThighR
+        weight: 1
+      - path: Armature/Hip/ThighR/ToeR
+        weight: 1
+      - path: Armature/Hip/Tum
+        weight: 1
+      - path: Armature/Hip/Tum/FrontLThigh
+        weight: 1
+      - path: Armature/Hip/Tum/FrontLThigh/FrontLToe
+        weight: 1
+      - path: Armature/Hip/Tum/FrontRThigh
+        weight: 1
+      - path: Armature/Hip/Tum/FrontRThigh/FrontRToe
+        weight: 1
+      - path: Armature/Hip/Tum/Head
+        weight: 1
+      - path: Armature/Hip/Tum/Head/LeftEar
+        weight: 1
+      - path: Armature/Hip/Tum/Head/LWhiskers1
+        weight: 1
+      - path: Armature/Hip/Tum/Head/LWhiskers1/LWhiskers2
+        weight: 1
+      - path: Armature/Hip/Tum/Head/RightEar
+        weight: 1
+      - path: Armature/Hip/Tum/Head/RWhiskers1
+        weight: 1
+      - path: Armature/Hip/Tum/Head/RWhiskers1/RWhiskers2
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

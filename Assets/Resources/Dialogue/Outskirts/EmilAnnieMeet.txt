@@ -9,6 +9,7 @@
 Annie<n>(Stiff as a statue!)
 <E=AnniePlayer_1>
 M=VampireEmilIntro
+<A=AnniePlayer_17>
 Mysterious Boy<n>Well? Are you going to kill it, or aren't you?
 <CAM_GOTO_POINT=EmilNPC>
 M=VampireEmil
@@ -16,6 +17,7 @@ M=VampireEmil
 Mysterious Boy<n>What are you waiting for?!
 Mysterious Boy<n>Use your [Solar Gun] to kill this servant!
 <CAM_GOTO_POINT=Center>
+<A=AnniePlayer_0>
 Mysterious Boy<n>Do it quickly before the seal wears off!
 <A=CutsceneBok_2>
 <T=EmilNPC_1>
@@ -33,6 +35,7 @@ Mysterious Boy<n>Ugh...!
 <CAM_GOTO_POINT=EmilNPC>
 <PAUSE_FOR=2>
 <CAM_GOTO_POINT=Center>
+<O=AnniePlayer_0>
 <A=AnniePlayer_2>
 S=Aim
 Annie<n>A [Vampire]...!
@@ -40,6 +43,7 @@ Annie<n>A [Vampire]...!
 Mysterious Boy<n>Oh goodie, I'm thrilled you have basic observation skills.
 Mysterious Boy<n>Although I'm afraid that doesn't make up for your lack of competence.
 Mysterious Boy<n>You had prey practically handed to you on a silver platter and still you didn't strike!
+Annie<n>Beg pardon?!
 Mysterious Boy<n>Where's your bloodlust?
 <E=EmilNPC_2>
 Annie<n>You want bloodlust...?
@@ -50,13 +54,17 @@ Annie<n>You want bloodlust...?
 Mysterious Boy<n>Hahaha! Please.
 <CAM_GOTO_POINT=Center>
 <A=EmilNPC_0>
+<A=AnniePlayer_0>
 <E=AnniePlayer_0>
 Mysterious Boy<n>I'm familiar with the tricks you and your kin keep up their sleeves.
 <A=EmilNPC_2>
 Mysterious Boy<n>...Also you forgot to target. Tsk tsk!
-<A=AnniePlayer_0>
+Annie<n>
+<A=AnniePlayer_15>
 <A=EmilNPC_0>
-Mysterious Boy<n>Would it be a great idea to pick a fight with me here and-
+Mysterious Boy<n>You've been horribly reckless, you know that?
+Mysterious Boy<n>You cannot simply continue attacking enemies directly like you have!
+Mysterious Boy<n>Cling to the shadows and strike!
 M=Null
 <CLEAR_EMOJI=AnniePlayer>
 <A=AnniePlayer_4>

@@ -15,6 +15,10 @@ public class Menu : MonoBehaviour {
 	public SceneTransition fader;
 	private bool isNightTime = false;
 	private bool changingScene = false;
+	private bool isSkipped = false;
+	public Animator[] pieces;
+	private AudioClip music;
+	public GameObject ops;
 
 	void Awake() {
 		AudioListener.volume = 1;
@@ -25,42 +29,66 @@ public class Menu : MonoBehaviour {
 		if (isNightTime) {
 			Camera.main.backgroundColor = nightColor;
 			AudioSource a = GetComponent<AudioSource>();
-			a.clip = nightMusic;
-			a.Play();
+			music = nightMusic;
 			dayClouds.gameObject.SetActive(false);
 			nightClouds.gameObject.SetActive(true);
 		}
 		else {
 			Camera.main.backgroundColor = dayColor;
 			AudioSource a = GetComponent<AudioSource>();
-			a.clip = dayMusic;
-			a.Play();
+			music = dayMusic;
 			nightClouds.gameObject.SetActive(false);
 			dayClouds.gameObject.SetActive(true);
 		}
+
+		StartCoroutine (idle());
 	}
 
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetButtonDown("Inventory") && Time.timeScale!=0 && !changingScene) {
-			changingScene = true;
-			fader.gotoScene("Intro");
+		if(!isSkipped&&Input.GetButtonDown("Inventory")) skip();
+		else if (Input.GetButtonDown("Inventory") && Time.timeScale!=0) {
+			//changingScene = true;
+			start.SetActive(false);
+			ops.SetActive(true);
 
 		}
-		if(!audio.isPlaying && !changingScene) {
-			changingScene = true;
-			fader.gotoScene("MenuTutorial1");
-		}
+		//if(!audio.isPlaying && !changingScene) {
+		//	changingScene = true;
+		//	fader.gotoScene("MenuTutorial1");
+		//}
 	
 	}
 
+	void skip() {
+		foreach(Animator piece in pieces) {
+			piece.SetBool(Animator.StringToHash("Skip"),true);
+			setIsSkipped();
+		}
+		playMusic();
+	}
+
+	void setIsSkipped() {
+		isSkipped = true;
+	}
+
+	void playIntro() {
+		audio.Play ();
+	}
 	void playMusic() {
+		audio.Stop ();
+		audio.clip = music;
 		audio.Play ();
 	}
 
 	void enableText() {
 		start.active = true;
 		copyrightText.active = true;
+	}
+
+	IEnumerator idle() {
+		yield return new WaitForSeconds(30);
+		fader.gotoScene("MenuTutorial1");
 	}
 }

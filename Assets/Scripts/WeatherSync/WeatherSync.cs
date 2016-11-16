@@ -14,6 +14,7 @@ public class WeatherSync : MonoBehaviour {
 	public bool weatherActivated = true;
 	public LiveWeather live;
 	public string status = "OFFLINE";
+	public int template = 0;
 
 	//Light
 	public SafeInt sunlight = new SafeInt(0);
@@ -45,9 +46,39 @@ public class WeatherSync : MonoBehaviour {
 		//connect();
 	}
 
+	public void setWeatherTemplate(int t) {
+		//Swap weather to a template for the sake of Immortal weather
+		//template of 0 is default Live/Generic weather
+		if(template != 0 && t==0) {
+			template = 0;
+			connect();
+		}
+		else template = t;
+
+		if(template == 1) { //La Lupe: Foggy
+			getGenericWeather();
+			//lightMax = new SafeInt(UnityEngine.Random.Range(1, 5));
+			int cc = UnityEngine.Random.Range(50, 70);
+			int tt = UnityEngine.Random.Range(15, 18);
+			int hh = UnityEngine.Random.Range(20, 40);
+			setWeather(cc,tt,hh,701,"Mist");
+		}
+	}
+
+	void setWeather(int cloud, int temp, int humidity, int status, string name) {
+		cloudinessPercentage = new SafeInt(cloud);
+		finalTemp = new SafeInt(temp);
+		humidityPercentage = new SafeInt(humidity);
+		conditionID = new SafeInt (status);
+		conditionName = name;
+	}
+
 	void connect() {
-		if(weatherActivated) StartCoroutine (getLiveWeather());
-		else getGenericWeather();
+		if(template != 0) setWeatherTemplate(template);
+		else {
+			if(weatherActivated&&(PlayerPrefs.GetInt("WeatherSync") == 1)) StartCoroutine (getLiveWeather());
+			else getGenericWeather();
+		}
 	}
 
 	void getGenericWeather() {
@@ -63,7 +94,8 @@ public class WeatherSync : MonoBehaviour {
 		}
 		else {
 			isNightTime = false;
-			lightMax = new SafeInt(GenericPattern.getSunlight(percent, cloudinessPercentage.GetValue()));
+			int lightValue = GenericPattern.getSunlight(percent, cloudinessPercentage.GetValue());
+			lightMax = new SafeInt(lightValue);
 		}
 		sunlight = lightMax;
 	}

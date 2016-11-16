@@ -4,12 +4,75 @@ ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Cube_000
+    100004: Cube_001
+    100006: Armature
+    100008: Head
+    100010: LowerBeak
+    100012: Neck
+    100014: Root
+    100016: UpperBeak
+    100018: Bone
+    100020: Bone_001
+    100022: Bone_002
+    100024: Bone_003
+    100026: Bone_004
+    100028: Bone_005
+    100030: Hip
+    100032: Root_003
+    100034: Tail
+    100036: Cube
+    100038: Sphere
+    100040: Wing1R
+    100042: Wing1R_001
+    100044: Wing2R
+    100046: Wing2R_001
+    100048: Wing3R
+    100050: Wing3R_001
     400000: //RootNode
+    400002: Cube_000
+    400004: Cube_001
+    400006: Armature
+    400008: Head
+    400010: LowerBeak
+    400012: Neck
+    400014: Root
+    400016: UpperBeak
+    400018: Bone
+    400020: Bone_001
+    400022: Bone_002
+    400024: Bone_003
+    400026: Bone_004
+    400028: Bone_005
+    400030: Hip
+    400032: Root_003
+    400034: Tail
+    400036: Cube
+    400038: Sphere
+    400040: Wing1R
+    400042: Wing1R_001
+    400044: Wing2R
+    400046: Wing2R_001
+    400048: Wing3R
+    400050: Wing3R_001
     2300000: //RootNode
+    2300002: Cube_000
+    2300004: Cube_001
+    2300006: Cube
+    2300008: Sphere
     3300000: //RootNode
+    3300002: Cube_000
+    3300004: Cube_001
+    3300006: Cube
+    3300008: Sphere
     4300000: Cube_001
+    4300002: Cube_000
+    4300004: Sphere
+    4300006: Cube
     7400000: Default Take
+    7400002: Eat
     9500000: //RootNode
+    13700000: Cube_001
   materials:
     importMaterials: 1
     materialName: 0
@@ -25,11 +88,163 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Bone
+        weight: 1
+      - path: Armature/Hip/Bone/Bone_001
+        weight: 1
+      - path: Armature/Hip/Bone/Bone_001/Bone_002
+        weight: 1
+      - path: Armature/Hip/Bone_003
+        weight: 1
+      - path: Armature/Hip/Bone_003/Bone_004
+        weight: 1
+      - path: Armature/Hip/Bone_003/Bone_004/Bone_005
+        weight: 1
+      - path: Armature/Hip/Tail
+        weight: 1
+      - path: Armature/Hip/Tail/Root_003
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Neck
+        weight: 1
+      - path: Armature/Root/Neck/Head
+        weight: 1
+      - path: Armature/Root/Neck/Head/LowerBeak
+        weight: 1
+      - path: Armature/Root/Neck/Head/UpperBeak
+        weight: 1
+      - path: Armature/Root/Wing1R
+        weight: 1
+      - path: Armature/Root/Wing1R/Wing2R
+        weight: 1
+      - path: Armature/Root/Wing1R/Wing2R/Wing3R
+        weight: 1
+      - path: Armature/Root/Wing1R_001
+        weight: 1
+      - path: Armature/Root/Wing1R_001/Wing2R_001
+        weight: 1
+      - path: Armature/Root/Wing1R_001/Wing2R_001/Wing3R_001
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Cube_001
+        weight: 1
+      - path: Sphere
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Eat
+      takeName: ArmatureAction
+      firstFrame: 0
+      lastFrame: 52
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Bone
+        weight: 1
+      - path: Armature/Hip/Bone/Bone_001
+        weight: 1
+      - path: Armature/Hip/Bone/Bone_001/Bone_002
+        weight: 1
+      - path: Armature/Hip/Bone_003
+        weight: 1
+      - path: Armature/Hip/Bone_003/Bone_004
+        weight: 1
+      - path: Armature/Hip/Bone_003/Bone_004/Bone_005
+        weight: 1
+      - path: Armature/Hip/Tail
+        weight: 1
+      - path: Armature/Hip/Tail/Root_003
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Neck
+        weight: 1
+      - path: Armature/Root/Neck/Head
+        weight: 1
+      - path: Armature/Root/Neck/Head/LowerBeak
+        weight: 1
+      - path: Armature/Root/Neck/Head/UpperBeak
+        weight: 1
+      - path: Armature/Root/Wing1R
+        weight: 1
+      - path: Armature/Root/Wing1R/Wing2R
+        weight: 1
+      - path: Armature/Root/Wing1R/Wing2R/Wing3R
+        weight: 1
+      - path: Armature/Root/Wing1R_001
+        weight: 1
+      - path: Armature/Root/Wing1R_001/Wing2R_001
+        weight: 1
+      - path: Armature/Root/Wing1R_001/Wing2R_001/Wing3R_001
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Cube_001
+        weight: 1
+      - path: Sphere
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 10
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

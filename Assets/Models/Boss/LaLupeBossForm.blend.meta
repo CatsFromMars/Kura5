@@ -133,6 +133,10 @@ ModelImporter:
     7400016: AgainstWall
     7400018: Shocked
     7400020: FallOver
+    7400022: Death
+    7400024: Purification
+    7400026: Purification
+    7400028: PurifyDeath
     9500000: //RootNode
     13700000: Cube
   materials:
@@ -162,7 +166,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -224,6 +228,8 @@ ModelImporter:
       - path: Cube
         weight: 1
       - path: Cube_001
+        weight: 1
+      - path: Cube_002
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -762,16 +768,172 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: FallOver
+      name: Death
       takeName: Ver2
-      firstFrame: 399
-      lastFrame: 425
+      firstFrame: 400
+      lastFrame: 445
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Tail4
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack/UpperBack
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack/UpperBack/Neck
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack/UpperBack/Neck/EarL
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack/UpperBack/Neck/EarR
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack/UpperBack/Neck/LowerJaw
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack/UpperBack/Neck/UpperJaw
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/UpperWingL
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/UpperWingL/MiddleWingL
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/UpperWingL/MiddleWingL/WingTipL
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/UpperWingR
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/UpperWingR/MiddleWingR
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/UpperWingR/MiddleWingR/WingTipR
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Cube_001
+        weight: 1
+      - path: Cube_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Purification
+      takeName: Ver2
+      firstFrame: 459
+      lastFrame: 489
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Tail4
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack/UpperBack
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack/UpperBack/Neck
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack/UpperBack/Neck/EarL
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack/UpperBack/Neck/EarR
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack/UpperBack/Neck/LowerJaw
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/MiddleBack/UpperBack/Neck/UpperJaw
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/UpperWingL
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/UpperWingL/MiddleWingL
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/UpperWingL/MiddleWingL/WingTipL
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/UpperWingR
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/UpperWingR/MiddleWingR
+        weight: 1
+      - path: Armature/Root/Tail4/Tail3/Tail2/Tail1/Tail0/Hip/LowerBack/UpperWingR/MiddleWingR/WingTipR
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Cube_001
+        weight: 1
+      - path: Cube_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: PurifyDeath
+      takeName: Ver2
+      firstFrame: 500
+      lastFrame: 521
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
