@@ -3,14 +3,14 @@ using System.Collections;
 
 public class PlayerContainer : MonoBehaviour {
 
-	//MOVEMENT
+	//Movement
 	public float playerSpeed = 8;
 	public float sidleSpeed = 7;
 	public float playerTargetingSpeed = 4f;
 	public float playerRunningSpeed = 8f;
 	public float playerPullSpeed = 4f;
 	public float playerRollingSpeed = 18f;
-	private float rotationSpeed = 30f;
+	private float rotationSpeed = 20f;
 	private float sidleRotationSpeed = 10f;
 	private Quaternion sidleRot;
 	private int sidleCounter;
@@ -21,13 +21,15 @@ public class PlayerContainer : MonoBehaviour {
 	public bool forceLookAtTarget = true;
 	protected Vector3 currentKnockbackDir;
 
-	//TARGETING VARIABLES
-	public Transform lockOnUI;
-	protected Transform lockOn;
-	public Transform currentTarget;
+	//Targeting
+	public Transform crosshair;
+	public Crosshair crosshairScript;
+	//public Transform lockOnUI;
+	//protected Transform lockOn;
+	//public Transform currentTarget;
 	protected Animator currentTargetAnimator;
 
-	//ACTION VARIABLES
+	//Action
 	public bool nearCoffin = false;
 	public bool knockedOver = false;
 	protected bool pullingCoffin = false;
@@ -48,8 +50,9 @@ public class PlayerContainer : MonoBehaviour {
 	public bool burning=false;
 	protected bool canSidleLeft = false;
 	protected bool canSidleRight = false;
+	private float dir;
 
-	//VARIABLES REGARDING WHETHER AN ACTION SHOULD BE PERFORMED
+	//"Can you do action" vars
 	protected bool canCharge = true;
 	protected bool ableToPush = false;
 	protected bool ableToMove = true;
@@ -59,12 +62,16 @@ public class PlayerContainer : MonoBehaviour {
 	public bool inSunlight = false;
 	public bool inShadow = false;
 	protected int parryCounter = 0;
-	private int parryWaitTime = 2;
+	private float parryWaitTime = 0f;
 	protected bool canParry = true;
 	public bool invincible = false;
 	private float invincibilityFrames = 1f;
+	private float specialCounter = 0;
+	private float specialThreshold = 0.3f;
+	protected bool specialAttack = false;
 
-	//ANIMATION AND DATA VARIABLES
+	//Animation
+	public float baseAttackAnimSpeed = 0.8f;
 	public ElementSwapping lensSwapper;
 	public GameObject weaponObject;
 	private MeshRenderer weaponMeshRenderer;
@@ -93,7 +100,7 @@ public class PlayerContainer : MonoBehaviour {
 	protected float originalVolume;
 	protected float originalPitch;
 
-	//MISC VARIABLES
+	//Misc
 	protected bool alreadySpawnedParryEffect = false;
 	public species playerSpecies;
 	public string element = "Sol";
@@ -102,6 +109,8 @@ public class PlayerContainer : MonoBehaviour {
 	public AudioClip[] dieVoices;
 	public AudioClip[] rollVoices;
 	public AudioClip[] switchVoices;
+	public AudioClip wallHit;
+	public Transform weaponHit;
 	
 	public enum species 
 	{
@@ -155,18 +164,18 @@ public class PlayerContainer : MonoBehaviour {
 		Vector3 pos = transform.position + this.transform.forward * 3f;
 		inSunlight = false;
 		inShadow = false;
-		untargetEnemy();
+		//untargetEnemy();
 		zoomToPlayer();
-		if(lockOn != null) {
-			Destroy(lockOn.gameObject);
-		}
+		//if(lockOn != null) {
+		//	Destroy(lockOn.gameObject);
+		//}
 
 	}
 
 	void FixedUpdate() {
 		updateInput();
 		//updateAnimations();
-		if(Time.timeScale==0) untargetEnemy();
+		//if(Time.timeScale==0) untargetEnemy();
 		if(playerInControl) {
 			if(moving || currentAnim(hash.rollState)) manageMovement();
 			if(!rolling) {
@@ -198,11 +207,10 @@ public class PlayerContainer : MonoBehaviour {
 		//if(sidling) playerSpeed = sidleSpeed;
 		if(rolling) playerSpeed = playerRollingSpeed;
 		else if(pullingCoffin || inCoffin) playerSpeed = playerPullSpeed;
-		else if(targeting) playerSpeed = playerTargetingSpeed;
 		else if (!sidling) playerSpeed = playerRunningSpeed;
 
 		//Actually move and rotate player
-		if(currentAnim(hash.runningState) || currentAnim(hash.pullingState) || currentAnim(hash.rollState) || currentAnim(Animator.StringToHash("Locomotion.Sidleright")) || currentAnim(Animator.StringToHash("Locomotion.Sidleleft")) || currentAnim(Animator.StringToHash("Combat.Burn")) || (currentAnim(hash.targetState))) movePlayer (horizontal, vertical);
+		if(currentAnim(hash.runningState) || currentAnim(hash.pullingState) || currentAnim(hash.rollState) || currentAnim(Animator.StringToHash("Locomotion.Sidleright")) || currentAnim(Animator.StringToHash("Locomotion.Sidleleft")) || currentAnim(Animator.StringToHash("Combat.Burn")) ) movePlayer (horizontal, vertical);
 		if(ableToRotate) rotatePlayer (horizontal, vertical);
 
 		if(sidling) detectSidleEdges ();
@@ -216,19 +224,25 @@ public class PlayerContainer : MonoBehaviour {
 				animator.SetTrigger (hash.blockTrigger);
 				StartCoroutine(parryCooldown());
 			}
+			dir = Mathf.Max(Mathf.Abs(horizontal), Mathf.Abs(vertical));
+			//Debug.Log(dir);
+			playerSpeed = playerRunningSpeed*dir;
+			animator.SetFloat(Animator.StringToHash("Speed"), dir);
 			animator.SetBool(hash.movingBool, moving);
 			animator.SetBool(hash.chargingTrigger,Input.GetButtonDown("Charge")); //Trigger Charging
 			animator.SetBool(hash.taiyouBool, charging);
 			//animator.SetBool(hash.whistleBool, whistling);
-			animator.SetBool(hash.rollingBool, Input.GetButtonDown("Roll"));
+			animator.SetBool(hash.rollingBool, Input.GetButtonDown("Roll")&&dir>0.8f);
 			animator.SetBool(hash.holdWeaponBool, holdingWeapon);
 			animator.SetBool(hash.attackBool, attacking);
 			animator.SetBool(hash.targetingBool, targeting);
-			animator.SetBool(Animator.StringToHash("DoingAnything"),Input.anyKey); //Put here for the idle animations
+			animator.SetBool(Animator.StringToHash("DoingAnything"),Input.anyKey||horizontal!=0||vertical!=0); //Put here for the idle animations
 			animator.SetBool(Animator.StringToHash("Sidling"),sidling);
 			//for sidling only
 			animator.SetBool(Animator.StringToHash("Left"),(horizontal==-1)&&canSidleLeft&&sidling); //left and up
 			animator.SetBool(Animator.StringToHash("Right"),(horizontal==1)&&canSidleRight&&sidling); //right and down
+			//update the speed of the attack animations
+			updateAttackAnimSpeed();
 		}
 		else {
 			canCharge = false;
@@ -239,6 +253,7 @@ public class PlayerContainer : MonoBehaviour {
 			animator.SetBool(hash.targetingBool, false);
 			animator.SetBool(Animator.StringToHash("Sidling"),false);
 			animator.SetBool(Animator.StringToHash("DoingAnything"),true); //disable idle anim on cutcenes
+			animator.SetFloat(Animator.StringToHash("Speed"), 1);
 		}
 		weaponMeshRenderer.enabled = !inCoffin;
 		if(meshObjects!=null && playerArmature!=null) {
@@ -247,6 +262,11 @@ public class PlayerContainer : MonoBehaviour {
 		}
 		if(performingAction||animator.GetBool(Animator.StringToHash("CutsceneMode"))) inCoffin = false;
 		
+	}
+
+	public virtual void updateAttackAnimSpeed() {
+		return;
+		//intended to be overwritten when we merge with Emil!
 	}
 
 	protected void updateInput() {
@@ -258,6 +278,7 @@ public class PlayerContainer : MonoBehaviour {
 			//whistling = Input.GetButtonDown("Whistle");
 			holdingWeapon = ((Input.GetButton("Attack") || Input.GetButtonDown("Attack"))) && !gameData.nearInteractable;
 			attacking = Input.GetButtonUp("Attack") && !gameData.nearInteractable;
+			checkForHoldingAttackBtn();
 			pullingCoffin = Input.GetButton("Charge") && nearCoffin;
 			targeting = Input.GetButton ("Target") && Time.timeScale != 0 && !rolling;
 			//if((Input.GetButtonDown("Target") || Input.GetButtonUp("Target")) && Time.timeScale != 0) handleTargetZoom();
@@ -267,6 +288,20 @@ public class PlayerContainer : MonoBehaviour {
 			//if(sidling&&!(currentAnim(hash.sidleState)||currentAnim(hash.sidleRightState)||currentAnim(hash.sidleLeftState))) sidling = false;
 		}
 		else canCharge = false;
+	}
+
+	void checkForHoldingAttackBtn() {
+		if(Input.GetButton("Attack")) {
+			specialCounter+=Time.deltaTime;
+			if(specialCounter>specialThreshold) {
+				specialAttack = true;
+				//Debug.Log("CHARGE SHOT!");
+			}
+		}
+		else {
+			specialCounter = 0;
+			specialAttack = false;
+		}
 	}
 
 	bool checkForDirectionalForwardness() {
@@ -279,10 +314,11 @@ public class PlayerContainer : MonoBehaviour {
 
 	public void updateInputDirection() {
 		checkForDirectionalForwardness ();
-		horizontal = Mathf.RoundToInt(Input.GetAxis("Horizontal"));
-		vertical = Mathf.RoundToInt(Input.GetAxis("Vertical"));
-		//horizontal = (Input.GetAxis("Horizontal"));
-		//vertical = (Input.GetAxis("Vertical"));
+		//horizontal = Mathf.RoundToInt(Input.GetAxis("Horizontal"));
+		//vertical = Mathf.RoundToInt(Input.GetAxis("Vertical"));
+		horizontal = (Input.GetAxis("Horizontal"));
+		vertical = (Input.GetAxis("Vertical"));
+		//straightenPlayer();
 		if(horizontal != 0 || vertical !=0) lastNonZeroAxis = new Vector3 (horizontal, vertical, 0);
 		if((horizontal==0&&vertical==0)||(checkForDirectionalForwardness())) sidling=false;
 	}
@@ -301,6 +337,10 @@ public class PlayerContainer : MonoBehaviour {
 		}
 	}
 
+	void straightenPlayer() {
+		return;
+	}
+
 	public void rotatePlayer(float horizontal, float vertical) {
 		
 		Vector3 targetDirection = new Vector3(horizontal, 0f, vertical);
@@ -312,6 +352,8 @@ public class PlayerContainer : MonoBehaviour {
 		float rotSpeed;
 		if(sidling) rotSpeed = sidleRotationSpeed;
 		else rotSpeed = rotationSpeed;
+
+		if(dir>0.2f) rotSpeed = rotSpeed * dir;
 		Quaternion newRotation = Quaternion.Lerp(rigidbody.rotation, targetRotation, rotSpeed * Time.fixedDeltaTime);
 		transform.rotation = newRotation;
 	}
@@ -453,42 +495,53 @@ public class PlayerContainer : MonoBehaviour {
 	}
 
 	protected void handleTargetZoom() {
-		if(currentTarget != null&&currentTarget.gameObject.activeSelf) looker.zoomToTarget(currentTarget, 50);
-		else if(looker.currentLook != this.transform && Time.timeScale != 0) zoomToPlayer();
+		//if(currentTarget != null&&currentTarget.gameObject.activeSelf) looker.zoomToTarget(currentTarget, 50);
+		//else if(looker.currentLook != this.transform && Time.timeScale != 0) zoomToPlayer();
 	}
 
 	protected void zoomToEnemy() {
+		if(!crosshair.gameObject.activeSelf) {
+			crosshair.gameObject.SetActive(true);
+			crosshair.position = this.transform.position+(transform.forward*5);
+		}
+		Vector3 targetPos = new Vector3(crosshair.position.x, this.transform.position.y, 
+		                                crosshair.position.z);
+		bool m = currentAnim(hash.runningState) || currentAnim(hash.rollState) || currentAnim(hash.pullingState);
+		if(forceLookAtTarget || !m) this.transform.LookAt(targetPos);
+
 		follow.parent = null;
-		if(Time.timeScale!=0) looker.zoomToTarget(currentTarget, 25);
+		//if(Time.timeScale!=0) looker.zoomToTarget(currentTarget, 25);
+		looker.zoomToTarget(crosshair, 25, true);
 	}
 
 	public void zoomToPlayer() {
+		if(crosshair.gameObject.activeSelf) crosshair.gameObject.SetActive(false);
 		follow.parent = swapper;
-		looker.zoomToTarget(this.transform, 50);
+		looker.zoomToTarget(this.transform, 50, false);
 	}
 
-	protected void targetEnemy() {
-		if(currentTarget == null || !currentTarget.gameObject.activeSelf) {
-			GameObject closest = FindClosestEnemy();
-			if(closest != null) { 
-				currentTarget = closest.transform;
-				currentTargetAnimator = currentTarget.GetComponent<Animator>();
-			}
-		}
+//	protected void targetEnemy() {
+//		if(currentTarget == null || !currentTarget.gameObject.activeSelf) {
+//			GameObject closest = FindClosestEnemy();
+//			if(closest != null) { 
+//				currentTarget = closest.transform;
+//				currentTargetAnimator = currentTarget.GetComponent<Animator>();
+//			}
+//		}
+//
+//		else {
+//			Vector3 targetPos = new Vector3(currentTarget.position.x, this.transform.position.y, 
+//			                                currentTarget.position.z);
+//
+//			bool m = currentAnim(hash.runningState) || currentAnim(hash.rollState) || currentAnim(hash.pullingState);
+//			if(forceLookAtTarget || !m) this.transform.LookAt(targetPos);
+//			else rotatePlayer (horizontal, vertical);
+//		}
+//	}
 
-		else {
-			Vector3 targetPos = new Vector3(currentTarget.position.x, this.transform.position.y, 
-			                                currentTarget.position.z);
-
-			bool m = currentAnim(hash.runningState) || currentAnim(hash.rollState) || currentAnim(hash.pullingState);
-			if(forceLookAtTarget || !m) this.transform.LookAt(targetPos);
-			else rotatePlayer (horizontal, vertical);
-		}
-	}
-
-	protected void untargetEnemy() {
-		currentTarget = null;
-	}
+//	protected void untargetEnemy() {
+//		currentTarget = null;
+//	}
 
 	void swapElement(string e) {
 		element = e;
@@ -700,5 +753,14 @@ public class PlayerContainer : MonoBehaviour {
 	public void revive() {
 		dead = false;
 		animator.Rebind();
+	}
+
+	protected bool checkForBossSegment(RaycastHit hit) {
+		return hit.collider.GetComponent<EnemyClass>() != null;
+	}
+
+	protected void hitWall(RaycastHit hit) {
+		if(wallHit != null) makeSound (wallHit);
+		Instantiate(Resources.Load("Effects/Sound") as GameObject, hit.point, Quaternion.identity);
 	}
 }

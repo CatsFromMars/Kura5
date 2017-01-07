@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AnnieController : PlayerContainer {
 	private int chargeCounter = 0;
@@ -12,17 +13,19 @@ public class AnnieController : PlayerContainer {
 	public AudioClip splashStep;
 	public AudioClip snowStep;
 
-	//VARIABLES REGARDING SHOOTING/COMBAT
+	//Shooting
 	private Vector3 bulletSpawnPoint;
 	public Transform cutsceneBullet;
-	public Transform bullet;
-	public Transform fireBullet;
-	public Transform earthBullet;
+	public Bullet bullet;
+	public RaycastBullet raycastBullet;
 	public Transform weapon;
 	protected int energyCost = 2;
 	private float absorbRate = 1f;
 	private float absorbCounter = 0f;
 	private float absorbCounterTime = 150f;
+	public GameObject spread;
+	private float range = 30f;
+	private float angle = 15f;
 
 	//Visual
 	public ParticleSystem sunParticles;
@@ -33,16 +36,20 @@ public class AnnieController : PlayerContainer {
 	public Transform footPrintL;
 	public Transform footPrintR;
 	public Transform footPrintPrefab;
+	public ParticleSystem gunBang;
 
 	private bool solarCharging = false;
 
+	private Vector3 targetpoint; //used for debugging
+
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 
 	// Update is called once per frame
 	void Update () {
+
 		if (playerInControl) {
 			//updateInput();
 			updateAnimations();
@@ -50,6 +57,7 @@ public class AnnieController : PlayerContainer {
 			handleTargeting();
 			checkForLensSwap();
 			if(Time.timeScale!=0) absorb(1);
+			handleSpecialAttack();
 		}
 	}
 
@@ -72,34 +80,20 @@ public class AnnieController : PlayerContainer {
 
 
 		if(targeting) {
-			//Targeting Mode
-			//if(parrying) {
-			//	doParry();
-			//}
-			//else parryCounter = 0;
-			targetEnemy();
-			if(currentTarget != null && currentTarget.gameObject.activeSelf && Time.timeScale != 0) {
-				if(lockOn == null) lockOn = Instantiate (lockOnUI, currentTarget.transform.position, Quaternion.identity) as Transform;
-				else lockOn.transform.position = currentTarget.transform.position;
+			if(Time.timeScale != 0) {
 				zoomToEnemy();
 			}
-			else { 
-				untargetEnemy();
-				if(lockOn != null) Destroy(lockOn.gameObject);
-				if(Time.timeScale != 0)zoomToPlayer();
-			}
+			else zoomToPlayer();
 		}
 		else {
-			//NON-Targeting Mode
-			untargetEnemy();
-			//parryCounter = 0;
-			if(lockOn != null) {
-				Destroy(lockOn.gameObject);
-				zoomToPlayer();
-			}
+			zoomToPlayer();
 		}
 	}
 
+	//public override void updateAttackAnimSpeed() {
+	//	animator.speed = 1;
+	//}
+	
 	public void Charge() {
 		solarCharging = Time.timeScale != 0 && !lightLevels.w.isNightTime && lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy && currentAnim(hash.chargeState);
 		if(!lightLevels.w.isNightTime) {
@@ -116,7 +110,7 @@ public class AnnieController : PlayerContainer {
 	}
 
 	public void voiceIfCharging(AudioClip clip) {
-		//ANIMATION EVENTS FOR VOICE ACTING
+		//ANIMATION EVENTS FOR VOICE ATING
 		if(Time.timeScale != 0 && !lightLevels.w.isNightTime && lightLevels.sunlight > 0 && gameData.annieCurrentEnergy < gameData.annieMaxEnergy) {
 			voice.volume = 1;
 			voice.pitch = 1f;
@@ -141,13 +135,15 @@ public class AnnieController : PlayerContainer {
 	}
 
 	void Shoot() {
-		if(gameData.annieCurrentEnergy >= energyCost) {
+		if(((GameData.annieWeaponConfig.SpecialAttack=="None" || !specialAttack)) && gameData.annieCurrentEnergy >= energyCost && bullet.CountSpawned() < GameData.annieWeaponConfig.combo) {
 			bulletSpawnPoint = weapon.transform.position;
 			//WHICH BULLET TO SPAWN
-			if(gameData.annieCurrentElem == GameData.elementalProperty.Sol) Instantiate(bullet, bulletSpawnPoint, transform.rotation);
-			else if(gameData.annieCurrentElem == GameData.elementalProperty.Fire) Instantiate(fireBullet, bulletSpawnPoint, transform.rotation);
-			else if(gameData.annieCurrentElem == GameData.elementalProperty.Earth) Instantiate(earthBullet, bulletSpawnPoint, transform.rotation);
-			else makeSound(clickNoise);
+			//if(gameData.annieCurrentElem == GameData.elementalProperty.Sol) Instantiate(bullet, bulletSpawnPoint, transform.rotation);
+			//else if(gameData.annieCurrentElem == GameData.elementalProperty.Fire) Instantiate(fireBullet, bulletSpawnPoint, transform.rotation);
+			//else if(gameData.annieCurrentElem == GameData.elementalProperty.Earth) Instantiate(earthBullet, bulletSpawnPoint, transform.rotation);
+			//else makeSound(clickNoise);
+			if(GameData.annieWeaponConfig.speed > 4) raycastShoot();
+			else bullet.Spawn(bulletSpawnPoint, transform.rotation);
 			gameData.annieCurrentEnergy -= energyCost;
 			makeSound(shootNoise);
 		}
@@ -155,6 +151,61 @@ public class AnnieController : PlayerContainer {
 			makeSound(clickNoise);
 		}
 		
+	}
+
+	void raycastShoot() {
+		//Currently ignores the combo stat altogether. Maxing speed is proably OP at this point.
+		Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
+		gunBang.Stop ();
+		gunBang.Play ();
+		for(int i=0; i<hitColliders.Length; i++) {
+			bool canHitWall=true;
+			Transform target = hitColliders[i].transform;
+			Vector3 targetDir = (target.position - transform.position).normalized;
+			if(!hitColliders[i].isTrigger && Vector3.Angle(this.transform.forward, targetDir) < angle) {
+				float dist = Vector3.Distance(transform.position, target.position);
+				RaycastHit hit;
+				if(Physics.Raycast (transform.position, targetDir, out hit, dist)) {
+					if(hit.collider.gameObject.tag == "Enemy") {
+						canHitWall=false;
+						hitEnemy(hit);
+						if(checkForBossSegment(hit)) break;
+					}
+					else if(hit.collider.gameObject.tag == "Wall"&&canHitWall) {
+						hitWall(hit);
+						canHitWall=false;
+					}
+				}
+			}
+		}
+	}
+
+	void hitEnemy(RaycastHit hit) {
+		int m = 1;
+		EnemySegment b = null;
+		//Ordinary Enemies
+		EnemyClass enemy = hit.collider.GetComponent<EnemyClass>();
+		//if it's a boss segment...
+		if(enemy == null) { 
+			b = hit.collider.GetComponent<EnemySegment>();
+			b.hitWithSword();
+			enemy = b.enemyParent;
+			m = b.damageMultiplier;
+		}
+
+		int dmg = damageCalculator.getDamage(gameData.annieCurrentElem.ToString(), enemy.element, GameData.annieWeaponConfig.damage, 1);
+		enemy.takeDamage (dmg*m, gameData.annieCurrentElem.ToString());
+		enemy.knockback (transform.forward);
+
+		//Sparkly Effects and Sound
+		Instantiate (weaponHit, hit.transform.position, Quaternion.identity);
+		enemy.superEffectiveSmoke (enemy.element, element);
+	}
+
+	void handleSpecialAttack() {
+		if(GameData.annieWeaponConfig.SpecialAttack=="Spread") {
+			spread.SetActive(specialAttack);
+		}
 	}
 
 	void cutsceneShoot() {

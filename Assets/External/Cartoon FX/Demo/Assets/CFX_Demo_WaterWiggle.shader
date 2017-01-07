@@ -6,11 +6,12 @@ Properties {
 	_WiggleStrength ("Wiggle Strength", Range (0.01, 0.1)) = 0.01
 }
 SubShader {
-	Tags { "RenderType"="Opaque" }
+	Blend One OneMinusSrcAlpha
+	Tags { Queue = Transparent }
 	LOD 200
 
 CGPROGRAM
-#pragma surface surf Lambert
+#pragma surface surf NoLighting
 
 sampler2D _MainTex;
 sampler2D _WiggleTex;
@@ -22,6 +23,14 @@ struct Input
 	float2 uv_MainTex;
 	float2 uv_WiggleTex;
 };
+
+ fixed4 LightingNoLighting(SurfaceOutput s, fixed3 lightDir, fixed atten)
+{
+	fixed4 c;
+	c.rgb = s.Albedo; 
+	c.a = s.Alpha;
+	return c;
+}
 
 void surf (Input IN, inout SurfaceOutput o)
 {

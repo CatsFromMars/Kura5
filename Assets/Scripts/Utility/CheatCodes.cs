@@ -49,12 +49,12 @@ public class CheatCodes : MonoBehaviour {
 			w.conditionName = "Mist";
 		}
 		if(Input.GetKeyDown(KeyCode.Alpha7)) {
-			GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(73,5,135);
-			Application.LoadLevel("WadjetFloor2-D");
+			GameData.annieWeaponConfig = new playerWeaponClass(1,1,1,1,1,"Sol");
+			GameData.emilWeaponConfig = new playerWeaponClass(5,5,5,5,5,"Dark");
 		}
 		if(Input.GetKeyDown(KeyCode.Alpha8)) {
-			//Destroy(d.transform.root.gameObject);
-			//Application.LoadLevel("ModelSetupScene");
+			Destroy(d.transform.root.gameObject);
+			Application.LoadLevel("ModelSetup3");
 		}
 	}
 }

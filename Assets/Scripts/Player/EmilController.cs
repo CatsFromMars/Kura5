@@ -5,9 +5,7 @@ public class EmilController : PlayerContainer {
 	private int chargeCounter = 0;
 	private int chargeThresh = 20;
 	private int combo = 0;
-	public Transform weaponHit;
 	public AudioClip hitSound;
-	public AudioClip wallHit;
 	
 	//AUDIO
 	public AudioClip shootNoise;
@@ -115,6 +113,18 @@ public class EmilController : PlayerContainer {
 		}
 	}
 
+	public override void updateAttackAnimSpeed() {
+		if(isSwordAnim()) {
+			animator.speed = 0.8f+(((GameData.emilWeaponConfig.speed/8.5f)*Mathf.Log(GameData.emilWeaponConfig.speed))/1.7f);
+
+		}
+		else animator.speed = 1;
+	}
+
+	bool isSwordAnim() {
+		return animator.GetInteger(hash.comboInt)>0;
+	}
+
 	void absorb(float rate) {
 		if(lightLevels.darkness > 0) absorbCounter+=lightLevels.darkness.GetValue();
 		else absorbCounter = 0;
@@ -125,59 +135,36 @@ public class EmilController : PlayerContainer {
 	}
 
 	void handleTargeting() {
+		
 		if (currentAnim(hash.hurtState)) {
 			targeting = false;
 			knockBack(currentKnockbackDir);
 		}
 		else if(charging&&!targeting) Charge();
-
+		
+		
 		if(targeting) {
-			//Targeting Mode
-			if(parrying) {
-				doParry();
-			}
-			else parryCounter = 0;
-			targetEnemy();
-			if(currentTarget != null && currentTarget.gameObject.activeSelf && Time.timeScale != 0) {
-				if(lockOn == null) lockOn = Instantiate (lockOnUI, currentTarget.transform.position, Quaternion.identity) as Transform;
-				else lockOn.transform.position = currentTarget.transform.position;
-				zoomToEnemy();
+			if(Input.GetButton("Attack")) targetTeleport();
 
-				//Have Emil dash slash some baddies
-				if(currentAnim(hash.comboState1)||currentAnim(hash.comboState2)||currentAnim(hash.comboState3)) {
-					agent.speed = dashSpeed;
-					agent.stoppingDistance = dashStop;
-					agent.SetDestination(currentTarget.transform.position);
-					//toggleBlendShape(100);
-				}
-				else {
-					agent.ResetPath();
-					agent.speed = originalAgentSpeed;
-					agent.stoppingDistance = originalStoppingDistance;
-					//toggleBlendShape(0);
-				}
+			if(Time.timeScale != 0) {
+				zoomToEnemy();
 			}
-			else { 
-				untargetEnemy();
-				if(lockOn != null) Destroy(lockOn.gameObject);
-				if(Time.timeScale != 0)zoomToPlayer();
-			}
+			else zoomToPlayer();
 		}
 		else {
-			//NON-Targeting Mode
-			untargetEnemy();
-			parryCounter = 0;
-			if(lockOn != null) {
-				Destroy(lockOn.gameObject);
-				zoomToPlayer();
-			}
-			if(!dead && agent.hasPath) {
-				agent.ResetPath();
-				agent.speed = originalAgentSpeed;
-				agent.stoppingDistance = originalStoppingDistance;
-			}
+			zoomToPlayer();
 		}
 	}
+
+	void targetTeleport() {
+		//Teleport Emil to target if he's too far away
+		agent.SetDestination(crosshair.transform.position);
+		//if(crosshairScript.currentTarget!=null) {
+		//	transform.position = crosshair.position+(crosshairScript.currentTarget.transform.forward*-3);
+		//}
+		//else transform.position = crosshair.position;
+	}
+
 
 	void handleEffects() {
 		//Sword Slash Effect
@@ -200,6 +187,13 @@ public class EmilController : PlayerContainer {
 		//HANDLING ATTACK COMBOS
 		if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState1)) combo=1;
 		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState2)) combo=2;
+		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState3)) combo=3;
+		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState4)) combo=4;
+		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState5)) combo=5;
+		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState6)) combo=6;
+		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState7)) combo=7;
+		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState8)) combo=8;
+		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState9)) combo=9;
 		else if(currentAnim(hash.holdWeaponState) || currentAnim(hash.idleState) || currentAnim(hash.targetState)) combo = 0;
 		animator.SetInteger (hash.comboInt, combo);
 	}
@@ -237,10 +231,6 @@ public class EmilController : PlayerContainer {
 
 	}
 
-	void CircleSlash() {
-		//For Emil's final combo
-	}
-
 	void changeWeaponColor() {
 		//Do this on element change later on. For now, do it during slash
 		Color c;
@@ -272,16 +262,6 @@ public class EmilController : PlayerContainer {
 		if(breakable != null) breakable.GetComponent<Breakable>().Shatter();
 	}
 
-	void hitWall(RaycastHit hit) {
-		makeSound (wallHit);
-		Instantiate (soundEffect, hit.point, Quaternion.identity);
-	}
-
-
-	bool checkForBossSegment(RaycastHit hit) {
-		return hit.collider.GetComponent<EnemyClass>() != null;
-	}
-	
 	void hitEnemy(RaycastHit hit) {
 		int m = 1;
 		EnemySegment b = null;
@@ -298,7 +278,7 @@ public class EmilController : PlayerContainer {
 		//Insta-kill Ivy
 		Ivy ivy = hit.collider.GetComponent<Ivy>();
 		if(ivy != null && gameData.emilCurrentElem == GameData.elementalProperty.Dark) ivy.hitWithDarkAttack = true;
-		int dmg = damageCalculator.getDamage(gameData.emilCurrentElem.ToString(), enemy.element, strength, 1);
+		int dmg = damageCalculator.getDamage(gameData.emilCurrentElem.ToString(), enemy.element, GameData.emilWeaponConfig.damage, 1);
 		enemy.takeDamage (dmg*m, gameData.emilCurrentElem.ToString());
 		enemy.knockback (transform.forward);
 

@@ -42,6 +42,7 @@ public class LoadMenu : MenuClass {
 			if (index == 0) {
 				//Start Game
 				if(!inConfirmState) {
+					exiting = true;
 					if(File.Exists(Application.dataPath + "/save.bok")) fader.gotoScene("LoadingScene");
 					else fader.gotoScene("Intro");
 				}
@@ -59,6 +60,7 @@ public class LoadMenu : MenuClass {
 					index = 0;
 				}
 				else if(inConfirmState&&File.Exists(Application.dataPath + "/save.bok")) {
+					exiting = true;
 					File.Delete(Application.dataPath + "/save.bok");
 					fader.gotoScene("Intro");
 				}
@@ -75,6 +77,9 @@ public class LoadMenu : MenuClass {
 			loadText.SetActive(true);
 			confirmObj.SetActive(false);
 		}
-		else Application.LoadLevel("MenuScene");
+		else {
+			exiting = true;
+			Application.LoadLevel("MenuScene");
+		}
 	}
 }

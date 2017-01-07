@@ -28,6 +28,10 @@ public class GameData : MonoBehaviour {
 	public float emilMaxLife;
 	public elementalProperty emilCurrentElem = elementalProperty.Dark;
 
+	//WEAPON DATA
+	public static playerWeaponClass annieWeaponConfig = new playerWeaponClass(1,1,1,1,1,"Sol","Spread");
+	public static playerWeaponClass emilWeaponConfig = new playerWeaponClass(1,1,1,1,1,"Dark");
+
 	//PLAYER DATA: GLOBAL
 	public enum player 
 	{
@@ -62,15 +66,17 @@ public class GameData : MonoBehaviour {
 	}
 
 	void Update() {
-
 		//CONSTRAINTS
 		if(annieCurrentLife >= annieMaxLife) annieCurrentLife = annieMaxLife;
 		if(emilCurrentLife >= emilMaxLife) emilCurrentLife = emilMaxLife;
 		if(annieCurrentEnergy >= annieMaxEnergy) annieCurrentEnergy = annieMaxEnergy;
 		if(emilCurrentEnergy >= emilMaxEnergy) emilCurrentEnergy = emilMaxEnergy;
-
+		updateElements ();
 	}
 
-
+	public void updateElements() {
+		annieWeaponConfig.Element = annieCurrentElem.ToString();
+	}
+	
 
 }

@@ -17,6 +17,13 @@ public class HashIDs : MonoBehaviour {
 	public int comboState1;
 	public int comboState2;
 	public int comboState3;
+	public int comboState4;
+	public int comboState5;
+	public int comboState6;
+	public int comboState7;
+	public int comboState8;
+	public int comboState9;
+	public int comboState10;
 	public int blockState;
 	public int targetState;
 	public int pullIdleState;
@@ -134,6 +141,13 @@ public class HashIDs : MonoBehaviour {
 		comboState1 = Animator.StringToHash("Sword.Slash1");
 		comboState2 = Animator.StringToHash("Sword.Slash2");
 		comboState3 = Animator.StringToHash("Sword.Slash3");
+		comboState4 = Animator.StringToHash("Sword.Slash4");
+		comboState5 = Animator.StringToHash("Sword.Slash5");
+		comboState6 = Animator.StringToHash("Sword.Slash6");
+		comboState7 = Animator.StringToHash("Sword.Slash7");
+		comboState8 = Animator.StringToHash("Sword.Slash8");
+		comboState9 = Animator.StringToHash("Sword.Slash9");
+		comboState10 = Animator.StringToHash("Sword.Slash10");
 		blockState = Animator.StringToHash("Targeting.Block");
 		targetState = Animator.StringToHash("Targeting.Targeting");
 		chargeState = Animator.StringToHash ("Charging.Charging");

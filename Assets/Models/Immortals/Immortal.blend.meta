@@ -89,6 +89,7 @@ ModelImporter:
     7400000: Default Take
     7400002: Flight
     7400004: TrailerAction
+    7400006: Default Take0
     9500000: //RootNode
     13700000: Cube
     13700002: Cube_001
@@ -111,8 +112,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Default Take
       takeName: Default Take
-      firstFrame: -1
-      lastFrame: 129
+      firstFrame: 129
+      lastFrame: 129.100006
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -152,6 +153,12 @@ ModelImporter:
         weight: 1
       - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
         weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/FingersL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/FingersL/FingersL2
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/ThumbL
+        weight: 1
       - path: Armature/Hip/Stomach/Chest/ShoulderR
         weight: 1
       - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR
@@ -159,6 +166,12 @@ ModelImporter:
       - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR
         weight: 1
       - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/FingersR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/FingersR/FingersR2
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/ThumbR
         weight: 1
       - path: Armature/Hip/Stomach/Chest/WingL1
         weight: 1
@@ -337,6 +350,104 @@ ModelImporter:
       - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
         weight: 1
       - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/FingersR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/ThumbR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingL1
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingL1/WingL2
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingL1/WingL2/WingL3
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingL1/WingL2/WingL3/WingL4
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingR1
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingR1/WingR2
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingR1/WingR2/WingR3
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/WingR1/WingR2/WingR3/WingR4
+        weight: 1
+      - path: Armature/Hip/ThighL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL/FootL
+        weight: 1
+      - path: Armature/Hip/ThighR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR/FootR
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Cube_001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Default Take0
+      takeName: Default Take
+      firstFrame: 129
+      lastFrame: 179
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/Stomach
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/FingersL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/FingersL/FingersL2
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/ThumbL
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/FingersR
+        weight: 1
+      - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/FingersR/FingersR2
         weight: 1
       - path: Armature/Hip/Stomach/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/ThumbR
         weight: 1

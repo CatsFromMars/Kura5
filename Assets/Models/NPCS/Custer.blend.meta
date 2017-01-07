@@ -47,6 +47,8 @@ ModelImporter:
     100082: Tummy
     100084: UpperArmL
     100086: UpperArmR
+    100088: Sphere_001
+    100090: Sphere_002
     400000: Cube
     400002: Cylinder
     400004: //RootNode
@@ -91,6 +93,8 @@ ModelImporter:
     400082: Tummy
     400084: UpperArmL
     400086: UpperArmR
+    400088: Sphere_001
+    400090: Sphere_002
     2300000: Cube
     2300002: Cylinder
     2300004: Sphere
@@ -103,9 +107,17 @@ ModelImporter:
     4300002: Sphere
     4300004: Cube
     4300006: Circle_002
+    4300008: Sphere_001
+    4300010: Sphere_002
     7400000: Default Take
+    7400002: ArmatureAction
+    7400004: Pose
+    7400006: pose2
     9500000: //RootNode
     13700000: Sphere
+    13700002: Cube
+    13700004: Sphere_001
+    13700006: Sphere_002
   materials:
     importMaterials: 1
     materialName: 0
@@ -121,7 +133,463 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 249
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/ThighL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL/FootL
+        weight: 1
+      - path: Armature/Hip/ThighR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR/FootR
+        weight: 1
+      - path: Armature/Hip/Tummy
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1/Stach2
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1_001
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1_001/Stach2_001
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Fingers1L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Fingers1L/Fingers2L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Index1L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Index1L/Index2L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Thumb1L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Thumb1L/Thumb2L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Fingers1R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Fingers1R/Fingers2R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Index1R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Index1R/Index2R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Thumb1R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Thumb1R/Thumb2R
+        weight: 1
+      - path: Armature/IKL
+        weight: 1
+      - path: Armature/IKR
+        weight: 1
+      - path: Armature/KneeL
+        weight: 1
+      - path: Armature/KneeR
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: Sphere_001
+        weight: 1
+      - path: Sphere_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: ArmatureAction
+      takeName: ArmatureAction
+      firstFrame: 9.89999962
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/ThighL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL/FootL
+        weight: 1
+      - path: Armature/Hip/ThighR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR/FootR
+        weight: 1
+      - path: Armature/Hip/Tummy
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1/Stach2
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1_001
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1_001/Stach2_001
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Fingers1L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Fingers1L/Fingers2L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Index1L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Index1L/Index2L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Thumb1L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Thumb1L/Thumb2L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Fingers1R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Fingers1R/Fingers2R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Index1R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Index1R/Index2R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Thumb1R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Thumb1R/Thumb2R
+        weight: 1
+      - path: Armature/IKL
+        weight: 1
+      - path: Armature/IKR
+        weight: 1
+      - path: Armature/KneeL
+        weight: 1
+      - path: Armature/KneeR
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: Sphere_001
+        weight: 1
+      - path: Sphere_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Pose
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: .100000009
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/ThighL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL/FootL
+        weight: 1
+      - path: Armature/Hip/ThighR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR/FootR
+        weight: 1
+      - path: Armature/Hip/Tummy
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1/Stach2
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1_001
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1_001/Stach2_001
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Fingers1L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Fingers1L/Fingers2L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Index1L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Index1L/Index2L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Thumb1L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Thumb1L/Thumb2L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Fingers1R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Fingers1R/Fingers2R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Index1R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Index1R/Index2R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Thumb1R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Thumb1R/Thumb2R
+        weight: 1
+      - path: Armature/IKL
+        weight: 1
+      - path: Armature/IKR
+        weight: 1
+      - path: Armature/KneeL
+        weight: 1
+      - path: Armature/KneeR
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: Sphere_001
+        weight: 1
+      - path: Sphere_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: pose2
+      takeName: Default Take
+      firstFrame: 19.8999996
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Hip
+        weight: 1
+      - path: Armature/Hip/ThighL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL
+        weight: 1
+      - path: Armature/Hip/ThighL/ShinL/FootL
+        weight: 1
+      - path: Armature/Hip/ThighR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR
+        weight: 1
+      - path: Armature/Hip/ThighR/ShinR/FootR
+        weight: 1
+      - path: Armature/Hip/Tummy
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1/Stach2
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1_001
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/Head/Stache1_001/Stach2_001
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Fingers1L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Fingers1L/Fingers2L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Index1L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Index1L/Index2L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Thumb1L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderL/UpperArmL/LowerArmL/HandL/Thumb1L/Thumb2L
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Fingers1R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Fingers1R/Fingers2R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Index1R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Index1R/Index2R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Thumb1R
+        weight: 1
+      - path: Armature/Hip/Tummy/Chest/ShoulderR/UpperArmR/LowerArmR/HandR/Thumb1R/Thumb2R
+        weight: 1
+      - path: Armature/IKL
+        weight: 1
+      - path: Armature/IKR
+        weight: 1
+      - path: Armature/KneeL
+        weight: 1
+      - path: Armature/KneeR
+        weight: 1
+      - path: Cube
+        weight: 1
+      - path: Sphere
+        weight: 1
+      - path: Sphere_001
+        weight: 1
+      - path: Sphere_002
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []

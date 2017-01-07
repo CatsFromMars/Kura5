@@ -19,13 +19,13 @@ public class MenuManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Quick Pause
-		if (Input.GetKeyDown(KeyCode.Escape)) {
+		if (Input.GetKeyDown(KeyCode.Escape)&& Time.timeScale != 0 && !Input.GetButton("Swap") && !Input.GetButton("Target")) {
 			bool canOpen = GetUtil.getPlayerContainer().playerInControl;
 			if(!menuOpen&&canOpen) openPauseMenu();
 		}
 
 		//Inventory Menu
-		if(Input.GetButtonDown("Inventory") && Time.timeScale != 0 && !Input.GetButton("Target")) {
+		if(Input.GetButtonDown("Inventory") && Time.timeScale != 0 && !Input.GetButton("Swap") && !Input.GetButton("Target")) {
 			bool canOpen = GetUtil.getPlayerContainer().playerInControl;
 			if(!menuOpen&&canOpen) openMenu();
 		}
@@ -73,9 +73,11 @@ public class MenuManager : MonoBehaviour {
 	}
 
 	void swapToMenu(int index) {
-		closeAll();
-		makeSound (swap);
-		menus [index].gameObject.SetActive (true);
+		if(!quickPauseMenu.activeSelf) {
+			closeAll();
+			makeSound (swap);
+			menus [index].gameObject.SetActive (true);
+		}
 	}
 
 	void closeAll() {
