@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 public class PlayerContainer : MonoBehaviour {
 
 	//Movement
+	private float normalRotationSpeed = 20;
+	private float rollRotationSpeed = 2;
+	private float slopeAngle = 0f;
 	public float playerSpeed = 8;
 	public float sidleSpeed = 7;
 	public float playerTargetingSpeed = 4f;
@@ -86,6 +90,7 @@ public class PlayerContainer : MonoBehaviour {
 	protected CharacterController controller;
 	protected Transform swapper;
 	public HashIDs hash;
+	public Vibration vibration;
 	protected GameData gameData;
 	protected GameObject globalData;
 	public LightLevels lightLevels;
@@ -127,6 +132,7 @@ public class PlayerContainer : MonoBehaviour {
 		gameData = globalData.GetComponent<GameData>();
 		controller = GetComponent<CharacterController>();
 		animator = GetComponent<Animator>();
+		vibration = globalData.GetComponent<Vibration>();
 		lightLevels = GameObject.FindGameObjectWithTag("LightLevels").GetComponent<LightLevels>();
 		damageCalculator = globalData.GetComponent<DamageCalculator>();
 		agent = GetComponent<NavMeshAgent> ();
@@ -180,9 +186,14 @@ public class PlayerContainer : MonoBehaviour {
 			if(moving || currentAnim(hash.rollState)) manageMovement();
 			if(!rolling) {
 				updateInputDirection();
+				rotationSpeed = normalRotationSpeed;
 			}
 			else if(rolling) {
-				if(vertical == 0 && horizontal == 0) {
+				if(playerSpecies == species.Vampire) {
+					updateInputDirection();
+					rotationSpeed = rollRotationSpeed;
+				}
+				else if(vertical == 0 && horizontal == 0) {
 					vertical = lastNonZeroAxis.x;
 					horizontal = lastNonZeroAxis.y;
 				}
@@ -200,14 +211,20 @@ public class PlayerContainer : MonoBehaviour {
 		playerSpeed = sidleSpeed;
 	}
 
+	protected void manageSpeed(float maxSpeed) {
+		Debug.Log (slopeAngle);
+		playerSpeed = maxSpeed * dir;
+	}
+
 	protected void manageMovement () {
-		ableToRotate = (!(knockedOver || charging || dead || whistling || targeting&&forceLookAtTarget || targeting&&!moving)) && !(currentAnim(hash.comboState1) ||                                                               currentAnim(hash.comboState3) ||
-		                                                                    currentAnim(hash.shootingState));
+		ableToRotate = (currentAnim (hash.targetState) || currentAnim(hash.runningState) || currentAnim(hash.rollState));
 		//Speed
 		//if(sidling) playerSpeed = sidleSpeed;
 		if(rolling) playerSpeed = playerRollingSpeed;
 		else if(pullingCoffin || inCoffin) playerSpeed = playerPullSpeed;
-		else if (!sidling) playerSpeed = playerRunningSpeed;
+		else if (!sidling) {
+			manageSpeed(playerRunningSpeed);
+		}
 
 		//Actually move and rotate player
 		if(currentAnim(hash.runningState) || currentAnim(hash.pullingState) || currentAnim(hash.rollState) || currentAnim(Animator.StringToHash("Locomotion.Sidleright")) || currentAnim(Animator.StringToHash("Locomotion.Sidleleft")) || currentAnim(Animator.StringToHash("Combat.Burn")) ) movePlayer (horizontal, vertical);
@@ -226,8 +243,9 @@ public class PlayerContainer : MonoBehaviour {
 			}
 			dir = Mathf.Max(Mathf.Abs(horizontal), Mathf.Abs(vertical));
 			//Debug.Log(dir);
-			playerSpeed = playerRunningSpeed*dir;
-			animator.SetFloat(Animator.StringToHash("Speed"), dir);
+			//playerSpeed = playerRunningSpeed*dir;
+			if(playerInControl) animator.SetFloat(Animator.StringToHash("Speed"), dir);
+			else animator.SetFloat(Animator.StringToHash("Speed"), 1);
 			animator.SetBool(hash.movingBool, moving);
 			animator.SetBool(hash.chargingTrigger,Input.GetButtonDown("Charge")); //Trigger Charging
 			animator.SetBool(hash.taiyouBool, charging);
@@ -238,6 +256,7 @@ public class PlayerContainer : MonoBehaviour {
 			animator.SetBool(hash.targetingBool, targeting);
 			animator.SetBool(Animator.StringToHash("DoingAnything"),Input.anyKey||horizontal!=0||vertical!=0); //Put here for the idle animations
 			animator.SetBool(Animator.StringToHash("Sidling"),sidling);
+			if(currentAnim(hash.fallState)) animator.ResetTrigger(Animator.StringToHash("Slam"));
 			//for sidling only
 			animator.SetBool(Animator.StringToHash("Left"),(horizontal==-1)&&canSidleLeft&&sidling); //left and up
 			animator.SetBool(Animator.StringToHash("Right"),(horizontal==1)&&canSidleRight&&sidling); //right and down
@@ -331,6 +350,9 @@ public class PlayerContainer : MonoBehaviour {
 			if(horizontal*m > 0) controller.Move(transform.right*m * Time.deltaTime * playerSpeed);
 			else if(horizontal*m < 0) controller.Move(transform.right*m*-1 * Time.deltaTime * playerSpeed);
 		}
+		else if(rolling) {
+			controller.Move(transform.forward * Time.deltaTime * playerSpeed);
+		}
 		else {
 			targetDirection = new Vector3(horizontal, 0f, vertical);
 			controller.Move(targetDirection * Time.deltaTime * playerSpeed);
@@ -342,7 +364,6 @@ public class PlayerContainer : MonoBehaviour {
 	}
 
 	public void rotatePlayer(float horizontal, float vertical) {
-		
 		Vector3 targetDirection = new Vector3(horizontal, 0f, vertical);
 		Quaternion targetRotation = transform.rotation;
 		if(!sidling) targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
@@ -364,6 +385,15 @@ public class PlayerContainer : MonoBehaviour {
 		Vector3 k = weapon.knockBack * other.transform.forward;
 		if(weapon.knockBack == 0) k = transform.forward*-3;
 		hitPlayer(d, e, k);
+	}
+
+	public void wallStun(ControllerColliderHit hit) {
+		vibration.vibrate(1f,0.5f);
+		animator.SetTrigger(Animator.StringToHash("Slam"));
+		Vector3 rot = Quaternion.LookRotation(-hit.normal).eulerAngles;
+		rot.y += 180;
+		transform.rotation = Quaternion.Euler(rot);
+		ShakeScreenAnimEvent.ShakeScreen();
 	}
 
 	public void OnParticleCollision(GameObject other) {
@@ -461,12 +491,13 @@ public class PlayerContainer : MonoBehaviour {
 			if(!currentAnim(hash.blockState)) {
 				getHurt(damage, knockback);
 				makeSound(hurt);
-				ShakeScreenAnimEvent.LittleShake();
+				//ShakeScreenAnimEvent.LittleShake();
+				vibration.vibrate(0.7f, 0.1f);
 				if(gameObject.activeSelf) StartCoroutine(startInvinciblity());
 			}
 			else if(!alreadySpawnedParryEffect) {
 					Instantiate(Resources.Load("Effects/Parry") as GameObject, transform.position, Quaternion.identity);
-					ShakeScreenAnimEvent.ShakeScreen();
+					ShakeScreenAnimEvent.LittleShake();
 					alreadySpawnedParryEffect = true;
 				}
 			}
@@ -502,7 +533,7 @@ public class PlayerContainer : MonoBehaviour {
 	protected void zoomToEnemy() {
 		if(!crosshair.gameObject.activeSelf) {
 			crosshair.gameObject.SetActive(true);
-			crosshair.position = this.transform.position+(transform.forward*5);
+			//crosshair.position = this.transform.position+(transform.forward*5);
 		}
 		Vector3 targetPos = new Vector3(crosshair.position.x, this.transform.position.y, 
 		                                crosshair.position.z);
@@ -688,6 +719,9 @@ public class PlayerContainer : MonoBehaviour {
 	}
 
 	void OnControllerColliderHit(ControllerColliderHit hit) {
+		if(hit.gameObject.tag=="Wall"&&currentAnim(hash.hurtState)) {
+			wallStun(hit);
+		}
 		//handle sidle
 //		bool diag = (horizontal != 0 && vertical != 0);
 //		//bool layered = hit.transform.gameObject.layer == LayerMask.NameToLayer ("Scenery");

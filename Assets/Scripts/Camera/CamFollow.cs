@@ -16,7 +16,7 @@ public class CamFollow : MonoBehaviour {
 	}
 
 	void Update () {
-		Debug.Log (follow.name);
+		//Debug.Log (follow.name);
 		//if(follow==null) follow=defaultLook;
 		currentpos = transform.position;
 		currentpos.x = follow.position.x;

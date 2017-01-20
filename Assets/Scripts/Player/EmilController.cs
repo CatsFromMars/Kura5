@@ -12,6 +12,7 @@ public class EmilController : PlayerContainer {
 	public AudioClip clickNoise;
 	
 	//VARIABLES REGARDING COMBAT
+	public float comboMultiplier = 1.2f; //How much damage stacks per combo hit
 	public int strength = 10; //Base damage a weapon does
 	public float meleeRange = 5.5f; //range of current weapon
 	public float meleeAngle = 160f;
@@ -118,7 +119,9 @@ public class EmilController : PlayerContainer {
 			animator.speed = 0.8f+(((GameData.emilWeaponConfig.speed/8.5f)*Mathf.Log(GameData.emilWeaponConfig.speed))/1.7f);
 
 		}
-		else animator.speed = 1;
+		else { 
+			animator.speed = 1;
+		}
 	}
 
 	bool isSwordAnim() {
@@ -158,7 +161,10 @@ public class EmilController : PlayerContainer {
 
 	void targetTeleport() {
 		//Teleport Emil to target if he's too far away
-		agent.SetDestination(crosshair.transform.position);
+		//Vector3 pos = transform.position;
+		//pos.x = (transform.position.x + crosshair.position.x)/2;
+		//pos.z = (transform.position.z + crosshair.position.z)/2;
+		//transform.position = pos;
 		//if(crosshairScript.currentTarget!=null) {
 		//	transform.position = crosshair.position+(crosshairScript.currentTarget.transform.forward*-3);
 		//}
@@ -189,11 +195,6 @@ public class EmilController : PlayerContainer {
 		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState2)) combo=2;
 		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState3)) combo=3;
 		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState4)) combo=4;
-		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState5)) combo=5;
-		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState6)) combo=6;
-		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState7)) combo=7;
-		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState8)) combo=8;
-		else if(Input.GetButtonDown("Attack") && currentAnim(hash.comboState9)) combo=9;
 		else if(currentAnim(hash.holdWeaponState) || currentAnim(hash.idleState) || currentAnim(hash.targetState)) combo = 0;
 		animator.SetInteger (hash.comboInt, combo);
 	}
@@ -219,11 +220,21 @@ public class EmilController : PlayerContainer {
 				RaycastHit hit;
 				if(Physics.Raycast (transform.position, targetDir, out hit, dist)) {
 					if(hit.collider.gameObject.tag == "Enemy") {
+						ShakeScreenAnimEvent.LittleShake();
+						if(GameData.emilWeaponConfig.power > 4) vibration.vibrate(1f, 0.07f);
+						else vibration.vibrate(0.6f, 0.1f);
 						hitEnemy(hit);
 						if(checkForBossSegment(hit)) break;
 					}
-					else if(hit.collider.gameObject.tag == "Breakable") Smash(hit);
-					else if(hit.collider.gameObject.tag == "Wall") hitWall(hit);
+					else if(hit.collider.gameObject.tag == "Breakable") {
+						ShakeScreenAnimEvent.LittleShake();
+						Smash(hit);
+					}
+					else if(hit.collider.gameObject.tag == "Wall") {
+						ShakeScreenAnimEvent.LittleShake();
+						vibration.vibrate(0.6f, 0.1f);
+						hitWall(hit);
+					}
 			
 				}
 			}
@@ -263,7 +274,7 @@ public class EmilController : PlayerContainer {
 	}
 
 	void hitEnemy(RaycastHit hit) {
-		int m = 1;
+		int m = Mathf.RoundToInt(combo*comboMultiplier);
 		EnemySegment b = null;
 		//Ordinary Enemies
 		EnemyClass enemy = hit.collider.GetComponent<EnemyClass>();
@@ -285,7 +296,6 @@ public class EmilController : PlayerContainer {
 		//Shadow Stun Code
 		if(lightLevels.darkness > 0) {
 			if(b!=null&&gameData.emilCurrentElem == GameData.elementalProperty.Dark) {
-				Debug.Log("Um...");
 				b.shadowSeal(lightLevels.darkness);
 			}
 			else if(enemy != null && gameData.emilCurrentElem == GameData.elementalProperty.Dark) {
@@ -329,6 +339,7 @@ public class EmilController : PlayerContainer {
 	}
 
 	override protected void getHurt(int damage, Vector3 knockbackDir) {
+		animator.ResetTrigger(Animator.StringToHash("Slam"));
 		gameData.emilCurrentLife -= damage;
 		
 		if(gameData.emilCurrentLife <= 0) {

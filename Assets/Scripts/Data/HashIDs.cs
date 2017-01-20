@@ -31,12 +31,14 @@ public class HashIDs : MonoBehaviour {
 	public int sidleLeftState;
 	public int sidleRightState;
 	public int sidleState;
+	public int slamState;
+	public int kneelState;
 
 	public int stepState;
 	public int leapState;
 	public int idleState;
 	public int enemyHurtState;
-
+	public int fallState;
 	public int stillState;
 
 	public int yesBool;
@@ -130,6 +132,9 @@ public class HashIDs : MonoBehaviour {
 		sidleLeftState = Animator.StringToHash("Locomotion.Sidleleft");
 		runningState = Animator.StringToHash("Locomotion.Running");
 		hurtState = Animator.StringToHash("Combat.Hurt");
+		slamState = Animator.StringToHash("Combat.Slam");
+		kneelState = Animator.StringToHash("Combat.Kneel");
+		fallState = Animator.StringToHash("Combat.Fall");
 		taiyouState = Animator.StringToHash("Charging.Taiyou");
 		limpingBool = Animator.StringToHash("Combat.Limping");
 		dyingState = Animator.StringToHash("Combat.Dying");

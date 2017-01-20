@@ -14,6 +14,13 @@ public class Inventory : MonoBehaviour {
 	public int slotsX = 5;
 	public int slotsY = 5;
 
+	//Keep track of weapon points
+	public int gunPoints = 0;
+	public int swordPoints = 0;
+
+	//Max config per stat
+	public int maxStat = 5;
+
 	//Wrapper List
 	public List<Item> slots = new List<Item>();
 
@@ -165,6 +172,24 @@ public class Inventory : MonoBehaviour {
 			}
 		}
 		return -1;
+	}
+
+	public void addGunPoint() {
+		gunPoints++;
+	}
+
+	public void addSwordPoint() {
+		swordPoints++;
+	}
+
+	public int increaseStat(int origStat) {
+		if(origStat+1 <= maxStat) return origStat+1;
+		else return -1;
+	}
+
+	public int decreastStat(int origStat) {
+		if(origStat-1 > 0) return origStat-1;
+		else return -1;
 	}
 
 	public int checkForKeyItem(int itemID) {

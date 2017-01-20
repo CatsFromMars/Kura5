@@ -120,6 +120,7 @@ public class AnnieController : PlayerContainer {
 	}
 
 	override protected void getHurt(int damage, Vector3 knockbackDir) {
+		animator.ResetTrigger(Animator.StringToHash("Slam"));
 		gameData.annieCurrentLife -= damage;
 		
 		if(gameData.annieCurrentLife <= 0) {

@@ -15,10 +15,12 @@ public class SceneTransition : MonoBehaviour
 	public CharacterSwapper swapper;
 	public Animator cutsceneFader;
 	private SpriteRenderer cutsceneRen;
+	public Flags flags;
 
 
 	void Awake ()
 	{
+		flags = GetUtil.getFlags ();
 		ren = GetComponent<SpriteRenderer>();
 		if(cutsceneFader!=null) cutsceneRen = cutsceneFader.GetComponent<SpriteRenderer>();
 		// Set the texture so that it is the the size of the screen and covers it.
@@ -76,6 +78,7 @@ public class SceneTransition : MonoBehaviour
 	public IEnumerator EndScene (string scene, bool stopTime=true, bool setCheckpoint = true, bool stopTimeOnLoad=false, bool keepFaderBlack=false)
 	{
 		loadingScene = true;
+		if(data!=null) data.previousSceneName = Application.loadedLevelName;
 		//AudioListener.volume = 0;
 		if(stopTime) Time.timeScale = 0;
 		playerGO = GameObject.FindWithTag ("Player");
@@ -118,7 +121,10 @@ public class SceneTransition : MonoBehaviour
 		ren.color = Color.clear;
 		ren.enabled = false;
 		if(cutsceneFader!=null&&cutsceneRen.color.a >= 0.95f) cutsceneFader.SetInteger(Animator.StringToHash("CutsceneAction"),0);
-		if(setCheckpoint) markCheckpoint (scene);
+		if(setCheckpoint) {
+			if(scene != data.previousSceneName) flags.increaseCounter();
+			markCheckpoint (scene);
+		}
 	}
 
 	public void gotoScene(string scene, bool stopTime=true, bool markCheckpoint=true, bool stopTimeOnLoad=false, bool keepFadedBlack=false) {

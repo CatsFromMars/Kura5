@@ -5,11 +5,12 @@ public static class CoroutineUtil
 {
 	public static IEnumerator WaitForRealSeconds(float time)
 	{
-		float start = Time.realtimeSinceStartup;
-		while (Time.realtimeSinceStartup < start + time)
-		{
+		float counter = 0f;
+		while(counter < time) {
+			counter += Time.unscaledDeltaTime;
 			yield return null;
 		}
+		yield return null;
 	}
 	
 	public static IEnumerator WhilePlaying( this Animation animation )

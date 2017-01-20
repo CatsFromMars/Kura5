@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 //A simple projectile that shoots in a straight direcrion.
 
@@ -85,6 +86,7 @@ public class Bullet : MonoBehaviour {
 	}
 	
 	void SpawnEffect() {
+		ShakeScreenAnimEvent.LittleShake();
 		if(GameData.annieWeaponConfig.power > 4) {
 			Instantiate(maxHitEffect, transform.position, Quaternion.identity);
 		}
@@ -93,5 +95,5 @@ public class Bullet : MonoBehaviour {
 	
 	void DespawnBullet() {
 		gameObject.Recycle();
-	}
+	}	
 }

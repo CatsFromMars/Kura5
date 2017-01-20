@@ -95,9 +95,9 @@ public class Dialogue : MonoBehaviour {
 		}
 		
 		int oldCounter=Mathf.FloorToInt(textCounter); // for use later in audio
-		if (Input.anyKey)   // any key makes it faster
+		if (!(textCounter >= theText.Length) && (Input.GetButtonDown("Confirm") || Input.GetButtonDown("Deny")))   // any key makes it faster
 
-			textCounter += (textRate*6)*Time.unscaledDeltaTime;
+			textCounter = theText.Length-1;
 		else
 			textCounter += (textRate*2)*Time.unscaledDeltaTime;
 		// tick sound when displaying
@@ -110,7 +110,7 @@ public class Dialogue : MonoBehaviour {
 				}
 			}
 		}
-		// if finished & space bar
+		// if finished & button click
 		if (textCounter >= theText.Length)
 		{   
 			if(!labelMode) arrow.SetActive(true);
@@ -168,17 +168,15 @@ public class Dialogue : MonoBehaviour {
 			if(letter.ToString().Equals("]")) {
 				stopNext = true;
 			}
-
+			
 			string section = "";
-
+			
 			if(red) {
 				section = "<color=\"red\">"+letter+"</color>";
 			}
 			else section = letter.ToString();
-
 			s += section;
 		}
-
 		return s;
 	}
 

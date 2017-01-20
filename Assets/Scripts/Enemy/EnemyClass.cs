@@ -25,6 +25,7 @@ public class EnemyClass : MonoBehaviour {
 	protected Shader blinkShader;
 	protected Transform blinker;
 	protected Slider lifeBar;
+	public bool respawnsOnRoomExit = false;
 	public bool changesElementWithWeather;
 	public string originalElement;
 	public WeaponData selfWeaponData;
@@ -52,6 +53,7 @@ public class EnemyClass : MonoBehaviour {
 	protected NavMeshAgent agent;
 
 	//DATA VARIABLES
+	private Vector3 key; //for flags;
 	protected AudioSource audio;
 	protected Rigidbody rigidbody;
 	protected GameObject globalData;
@@ -60,6 +62,7 @@ public class EnemyClass : MonoBehaviour {
 	protected HashIDs hash;
 	public LightLevels lightLevels;
 	public DamageCalculator damageCalculator;
+	public Flags flags;
 	
 	//ACTION VARIABLES
 	//protected bool attacking;
@@ -102,6 +105,13 @@ public class EnemyClass : MonoBehaviour {
 	}
 
 	void Awake () {
+		if(!respawnsOnRoomExit) {
+			key = transform.position;
+			flags = GetUtil.getFlags();
+			flags.AddEnemyFlag(key);
+			if(flags.CheckEnemyFlag(key)) gameObject.SetActive(false);
+		}
+
 		blinker = transform.FindChild ("Flash");
 		if(blinker == null) Debug.LogError ("EnemyFlash Projector Not Found!");
 		rigidbody = GetComponent<Rigidbody> ();
@@ -135,6 +145,7 @@ public class EnemyClass : MonoBehaviour {
 		originalElement = element;
 
 		if(changesElementWithWeather) swapElement();
+
 	}
 
 	protected void storeColors() {
@@ -254,6 +265,7 @@ public class EnemyClass : MonoBehaviour {
 	}
 
 	public virtual void Die() {
+		if(!respawnsOnRoomExit) flags.SetEnemyToKilled(key);
 		dying = true;
 		//Disable collider upon death so that the player doesn't get hurt
 		CapsuleCollider cc = GetComponent<CapsuleCollider>();
@@ -275,7 +287,7 @@ public class EnemyClass : MonoBehaviour {
 
 	public void Kill() {
 		currentLife = 0;
-		Die ();
+		Die();
 	}
 
 	protected void spawnLoot() {

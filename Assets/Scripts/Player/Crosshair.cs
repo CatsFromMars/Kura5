@@ -8,9 +8,13 @@ public class Crosshair : MonoBehaviour {
 	SpriteRenderer ren;
 	public Transform player;
 	public bool camLook = false;
-	private float speed = 12f;
+	private float speed = 18f;
 	private float horizontal;
 	private float vertical;
+
+	void OnEnable() {
+		targetClosestEnemy ();
+	}
 
 	void Start() {
 		ren = GetComponent<SpriteRenderer>();
@@ -45,15 +49,45 @@ public class Crosshair : MonoBehaviour {
 		ren.sprite = inactive;
 	}
 
-	public void OnTriggerEnter(Collider other) {
-		if(other.collider.tag == "EnemyWeapon") {
+
+	public void OnTriggerStay(Collider other) {
+		bool enemy = other.collider.tag == "Enemy" && !other.collider.isTrigger;
+		if(enemy || other.collider.tag == "EnemyWeapon") {
 			currentTarget = other.collider.gameObject;
 		}
 	}
 
 	public void OnTriggerExit(Collider other) {
-		if(other.collider.tag == "EnemyWeapon") {
+		bool enemy = other.collider.tag == "Enemy" && !other.collider.isTrigger;
+		if(enemy || other.collider.tag == "EnemyWeapon") {
 			currentTarget = null;
 		}
 	}
+
+	void targetClosestEnemy() {
+		//ONLY on screen enemies can be targeted
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+		GameObject tMin = null;
+		float minDist = Mathf.Infinity;
+		Vector3 currentPos = transform.position;
+		foreach (GameObject t in enemies)
+		{
+			float dist = Vector3.Distance(t.transform.position, currentPos);
+			if (dist < minDist && enemyOnScreen(t))
+			{
+				tMin = t;
+				minDist = dist;
+			}
+		}
+		//Now lock onto tMin, the closest enemy
+		if(tMin!=null) currentTarget = tMin;
+		else transform.position = (player.position+(player.transform.forward*5));
+	}
+
+	bool enemyOnScreen(GameObject enemy) {
+		Vector3 viewPos = Camera.main.WorldToViewportPoint(enemy.transform.position);
+		if(viewPos.x > 0 && viewPos.x < 1 && viewPos.y > 0 && viewPos.y < 1) return true;
+		else return false;
+	}
+	
 }

@@ -47,13 +47,14 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\DecalSystem\DecalSystem\Decal.cs" />
-     <Compile Include="Assets\Experimental\Speedline\Speelines.cs" />
-     <Compile Include="Assets\Experimental\lookaway.cs" />
+     <Compile Include="Assets\ExperimentalTestAssets\BoktaiDSPassword.cs" />
      <Compile Include="Assets\ExperimentalTestAssets\CharacterWalkTest.cs" />
      <Compile Include="Assets\ExperimentalTestAssets\Coffin\CoffinFollow.cs" />
      <Compile Include="Assets\ExperimentalTestAssets\Coffin\RopeScript.cs" />
      <Compile Include="Assets\ExperimentalTestAssets\Coffin\StealthCoffin.cs" />
+     <Compile Include="Assets\ExperimentalTestAssets\HeadLookAtTarget.cs" />
      <Compile Include="Assets\ExperimentalTestAssets\LensSwapTemp.cs" />
+     <Compile Include="Assets\ExperimentalTestAssets\PasswordTest.cs" />
      <Compile Include="Assets\ExperimentalTestAssets\Test.cs" />
      <Compile Include="Assets\ExperimentalTestAssets\TextReadingTest.cs" />
      <Compile Include="Assets\External\Cartoon FX\Demo\Assets\CFX_Demo.cs" />
@@ -167,6 +168,7 @@
      <Compile Include="Assets\Scripts\Interactables\InteractablesClass\InteractablesClass.cs" />
      <Compile Include="Assets\Scripts\Interactables\InteractablesClass\SolarStation.cs" />
      <Compile Include="Assets\Scripts\Interactables\LunaBug.cs" />
+     <Compile Include="Assets\Scripts\Interactables\Switch.cs" />
      <Compile Include="Assets\Scripts\Interactables\Talk.cs" />
      <Compile Include="Assets\Scripts\Interactables\Torch.cs" />
      <Compile Include="Assets\Scripts\Interactables\TreasureChest.cs" />
@@ -196,6 +198,7 @@
      <Compile Include="Assets\Scripts\Player\CharacterSwapper.cs" />
      <Compile Include="Assets\Scripts\Player\Crosshair.cs" />
      <Compile Include="Assets\Scripts\Player\EmilController.cs" />
+     <Compile Include="Assets\Scripts\Player\GunEffectHandler.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerContainer.cs" />
      <Compile Include="Assets\Scripts\Player\RaycastBullet.cs" />
      <Compile Include="Assets\Scripts\Player\Spread.cs" />
@@ -228,6 +231,7 @@
      <Compile Include="Assets\Scripts\Utility\ShakeScreenAnimEvent.cs" />
      <Compile Include="Assets\Scripts\Utility\TimedDestroy.cs" />
      <Compile Include="Assets\Scripts\Utility\UnscaledTimeParticle.cs" />
+     <Compile Include="Assets\Scripts\Utility\Vibration.cs" />
      <Compile Include="Assets\Scripts\Visual\AnnieEffects.cs" />
      <Compile Include="Assets\Scripts\Visual\BatBloodEffect.cs" />
      <Compile Include="Assets\Scripts\Visual\CamZoomer.cs" />
@@ -362,6 +366,7 @@
      <None Include="Assets\External\JMO Assets2\Cartoon FX\Shaders\CFX3 Invert.shader" />
      <None Include="Assets\External\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Add.shader" />
      <None Include="Assets\Resources\Dialogue\Outskirts\EmilAnnieMeet.txt" />
+     <None Include="Assets\plugins\XInputDotNet\MITLicense.txt" />
      <None Include="Assets\Resources\Dialogue\Hints\Charging.txt" />
      <None Include="Assets\Resources\Dialogue\trailer.txt" />
      <None Include="Assets\Resources\Dialogue\Traps\DisarmTrapShadowSealingTutorial.txt" />
@@ -453,6 +458,7 @@
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\VortexEffect.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\Contrast Stretch\Adaptation.shader" />
      <None Include="Assets\Resources\Dialogue\Outskirts\NameGraves\Custer.txt" />
+     <None Include="Assets\Resources\Dialogue\Outskirts\targetTutorial1.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseAndGrain.shader" />
      <None Include="Assets\Resources\Dialogue\Test\testportrait.txt" />
      <None Include="Assets\External\JMO Assets\Cartoon FX\Shaders\CFX2 Particle Alpha Blend Tint.shader" />

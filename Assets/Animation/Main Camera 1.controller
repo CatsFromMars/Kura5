@@ -26,6 +26,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: BigShake
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -74,6 +80,26 @@ Transition:
     m_ConditionEvent: CutsceneAction
     m_EventTreshold: 4
     m_ExitTime: .720308185
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110130760
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110263088}
+  m_DstState: {fileID: 110241030}
+  m_TransitionDuration: .0591036677
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: BigShake
+    m_EventTreshold: 0
+    m_ExitTime: .75
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -134,6 +160,26 @@ Transition:
     m_ConditionEvent: CutsceneAction
     m_EventTreshold: 0
     m_ExitTime: .75
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110145498
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110259102}
+  m_DstState: {fileID: 110241030}
+  m_TransitionDuration: .0057023759
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: BigShake
+    m_EventTreshold: 0
+    m_ExitTime: 0
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -278,6 +324,26 @@ Transition:
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
+--- !u!1101 &110185378
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 110241030}
+  m_DstState: {fileID: 110263088}
+  m_TransitionDuration: .172531515
+  m_TransitionOffset: .0131652718
+  m_Conditions:
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
+    m_EventTreshold: 0
+    m_ExitTime: .815126002
+  m_Atomic: 1
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
 --- !u!1101 &110188550
 Transition:
   serializedVersion: 2
@@ -403,6 +469,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110241030
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: BigShake
+  m_Speed: 1.5
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 26d7e2b4891b65a4ea92ed5938dc5868, type: 2}
+  m_ParentStateMachine: {fileID: 110793568}
+  m_Position: {x: -168, y: 108, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110243252
 State:
   m_ObjectHideFlags: 3
@@ -429,7 +510,7 @@ State:
   m_Motions:
   - {fileID: 7400000, guid: cb3acbe5d79c95e45973552bbb819692, type: 2}
   m_ParentStateMachine: {fileID: 110793568}
-  m_Position: {x: -36, y: 180, z: 0}
+  m_Position: {x: -84, y: 216, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -495,9 +576,14 @@ StateMachine:
   - {fileID: 110224380}
   - {fileID: 110243252}
   - {fileID: 110261364}
+  - {fileID: 110241030}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
+    data:
+      first: {fileID: 110241030}
+      second:
+      - {fileID: 110185378}
     data:
       first: {fileID: 110263088}
       second:
@@ -508,6 +594,7 @@ StateMachine:
       - {fileID: 110192498}
       - {fileID: 110127268}
       - {fileID: 110164596}
+      - {fileID: 110130760}
     data:
       first: {fileID: 110293568}
       second:
@@ -516,6 +603,7 @@ StateMachine:
       first: {fileID: 110259102}
       second:
       - {fileID: 110180156}
+      - {fileID: 110145498}
     data:
       first: {fileID: 110213584}
       second:

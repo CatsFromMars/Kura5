@@ -26,7 +26,7 @@ public class CamLooker : MonoBehaviour {
 	}
 
 	public void zoomToTarget(Transform target, float speed=21f, bool limitRaduis=false) {
-		Debug.Log (target);
+		//Debug.Log (target);
 		if(coroutine != null) StopCoroutine (coroutine);
 		coroutine = lookAtTarget (target, speed, limitRaduis);
 		StartCoroutine (coroutine);

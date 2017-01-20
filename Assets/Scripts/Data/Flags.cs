@@ -12,10 +12,14 @@ public class Flags : MonoBehaviour {
 	public Dictionary<string, bool> treasurechests;
 	public Dictionary<string, bool> doors;
 	public Dictionary<string, bool> other; //Use for puzzles and weird story flags
+	public Dictionary<string, bool> enemies; //Use for enemy deaths and respawning
 	public int immortalHeartsEaten = 0;
+	public int respawnCounter = 0;
+	private int respawnThreshold = 2;
 
 	void Awake() {
 		traps = new Dictionary<string, bool>();
+		enemies = new Dictionary<string, bool>();
 		cutscenes = new Dictionary<string, bool>();
 		treasurechests = new Dictionary<string, bool>();
 		doors = new Dictionary<string, bool>();
@@ -107,6 +111,35 @@ public class Flags : MonoBehaviour {
 
 	public void setImmortalHearts() {
 		immortalHeartsEaten++;
+	}
+
+	//Enemy
+	public string generatePositionKey(Vector3 pos) {
+		return (pos.x + pos.y + pos.z).ToString();
+	}
+
+	public void AddEnemyFlag(Vector3 pos) {
+		string key = Application.loadedLevelName + generatePositionKey(pos);
+		if(!enemies.ContainsKey(key)) enemies.Add(key, false);
+	}
+	
+	public void SetEnemyToKilled(Vector3 pos) {
+		string key = Application.loadedLevelName + generatePositionKey(pos);
+		enemies[key] = true;
+	}
+	
+	public bool CheckEnemyFlag(Vector3 pos) {
+		string key = Application.loadedLevelName + generatePositionKey(pos);
+		return enemies[key];
+	}
+
+	public void increaseCounter() {
+		respawnCounter++;
+		if(respawnCounter>respawnThreshold) RespawnEnemies();
+	}
+
+	public void RespawnEnemies() {
+		enemies.Clear();
 	}
 
 }

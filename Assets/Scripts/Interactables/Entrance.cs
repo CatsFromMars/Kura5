@@ -50,7 +50,7 @@ public class Entrance : MonoBehaviour {
 		Vector3 pos = player.transform.position + player.transform.forward;
 		GameObject.FindGameObjectWithTag ("Fader").GetComponent<SceneTransition> ().gotoScene (nextScene,true, true, false, keepFadedBlack);
 		//yield return StartCoroutine(player.characterWalkTo(pos, this.transform));
-		yield return null;
+		yield return CoroutineUtil.WaitForRealSeconds(0.5f);
 		if(setPlayerPosition) player.transform.position = positionSet;
 		if (setPlayerRotation) {
 			player.transform.rotation = Quaternion.Euler(player.transform.rotation.x, rotationSet, player.transform.rotation.z);

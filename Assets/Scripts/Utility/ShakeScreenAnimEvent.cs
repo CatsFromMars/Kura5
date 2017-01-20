@@ -17,6 +17,10 @@ public class ShakeScreenAnimEvent : MonoBehaviour {
 		Camera.main.GetComponent<Animator>().SetTrigger (Animator.StringToHash("LittleShake"));
 	}
 
+	public static void BigShake() {
+		Camera.main.GetComponent<Animator>().SetTrigger (Animator.StringToHash("BigShake"));
+	}
+
 	public void flashScreen() {
 		CameraFlash.flashCamera ();
 	}

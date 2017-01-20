@@ -76,7 +76,6 @@ public class DisplayDialogue : MonoBehaviour {
 	public static void playAnim(string txt) {
 		string temptxt = txt;
 		string number = Regex.Replace(temptxt,"[^0-9]","");
-		Debug.Log (number);
 		string name = txt.Replace("<A=","").Replace("_"+number+">","");
 		Regex rgx = new Regex("[^a-zA-Z0-9 -]");
 		name = rgx.Replace(name, ""); //filter out alphanumeric characters
